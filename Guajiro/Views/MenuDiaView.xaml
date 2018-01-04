@@ -65,7 +65,7 @@
             <!--AREA DE LISTAS DE MENU DEL DIA-->
             <Grid Grid.Column="2">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition/>
                     <RowDefinition Height="5"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
@@ -81,17 +81,45 @@
                         <ColumnDefinition Width="2*"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <UniformGrid Grid.Column="1" Columns="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <UniformGrid Grid.Row="0" Grid.Column="1" Columns="2" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <TextBlock Text="Menú del Día:" Foreground="{StaticResource PrimaryHueLightBrush}" 
                                    VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 5 20 0"/>
                         <DatePicker Margin="0 5 0 0" HorizontalAlignment="Left" wpfMD:HintAssist.Hint="Elegir Fecha"
                                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
                     </UniformGrid>
+                    <ListView x:Name="ListaMenuDia" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                              ScrollViewer.VerticalScrollBarVisibility="Auto">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Descripcion"/>
+                                <GridViewColumn Header="Precio"/>
+                                <GridViewColumn Header="Quitar"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </Grid>
                 <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch"/>
                 <!--LISTA DE MENÙS DEL DÍA HISTORICOS-->
                 <Grid Grid.Row="2" x:Name="GridMenuHistoricos">
-                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Menús del Día Registrados" HorizontalAlignment="Center"
+                               Foreground="{StaticResource PrimaryHueLightBrush}" VerticalAlignment="Center"/>
+                    <ListView x:Name="ListaHistoricos" Grid.Row="1"  
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                              ScrollViewer.VerticalScrollBarVisibility="Auto">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Fecha"/>
+                                <GridViewColumn Header="Copiar Menú"/>
+                                <GridViewColumn Header="Ver Menú"/>
+                                <GridViewColumn Header="Eliminar"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </Grid>
             </Grid>
         </Grid>
