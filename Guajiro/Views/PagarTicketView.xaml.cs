@@ -16,14 +16,14 @@ using System.Windows.Shapes;
 namespace Guajiro.Views
 {
     /// <summary>
-    /// Lógica de interacción para PuntoVentaView.xaml
+    /// Lógica de interacción para PagarTicketView.xaml
     /// </summary>
-    public partial class PuntoVentaView : UserControl
+    public partial class PagarTicketView : UserControl
     {
-        public PuntoVentaView()
+        public PagarTicketView()
         {
             InitializeComponent();
-            FechaPago.BlackoutDates.AddDatesInPast();
+            //FechaPago.BlackoutDates.AddDatesInPast();
         }
     }
 }

@@ -28,14 +28,10 @@ namespace Guajiro.Models
         public virtual DbSet<tbl_caracteristicasitem> tbl_caracteristicasitem { get; set; }
         public virtual DbSet<tbl_corte> tbl_corte { get; set; }
         public virtual DbSet<tbl_corte_mov> tbl_corte_mov { get; set; }
-        public virtual DbSet<tbl_direcciones> tbl_direcciones { get; set; }
-        public virtual DbSet<tbl_estados> tbl_estados { get; set; }
         public virtual DbSet<tbl_guarniciones> tbl_guarniciones { get; set; }
         public virtual DbSet<tbl_items> tbl_items { get; set; }
         public virtual DbSet<tbl_listadoseldetalle> tbl_listadoseldetalle { get; set; }
         public virtual DbSet<tbl_listadoseleccion> tbl_listadoseleccion { get; set; }
-        public virtual DbSet<tbl_movimientos> tbl_movimientos { get; set; }
-        public virtual DbSet<tbl_municipios> tbl_municipios { get; set; }
         public virtual DbSet<tbl_ordenes> tbl_ordenes { get; set; }
         public virtual DbSet<tbl_personas> tbl_personas { get; set; }
         public virtual DbSet<tbl_telefonos> tbl_telefonos { get; set; }
@@ -44,9 +40,18 @@ namespace Guajiro.Models
         public virtual DbSet<vw_lista_precios> vw_lista_precios { get; set; }
         public virtual DbSet<tbl_detallesguarnicion> tbl_detallesguarnicion { get; set; }
         public virtual DbSet<vw_lista_ordenes> vw_lista_ordenes { get; set; }
-        public virtual DbSet<tbl_comandas> tbl_comandas { get; set; }
         public virtual DbSet<tbl_detallescomanda> tbl_detallescomanda { get; set; }
         public virtual DbSet<tbl_detallesobservacion> tbl_detallesobservacion { get; set; }
         public virtual DbSet<tbl_mesas> tbl_mesas { get; set; }
+        public virtual DbSet<vw_lista_clientes> vw_lista_clientes { get; set; }
+        public virtual DbSet<vw_lista_direcciones> vw_lista_direcciones { get; set; }
+        public virtual DbSet<tbl_estados> tbl_estados { get; set; }
+        public virtual DbSet<tbl_municipios> tbl_municipios { get; set; }
+        public virtual DbSet<tbl_direcciones> tbl_direcciones { get; set; }
+        public virtual DbSet<tbl_detallemenu> tbl_detallemenu { get; set; }
+        public virtual DbSet<tbl_menudeldia> tbl_menudeldia { get; set; }
+        public virtual DbSet<tbl_movimientos> tbl_movimientos { get; set; }
+        public virtual DbSet<tbl_comandas> tbl_comandas { get; set; }
+        public virtual DbSet<vw_lista_comandas> vw_lista_comandas { get; set; }
     }
 }

@@ -32,7 +32,7 @@ namespace Guajiro.ViewModels
 
         public LoginViewModel()
         {
-            guajiroEF = new bd_guajiroEntities();
+            //guajiroEF = new bd_guajiroEntities();
             ValidarUsuarioCommand = new RelayCommand(ValidarUsuario);
             TxtLogin = "admin";
             //TxtPassword = "admin";
@@ -42,7 +42,7 @@ namespace Guajiro.ViewModels
 
         #region Metodos
 
-        private string generarMD5(string psw)
+        private string GenerarMD5(string psw)
         {
             if (String.IsNullOrEmpty(psw))
                 return string.Empty;
@@ -52,9 +52,9 @@ namespace Guajiro.ViewModels
             return BitConverter.ToString(res);
         }
 
-        private void validarCredenciales(String login, String password)
+        private void ValidarCredenciales(String login, String password)
         {
-            String psw = generarMD5(password);
+            String psw = GenerarMD5(password);
             psw = psw.Replace("-", "");
             UsuarioActual = guajiroEF.tbl_usuarios.SingleOrDefault(x => x.login.Equals(login) && x.password.Equals(psw.ToLower()));
             EsValido = (UsuarioActual != null) ? true : false;
@@ -64,11 +64,15 @@ namespace Guajiro.ViewModels
         {
             PasswordBox pwbox = parameter as PasswordBox;
             TxtPassword = pwbox.Password;
-            validarCredenciales(TxtLogin, TxtPassword);
+            ValidarCredenciales(TxtLogin, TxtPassword);
             if (EsValido == true)
             {
-                PrincipalView principal = new PrincipalView();
-                Navigator.NavigationService.Navigate(principal);
+                PrincipalViewModel vmPrincipal = new PrincipalViewModel(UsuarioActual);
+                PrincipalView vwPrincipal = new PrincipalView
+                {
+                    DataContext = vmPrincipal
+                };
+                Navigator.NavigationService.Navigate(vwPrincipal);
             }
         }
 

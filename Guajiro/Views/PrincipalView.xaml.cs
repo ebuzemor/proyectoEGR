@@ -15,7 +15,7 @@ namespace Guajiro.Views
         public PrincipalView()
         {
             InitializeComponent();
-            DataContext = new PrincipalViewModel();
+            //DataContext = new PrincipalViewModel();
         }
 
         private void ListaOpciones_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)

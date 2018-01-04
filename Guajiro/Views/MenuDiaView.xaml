@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="Guajiro.Views.MenuDiaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:wpfMD="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Guajiro.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="1100">
+    <wpfMD:DialogHost>
+        <Grid Background="#791D06">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="1.5*"/>
+            </Grid.ColumnDefinitions>
+            <!--AREA DE BUSQUEDA DE PRODUCTOS-->
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".5*"/>
+                    <RowDefinition Height=".3*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+                <UniformGrid Grid.Row="0" Rows="2" Columns="2">
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding TxtBuscar}">
+                        <wpfMD:HintAssist.Hint>
+                            <StackPanel Orientation="Horizontal" Margin="2 0 0 0">
+                                <wpfMD:PackIcon Kind="FoodForkDrink"/>
+                                <TextBlock Text="Buscar por nombre"/>
+                            </StackPanel>
+                        </wpfMD:HintAssist.Hint>
+                    </TextBox>
+                    <Button Content="Buscar..." Command="{Binding BuscarItemsCommand}"/>
+                </UniformGrid>
+                <UniformGrid Grid.Row="1" Columns="3">
+                    <Button Content="{wpfMD:PackIcon Kind=FoodApple}" ToolTip="Desayunos" Command="{Binding DesayunosCommand}"/>
+                    <Button Content="{wpfMD:PackIcon Kind=Coffee}" ToolTip="Bebidas" Command="{Binding BebidasCommand}"/>
+                    <Button Content="{wpfMD:PackIcon Kind=SilverwareVariant}" ToolTip="Comidas" Command="{Binding ComidasCommand}"/>
+                </UniformGrid>
+                <ListView x:Name="Lista" ItemsSource="{Binding ListaProductos}" Grid.Row="2" Margin="5"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Descripción" Width="200" DisplayMemberBinding="{Binding descripcion}"/>
+                            <GridViewColumn Header="Precio" Width="100" DisplayMemberBinding="{Binding valor, StringFormat=C2}"/>
+                            <GridViewColumn Header="Agregar" Width="auto">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                                Margin="0 0 8 0" HorizontalAlignment="Left"
+                                                Content="{wpfMD:PackIcon Plus}"
+                                                ToolTip="Agregar producto al ticket"
+                                                Height="22" Width="22"
+                                                Command="{Binding ElementName=Lista, Path=DataContext.AgregarItemCommand}"
+                                                CommandParameter="{Binding iditem}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch"/>
+            <!--AREA DE LISTAS DE MENU DEL DIA-->
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!--LISTA DE MENU DEL DIA A GUARDAR-->
+                <Grid Grid.Row="0" x:Name="GridMenuNuevo">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="45"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <UniformGrid Grid.Column="1" Columns="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="Menú del Día:" Foreground="{StaticResource PrimaryHueLightBrush}" 
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 5 20 0"/>
+                        <DatePicker Margin="0 5 0 0" HorizontalAlignment="Left" wpfMD:HintAssist.Hint="Elegir Fecha"
+                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                    </UniformGrid>
+                </Grid>
+                <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch"/>
+                <!--LISTA DE MENÙS DEL DÍA HISTORICOS-->
+                <Grid Grid.Row="2" x:Name="GridMenuHistoricos">
+                    
+                </Grid>
+            </Grid>
+        </Grid>
+    </wpfMD:DialogHost>
+</UserControl>

@@ -16,12 +16,13 @@ namespace Guajiro.Models
     {
         public string iddireccion { get; set; }
         public string idpersona { get; set; }
-        public Nullable<int> idmunicipio { get; set; }
+        public string idmunicipio { get; set; }
         public string calle1 { get; set; }
         public string calle2 { get; set; }
         public string interior { get; set; }
         public string exterior { get; set; }
         public string colonia { get; set; }
         public string codigopostal { get; set; }
+        public Nullable<bool> entrega { get; set; }
     }
 }

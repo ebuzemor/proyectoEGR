@@ -14,7 +14,7 @@ namespace Guajiro.Models
     
     public partial class tbl_estados
     {
-        public int idestado { get; set; }
+        public string idestado { get; set; }
         public string nombre { get; set; }
     }
 }

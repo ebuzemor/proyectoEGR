@@ -12,10 +12,12 @@ namespace Guajiro.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_municipios
+    public partial class tbl_detallemenu
     {
-        public string idmunicipio { get; set; }
-        public string idestado { get; set; }
-        public string nombre { get; set; }
+        public string iddetalle { get; set; }
+        public string idmenu { get; set; }
+        public string iditem { get; set; }
+    
+        public virtual tbl_menudeldia tbl_menudeldia { get; set; }
     }
 }

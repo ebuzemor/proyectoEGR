@@ -2,140 +2,71 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Guajiro.Views"
-             xmlns:vm="clr-namespace:Guajiro.ViewModels"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:wpfMD="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.DataContext>
+             d:DesignHeight="700" d:DesignWidth="1100">
+    <!--<UserControl.DataContext>
         <vm:PuntoVentaViewModel/>
-    </UserControl.DataContext>
-
+    </UserControl.DataContext>-->
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-
-    <Grid Background="#791D06">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="5"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <!-- AREA DE BÚSQUEDA Y SELECCIÓN -->
-        <Grid Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height=".5*"/>
-                <RowDefinition Height="3*"/>
-            </Grid.RowDefinitions>
-            <UniformGrid Grid.Row="0">
-                <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding TxtBuscar}">
-                    <materialDesign:HintAssist.Hint>
-                        <StackPanel Orientation="Horizontal" Margin="2 0 0 0">
-                            <materialDesign:PackIcon Kind="FoodForkDrink"/>
-                            <TextBlock>Buscar por nombre:</TextBlock>
-                        </StackPanel>
-                    </materialDesign:HintAssist.Hint>
-                </TextBox>
-                <Button Content="Buscar..." Command="{Binding BuscarItemsCommand}"/>
-            </UniformGrid>
-
-            <ListView x:Name="Lista" ItemsSource="{Binding ListaProductos}" Grid.Row="1" Margin="5"
+    <wpfMD:DialogHost Identifier="PuntoVenta">
+        <Grid Background="#791D06">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="1.5*"/>
+            </Grid.ColumnDefinitions>
+            <!-- AREA DE BÚSQUEDA Y SELECCIÓN -->
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".5*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+                <UniformGrid Grid.Row="0" Rows="2" Columns="2">
+                    <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding TxtBuscar}">
+                        <wpfMD:HintAssist.Hint>
+                            <StackPanel Orientation="Horizontal" Margin="2 0 0 0">
+                                <wpfMD:PackIcon Kind="FoodForkDrink"/>
+                                <TextBlock Text="Buscar por nombre"/>
+                            </StackPanel>
+                        </wpfMD:HintAssist.Hint>
+                    </TextBox>
+                    <Button Content="Buscar..." Command="{Binding BuscarItemsCommand}"/>
+                    <UniformGrid Columns="2">
+                        <Button Content="{wpfMD:PackIcon Kind=FoodApple}" ToolTip="Desayunos" Command="{Binding DesayunosCommand}"/>
+                        <Button Content="{wpfMD:PackIcon Kind=Coffee}" ToolTip="Bebidas" Command="{Binding BebidasCommand}"/>
+                    </UniformGrid>
+                    <UniformGrid Columns="2">
+                        <Button Content="{wpfMD:PackIcon Kind=SilverwareVariant}" ToolTip="Comidas" Command="{Binding ComidasCommand}"/>
+                        <Button Content="{wpfMD:PackIcon Kind=PotMix}" ToolTip="Menú del Día" Command="{Binding MenuDiaCommand}"/>
+                    </UniformGrid>
+                </UniformGrid>
+                <ListView x:Name="Lista" ItemsSource="{Binding ListaProductos}" Grid.Row="1" Margin="5"
                       ScrollViewer.VerticalScrollBarVisibility="Auto"
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Descripción" Width="300" DisplayMemberBinding="{Binding descripcion}"/>
-                        <GridViewColumn Header="Precio" Width="100" DisplayMemberBinding="{Binding valor}"/>
-                        <GridViewColumn Header="Agregar" Width="auto">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                                            Margin="0 0 8 0" HorizontalAlignment="Left"
-                                            Content="{materialDesign:PackIcon Plus}"
-                                            ToolTip="Agregar producto al ticket"
-                                            Height="22" Width="22"
-                                            Command="{Binding ElementName=Lista, Path=DataContext.AgregarItemCommand}"
-                                            CommandParameter="{Binding iditem}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </Grid>
-
-        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
-        <Grid Grid.Column="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="5"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <!-- AREA DEL TICKET -->
-            <Grid Grid.Row="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="20"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0">
-                    <TextBlock Grid.Column="0" Text="COMANDA # 999,999" FontWeight="ExtraLight" FontSize="12" 
-                               TextAlignment="Right" Margin="5"/>
-                    <!--<Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="COMANDA #" FontWeight="ExtraLight" FontSize="12" 
-                                   FontStyle="Oblique" TextAlignment="Right"/>
-                        <TextBlock Grid.Column="1" Text="999,999" TextAlignment="Center"/>
-                    </Grid>-->
-                </StackPanel>
-                <ListView Grid.Row="1" x:Name="lstTicket" ItemsSource="{Binding ListaTicket}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Comida" Width="300">
+                            <GridViewColumn Header="Descripción" Width="200" DisplayMemberBinding="{Binding descripcion}"/>
+                            <GridViewColumn Header="Precio" Width="100" DisplayMemberBinding="{Binding valor, StringFormat=C2}"/>
+                            <GridViewColumn Header="Agregar" Width="auto">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <StackPanel Margin="10, 0">
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Binding Descripcion}" FontWeight="Bold"/>
-                                            </StackPanel>
-                                            <ListView x:Name="lstGuarnicion" ItemsSource="{Binding Guarniciones}">
-                                                <ListView.ItemContainerStyle>
-                                                    <Style TargetType="{x:Type ListViewItem}">
-                                                        <Setter Property="TextBlock.FontSize" Value="10"/>
-                                                        <Setter Property="TextBlock.FontWeight" Value="ExtraLight"/>
-                                                        <!--<Setter Property="TextBlock.FontStyle" Value="Italic"/>-->
-                                                    </Style>
-                                                </ListView.ItemContainerStyle>
-                                            </ListView>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Header="Precio" Width="100" DisplayMemberBinding="{Binding Precio}"/>
-                            <GridViewColumn Header="Acciones" Width="auto">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                                                    Margin="0 0 8 0" HorizontalAlignment="Left"
-                                                    Content="{materialDesign:PackIcon Pencil}"
-                                                    ToolTip="Editar item" Height="22" Width="22"
-                                                    Command="{Binding ElementName=lstTicket, Path=DataContext.EditarItemCommand}"
-                                                    CommandParameter="{Binding IdLista}"/>
-                                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                                                    Margin="0 0 8 0" HorizontalAlignment="Left"
-                                                    Content="{materialDesign:PackIcon Delete}"
-                                                    ToolTip="Quitar item" Height="22" Width="22"
-                                                    Command="{Binding ElementName=lstTicket, Path=DataContext.QuitarItemCommand}"
-                                                    CommandParameter="{Binding IdLista}"/>
-                                        </StackPanel>
+                                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                                Margin="0 0 8 0" HorizontalAlignment="Left"
+                                                Content="{wpfMD:PackIcon Plus}"
+                                                ToolTip="Agregar producto al ticket"
+                                                Height="22" Width="22"
+                                                Command="{Binding ElementName=Lista, Path=DataContext.AgregarItemCommand}"
+                                                CommandParameter="{Binding iditem}"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -143,38 +74,147 @@
                     </ListView.View>
                 </ListView>
             </Grid>
-            <!-- AREA DEL TOTAL -->
-            <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" />
-            <Grid Grid.Row="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+            <Grid Grid.Column="2">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="1.4*"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="Total:"/>
-                <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
-                    <TextBlock Text="$    "/>
-                    <TextBlock Text="{Binding TotalTicket}"/>
-                </StackPanel>
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="Recibido:"/>
-                <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-                    <TextBlock Text="$    "/>
-                    <TextBox x:Name="txtRecibido" Text="{Binding Recibido, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
-                </StackPanel>
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="Cambio:"/>
-                <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
-                    <TextBlock Text="$    "/>
-                    <TextBlock Text="{Binding Cambio}"/>
-                </StackPanel>
-                <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="5"
-                        Content="Registrar Pago"/>
+                <!-- AREA DEL TICKET -->
+                <Grid Grid.Row="0">
+                    <ListView x:Name="lstTicket" ItemsSource="{Binding ListaTicket}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn x:Name="Comida" Header="Comida" Width="auto">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Margin="10, 0">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Descripcion}" FontWeight="Bold"/>
+                                                </StackPanel>
+                                                <ListView x:Name="lstGuarnicion" ItemsSource="{Binding Guarniciones}">
+                                                    <ListView.ItemContainerStyle>
+                                                        <Style TargetType="{x:Type ListViewItem}">
+                                                            <Setter Property="TextBlock.FontSize" Value="10"/>
+                                                            <Setter Property="TextBlock.FontWeight" Value="ExtraLight"/>
+                                                            <!--<Setter Property="TextBlock.FontStyle" Value="Italic"/>-->
+                                                        </Style>
+                                                    </ListView.ItemContainerStyle>
+                                                </ListView>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn x:Name="Cantidad" Header="Cant." Width="auto" DisplayMemberBinding="{Binding Cantidad}"/>
+                                <GridViewColumn x:Name="Precio" Header="Precio" Width="auto" DisplayMemberBinding="{Binding Precio, StringFormat=C2}"/>
+                                <GridViewColumn x:Name="Importe" Header="Importe" Width="auto" DisplayMemberBinding="{Binding Importe, StringFormat=C2}"/>
+                                <GridViewColumn x:Name="Acciones" Header="Acciones" Width="auto">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                                    Margin="0 0 8 0" HorizontalAlignment="Left"
+                                                    Content="{wpfMD:PackIcon Pencil}"
+                                                    ToolTip="Editar item" Height="22" Width="22"
+                                                    Command="{Binding ElementName=lstTicket, Path=DataContext.EditarItemCommand}"
+                                                    CommandParameter="{Binding IdLista}"/>
+                                                <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                                    Margin="0 0 8 0" HorizontalAlignment="Left"
+                                                    Content="{wpfMD:PackIcon Delete}"
+                                                    ToolTip="Quitar item" Height="22" Width="22"
+                                                    Command="{Binding ElementName=lstTicket, Path=DataContext.QuitarItemCommand}"
+                                                    CommandParameter="{Binding IdLista}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <wpfMD:Snackbar IsActive="{Binding VerMensaje}" Grid.Row="1" Background="{DynamicResource PrimaryHueLightBrush}">
+                        <wpfMD:SnackbarMessage ActionCommand="{Binding CerrarMensajeCommand}" ActionContent="Cerrar">
+                            <TextBlock Text="{Binding TxtMensaje}" TextWrapping="Wrap" Style="{StaticResource MaterialDesignCaptionTextBlock}"/>
+                        </wpfMD:SnackbarMessage>
+                    </wpfMD:Snackbar>
+                </Grid>
+                <!-- AREA DEL TOTAL -->
+                <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" />
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="1.1*"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <DatePicker x:Name="FechaPago" Margin="5,8,0,3" Grid.Row="0" Grid.Column="0" wpfMD:HintAssist.Hint="Fecha:"
+                                TextElement.Foreground="{DynamicResource MaterialDesignBody}" SelectedDate="{Binding FechaPago}" VerticalAlignment="Center"
+                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Language="es-Mx" FontSize="12" Grid.RowSpan="2"/>
+                    <TextBox Grid.Row="0" Grid.Column="3" wpfMD:HintAssist.Hint="# Orden" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" FontSize="12"
+                             Text="{Binding NumComanda}" IsEnabled="False" Foreground="{DynamicResource PrimaryHueLightBrush}" Margin="0 0 5 0" VerticalAlignment="Center" Grid.RowSpan="2"/>
+                    <TextBox Grid.Row="2" Grid.Column="0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding Usuario.login}" FontSize="12"
+                             wpfMD:HintAssist.Hint="Cajero:" Foreground="{DynamicResource PrimaryHueLightBrush}" Margin="5,2,0,1" VerticalAlignment="Center" IsEnabled="False"/>
+                    <ComboBox Grid.Row="2" Grid.Column="3" wpfMD:HintAssist.Hint="Asignar mesa:" Style="{StaticResource MaterialDesignFloatingHintComboBox}" VerticalAlignment="Top"
+                              ItemsSource="{Binding ListaMesas}" SelectedItem="{Binding Mesa}" Foreground="{DynamicResource PrimaryHueLightBrush}" Margin="0 0 5 0" FontSize="12">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding desc_mesa}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+                        <RadioButton x:Name="Comensal" Grid.Row="0" Style="{StaticResource MaterialDesignRadioButton}" VerticalAlignment="Center" FontSize="12" 
+                                     Content="Comer aquí" IsChecked="{Binding EsParaComerAqui}" Foreground="{DynamicResource PrimaryHueLightBrush}" Margin="5 0 0 0"
+                                     Command="{Binding ComensalCommand}"/>
+                        <RadioButton x:Name="Existente" Grid.Row="1" Style="{StaticResource MaterialDesignRadioButton}" VerticalContentAlignment="Center" FontSize="12"
+                             Margin="5 0 0 0" Command="{Binding ClienteExistenteCommand}">
+                            <RadioButton.Content>
+                                <ComboBox wpfMD:HintAssist.Hint="Cliente Existente" Foreground="{DynamicResource PrimaryHueLightBrush}" Width="350" 
+                                          IsEnabled="{Binding ElementName=Existente, Path=IsChecked}" Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
+                                          ItemsSource="{Binding ListaClientes}" SelectedItem="{Binding Cliente}" FontSize="12" Background="#791D06">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding razon_social}"/>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </RadioButton.Content>
+                        </RadioButton>
+                        <RadioButton x:Name="NoRegistrado" Grid.Row="2" Style="{StaticResource MaterialDesignRadioButton}" VerticalContentAlignment="Center" 
+                                     Margin="5 0 0 0" Command="{Binding ClienteNuevoCommand}" FontSize="12">
+                            <RadioButton.Content>
+                                <TextBox wpfMD:HintAssist.Hint="Cliente No Registrado" Foreground="{DynamicResource PrimaryHueLightBrush}" Width="350" 
+                                         IsEnabled="{Binding ElementName=NoRegistrado, Path=IsChecked}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                                         Text="{Binding NombreCliente}" FontSize="12"/>
+                            </RadioButton.Content>
+                        </RadioButton>
+                    </Grid>
+                    <TextBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" wpfMD:HintAssist.Hint="Direccion:" Margin="10"
+                             AcceptsReturn="True" Style="{StaticResource MaterialDesignTextAreaTextBox}" TextWrapping="Wrap"
+                             VerticalScrollBarVisibility="Auto" Text="{Binding ClienteDireccion}" TextElement.Foreground="{DynamicResource PrimaryHueLightBrush}"
+                             IsEnabled="{Binding ElementName=NoRegistrado, Path=IsChecked}" FontSize="12"/>
+                    <TextBox Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="2" wpfMD:HintAssist.Hint="Total Ticket:" FontSize="13" 
+                             HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" Margin="112,14,112,13"  
+                             Text="{Binding TotalTicket, StringFormat=C2}" IsEnabled="False" TextElement.FontSize="20"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" 
+                                HorizontalAlignment="Right">
+                        <Button Margin="5" Content="Registrar Pago" Command="{Binding GuardarTicketCommand}"/>
+                        <Button Margin="5" Content="Cancelar Orden" Command="{Binding CancelarTicketCommand}"/>
+                    </StackPanel>
+                </Grid>
             </Grid>
         </Grid>
-    </Grid>
+    </wpfMD:DialogHost>
 </UserControl>

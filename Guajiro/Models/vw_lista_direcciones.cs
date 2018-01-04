@@ -12,10 +12,10 @@ namespace Guajiro.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_municipios
+    public partial class vw_lista_direcciones
     {
-        public string idmunicipio { get; set; }
-        public string idestado { get; set; }
-        public string nombre { get; set; }
+        public string iddireccion { get; set; }
+        public string idpersona { get; set; }
+        public string direccion { get; set; }
     }
 }

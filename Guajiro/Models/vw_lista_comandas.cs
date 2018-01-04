@@ -12,10 +12,14 @@ namespace Guajiro.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_municipios
+    public partial class vw_lista_comandas
     {
-        public string idmunicipio { get; set; }
-        public string idestado { get; set; }
-        public string nombre { get; set; }
+        public string idcomanda { get; set; }
+        public string razon_social { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
+        public int num_comanda { get; set; }
+        public Nullable<bool> para_llevar { get; set; }
+        public string desc_mesa { get; set; }
+        public Nullable<decimal> total { get; set; }
     }
 }

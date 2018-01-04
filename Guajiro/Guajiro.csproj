@@ -63,8 +63,8 @@
     <Reference Include="MaterialDesignColors, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.3\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
-    <Reference Include="MaterialDesignThemes.Wpf, Version=2.3.0.823, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MaterialDesignThemes.2.3.0.823\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.3.1.953, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.2.3.1.953\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
@@ -125,6 +125,9 @@
     <Compile Include="Models\tbl_corte_mov.cs">
       <DependentUpon>GuajiroBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbl_detallemenu.cs">
+      <DependentUpon>GuajiroBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbl_detallescomanda.cs">
       <DependentUpon>GuajiroBD.tt</DependentUpon>
     </Compile>
@@ -152,6 +155,9 @@
     <Compile Include="Models\tbl_listadoseleccion.cs">
       <DependentUpon>GuajiroBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbl_menudeldia.cs">
+      <DependentUpon>GuajiroBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbl_mesas.cs">
       <DependentUpon>GuajiroBD.tt</DependentUpon>
     </Compile>
@@ -173,6 +179,15 @@
     <Compile Include="Models\tbl_usuarios.cs">
       <DependentUpon>GuajiroBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\vw_lista_clientes.cs">
+      <DependentUpon>GuajiroBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_lista_comandas.cs">
+      <DependentUpon>GuajiroBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_lista_direcciones.cs">
+      <DependentUpon>GuajiroBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\vw_lista_ordenes.cs">
       <DependentUpon>GuajiroBD.tt</DependentUpon>
     </Compile>
@@ -182,10 +197,24 @@
     <Compile Include="Models\vw_lista_precios.cs">
       <DependentUpon>GuajiroBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ComandasViewModel.cs" />
+    <Compile Include="ViewModels\DetallesComandaViewModel.cs" />
+    <Compile Include="ViewModels\EditarItemViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\MensajeViewModel.cs" />
+    <Compile Include="ViewModels\PagarTicketViewModel.cs" />
     <Compile Include="ViewModels\PrincipalViewModel.cs" />
     <Compile Include="ViewModels\PuntoVentaViewModel.cs" />
+    <Compile Include="Views\ComandasView.xaml.cs">
+      <DependentUpon>ComandasView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DetallesComandaView.xaml.cs">
+      <DependentUpon>DetallesComandaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditarItemView.xaml.cs">
+      <DependentUpon>EditarItemView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\InventarioView.xaml.cs">
       <DependentUpon>InventarioView.xaml</DependentUpon>
     </Compile>
@@ -206,12 +235,33 @@
     <Compile Include="Common\Notifier.cs" />
     <Compile Include="Common\NotifierExtension.cs" />
     <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Views\MensajeView.xaml.cs">
+      <DependentUpon>MensajeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MenuDiaView.xaml.cs">
+      <DependentUpon>MenuDiaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PagarTicketView.xaml.cs">
+      <DependentUpon>PagarTicketView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PrincipalView.xaml.cs">
       <DependentUpon>PrincipalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PuntoVentaView.xaml.cs">
       <DependentUpon>PuntoVentaView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\ComandasView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DetallesComandaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditarItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\InventarioView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -221,6 +271,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MensajeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MenuDiaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PagarTicketView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -8,32 +8,22 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
-             TextElement.Foreground="Black"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
              TextElement.FontSize="15"
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="/Fonts/#Tulia">
-    <UserControl.DataContext>
+    <!--<UserControl.DataContext>
         <vm:LoginViewModel/>
-    </UserControl.DataContext>
+    </UserControl.DataContext>-->
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Red.xaml" />
-                <!-- note you only need bring in these extra resource dictionaries when using non-default styles, so only bring them into your controls where the default style is not what you want -->
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ComboBox.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Green.Named.Primary.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
-                <Setter Property="Margin" Value="0 8 0 8" />
-            </Style>
-            <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource MaterialDesignPasswordBox}">
-                <Setter Property="Margin" Value="0 8 0 8" />
-            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
@@ -48,7 +38,6 @@
             <RowDefinition Height="2*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
         <Border Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="3" Background="#FCF6DE">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -65,9 +54,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-
                 <Image Source="/Images/Guajiro.png" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1"/>
-
                 <TextBox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                          Margin="0 8 0 8" Text="{Binding TxtLogin}" Foreground="Black">
                     <materialDesign:HintAssist.Hint>
@@ -77,7 +64,6 @@
                         </StackPanel>
                     </materialDesign:HintAssist.Hint>
                 </TextBox>
-
                 <PasswordBox x:Name="txtPassword" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" 
                              Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Foreground="Black">
                     <materialDesign:HintAssist.Hint>
@@ -87,7 +73,6 @@
                         </StackPanel>
                     </materialDesign:HintAssist.Hint>
                 </PasswordBox>
-
                 <Button Content="Iniciar Sesión..." Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="4" 
                         Background="#791D06" Foreground="White"
                         Command="{Binding ValidarUsuarioCommand}" 

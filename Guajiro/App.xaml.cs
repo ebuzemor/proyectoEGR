@@ -2,6 +2,7 @@
 using Guajiro.Common;
 using Guajiro.Views;
 using Guajiro.ViewModels;
+using Guajiro.Models;
 
 namespace Guajiro
 {
@@ -19,7 +20,15 @@ namespace Guajiro
             Navigator.NavigationService = main.Navegador.NavigationService;
             main.Show();
 
-            LoginView login = new LoginView();
+            LoginViewModel lvm = new LoginViewModel
+            {
+                guajiroEF = new bd_guajiroEntities()
+            };
+
+            LoginView login = new LoginView
+            {
+                DataContext = lvm
+            };
             Navigator.NavigationService.Navigate(login);
         }
     }

@@ -20,7 +20,7 @@ namespace Guajiro.Models
         public string idmesa { get; set; }
         public Nullable<decimal> total { get; set; }
         public Nullable<bool> para_llevar { get; set; }
-        public string nombre { get; set; }
+        public string idpersona { get; set; }
         public string crea_usuario { get; set; }
         public Nullable<System.DateTime> fecha_creacion { get; set; }
         public Nullable<System.DateTime> fecha_modificacion { get; set; }

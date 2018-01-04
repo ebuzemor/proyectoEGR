@@ -12,23 +12,18 @@ namespace Guajiro.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_movimientos
+    public partial class tbl_menudeldia
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbl_movimientos()
+        public tbl_menudeldia()
         {
-            this.tbl_corte_mov = new HashSet<tbl_corte_mov>();
+            this.tbl_detallemenu = new HashSet<tbl_detallemenu>();
         }
     
-        public string idmovimiento { get; set; }
-        public string idlstipomovimiento { get; set; }
+        public string idmenu { get; set; }
         public Nullable<System.DateTime> fecha { get; set; }
-        public Nullable<decimal> monto { get; set; }
-        public Nullable<System.DateTime> fecha_creacion { get; set; }
-        public Nullable<System.DateTime> fecha_modificacion { get; set; }
-        public string crea_usuario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_corte_mov> tbl_corte_mov { get; set; }
+        public virtual ICollection<tbl_detallemenu> tbl_detallemenu { get; set; }
     }
 }
