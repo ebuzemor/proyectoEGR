@@ -14,10 +14,19 @@ namespace Guajiro.Models
     
     public partial class tbl_guarniciones
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tbl_guarniciones()
+        {
+            this.tbl_detallesguarnicion = new HashSet<tbl_detallesguarnicion>();
+        }
+    
         public string idguarnicion { get; set; }
         public string nombre { get; set; }
         public Nullable<System.DateTime> fecha_creacion { get; set; }
         public Nullable<System.DateTime> fecha_modificacion { get; set; }
         public string crea_usuario { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_detallesguarnicion> tbl_detallesguarnicion { get; set; }
     }
 }

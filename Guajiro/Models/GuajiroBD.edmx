@@ -70,7 +70,7 @@
           <Property Name="iddetalle" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="idcomanda" Type="varchar" MaxLength="50" />
           <Property Name="iditem" Type="varchar" MaxLength="50" />
-          <Property Name="idobservaciones" Type="varchar" MaxLength="50" />
+          <Property Name="observaciones" Type="varchar" MaxLength="50" />
           <Property Name="descripcion" Type="varchar" MaxLength="50" />
           <Property Name="precio" Type="decimal" Precision="10" Scale="2" />
         </EntityType>
@@ -84,14 +84,6 @@
           <Property Name="fecha_creacion" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
           <Property Name="fecha_modificacion" Type="datetime" Precision="0" />
           <Property Name="crea_usuario" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="tbl_detallesobservacion">
-          <Key>
-            <PropertyRef Name="iddetalle" />
-          </Key>
-          <Property Name="iddetalle" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="idobservacion" Type="varchar" MaxLength="50" />
-          <Property Name="descripcion" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tbl_direcciones">
           <Key>
@@ -107,6 +99,7 @@
           <Property Name="colonia" Type="varchar" MaxLength="100" />
           <Property Name="codigopostal" Type="varchar" MaxLength="20" />
           <Property Name="entrega" Type="bit" />
+          <Property Name="fiscal" Type="bit" />
         </EntityType>
         <EntityType Name="tbl_estados">
           <Key>
@@ -325,10 +318,20 @@ advertencia 6002: La tabla o vista 'def.bd_guajiro.vw_lista_precios' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tbl_detallemenu_tbl_items">
+          <End Role="tbl_items" Type="Self.tbl_items" Multiplicity="0..1" />
+          <End Role="tbl_detallemenu" Type="Self.tbl_detallemenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_items">
+              <PropertyRef Name="iditem" />
+            </Principal>
+            <Dependent Role="tbl_detallemenu">
+              <PropertyRef Name="iditem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tbl_detallemenu_tbl_menudeldia">
-          <End Role="tbl_menudeldia" Type="Self.tbl_menudeldia" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="tbl_menudeldia" Type="Self.tbl_menudeldia" Multiplicity="0..1" />
           <End Role="tbl_detallemenu" Type="Self.tbl_detallemenu" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbl_menudeldia">
@@ -339,15 +342,51 @@ advertencia 6002: La tabla o vista 'def.bd_guajiro.vw_lista_precios' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tbl_items_tbl_listadoseldetalle">
-          <End Role="tbl_listadoseldetalle" Type="Self.tbl_listadoseldetalle" Multiplicity="0..1" />
-          <End Role="tbl_items" Type="Self.tbl_items" Multiplicity="*" />
+        <Association Name="FK_tbl_detallescomanda_tbl_comandas">
+          <End Role="tbl_comandas" Type="Self.tbl_comandas" Multiplicity="0..1" />
+          <End Role="tbl_detallescomanda" Type="Self.tbl_detallescomanda" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tbl_listadoseldetalle">
-              <PropertyRef Name="idlsselecciondetalle" />
+            <Principal Role="tbl_comandas">
+              <PropertyRef Name="idcomanda" />
             </Principal>
-            <Dependent Role="tbl_items">
-              <PropertyRef Name="idlstipoitem" />
+            <Dependent Role="tbl_detallescomanda">
+              <PropertyRef Name="idcomanda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_detallescomanda_tbl_items">
+          <End Role="tbl_items" Type="Self.tbl_items" Multiplicity="0..1" />
+          <End Role="tbl_detallescomanda" Type="Self.tbl_detallescomanda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_items">
+              <PropertyRef Name="iditem" />
+            </Principal>
+            <Dependent Role="tbl_detallescomanda">
+              <PropertyRef Name="iditem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_detallesguarnicion_tbl_guarniciones">
+          <End Role="tbl_guarniciones" Type="Self.tbl_guarniciones" Multiplicity="0..1" />
+          <End Role="tbl_detallesguarnicion" Type="Self.tbl_detallesguarnicion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_guarniciones">
+              <PropertyRef Name="idguarnicion" />
+            </Principal>
+            <Dependent Role="tbl_detallesguarnicion">
+              <PropertyRef Name="idguarnicion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_detallesguarnicion_tbl_items">
+          <End Role="tbl_items" Type="Self.tbl_items" Multiplicity="0..1" />
+          <End Role="tbl_detallesguarnicion" Type="Self.tbl_detallesguarnicion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_items">
+              <PropertyRef Name="iditem" />
+            </Principal>
+            <Dependent Role="tbl_detallesguarnicion">
+              <PropertyRef Name="iditem" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -371,7 +410,6 @@ advertencia 6002: La tabla o vista 'def.bd_guajiro.vw_lista_precios' no tiene de
           <EntitySet Name="tbl_detallemenu" EntityType="Self.tbl_detallemenu" Schema="bd_guajiro" store:Type="Tables" />
           <EntitySet Name="tbl_detallescomanda" EntityType="Self.tbl_detallescomanda" Schema="bd_guajiro" store:Type="Tables" />
           <EntitySet Name="tbl_detallesguarnicion" EntityType="Self.tbl_detallesguarnicion" Schema="bd_guajiro" store:Type="Tables" />
-          <EntitySet Name="tbl_detallesobservacion" EntityType="Self.tbl_detallesobservacion" Schema="bd_guajiro" store:Type="Tables" />
           <EntitySet Name="tbl_direcciones" EntityType="Self.tbl_direcciones" Schema="bd_guajiro" store:Type="Tables" />
           <EntitySet Name="tbl_estados" EntityType="Self.tbl_estados" Schema="bd_guajiro" store:Type="Tables" />
           <EntitySet Name="tbl_guarniciones" EntityType="Self.tbl_guarniciones" Schema="bd_guajiro" store:Type="Tables" />
@@ -445,13 +483,29 @@ FROM `vw_lista_precios` AS `vw_lista_precios`</DefiningQuery>
             <End Role="tbl_movimientos" EntitySet="tbl_movimientos" />
             <End Role="tbl_corte_mov" EntitySet="tbl_corte_mov" />
           </AssociationSet>
+          <AssociationSet Name="FK_tbl_detallemenu_tbl_items" Association="Self.FK_tbl_detallemenu_tbl_items">
+            <End Role="tbl_items" EntitySet="tbl_items" />
+            <End Role="tbl_detallemenu" EntitySet="tbl_detallemenu" />
+          </AssociationSet>
           <AssociationSet Name="FK_tbl_detallemenu_tbl_menudeldia" Association="Self.FK_tbl_detallemenu_tbl_menudeldia">
             <End Role="tbl_menudeldia" EntitySet="tbl_menudeldia" />
             <End Role="tbl_detallemenu" EntitySet="tbl_detallemenu" />
           </AssociationSet>
-          <AssociationSet Name="FK_tbl_items_tbl_listadoseldetalle" Association="Self.FK_tbl_items_tbl_listadoseldetalle">
-            <End Role="tbl_listadoseldetalle" EntitySet="tbl_listadoseldetalle" />
+          <AssociationSet Name="FK_tbl_detallescomanda_tbl_comandas" Association="Self.FK_tbl_detallescomanda_tbl_comandas">
+            <End Role="tbl_comandas" EntitySet="tbl_comandas" />
+            <End Role="tbl_detallescomanda" EntitySet="tbl_detallescomanda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_detallescomanda_tbl_items" Association="Self.FK_tbl_detallescomanda_tbl_items">
             <End Role="tbl_items" EntitySet="tbl_items" />
+            <End Role="tbl_detallescomanda" EntitySet="tbl_detallescomanda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_detallesguarnicion_tbl_guarniciones" Association="Self.FK_tbl_detallesguarnicion_tbl_guarniciones">
+            <End Role="tbl_guarniciones" EntitySet="tbl_guarniciones" />
+            <End Role="tbl_detallesguarnicion" EntitySet="tbl_detallesguarnicion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_detallesguarnicion_tbl_items" Association="Self.FK_tbl_detallesguarnicion_tbl_items">
+            <End Role="tbl_items" EntitySet="tbl_items" />
+            <End Role="tbl_detallesguarnicion" EntitySet="tbl_detallesguarnicion" />
           </AssociationSet>
           <AssociationSet Name="FK_tbl_listadoseldetalle_tbl_listadoseleccion" Association="Self.FK_tbl_listadoseldetalle_tbl_listadoseleccion">
             <End Role="tbl_listadoseleccion" EntitySet="tbl_listadoseleccion" />
@@ -509,6 +563,7 @@ FROM `vw_lista_precios` AS `vw_lista_precios`</DefiningQuery>
           <Property Name="fecha_creacion" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="fecha_modificacion" Type="DateTime" />
           <Property Name="crea_usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_detallesguarnicion" Relationship="bd_guajiroModel.FK_tbl_detallesguarnicion_tbl_guarniciones" FromRole="tbl_guarniciones" ToRole="tbl_detallesguarnicion" />
         </EntityType>
         <EntityType Name="tbl_items">
           <Key>
@@ -522,6 +577,9 @@ FROM `vw_lista_precios` AS `vw_lista_precios`</DefiningQuery>
           <Property Name="fecha_modificacion" Type="DateTime" />
           <Property Name="crea_usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tbl_listadoseldetalle" Relationship="Self.FK_tbl_items_tbl_listadoseldetalle" FromRole="tbl_items" ToRole="tbl_listadoseldetalle" />
+          <NavigationProperty Name="tbl_detallemenu" Relationship="bd_guajiroModel.FK_tbl_detallemenu_tbl_items" FromRole="tbl_items" ToRole="tbl_detallemenu" />
+          <NavigationProperty Name="tbl_detallesguarnicion" Relationship="bd_guajiroModel.FK_tbl_detallesguarnicion_tbl_items" FromRole="tbl_items" ToRole="tbl_detallesguarnicion" />
+          <NavigationProperty Name="tbl_detallescomanda" Relationship="bd_guajiroModel.FK_tbl_detallescomanda_tbl_items" FromRole="tbl_items" ToRole="tbl_detallescomanda" />
         </EntityType>
         <EntityType Name="tbl_listadoseldetalle">
           <Key>
@@ -665,8 +723,6 @@ FROM `vw_lista_precios` AS `vw_lista_precios`</DefiningQuery>
           </AssociationSet>
           <EntitySet Name="tbl_detallesguarnicion" EntityType="bd_guajiroModel.tbl_detallesguarnicion" />
           <EntitySet Name="vw_lista_ordenes" EntityType="bd_guajiroModel.vw_lista_ordenes" />
-          <EntitySet Name="tbl_detallescomanda" EntityType="bd_guajiroModel.tbl_detallescomanda" />
-          <EntitySet Name="tbl_detallesobservacion" EntityType="bd_guajiroModel.tbl_detallesobservacion" />
           <EntitySet Name="tbl_mesas" EntityType="bd_guajiroModel.tbl_mesas" />
           <EntitySet Name="vw_lista_clientes" EntityType="bd_guajiroModel.vw_lista_clientes" />
           <EntitySet Name="vw_lista_direcciones" EntityType="bd_guajiroModel.vw_lista_direcciones" />
@@ -686,6 +742,27 @@ FROM `vw_lista_precios` AS `vw_lista_precios`</DefiningQuery>
           </AssociationSet>
           <EntitySet Name="tbl_comandas" EntityType="bd_guajiroModel.tbl_comandas" />
           <EntitySet Name="vw_lista_comandas" EntityType="bd_guajiroModel.vw_lista_comandas" />
+          <AssociationSet Name="FK_tbl_detallemenu_tbl_items" Association="bd_guajiroModel.FK_tbl_detallemenu_tbl_items">
+            <End Role="tbl_items" EntitySet="tbl_items" />
+            <End Role="tbl_detallemenu" EntitySet="tbl_detallemenu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_detallesguarnicion_tbl_guarniciones" Association="bd_guajiroModel.FK_tbl_detallesguarnicion_tbl_guarniciones">
+            <End Role="tbl_guarniciones" EntitySet="tbl_guarniciones" />
+            <End Role="tbl_detallesguarnicion" EntitySet="tbl_detallesguarnicion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_detallesguarnicion_tbl_items" Association="bd_guajiroModel.FK_tbl_detallesguarnicion_tbl_items">
+            <End Role="tbl_items" EntitySet="tbl_items" />
+            <End Role="tbl_detallesguarnicion" EntitySet="tbl_detallesguarnicion" />
+          </AssociationSet>
+          <EntitySet Name="tbl_detallescomanda" EntityType="bd_guajiroModel.tbl_detallescomanda" />
+          <AssociationSet Name="FK_tbl_detallescomanda_tbl_comandas" Association="bd_guajiroModel.FK_tbl_detallescomanda_tbl_comandas">
+            <End Role="tbl_comandas" EntitySet="tbl_comandas" />
+            <End Role="tbl_detallescomanda" EntitySet="tbl_detallescomanda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_detallescomanda_tbl_items" Association="bd_guajiroModel.FK_tbl_detallescomanda_tbl_items">
+            <End Role="tbl_items" EntitySet="tbl_items" />
+            <End Role="tbl_detallescomanda" EntitySet="tbl_detallescomanda" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="tbl_detallesguarnicion">
           <Key>
@@ -697,6 +774,8 @@ FROM `vw_lista_precios` AS `vw_lista_precios`</DefiningQuery>
           <Property Name="fecha_creacion" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="fecha_modificacion" Type="DateTime" />
           <Property Name="crea_usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_guarniciones" Relationship="bd_guajiroModel.FK_tbl_detallesguarnicion_tbl_guarniciones" FromRole="tbl_detallesguarnicion" ToRole="tbl_guarniciones" />
+          <NavigationProperty Name="tbl_items" Relationship="bd_guajiroModel.FK_tbl_detallesguarnicion_tbl_items" FromRole="tbl_detallesguarnicion" ToRole="tbl_items" />
         </EntityType>
         <EntityType Name="vw_lista_ordenes">
           <Key>
@@ -709,25 +788,6 @@ FROM `vw_lista_precios` AS `vw_lista_precios`</DefiningQuery>
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="nombreguarnicion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="cveitem" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-        </EntityType>
-        <EntityType Name="tbl_detallescomanda">
-          <Key>
-            <PropertyRef Name="iddetalle" />
-          </Key>
-          <Property Name="iddetalle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="idcomanda" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="iditem" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="idobservaciones" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="precio" Type="Decimal" />
-        </EntityType>
-        <EntityType Name="tbl_detallesobservacion">
-          <Key>
-            <PropertyRef Name="iddetalle" />
-          </Key>
-          <Property Name="iddetalle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="idobservacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tbl_mesas">
           <Key>
@@ -783,6 +843,7 @@ FROM `vw_lista_precios` AS `vw_lista_precios`</DefiningQuery>
           <Property Name="colonia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="codigopostal" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="entrega" Type="Boolean" />
+          <Property Name="fiscal" Type="Boolean" />
         </EntityType>
         <EntityType Name="tbl_detallemenu">
           <Key>
@@ -792,6 +853,7 @@ FROM `vw_lista_precios` AS `vw_lista_precios`</DefiningQuery>
           <Property Name="idmenu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="iditem" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tbl_menudeldia" Relationship="bd_guajiroModel.FK_tbl_detallemenu_tbl_menudeldia" FromRole="tbl_detallemenu" ToRole="tbl_menudeldia" />
+          <NavigationProperty Name="tbl_items" Relationship="bd_guajiroModel.FK_tbl_detallemenu_tbl_items" FromRole="tbl_detallemenu" ToRole="tbl_items" />
         </EntityType>
         <EntityType Name="tbl_menudeldia">
           <Key>
@@ -854,6 +916,7 @@ FROM `vw_lista_precios` AS `vw_lista_precios`</DefiningQuery>
           <Property Name="crea_usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="fecha_creacion" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="fecha_modificacion" Type="DateTime" />
+          <NavigationProperty Name="tbl_detallescomanda" Relationship="bd_guajiroModel.FK_tbl_detallescomanda_tbl_comandas" FromRole="tbl_comandas" ToRole="tbl_detallescomanda" />
         </EntityType>
         <EntityType Name="vw_lista_comandas">
           <Key>
@@ -868,6 +931,79 @@ FROM `vw_lista_precios` AS `vw_lista_precios`</DefiningQuery>
           <Property Name="desc_mesa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="total" Type="Decimal" />
         </EntityType>
+        <Association Name="FK_tbl_detallemenu_tbl_items">
+          <End Type="bd_guajiroModel.tbl_items" Role="tbl_items" Multiplicity="0..1" />
+          <End Type="bd_guajiroModel.tbl_detallemenu" Role="tbl_detallemenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_items">
+              <PropertyRef Name="iditem" />
+            </Principal>
+            <Dependent Role="tbl_detallemenu">
+              <PropertyRef Name="iditem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_detallesguarnicion_tbl_guarniciones">
+          <End Type="bd_guajiroModel.tbl_guarniciones" Role="tbl_guarniciones" Multiplicity="0..1" />
+          <End Type="bd_guajiroModel.tbl_detallesguarnicion" Role="tbl_detallesguarnicion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_guarniciones">
+              <PropertyRef Name="idguarnicion" />
+            </Principal>
+            <Dependent Role="tbl_detallesguarnicion">
+              <PropertyRef Name="idguarnicion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_detallesguarnicion_tbl_items">
+          <End Type="bd_guajiroModel.tbl_items" Role="tbl_items" Multiplicity="0..1" />
+          <End Type="bd_guajiroModel.tbl_detallesguarnicion" Role="tbl_detallesguarnicion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_items">
+              <PropertyRef Name="iditem" />
+            </Principal>
+            <Dependent Role="tbl_detallesguarnicion">
+              <PropertyRef Name="iditem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tbl_detallescomanda">
+          <Key>
+            <PropertyRef Name="iddetalle" />
+          </Key>
+          <Property Name="iddetalle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idcomanda" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="iditem" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="observaciones" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="precio" Type="Decimal" />
+          <NavigationProperty Name="tbl_comandas" Relationship="bd_guajiroModel.FK_tbl_detallescomanda_tbl_comandas" FromRole="tbl_detallescomanda" ToRole="tbl_comandas" />
+          <NavigationProperty Name="tbl_items" Relationship="bd_guajiroModel.FK_tbl_detallescomanda_tbl_items" FromRole="tbl_detallescomanda" ToRole="tbl_items" />
+        </EntityType>
+        <Association Name="FK_tbl_detallescomanda_tbl_comandas">
+          <End Type="bd_guajiroModel.tbl_comandas" Role="tbl_comandas" Multiplicity="0..1" />
+          <End Type="bd_guajiroModel.tbl_detallescomanda" Role="tbl_detallescomanda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_comandas">
+              <PropertyRef Name="idcomanda" />
+            </Principal>
+            <Dependent Role="tbl_detallescomanda">
+              <PropertyRef Name="idcomanda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_detallescomanda_tbl_items">
+          <End Type="bd_guajiroModel.tbl_items" Role="tbl_items" Multiplicity="0..1" />
+          <End Type="bd_guajiroModel.tbl_detallescomanda" Role="tbl_detallescomanda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_items">
+              <PropertyRef Name="iditem" />
+            </Principal>
+            <Dependent Role="tbl_detallescomanda">
+              <PropertyRef Name="iditem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1043,27 +1179,6 @@ FROM `vw_lista_precios` AS `vw_lista_precios`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbl_detallescomanda">
-            <EntityTypeMapping TypeName="bd_guajiroModel.tbl_detallescomanda">
-              <MappingFragment StoreEntitySet="tbl_detallescomanda">
-                <ScalarProperty Name="precio" ColumnName="precio" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="idobservaciones" ColumnName="idobservaciones" />
-                <ScalarProperty Name="iditem" ColumnName="iditem" />
-                <ScalarProperty Name="idcomanda" ColumnName="idcomanda" />
-                <ScalarProperty Name="iddetalle" ColumnName="iddetalle" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbl_detallesobservacion">
-            <EntityTypeMapping TypeName="bd_guajiroModel.tbl_detallesobservacion">
-              <MappingFragment StoreEntitySet="tbl_detallesobservacion">
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="idobservacion" ColumnName="idobservacion" />
-                <ScalarProperty Name="iddetalle" ColumnName="iddetalle" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tbl_mesas">
             <EntityTypeMapping TypeName="bd_guajiroModel.tbl_mesas">
               <MappingFragment StoreEntitySet="tbl_mesas">
@@ -1111,6 +1226,7 @@ FROM `vw_lista_precios` AS `vw_lista_precios`</DefiningQuery>
           <EntitySetMapping Name="tbl_direcciones">
             <EntityTypeMapping TypeName="bd_guajiroModel.tbl_direcciones">
               <MappingFragment StoreEntitySet="tbl_direcciones">
+                <ScalarProperty Name="fiscal" ColumnName="fiscal" />
                 <ScalarProperty Name="entrega" ColumnName="entrega" />
                 <ScalarProperty Name="codigopostal" ColumnName="codigopostal" />
                 <ScalarProperty Name="colonia" ColumnName="colonia" />
@@ -1180,6 +1296,18 @@ FROM `vw_lista_precios` AS `vw_lista_precios`</DefiningQuery>
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="razon_social" ColumnName="razon_social" />
                 <ScalarProperty Name="idcomanda" ColumnName="idcomanda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_detallescomanda">
+            <EntityTypeMapping TypeName="bd_guajiroModel.tbl_detallescomanda">
+              <MappingFragment StoreEntitySet="tbl_detallescomanda">
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="iditem" ColumnName="iditem" />
+                <ScalarProperty Name="idcomanda" ColumnName="idcomanda" />
+                <ScalarProperty Name="iddetalle" ColumnName="iddetalle" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

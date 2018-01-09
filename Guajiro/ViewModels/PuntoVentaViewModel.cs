@@ -289,7 +289,7 @@ namespace Guajiro.ViewModels
                                 iditem = item.IdItem,
                                 idcomanda = comanda.idcomanda,
                                 descripcion = item.Descripcion,
-                                idobservaciones = string.Empty,
+                                observaciones = string.Empty,
                                 precio = item.Precio
                             };
                             bd.tbl_detallescomanda.Add(detalle);
@@ -362,7 +362,6 @@ namespace Guajiro.ViewModels
             {
                 InfoDireccion = GuajiroEF.vw_lista_direcciones.Where(x => x.idpersona == Cliente.idpersona).First();
                 ClienteDireccion = InfoDireccion.direccion;
-                //NombreCliente = Cliente.razon_social;
             }
             else
             {

@@ -14,6 +14,12 @@ namespace Guajiro.Models
     
     public partial class tbl_comandas
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tbl_comandas()
+        {
+            this.tbl_detallescomanda = new HashSet<tbl_detallescomanda>();
+        }
+    
         public string idcomanda { get; set; }
         public Nullable<System.DateTime> fecha { get; set; }
         public int num_comanda { get; set; }
@@ -24,5 +30,8 @@ namespace Guajiro.Models
         public string crea_usuario { get; set; }
         public Nullable<System.DateTime> fecha_creacion { get; set; }
         public Nullable<System.DateTime> fecha_modificacion { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_detallescomanda> tbl_detallescomanda { get; set; }
     }
 }

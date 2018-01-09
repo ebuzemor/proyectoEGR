@@ -14,6 +14,14 @@ namespace Guajiro.Models
     
     public partial class tbl_items
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tbl_items()
+        {
+            this.tbl_detallemenu = new HashSet<tbl_detallemenu>();
+            this.tbl_detallesguarnicion = new HashSet<tbl_detallesguarnicion>();
+            this.tbl_detallescomanda = new HashSet<tbl_detallescomanda>();
+        }
+    
         public string iditem { get; set; }
         public string idlstipoitem { get; set; }
         public string descripcion { get; set; }
@@ -23,5 +31,11 @@ namespace Guajiro.Models
         public string crea_usuario { get; set; }
     
         public virtual tbl_listadoseldetalle tbl_listadoseldetalle { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_detallemenu> tbl_detallemenu { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_detallesguarnicion> tbl_detallesguarnicion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_detallescomanda> tbl_detallescomanda { get; set; }
     }
 }

@@ -24,5 +24,6 @@ namespace Guajiro.Models
         public string colonia { get; set; }
         public string codigopostal { get; set; }
         public Nullable<bool> entrega { get; set; }
+        public Nullable<bool> fiscal { get; set; }
     }
 }

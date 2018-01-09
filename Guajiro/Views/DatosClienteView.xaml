@@ -1,0 +1,161 @@
+﻿<UserControl x:Class="Guajiro.Views.DatosClienteView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfMD="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Guajiro.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="900"
+             TextElement.Foreground="{StaticResource PrimaryHueLightBrush}"
+             FontFamily="/Fonts/#Tulia"
+             Height="500" Width="900">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="#791D06">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition/>
+            <RowDefinition Height="45"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Text="Datos del Cliente"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <!--Datos Personales-->
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Nombre Primario: " 
+                       HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding TxtNomPrimario}" Width="180" Margin="5"
+                     Foreground="{DynamicResource PrimaryHueLightBrush}"
+                     HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="Nombre Secundario: " 
+                       HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding TxtNomSecundario}" Width="180" Margin="5"
+                     Foreground="{DynamicResource PrimaryHueLightBrush}"
+                     HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="0" Grid.Row="2" Text="Apellido Paterno: " 
+                       HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding TxtApePaterno}" Width="180" Margin="5"
+                     Foreground="{DynamicResource PrimaryHueLightBrush}"
+                     HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="0" Grid.Row="3" Text="Apellido Materno: " 
+                       HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding TxtApeMaterno}" Width="180" Margin="5"
+                     Foreground="{DynamicResource PrimaryHueLightBrush}"
+                     HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <UniformGrid Columns="3" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4">
+                <ComboBox wpfMD:HintAssist.Hint="Tipo de Teléfono:" Margin="5 0 0 0"
+                          Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                          HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <ComboBoxItem Content="Movil"/>
+                    <ComboBoxItem Content="Movil"/>
+                    <ComboBoxItem Content="Movil"/>
+                </ComboBox>
+                <TextBox Text="{Binding TxtNumTelefono}" wpfMD:HintAssist.Hint="Número de Teléfono:"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         Foreground="{DynamicResource PrimaryHueLightBrush}"
+                         HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Button Margin="5">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <wpfMD:PackIcon Width="24" Height="24" Kind="PhonePlus"/>
+                            <TextBlock Text="Agregar"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+            </UniformGrid>
+            <ListView x:Name="LstTelefono" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" 
+                      Foreground="Green">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Tipo Teléfono"/>
+                        <GridViewColumn Header="Número Teléfono"/>
+                        <GridViewColumn Header="Acciones"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+        <!--Divisor-->
+        <GridSplitter Grid.Column="1" Grid.Row="1" Width="5" HorizontalAlignment="Stretch"/>
+        <!--Direcciones-->
+        <Grid Grid.Column="2" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" wpfMD:HintAssist.Hint="Calle 1:"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 10 0"/>
+            <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" wpfMD:HintAssist.Hint="Calle 2:"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 10 0"/>
+            <TextBox Grid.Column="0" Grid.Row="2" wpfMD:HintAssist.Hint="Número Interior:"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 10 0"/>
+            <TextBox Grid.Column="1" Grid.Row="2" wpfMD:HintAssist.Hint="Número Exterior:"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 10 0"/>
+            <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" wpfMD:HintAssist.Hint="Colonia o Fraccionamiento:"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 10 0"/>
+            <UniformGrid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Columns="3">
+                <TextBox wpfMD:HintAssist.Hint="Código Postal:" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         Margin="10 0 10 0"/>
+                <ComboBox wpfMD:HintAssist.Hint="Tipo de Teléfono:" Margin="5 0 0 0"
+                          Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                          HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <ComboBoxItem Content="Movil"/>
+                    <ComboBoxItem Content="Movil"/>
+                    <ComboBoxItem Content="Movil"/>
+                </ComboBox>
+                <ComboBox wpfMD:HintAssist.Hint="Tipo de Teléfono:" Margin="5 0 0 0"
+                          Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                          HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <ComboBoxItem Content="Movil"/>
+                    <ComboBoxItem Content="Movil"/>
+                    <ComboBoxItem Content="Movil"/>
+                </ComboBox>
+            </UniformGrid>
+            <UniformGrid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Columns="3">
+                <CheckBox IsChecked="False" HorizontalAlignment="Center">Entrega</CheckBox>
+                <CheckBox IsChecked="False" HorizontalAlignment="Center">Factura</CheckBox>
+                <Button Margin="5">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <wpfMD:PackIcon Width="24" Height="24" Kind="BookPlus"/>
+                            <TextBlock Text="Agregar" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+            </UniformGrid>
+        </Grid>
+        
+    </Grid>
+</UserControl>

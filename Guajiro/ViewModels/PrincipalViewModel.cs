@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Guajiro.Common;
+﻿using Guajiro.Common;
 using Guajiro.Models;
 using Guajiro.Views;
-using System.Windows.Controls;
-
 
 namespace Guajiro.ViewModels
 {
@@ -38,13 +31,16 @@ namespace Guajiro.ViewModels
                 DataContext = vmPdV
             };
 
-            ComandasViewModel vmCom = new ComandasViewModel
-            {
-                
-            };
+            ComandasViewModel vmCom = new ComandasViewModel {};
             ComandasView vwCom = new ComandasView
             {
                 DataContext = vmCom
+            };
+
+            ListaClientesViewModel vmLtaCte = new ListaClientesViewModel { };
+            ListaClientesView vwLtaCte = new ListaClientesView
+            {
+                DataContext = vmLtaCte
             };
 
             MenuOpcion = new[]
@@ -52,7 +48,7 @@ namespace Guajiro.ViewModels
                 new MenuOpciones("Punto de Venta", vwPdV),
                 new MenuOpciones("Comandas", vwCom),
                 new MenuOpciones("Menú del Día", new MenuDiaView()),
-                new MenuOpciones("Clientes", new PuntoVentaView()),
+                new MenuOpciones("Clientes", vwLtaCte),
                 new MenuOpciones("Proveedores", new InventarioView()),
                 new MenuOpciones("Inventario", new InventarioView()),
                 new MenuOpciones("Movimientos", new InventarioView()),

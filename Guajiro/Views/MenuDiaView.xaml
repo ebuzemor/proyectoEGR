@@ -78,7 +78,7 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
-                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1.3*"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <UniformGrid Grid.Row="0" Grid.Column="1" Columns="2" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -98,6 +98,14 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
+                    <Button Grid.Row="2" Grid.Column="2" Margin="5">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <wpfMD:PackIcon Width="24" Height="24" Kind="ContentSave"/>
+                                <TextBlock Margin="5 0 0 0" Text="Guardar Menú" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
                 </Grid>
                 <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch"/>
                 <!--LISTA DE MENÙS DEL DÍA HISTORICOS-->

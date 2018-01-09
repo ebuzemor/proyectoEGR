@@ -19,5 +19,6 @@ namespace Guajiro.Models
         public string iditem { get; set; }
     
         public virtual tbl_menudeldia tbl_menudeldia { get; set; }
+        public virtual tbl_items tbl_items { get; set; }
     }
 }

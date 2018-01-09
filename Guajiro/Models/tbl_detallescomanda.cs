@@ -17,8 +17,11 @@ namespace Guajiro.Models
         public string iddetalle { get; set; }
         public string idcomanda { get; set; }
         public string iditem { get; set; }
-        public string idobservaciones { get; set; }
+        public string observaciones { get; set; }
         public string descripcion { get; set; }
         public Nullable<decimal> precio { get; set; }
+    
+        public virtual tbl_comandas tbl_comandas { get; set; }
+        public virtual tbl_items tbl_items { get; set; }
     }
 }

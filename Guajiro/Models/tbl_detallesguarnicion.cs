@@ -20,5 +20,8 @@ namespace Guajiro.Models
         public Nullable<System.DateTime> fecha_creacion { get; set; }
         public Nullable<System.DateTime> fecha_modificacion { get; set; }
         public string crea_usuario { get; set; }
+    
+        public virtual tbl_guarniciones tbl_guarniciones { get; set; }
+        public virtual tbl_items tbl_items { get; set; }
     }
 }
