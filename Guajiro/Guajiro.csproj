@@ -211,6 +211,9 @@
     <Compile Include="Views\DatosClienteView.xaml.cs">
       <DependentUpon>DatosClienteView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\DatosProveedoresView.xaml.cs">
+      <DependentUpon>DatosProveedoresView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DetallesComandaView.xaml.cs">
       <DependentUpon>DetallesComandaView.xaml</DependentUpon>
     </Compile>
@@ -222,6 +225,9 @@
     </Compile>
     <Compile Include="Views\ListaClientesView.xaml.cs">
       <DependentUpon>ListaClientesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ListaProveedoresView.xaml.cs">
+      <DependentUpon>ListaProveedoresView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -263,6 +269,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\DatosProveedoresView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DetallesComandaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -276,6 +286,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ListaClientesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ListaProveedoresView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

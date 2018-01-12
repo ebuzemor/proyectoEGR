@@ -3,10 +3,54 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfMD="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Guajiro.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
-    </Grid>
+             d:DesignHeight="700" d:DesignWidth="1100"
+             TextElement.Foreground="{StaticResource PrimaryHueLightBrush}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <wpfMD:DialogHost Identifier="Inventario">
+        <Grid Background="#791D06">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45"/>
+                <RowDefinition/>
+                <RowDefinition Height="45"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Inventario de Productos" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <DataGrid Grid.Row="1" Background="#791D06" Margin="10" CanUserAddRows="False" CanUserReorderColumns="False"
+                      CanUserSortColumns="True" AutoGenerateColumns="False" SelectionUnit="FullRow" SelectionMode="Single"
+                      wpfMD:DataGridAssist.CellPadding="13 8 8 8" wpfMD:DataGridAssist.ColumnHeaderPadding="8"
+                      VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding}">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Descripción" IsReadOnly="True">
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Existencias" IsReadOnly="True">
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Precio" IsReadOnly="True">
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Unidad" IsReadOnly="True">
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Acciones" IsReadOnly="True">
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Grid.Row="2" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Center"
+                    Command="{Binding NuevoProductoCommand}">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <wpfMD:PackIcon Width="24" Height="24" Kind="AccountPlus" VerticalAlignment="Center"/>
+                        <TextBlock Text="Nuevo Producto" VerticalAlignment="Center" Margin="5"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+        </Grid>
+    </wpfMD:DialogHost>
 </UserControl>

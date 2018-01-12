@@ -49,7 +49,7 @@ namespace Guajiro.ViewModels
                 new MenuOpciones("Comandas", vwCom),
                 new MenuOpciones("Menú del Día", new MenuDiaView()),
                 new MenuOpciones("Clientes", vwLtaCte),
-                new MenuOpciones("Proveedores", new InventarioView()),
+                new MenuOpciones("Proveedores", new ListaProveedoresView()),
                 new MenuOpciones("Inventario", new InventarioView()),
                 new MenuOpciones("Movimientos", new InventarioView()),
                 new MenuOpciones("Facturas", new InventarioView()),
