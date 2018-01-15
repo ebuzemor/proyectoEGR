@@ -11,22 +11,22 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Volcando estructura de base de datos para bd_guajiro
-CREATE DATABASE IF NOT EXISTS `bd_guajiro` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci */;
+CREATE DATABASE IF NOT EXISTS `bd_guajiro` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `bd_guajiro`;
 
 
 -- Volcando estructura para tabla bd_guajiro.tbl_caracteristicasitem
 CREATE TABLE IF NOT EXISTS `tbl_caracteristicasitem` (
-  `idcaracteristica` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `iditem` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `idlsunidadmedida` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `idlstipocaracteristica` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `idcaracteristica` varchar(50) NOT NULL,
+  `iditem` varchar(50) DEFAULT NULL,
+  `idlsunidadmedida` varchar(50) DEFAULT NULL,
+  `idlstipocaracteristica` varchar(50) DEFAULT NULL,
   `valor` decimal(10,2) DEFAULT NULL,
   `fecha_creacion` datetime DEFAULT CURRENT_TIMESTAMP,
   `fecha_modificacion` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `crea_usuario` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `crea_usuario` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idcaracteristica`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla bd_guajiro.tbl_caracteristicasitem: ~119 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_caracteristicasitem` DISABLE KEYS */;
@@ -155,21 +155,21 @@ INSERT INTO `tbl_caracteristicasitem` (`idcaracteristica`, `iditem`, `idlsunidad
 
 -- Volcando estructura para tabla bd_guajiro.tbl_comandas
 CREATE TABLE IF NOT EXISTS `tbl_comandas` (
-  `idcomanda` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `idcomanda` varchar(50) NOT NULL,
   `fecha` datetime DEFAULT NULL,
   `num_comanda` int(11) NOT NULL AUTO_INCREMENT,
-  `idmesa` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `idmesa` varchar(50) DEFAULT NULL,
   `total` decimal(10,2) DEFAULT NULL,
   `para_llevar` bit(1) DEFAULT NULL,
-  `idpersona` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `crea_usuario` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `idpersona` varchar(50) DEFAULT NULL,
+  `crea_usuario` varchar(50) DEFAULT NULL,
   `fecha_creacion` datetime DEFAULT CURRENT_TIMESTAMP,
   `fecha_modificacion` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`idcomanda`),
   KEY `num_comanda` (`num_comanda`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_comandas: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_comandas: ~6 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_comandas` DISABLE KEYS */;
 INSERT INTO `tbl_comandas` (`idcomanda`, `fecha`, `num_comanda`, `idmesa`, `total`, `para_llevar`, `idpersona`, `crea_usuario`, `fecha_creacion`, `fecha_modificacion`) VALUES
 	('6928c1c3-7908-464e-b211-d5c0e148e8a1', '2017-12-12 23:26:35', 4, '1cc7415e-e484-11e7-8cd6-204747335338', 100.00, b'1', '1c87a56f-e479-11e7-8cd6-204747335338', 'c7bfeac8-3c10-11e7-a2b5-204747335338', '2017-12-12 23:27:22', '2017-12-19 00:17:02'),
@@ -183,7 +183,7 @@ INSERT INTO `tbl_comandas` (`idcomanda`, `fecha`, `num_comanda`, `idmesa`, `tota
 
 -- Volcando estructura para tabla bd_guajiro.tbl_corte
 CREATE TABLE IF NOT EXISTS `tbl_corte` (
-  `idcorte` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL DEFAULT '',
+  `idcorte` varchar(50) NOT NULL DEFAULT '',
   `dias` int(11) DEFAULT NULL,
   `fecha` datetime DEFAULT NULL,
   `total_ingreso` decimal(10,2) DEFAULT NULL,
@@ -191,9 +191,9 @@ CREATE TABLE IF NOT EXISTS `tbl_corte` (
   `saldo_corte` decimal(10,2) DEFAULT NULL,
   `fecha_creacion` datetime DEFAULT CURRENT_TIMESTAMP,
   `fecha_modificacion` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `crea_usuario` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `crea_usuario` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idcorte`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla bd_guajiro.tbl_corte: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_corte` DISABLE KEYS */;
@@ -203,14 +203,14 @@ CREATE TABLE IF NOT EXISTS `tbl_corte` (
 -- Volcando estructura para tabla bd_guajiro.tbl_corte_mov
 CREATE TABLE IF NOT EXISTS `tbl_corte_mov` (
   `idcortemov` int(11) NOT NULL AUTO_INCREMENT,
-  `idcorte` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `idmovimiento` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `idcorte` varchar(50) DEFAULT NULL,
+  `idmovimiento` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idcortemov`),
   KEY `FK_tbl_corte_mov_tbl_corte` (`idcorte`),
   KEY `FK_tbl_corte_mov_tbl_movimientos` (`idmovimiento`),
-  CONSTRAINT `FK_tbl_corte_mov_tbl_corte` FOREIGN KEY (`idcorte`) REFERENCES `tbl_corte` (`idcorte`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `FK_tbl_corte_mov_tbl_movimientos` FOREIGN KEY (`idmovimiento`) REFERENCES `tbl_movimientos` (`idmovimiento`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+  CONSTRAINT `FK_tbl_corte_mov_tbl_corte` FOREIGN KEY (`idcorte`) REFERENCES `tbl_corte` (`idcorte`),
+  CONSTRAINT `FK_tbl_corte_mov_tbl_movimientos` FOREIGN KEY (`idmovimiento`) REFERENCES `tbl_movimientos` (`idmovimiento`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla bd_guajiro.tbl_corte_mov: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_corte_mov` DISABLE KEYS */;
@@ -219,13 +219,15 @@ CREATE TABLE IF NOT EXISTS `tbl_corte_mov` (
 
 -- Volcando estructura para tabla bd_guajiro.tbl_detallemenu
 CREATE TABLE IF NOT EXISTS `tbl_detallemenu` (
-  `iddetalle` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `idmenu` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `iditem` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `iddetalle` varchar(50) NOT NULL,
+  `idmenu` varchar(50) DEFAULT NULL,
+  `iditem` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`iddetalle`),
   KEY `FK_tbl_detallemenu_tbl_menudeldia` (`idmenu`),
-  CONSTRAINT `FK_tbl_detallemenu_tbl_menudeldia` FOREIGN KEY (`idmenu`) REFERENCES `tbl_menudeldia` (`idmenu`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  KEY `FK_tbl_detallemenu_tbl_items` (`iditem`),
+  CONSTRAINT `FK_tbl_detallemenu_tbl_items` FOREIGN KEY (`iditem`) REFERENCES `tbl_items` (`iditem`),
+  CONSTRAINT `FK_tbl_detallemenu_tbl_menudeldia` FOREIGN KEY (`idmenu`) REFERENCES `tbl_menudeldia` (`idmenu`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla bd_guajiro.tbl_detallemenu: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_detallemenu` DISABLE KEYS */;
@@ -239,18 +241,22 @@ INSERT INTO `tbl_detallemenu` (`iddetalle`, `idmenu`, `iditem`) VALUES
 
 -- Volcando estructura para tabla bd_guajiro.tbl_detallescomanda
 CREATE TABLE IF NOT EXISTS `tbl_detallescomanda` (
-  `iddetalle` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `idcomanda` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `iditem` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `idobservaciones` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `descripcion` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `iddetalle` varchar(50) NOT NULL,
+  `idcomanda` varchar(50) DEFAULT NULL,
+  `iditem` varchar(50) DEFAULT NULL,
+  `observaciones` varchar(50) DEFAULT NULL,
+  `descripcion` varchar(50) DEFAULT NULL,
   `precio` decimal(10,2) DEFAULT NULL,
-  PRIMARY KEY (`iddetalle`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+  PRIMARY KEY (`iddetalle`),
+  KEY `FK_tbl_detallescomanda_tbl_comandas` (`idcomanda`),
+  KEY `FK_tbl_detallescomanda_tbl_items` (`iditem`),
+  CONSTRAINT `FK_tbl_detallescomanda_tbl_comandas` FOREIGN KEY (`idcomanda`) REFERENCES `tbl_comandas` (`idcomanda`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `FK_tbl_detallescomanda_tbl_items` FOREIGN KEY (`iditem`) REFERENCES `tbl_items` (`iditem`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla bd_guajiro.tbl_detallescomanda: ~18 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_detallescomanda` DISABLE KEYS */;
-INSERT INTO `tbl_detallescomanda` (`iddetalle`, `idcomanda`, `iditem`, `idobservaciones`, `descripcion`, `precio`) VALUES
+INSERT INTO `tbl_detallescomanda` (`iddetalle`, `idcomanda`, `iditem`, `observaciones`, `descripcion`, `precio`) VALUES
 	('1fe0b051-9a1b-4fd3-9e7b-213df4c03898', '6928c1c3-7908-464e-b211-d5c0e148e8a1', 'c1f41760-3b42-11e7-a2b5-204747335338', '', 'Vaso de Jamaica', 10.00),
 	('250e7a8e-120c-4d5d-a5c5-7e91f57bca4a', 'd079e7b3-a0a4-4a6a-bfa0-ce83a1cc61ee', 'c1f44838-3b42-11e7-a2b5-204747335338', '', 'Chilaquiles con pollo', 40.00),
 	('312c1b50-b2ec-4a46-a1cf-5a31654f1925', 'dc7338c5-d347-4fc7-9877-d5acc1619dea', 'c1f41760-3b42-11e7-a2b5-204747335338', '', 'Vaso de Jamaica', 10.00),
@@ -274,14 +280,18 @@ INSERT INTO `tbl_detallescomanda` (`iddetalle`, `idcomanda`, `iditem`, `idobserv
 
 -- Volcando estructura para tabla bd_guajiro.tbl_detallesguarnicion
 CREATE TABLE IF NOT EXISTS `tbl_detallesguarnicion` (
-  `iddetalleguarnicion` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `idguarnicion` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `iditem` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `iddetalleguarnicion` varchar(50) NOT NULL,
+  `idguarnicion` varchar(50) DEFAULT NULL,
+  `iditem` varchar(50) DEFAULT NULL,
   `fecha_creacion` datetime DEFAULT CURRENT_TIMESTAMP,
   `fecha_modificacion` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `crea_usuario` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  PRIMARY KEY (`iddetalleguarnicion`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+  `crea_usuario` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`iddetalleguarnicion`),
+  KEY `FK_tbl_detallesguarnicion_tbl_guarniciones` (`idguarnicion`),
+  KEY `FK_tbl_detallesguarnicion_tbl_items` (`iditem`),
+  CONSTRAINT `FK_tbl_detallesguarnicion_tbl_guarniciones` FOREIGN KEY (`idguarnicion`) REFERENCES `tbl_guarniciones` (`idguarnicion`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `FK_tbl_detallesguarnicion_tbl_items` FOREIGN KEY (`iditem`) REFERENCES `tbl_items` (`iditem`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla bd_guajiro.tbl_detallesguarnicion: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_detallesguarnicion` DISABLE KEYS */;
@@ -296,11 +306,11 @@ INSERT INTO `tbl_detallesguarnicion` (`iddetalleguarnicion`, `idguarnicion`, `id
 
 -- Volcando estructura para tabla bd_guajiro.tbl_detallesobservacion
 CREATE TABLE IF NOT EXISTS `tbl_detallesobservacion` (
-  `iddetalle` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `idobservacion` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `descripcion` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `iddetalle` varchar(50) NOT NULL,
+  `idobservacion` varchar(50) DEFAULT NULL,
+  `descripcion` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`iddetalle`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla bd_guajiro.tbl_detallesobservacion: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_detallesobservacion` DISABLE KEYS */;
@@ -309,51 +319,85 @@ CREATE TABLE IF NOT EXISTS `tbl_detallesobservacion` (
 
 -- Volcando estructura para tabla bd_guajiro.tbl_direcciones
 CREATE TABLE IF NOT EXISTS `tbl_direcciones` (
-  `iddireccion` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `idpersona` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `idmunicipio` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `calle1` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `calle2` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `interior` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `exterior` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `colonia` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `codigopostal` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `iddireccion` varchar(50) NOT NULL,
+  `idpersona` varchar(50) DEFAULT NULL,
+  `idmunicipio` varchar(50) DEFAULT NULL,
+  `calle1` varchar(100) DEFAULT NULL,
+  `calle2` varchar(100) DEFAULT NULL,
+  `interior` varchar(20) DEFAULT NULL,
+  `exterior` varchar(20) DEFAULT NULL,
+  `colonia` varchar(100) DEFAULT NULL,
+  `codigopostal` varchar(20) DEFAULT NULL,
   `entrega` bit(1) DEFAULT b'0',
+  `fiscal` bit(1) DEFAULT b'0',
   PRIMARY KEY (`iddireccion`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_direcciones: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_direcciones: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_direcciones` DISABLE KEYS */;
-INSERT INTO `tbl_direcciones` (`iddireccion`, `idpersona`, `idmunicipio`, `calle1`, `calle2`, `interior`, `exterior`, `colonia`, `codigopostal`, `entrega`) VALUES
-	('c53dfad2-db0a-11e7-9155-204747335338', '3ec57991-da4a-11e7-9155-204747335338', 'c6b41a5b-db09-11e7-9155-204747335338', 'Calle Ixhuatán', 'entre Simojovel e Ixtacomitan', '#341', NULL, 'Col. Centenario', '29025', b'0');
+INSERT INTO `tbl_direcciones` (`iddireccion`, `idpersona`, `idmunicipio`, `calle1`, `calle2`, `interior`, `exterior`, `colonia`, `codigopostal`, `entrega`, `fiscal`) VALUES
+	('c53dfad2-db0a-11e7-9155-204747335338', '3ec57991-da4a-11e7-9155-204747335338', 'c6b41a5b-db09-11e7-9155-204747335338', 'Calle Ixhuatán', 'entre Simojovel e Ixtacomitan', '#341', NULL, 'Col. Centenario', '29025', b'1', b'0'),
+	('cc5f4754-f3fc-11e7-83f1-204747335338', '1c87a56f-e479-11e7-8cd6-204747335338', 'c6b41a5b-db09-11e7-9155-204747335338', '', NULL, NULL, NULL, NULL, NULL, b'0', b'0');
 /*!40000 ALTER TABLE `tbl_direcciones` ENABLE KEYS */;
 
 
 -- Volcando estructura para tabla bd_guajiro.tbl_estados
 CREATE TABLE IF NOT EXISTS `tbl_estados` (
-  `idestado` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
-  `nombre` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `idestado` varchar(100) NOT NULL,
+  `nombre` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idestado`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_estados: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_estados: ~33 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_estados` DISABLE KEYS */;
 INSERT INTO `tbl_estados` (`idestado`, `nombre`) VALUES
-	('9804204f-db09-11e7-9155-204747335338', 'Chiapas');
+	('4b8f4865-f68c-11e7-83f1-204747335338', 'AGUASCALIENTES'),
+	('4b8f4b64-f68c-11e7-83f1-204747335338', 'BAJA CALIFORNIA'),
+	('4b8f4bc4-f68c-11e7-83f1-204747335338', 'BAJA CALIFORNIA SUR'),
+	('4b8f4bfb-f68c-11e7-83f1-204747335338', 'CAMPECHE'),
+	('4b8f4c31-f68c-11e7-83f1-204747335338', 'CHIAPAS'),
+	('4b8f4c6d-f68c-11e7-83f1-204747335338', 'CHIHUAHUA'),
+	('4b8f4ca4-f68c-11e7-83f1-204747335338', 'CIUDAD DE MEXICO'),
+	('4b8f4cd4-f68c-11e7-83f1-204747335338', 'COAHUILA'),
+	('4b8f4d04-f68c-11e7-83f1-204747335338', 'COLIMA'),
+	('4b8f4d35-f68c-11e7-83f1-204747335338', 'DURANGO'),
+	('4b8f4d65-f68c-11e7-83f1-204747335338', 'EXTRANJERO'),
+	('4b8f4d8f-f68c-11e7-83f1-204747335338', 'GUANAJUATO'),
+	('4b8f4dc0-f68c-11e7-83f1-204747335338', 'GUERRERO'),
+	('4b8f4e4a-f68c-11e7-83f1-204747335338', 'HIDALGO'),
+	('4b8f4ee7-f68c-11e7-83f1-204747335338', 'JALISCO'),
+	('4b8f4f12-f68c-11e7-83f1-204747335338', 'MEXICO'),
+	('4b8f4f3c-f68c-11e7-83f1-204747335338', 'MICHOACAN'),
+	('4b8f4f72-f68c-11e7-83f1-204747335338', 'MORELOS'),
+	('4b8f4f97-f68c-11e7-83f1-204747335338', 'NAYARIT'),
+	('4b8f4fc1-f68c-11e7-83f1-204747335338', 'NUEVO LEON'),
+	('4b8f4feb-f68c-11e7-83f1-204747335338', 'OAXACA'),
+	('4b8f5015-f68c-11e7-83f1-204747335338', 'PUEBLA'),
+	('4b8f5040-f68c-11e7-83f1-204747335338', 'QUERETARO'),
+	('4b8f506a-f68c-11e7-83f1-204747335338', 'QUINTANA ROO'),
+	('4b8f5094-f68c-11e7-83f1-204747335338', 'SAN LUIS POTOSI'),
+	('4b8f50be-f68c-11e7-83f1-204747335338', 'SINALOA'),
+	('4b8f50e9-f68c-11e7-83f1-204747335338', 'SONORA'),
+	('4b8f510d-f68c-11e7-83f1-204747335338', 'TABASCO'),
+	('4b8f513d-f68c-11e7-83f1-204747335338', 'TAMAULIPAS'),
+	('4b8f5167-f68c-11e7-83f1-204747335338', 'TLAXCALA'),
+	('4b8f5192-f68c-11e7-83f1-204747335338', 'VERACRUZ'),
+	('4b8f51c2-f68c-11e7-83f1-204747335338', 'YUCATAN'),
+	('4b8f51ec-f68c-11e7-83f1-204747335338', 'ZACATECAS');
 /*!40000 ALTER TABLE `tbl_estados` ENABLE KEYS */;
 
 
 -- Volcando estructura para tabla bd_guajiro.tbl_guarniciones
 CREATE TABLE IF NOT EXISTS `tbl_guarniciones` (
-  `idguarnicion` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `nombre` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `idguarnicion` varchar(50) NOT NULL,
+  `nombre` varchar(50) DEFAULT NULL,
   `fecha_creacion` datetime DEFAULT CURRENT_TIMESTAMP,
   `fecha_modificacion` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `crea_usuario` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `crea_usuario` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idguarnicion`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_guarniciones: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_guarniciones: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_guarniciones` DISABLE KEYS */;
 INSERT INTO `tbl_guarniciones` (`idguarnicion`, `nombre`, `fecha_creacion`, `fecha_modificacion`, `crea_usuario`) VALUES
 	('204b7bf8-7b3a-11e7-955d-204747335338', 'Guarnición Desayuno', '2017-08-07 12:49:42', NULL, NULL),
@@ -364,168 +408,168 @@ INSERT INTO `tbl_guarniciones` (`idguarnicion`, `nombre`, `fecha_creacion`, `fec
 
 -- Volcando estructura para tabla bd_guajiro.tbl_items
 CREATE TABLE IF NOT EXISTS `tbl_items` (
-  `iditem` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `idlstipoitem` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `descripcion` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `iditem` varchar(50) NOT NULL,
+  `idlstipoitem` varchar(50) DEFAULT NULL,
+  `descripcion` varchar(100) DEFAULT NULL,
   `existencia` decimal(10,2) DEFAULT NULL,
+  `inventariable` bit(1) DEFAULT NULL,
   `fecha_creacion` datetime DEFAULT CURRENT_TIMESTAMP,
   `fecha_modificacion` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `crea_usuario` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `crea_usuario` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`iditem`),
-  KEY `FK_tbl_items_tbl_listadoseldetalle` (`idlstipoitem`),
-  CONSTRAINT `FK_tbl_items_tbl_listadoseldetalle` FOREIGN KEY (`idlstipoitem`) REFERENCES `tbl_listadoseldetalle` (`idlsselecciondetalle`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+  KEY `FK_tbl_items_tbl_listadoseldetalle` (`idlstipoitem`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_items: ~119 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_items: ~133 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_items` DISABLE KEYS */;
-INSERT INTO `tbl_items` (`iditem`, `idlstipoitem`, `descripcion`, `existencia`, `fecha_creacion`, `fecha_modificacion`, `crea_usuario`) VALUES
-	('203ed470-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Sin queso', NULL, '2017-07-07 16:20:25', NULL, NULL),
-	('2363df31-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Sin crema', NULL, '2017-07-07 16:20:30', NULL, NULL),
-	('278ffee8-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Sin chile', NULL, '2017-07-07 16:20:37', NULL, NULL),
-	('2cf64c98-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Sin pepinillos', NULL, '2017-07-07 16:20:46', NULL, NULL),
-	('3ab4e624-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Cocido', NULL, '2017-07-07 16:21:09', NULL, NULL),
-	('453126ef-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Hervido', NULL, '2017-07-07 16:21:27', NULL, NULL),
-	('4e77d9d5-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Término Medio', NULL, '2017-07-07 16:21:42', '2017-07-07 16:23:14', NULL),
-	('5f579499-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Término 3/4', NULL, '2017-07-07 16:22:11', NULL, NULL),
-	('60bde04e-6359-11e7-a068-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Platanitos con Crema', NULL, '2017-07-07 16:15:04', NULL, NULL),
-	('6f83bd38-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Término Bien Cocido', NULL, '2017-07-07 16:22:38', NULL, NULL),
-	('7e17226c-6359-11e7-a068-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Frijoles refritos', NULL, '2017-07-07 16:15:53', NULL, NULL),
-	('96dde0eb-635a-11e7-a068-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Verduras hervidas', NULL, '2017-07-07 16:23:44', NULL, NULL),
-	('ab046a4b-6359-11e7-a068-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Arroz cocido', NULL, '2017-07-07 16:17:08', NULL, NULL),
-	('bf51059c-6359-11e7-a068-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Ensalada de lechuga, tomate y cebolla', NULL, '2017-07-07 16:17:42', NULL, NULL),
-	('c1e2ade4-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Vaso de Horchata', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f41760-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Vaso de Jamaica', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f41fa1-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Vaso de Tascalate', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f420bd-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Litro de Horchata', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f42166-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Litro de Jamaica', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f42221-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Litro de Tascalate', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f422ca-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Agua Bonafont 600 ml', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f4235b-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Manzana Lift 600 ml', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f4328c-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Senzao 600 ml', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f434b7-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Sprite 600 ml', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f435c7-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Fresca 600 ml', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f4366a-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Coca 500 ml cristal', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f43713-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Café', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f437c2-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Café con Leche', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f43859-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Té (Manzanilla, Limón, Verde)', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f43938-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Capuchino', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f439cf-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Malteadas (Fresa, Vainilla, Chocolate)', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f43a90-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Frappé (Café, Oreo)', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f43b33-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Chocolate', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f43bbe-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo con Verduras', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f43c61-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo con Chorizo', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f43cf2-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo con Jamón', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f43d89-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo con Tocino', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f43e1a-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo con Ejotes', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f43eab-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo a la Mexicana', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f43f3c-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo en Torta', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f43fcd-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo estrellado', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44064-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos rancheros', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44100-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos divorciados', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44191-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos con camarón seco', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44253-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos con machaca', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f442ea-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos con pollo deshebrado', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44386-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos con longaniza', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44417-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos motuleños', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f444a8-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Omelette de champiñones', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44545-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Omelette vegetariano', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f446ce-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Omelette con jamón', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f447a1-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Omelette con chorizo', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44838-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Chilaquiles con pollo', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f448c9-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Chilaquiles con huevo', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44960-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Enchiladas suizas', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f449f7-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Enfrijoladas', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44a8e-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Tostadas de pollo', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44b1f-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Tacos dorados', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44bb5-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Quesadillas', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44c46-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Torta de pollo', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44cdd-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Torta con huevo al gusto', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44d6e-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Plátano fritos', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44dff-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Papas a la francesa', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44e90-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Pan tostado (2 pzas)', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44f1b-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Wafles (3 pzas)', NULL, '2017-05-17 15:52:36', '2017-07-07 16:25:16', NULL),
-	('c1f44fb2-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Jugo Verde', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45049-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Jugo de Naranja', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f450d4-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Jugo de Zanahoria', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45165-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Jugo Combinado', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f451f5-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Fruta del día', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f452b1-3b42-11e7-a2b5-204747335338', 'e47c720d-368a-11e7-b904-204747335338', 'Flan napolitano (rebanada)', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45348-3b42-11e7-a2b5-204747335338', 'e47c720d-368a-11e7-b904-204747335338', 'Helado ', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45427-3b42-11e7-a2b5-204747335338', 'e47c720d-368a-11e7-b904-204747335338', 'Bolis', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f4551e-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Ensalada sencilla', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f4561c-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Ensalada especial', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45720-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Ensalada de nopal', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f457cf-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Orden de arroz', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45860-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Orden de frijol', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f458f7-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Orden de espaguetti', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f4598d-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Orden de verduras al vapor', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45a24-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Sandwich de pollo', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45ac1-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Sandwich de jamón', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45b58-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Albóndiga en caldo', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45be9-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Albóndiga enchipotlada', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45c8c-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Arrachera', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45d17-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Barbacoa de res', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45da8-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Bistec a la mexicana', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45e39-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Calabacita rellena de queso', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f900d2-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Caldo de marisco', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f90284-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Caldo de pescado', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f90352-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Caldo de res', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f90498-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Caldo tlalpeño', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f90595-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Camarón al mojo de ajo', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f90699-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Carne adobada frita', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f9079d-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Chilaquiles con pollo', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f9083a-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Chiles rellenos', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f908d0-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Chuleta ahumada frita', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f90961-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Chuleta de puerco frita', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f909f8-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Chuleta de res frita', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f90aa1-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Cochinita pibil', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f915ff-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Cochito', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f91764-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Costilla a la mexicana', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f9186d-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Costilla adobada', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f91965-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Costilla frita', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f91a5c-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Ejote capeado', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f91b4e-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Enchiladas de mole', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f91c4b-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Enchiladas suizas', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f91d3d-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Estofado de res', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f91e28-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Fajitas de pollo enchipotladas', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f91f62-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Filete de pescado al vapor', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f9206c-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Filete de pescado empanizado', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f921a0-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Hamburguesas', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f92285-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Higado encebollado', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f92383-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Mojarra frita', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f92480-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pechuga a la Cordon Blue', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f92578-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pechuga asada', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f9267c-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pechuga empanizada', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f92773-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pechuga frita', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f92871-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pechuga italiana', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f92962-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Picadillo de res', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f92a54-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo a la jardinera', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f92b4b-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo a la mexicana', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f92c43-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo en barbacoa', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f92d3a-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo en caldo', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f92e32-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo en estofado', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f92f29-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo en mole', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f9301b-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo en salsa de cochito', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f9310c-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo en salsa verde', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f931f8-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pozole', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f932dd-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Puerco en salsa verde', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f933db-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Sopa caldosa', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f934f1-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Tazajo con frijol y arroz', NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f935e8-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Tortitas de papa', NULL, '2017-05-17 15:52:36', NULL, NULL);
+INSERT INTO `tbl_items` (`iditem`, `idlstipoitem`, `descripcion`, `existencia`, `inventariable`, `fecha_creacion`, `fecha_modificacion`, `crea_usuario`) VALUES
+	('203ed470-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Sin queso', NULL, NULL, '2017-07-07 16:20:25', NULL, NULL),
+	('2363df31-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Sin crema', NULL, NULL, '2017-07-07 16:20:30', NULL, NULL),
+	('278ffee8-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Sin chile', NULL, NULL, '2017-07-07 16:20:37', NULL, NULL),
+	('2cf64c98-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Sin pepinillos', NULL, NULL, '2017-07-07 16:20:46', NULL, NULL),
+	('3ab4e624-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Cocido', NULL, NULL, '2017-07-07 16:21:09', NULL, NULL),
+	('453126ef-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Hervido', NULL, NULL, '2017-07-07 16:21:27', NULL, NULL),
+	('4e77d9d5-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Término Medio', NULL, NULL, '2017-07-07 16:21:42', '2017-07-07 16:23:14', NULL),
+	('5f579499-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Término 3/4', NULL, NULL, '2017-07-07 16:22:11', NULL, NULL),
+	('60bde04e-6359-11e7-a068-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Platanitos con Crema', NULL, NULL, '2017-07-07 16:15:04', NULL, NULL),
+	('6f83bd38-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Término Bien Cocido', NULL, NULL, '2017-07-07 16:22:38', NULL, NULL),
+	('7e17226c-6359-11e7-a068-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Frijoles refritos', NULL, NULL, '2017-07-07 16:15:53', NULL, NULL),
+	('96dde0eb-635a-11e7-a068-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Verduras hervidas', NULL, NULL, '2017-07-07 16:23:44', NULL, NULL),
+	('ab046a4b-6359-11e7-a068-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Arroz cocido', NULL, NULL, '2017-07-07 16:17:08', NULL, NULL),
+	('bf51059c-6359-11e7-a068-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Ensalada de lechuga, tomate y cebolla', NULL, NULL, '2017-07-07 16:17:42', NULL, NULL),
+	('c1e2ade4-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Vaso de Horchata', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f41760-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Vaso de Jamaica', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f41fa1-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Vaso de Tascalate', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f420bd-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Litro de Horchata', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f42166-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Litro de Jamaica', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f42221-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Litro de Tascalate', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f422ca-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Agua Bonafont 600 ml', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f4235b-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Manzana Lift 600 ml', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f4328c-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Senzao 600 ml', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f434b7-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Sprite 600 ml', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f435c7-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Fresca 600 ml', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f4366a-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Coca 500 ml cristal', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f43713-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Café', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f437c2-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Café con Leche', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f43859-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Té (Manzanilla, Limón, Verde)', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f43938-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Capuchino', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f439cf-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Malteadas (Fresa, Vainilla, Chocolate)', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f43a90-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Frappé (Café, Oreo)', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f43b33-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Chocolate', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f43bbe-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo con Verduras', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f43c61-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo con Chorizo', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f43cf2-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo con Jamón', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f43d89-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo con Tocino', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f43e1a-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo con Ejotes', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f43eab-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo a la Mexicana', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f43f3c-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo en Torta', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f43fcd-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo estrellado', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f44064-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos rancheros', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f44100-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos divorciados', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f44191-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos con camarón seco', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f44253-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos con machaca', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f442ea-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos con pollo deshebrado', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f44386-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos con longaniza', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f44417-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos motuleños', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f444a8-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Omelette de champiñones', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f44545-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Omelette vegetariano', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f446ce-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Omelette con jamón', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f447a1-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Omelette con chorizo', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f44838-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Chilaquiles con pollo', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f448c9-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Chilaquiles con huevo', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f44960-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Enchiladas suizas', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f449f7-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Enfrijoladas', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f44a8e-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Tostadas de pollo', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f44b1f-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Tacos dorados', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f44bb5-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Quesadillas', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f44c46-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Torta de pollo', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f44cdd-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Torta con huevo al gusto', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f44d6e-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Plátano fritos', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f44dff-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Papas a la francesa', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f44e90-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Pan tostado (2 pzas)', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f44f1b-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Wafles (3 pzas)', NULL, NULL, '2017-05-17 15:52:36', '2017-07-07 16:25:16', NULL),
+	('c1f44fb2-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Jugo Verde', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f45049-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Jugo de Naranja', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f450d4-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Jugo de Zanahoria', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f45165-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Jugo Combinado', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f451f5-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Fruta del día', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f452b1-3b42-11e7-a2b5-204747335338', 'e47c720d-368a-11e7-b904-204747335338', 'Flan napolitano (rebanada)', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f45348-3b42-11e7-a2b5-204747335338', 'e47c720d-368a-11e7-b904-204747335338', 'Helado ', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f45427-3b42-11e7-a2b5-204747335338', 'e47c720d-368a-11e7-b904-204747335338', 'Bolis', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f4551e-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Ensalada sencilla', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f4561c-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Ensalada especial', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f45720-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Ensalada de nopal', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f457cf-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Orden de arroz', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f45860-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Orden de frijol', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f458f7-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Orden de espaguetti', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f4598d-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Orden de verduras al vapor', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f45a24-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Sandwich de pollo', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f45ac1-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Sandwich de jamón', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f45b58-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Albóndiga en caldo', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f45be9-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Albóndiga enchipotlada', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f45c8c-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Arrachera', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f45d17-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Barbacoa de res', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f45da8-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Bistec a la mexicana', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f45e39-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Calabacita rellena de queso', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f900d2-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Caldo de marisco', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f90284-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Caldo de pescado', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f90352-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Caldo de res', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f90498-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Caldo tlalpeño', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f90595-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Camarón al mojo de ajo', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f90699-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Carne adobada frita', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f9079d-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Chilaquiles con pollo', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f9083a-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Chiles rellenos', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f908d0-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Chuleta ahumada frita', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f90961-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Chuleta de puerco frita', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f909f8-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Chuleta de res frita', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f90aa1-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Cochinita pibil', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f915ff-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Cochito', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f91764-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Costilla a la mexicana', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f9186d-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Costilla adobada', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f91965-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Costilla frita', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f91a5c-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Ejote capeado', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f91b4e-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Enchiladas de mole', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f91c4b-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Enchiladas suizas', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f91d3d-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Estofado de res', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f91e28-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Fajitas de pollo enchipotladas', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f91f62-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Filete de pescado al vapor', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f9206c-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Filete de pescado empanizado', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f921a0-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Hamburguesas', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f92285-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Higado encebollado', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f92383-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Mojarra frita', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f92480-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pechuga a la Cordon Blue', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f92578-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pechuga asada', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f9267c-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pechuga empanizada', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f92773-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pechuga frita', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f92871-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pechuga italiana', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f92962-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Picadillo de res', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f92a54-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo a la jardinera', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f92b4b-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo a la mexicana', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f92c43-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo en barbacoa', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f92d3a-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo en caldo', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f92e32-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo en estofado', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f92f29-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo en mole', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f9301b-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo en salsa de cochito', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f9310c-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo en salsa verde', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f931f8-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pozole', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f932dd-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Puerco en salsa verde', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f933db-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Sopa caldosa', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f934f1-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Tazajo con frijol y arroz', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
+	('c1f935e8-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Tortitas de papa', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL);
 /*!40000 ALTER TABLE `tbl_items` ENABLE KEYS */;
 
 
 -- Volcando estructura para tabla bd_guajiro.tbl_listadoseldetalle
 CREATE TABLE IF NOT EXISTS `tbl_listadoseldetalle` (
-  `idlsselecciondetalle` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `idlistadoseleccion` varchar(80) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `descripcion` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `idlsselecciondetalle` varchar(50) NOT NULL,
+  `idlistadoseleccion` varchar(80) DEFAULT NULL,
+  `descripcion` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idlsselecciondetalle`),
   KEY `FK_tbl_listadoseldetalle_tbl_listadoseleccion` (`idlistadoseleccion`),
-  CONSTRAINT `FK_tbl_listadoseldetalle_tbl_listadoseleccion` FOREIGN KEY (`idlistadoseleccion`) REFERENCES `tbl_listadoseleccion` (`idlistadoseleccion`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+  CONSTRAINT `FK_tbl_listadoseldetalle_tbl_listadoseleccion` FOREIGN KEY (`idlistadoseleccion`) REFERENCES `tbl_listadoseleccion` (`idlistadoseleccion`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_listadoseldetalle: ~22 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_listadoseldetalle: ~28 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_listadoseldetalle` DISABLE KEYS */;
 INSERT INTO `tbl_listadoseldetalle` (`idlsselecciondetalle`, `idlistadoseleccion`, `descripcion`) VALUES
 	('10c9f0b5-39dd-11e7-b904-204747335338', '434bf20e-3688-11e7-b904-204747335338', 'Guarnición'),
@@ -552,18 +596,21 @@ INSERT INTO `tbl_listadoseldetalle` (`idlsselecciondetalle`, `idlistadoseleccion
 	('e47c7609-368a-11e7-b904-204747335338', '434bf20e-3688-11e7-b904-204747335338', 'Utensilios'),
 	('e47c7737-368a-11e7-b904-204747335338', '434bf20e-3688-11e7-b904-204747335338', 'Limpieza'),
 	('ed1679d5-3b84-11e7-a2b5-204747335338', '5fd493ef-3688-11e7-b904-204747335338', 'Orden'),
-	('ed9a8d7c-6358-11e7-a068-204747335338', '434bf20e-3688-11e7-b904-204747335338', 'Observaciones Alimentos');
+	('ed9a8d7c-6358-11e7-a068-204747335338', '434bf20e-3688-11e7-b904-204747335338', 'Observaciones Alimentos'),
+	('ff9a4a3f-f42a-11e7-83f1-204747335338', 'b06d265a-f42a-11e7-83f1-204747335338', 'Móvil'),
+	('ff9a4dff-f42a-11e7-83f1-204747335338', 'b06d265a-f42a-11e7-83f1-204747335338', 'Casa'),
+	('ff9a4ea2-f42a-11e7-83f1-204747335338', 'b06d265a-f42a-11e7-83f1-204747335338', 'Trabajo');
 /*!40000 ALTER TABLE `tbl_listadoseldetalle` ENABLE KEYS */;
 
 
 -- Volcando estructura para tabla bd_guajiro.tbl_listadoseleccion
 CREATE TABLE IF NOT EXISTS `tbl_listadoseleccion` (
-  `idlistadoseleccion` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `descripcion` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `idlistadoseleccion` varchar(50) NOT NULL,
+  `descripcion` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idlistadoseleccion`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_listadoseleccion: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_listadoseleccion: ~7 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_listadoseleccion` DISABLE KEYS */;
 INSERT INTO `tbl_listadoseleccion` (`idlistadoseleccion`, `descripcion`) VALUES
 	('34110ff8-3688-11e7-b904-204747335338', 'Tipo Movimiento'),
@@ -571,18 +618,19 @@ INSERT INTO `tbl_listadoseleccion` (`idlistadoseleccion`, `descripcion`) VALUES
 	('4f6f64bf-3688-11e7-b904-204747335338', 'Tipo Persona'),
 	('595922d0-3688-11e7-b904-204747335338', 'Tipo Contribuyente'),
 	('5fd493ef-3688-11e7-b904-204747335338', 'Tipo Unidad'),
-	('64a0a6ab-3688-11e7-b904-204747335338', 'Tipo Caracteristica');
+	('64a0a6ab-3688-11e7-b904-204747335338', 'Tipo Caracteristica'),
+	('b06d265a-f42a-11e7-83f1-204747335338', 'Tipo Teléfono');
 /*!40000 ALTER TABLE `tbl_listadoseleccion` ENABLE KEYS */;
 
 
 -- Volcando estructura para tabla bd_guajiro.tbl_menudeldia
 CREATE TABLE IF NOT EXISTS `tbl_menudeldia` (
-  `idmenu` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `idmenu` varchar(50) NOT NULL,
   `fecha` datetime DEFAULT NULL,
   PRIMARY KEY (`idmenu`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_menudeldia: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_menudeldia: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_menudeldia` DISABLE KEYS */;
 INSERT INTO `tbl_menudeldia` (`idmenu`, `fecha`) VALUES
 	('635ccee7-e232-11e7-9155-204747335338', '2017-12-16 01:42:25');
@@ -591,13 +639,13 @@ INSERT INTO `tbl_menudeldia` (`idmenu`, `fecha`) VALUES
 
 -- Volcando estructura para tabla bd_guajiro.tbl_mesas
 CREATE TABLE IF NOT EXISTS `tbl_mesas` (
-  `idmesa` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `idmesa` varchar(50) NOT NULL,
   `num_mesa` int(11) DEFAULT NULL,
-  `desc_mesa` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `desc_mesa` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idmesa`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_mesas: ~10 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_mesas: ~11 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_mesas` DISABLE KEYS */;
 INSERT INTO `tbl_mesas` (`idmesa`, `num_mesa`, `desc_mesa`) VALUES
 	('1cc7415e-e484-11e7-8cd6-204747335338', 0, 'Para llevar'),
@@ -616,54 +664,70 @@ INSERT INTO `tbl_mesas` (`idmesa`, `num_mesa`, `desc_mesa`) VALUES
 
 -- Volcando estructura para tabla bd_guajiro.tbl_movimientos
 CREATE TABLE IF NOT EXISTS `tbl_movimientos` (
-  `idmovimiento` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `idlstipomovimiento` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `idmovimiento` varchar(50) NOT NULL,
+  `idlstipomovimiento` varchar(50) DEFAULT NULL,
   `fecha` datetime DEFAULT NULL,
+  `descripcion` varchar(50) DEFAULT NULL,
   `monto` decimal(10,2) DEFAULT NULL,
   `fecha_creacion` datetime DEFAULT CURRENT_TIMESTAMP,
   `fecha_modificacion` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `crea_usuario` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `crea_usuario` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idmovimiento`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_movimientos: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_movimientos: ~6 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_movimientos` DISABLE KEYS */;
-INSERT INTO `tbl_movimientos` (`idmovimiento`, `idlstipomovimiento`, `fecha`, `monto`, `fecha_creacion`, `fecha_modificacion`, `crea_usuario`) VALUES
-	('227e15b1-5370-4804-9338-b3c02a336116', 'e47c55ba-368a-11e7-b904-204747335338', '2017-12-17 00:12:02', 45.00, '2017-12-17 00:12:52', NULL, 'c7bfeac8-3c10-11e7-a2b5-204747335338'),
-	('b838c33f-c5ea-49f2-9ade-0f4e64972819', 'e47c55ba-368a-11e7-b904-204747335338', '2017-12-22 23:57:38', 170.00, '2017-12-22 23:57:47', NULL, 'c7bfeac8-3c10-11e7-a2b5-204747335338'),
-	('ea379dfa-e2f0-11e7-9155-204747335338', 'e47c55ba-368a-11e7-b904-204747335338', '2017-12-12 23:26:35', 100.00, '2017-12-17 00:06:14', NULL, 'c7bfeac8-3c10-11e7-a2b5-204747335338'),
-	('ea37a61d-e2f0-11e7-9155-204747335338', 'e47c55ba-368a-11e7-b904-204747335338', '2017-12-11 01:05:23', 80.00, '2017-12-17 00:06:14', NULL, 'c7bfeac8-3c10-11e7-a2b5-204747335338'),
-	('ea37a775-e2f0-11e7-9155-204747335338', 'e47c55ba-368a-11e7-b904-204747335338', '2017-12-11 01:24:30', 50.00, '2017-12-17 00:06:14', NULL, 'c7bfeac8-3c10-11e7-a2b5-204747335338'),
-	('ea37a7ee-e2f0-11e7-9155-204747335338', 'e47c55ba-368a-11e7-b904-204747335338', '2017-12-11 01:11:14', 70.00, '2017-12-17 00:06:14', NULL, 'c7bfeac8-3c10-11e7-a2b5-204747335338');
+INSERT INTO `tbl_movimientos` (`idmovimiento`, `idlstipomovimiento`, `fecha`, `descripcion`, `monto`, `fecha_creacion`, `fecha_modificacion`, `crea_usuario`) VALUES
+	('227e15b1-5370-4804-9338-b3c02a336116', 'e47c55ba-368a-11e7-b904-204747335338', '2017-12-17 00:12:02', 'Venta de Comida', 45.00, '2017-12-17 00:12:52', '2018-01-13 18:15:46', 'c7bfeac8-3c10-11e7-a2b5-204747335338'),
+	('b838c33f-c5ea-49f2-9ade-0f4e64972819', 'e47c55ba-368a-11e7-b904-204747335338', '2017-12-22 23:57:38', 'Venta de Comida', 170.00, '2017-12-22 23:57:47', '2018-01-13 18:15:52', 'c7bfeac8-3c10-11e7-a2b5-204747335338'),
+	('ea379dfa-e2f0-11e7-9155-204747335338', 'e47c55ba-368a-11e7-b904-204747335338', '2017-12-12 23:26:35', 'Venta de Comida', 100.00, '2017-12-17 00:06:14', '2018-01-13 18:15:56', 'c7bfeac8-3c10-11e7-a2b5-204747335338'),
+	('ea37a61d-e2f0-11e7-9155-204747335338', 'e47c55ba-368a-11e7-b904-204747335338', '2017-12-11 01:05:23', 'Venta de Comida', 80.00, '2017-12-17 00:06:14', '2018-01-13 18:15:59', 'c7bfeac8-3c10-11e7-a2b5-204747335338'),
+	('ea37a775-e2f0-11e7-9155-204747335338', 'e47c55ba-368a-11e7-b904-204747335338', '2017-12-11 01:24:30', 'Venta de Comida', 50.00, '2017-12-17 00:06:14', '2018-01-13 18:16:03', 'c7bfeac8-3c10-11e7-a2b5-204747335338'),
+	('ea37a7ee-e2f0-11e7-9155-204747335338', 'e47c55ba-368a-11e7-b904-204747335338', '2017-12-11 01:11:14', 'Venta de Comida', 70.00, '2017-12-17 00:06:14', '2018-01-13 18:16:10', 'c7bfeac8-3c10-11e7-a2b5-204747335338');
 /*!40000 ALTER TABLE `tbl_movimientos` ENABLE KEYS */;
 
 
 -- Volcando estructura para tabla bd_guajiro.tbl_municipios
 CREATE TABLE IF NOT EXISTS `tbl_municipios` (
-  `idmunicipio` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
-  `idestado` varchar(100) COLLATE latin1_spanish_ci DEFAULT NULL,
-  `nombre` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `idmunicipio` varchar(100) NOT NULL,
+  `idestado` varchar(100) DEFAULT NULL,
+  `nombre` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idmunicipio`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_municipios: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_municipios: ~16 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_municipios` DISABLE KEYS */;
 INSERT INTO `tbl_municipios` (`idmunicipio`, `idestado`, `nombre`) VALUES
-	('c6b41a5b-db09-11e7-9155-204747335338', '9804204f-db09-11e7-9155-204747335338', 'Tuxtla Gutiérrez');
+	('0DEDFD4A-BC92-466E-A801-072163B09CF1', '4b8f4865-f68c-11e7-83f1-204747335338', 'RINCON DE ROMOS'),
+	('0E5FD219-ADA1-41F1-B6AF-F9947716B161', '4b8f4865-f68c-11e7-83f1-204747335338', 'SAN FRANCISCO DE LOS ROMO'),
+	('1A9EFA34-B0FB-4A30-BBC5-2B3E9A0F10EE', '4b8f4865-f68c-11e7-83f1-204747335338', 'SAN JOSE DE GRACIA'),
+	('1e919eff-f73c-11e7-83f1-204747335338', '4b8f4b64-f68c-11e7-83f1-204747335338', 'ENSENADA'),
+	('1e91a5b8-f73c-11e7-83f1-204747335338', '4b8f4b64-f68c-11e7-83f1-204747335338', 'MEXICALI'),
+	('1e91a685-f73c-11e7-83f1-204747335338', '4b8f4b64-f68c-11e7-83f1-204747335338', 'PLAYAS DE ROSARITO'),
+	('1e91a76a-f73c-11e7-83f1-204747335338', '4b8f4b64-f68c-11e7-83f1-204747335338', 'TECATE'),
+	('1e91a813-f73c-11e7-83f1-204747335338', '4b8f4b64-f68c-11e7-83f1-204747335338', 'TIJUANA'),
+	('3E5B4EB2-89C9-4005-95CB-ABE09B5B9F07', '4b8f4865-f68c-11e7-83f1-204747335338', 'CALVILLO'),
+	('4A6E5A17-C9C9-4BDB-991E-CBBED0819A26', '4b8f4865-f68c-11e7-83f1-204747335338', 'AGUASCALIENTES'),
+	('5A9BB178-DE43-4508-BC20-EC49F6C431A5', '4b8f4865-f68c-11e7-83f1-204747335338', 'ASIENTOS'),
+	('6342D3BF-62AF-4AA5-BA25-9B506AAC06F3', '4b8f4865-f68c-11e7-83f1-204747335338', 'JESUS MARIA'),
+	('66EB9365-E952-46AB-8F0F-22E4A1D02462', '4b8f4865-f68c-11e7-83f1-204747335338', 'TEPEZALA'),
+	('6860D91D-9C4D-4FA2-A1D0-EB5E2C52C676', '4b8f4865-f68c-11e7-83f1-204747335338', 'COSIO'),
+	('7C237197-A585-4173-8B33-73A74680B2C3', '4b8f4865-f68c-11e7-83f1-204747335338', 'PABELLON DE ARTEAGA'),
+	('CC4B4142-EC40-4CF5-A90C-0D68689BFBA7', '4b8f4865-f68c-11e7-83f1-204747335338', 'EL LLANO');
 /*!40000 ALTER TABLE `tbl_municipios` ENABLE KEYS */;
 
 
 -- Volcando estructura para tabla bd_guajiro.tbl_ordenes
 CREATE TABLE IF NOT EXISTS `tbl_ordenes` (
-  `idorden` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `iditem` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `idguarnicion` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `descripcion` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `idorden` varchar(50) NOT NULL,
+  `iditem` varchar(50) DEFAULT NULL,
+  `idguarnicion` varchar(50) DEFAULT NULL,
+  `descripcion` varchar(50) DEFAULT NULL,
   `fecha_creacion` datetime DEFAULT CURRENT_TIMESTAMP,
   `fecha_modificacion` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `creausuario` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `creausuario` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idorden`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla bd_guajiro.tbl_ordenes: ~66 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_ordenes` DISABLE KEYS */;
@@ -739,17 +803,17 @@ INSERT INTO `tbl_ordenes` (`idorden`, `iditem`, `idguarnicion`, `descripcion`, `
 
 -- Volcando estructura para tabla bd_guajiro.tbl_personas
 CREATE TABLE IF NOT EXISTS `tbl_personas` (
-  `idpersona` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `idlstipopersona` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `nprimario` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `nsecundario` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `paterno` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `materno` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `razon_social` varchar(350) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `idpersona` varchar(50) NOT NULL,
+  `idlstipopersona` varchar(50) DEFAULT NULL,
+  `nprimario` varchar(100) DEFAULT NULL,
+  `nsecundario` varchar(100) DEFAULT NULL,
+  `paterno` varchar(100) DEFAULT NULL,
+  `materno` varchar(100) DEFAULT NULL,
+  `razon_social` varchar(350) DEFAULT NULL,
   PRIMARY KEY (`idpersona`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_personas: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_personas: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_personas` DISABLE KEYS */;
 INSERT INTO `tbl_personas` (`idpersona`, `idlstipopersona`, `nprimario`, `nsecundario`, `paterno`, `materno`, `razon_social`) VALUES
 	('1c87a56f-e479-11e7-8cd6-204747335338', 'e47c6009-368a-11e7-b904-204747335338', 'Público', NULL, 'General', NULL, 'Público General'),
@@ -760,12 +824,12 @@ INSERT INTO `tbl_personas` (`idpersona`, `idlstipopersona`, `nprimario`, `nsecun
 
 -- Volcando estructura para tabla bd_guajiro.tbl_telefonos
 CREATE TABLE IF NOT EXISTS `tbl_telefonos` (
-  `id_telefono` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `id_persona` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `idlstipotelefono` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `numero_telefono` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `id_telefono` varchar(50) NOT NULL,
+  `id_persona` varchar(50) DEFAULT NULL,
+  `idlstipotelefono` varchar(50) DEFAULT NULL,
+  `numero_telefono` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id_telefono`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla bd_guajiro.tbl_telefonos: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_telefonos` DISABLE KEYS */;
@@ -774,12 +838,12 @@ CREATE TABLE IF NOT EXISTS `tbl_telefonos` (
 
 -- Volcando estructura para tabla bd_guajiro.tbl_usuarios
 CREATE TABLE IF NOT EXISTS `tbl_usuarios` (
-  `idusuario` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `idpersona` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `login` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `idusuario` varchar(50) NOT NULL,
+  `idpersona` varchar(50) DEFAULT NULL,
+  `login` varchar(20) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`idusuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla bd_guajiro.tbl_usuarios: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_usuarios` DISABLE KEYS */;
@@ -791,21 +855,21 @@ INSERT INTO `tbl_usuarios` (`idusuario`, `idpersona`, `login`, `password`) VALUE
 -- Volcando estructura para vista bd_guajiro.vw_lista_clientes
 -- Creando tabla temporal para superar errores de dependencia de VIEW
 CREATE TABLE `vw_lista_clientes` (
-	`idpersona` VARCHAR(50) NOT NULL COLLATE 'utf8_spanish_ci',
-	`idlstipopersona` VARCHAR(50) NULL COLLATE 'utf8_spanish_ci',
-	`razon_social` VARCHAR(350) NULL COLLATE 'utf8_spanish_ci'
+	`idpersona` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	`idlstipopersona` VARCHAR(50) NULL COLLATE 'utf8_general_ci',
+	`razon_social` VARCHAR(350) NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
 
 
 -- Volcando estructura para vista bd_guajiro.vw_lista_comandas
 -- Creando tabla temporal para superar errores de dependencia de VIEW
 CREATE TABLE `vw_lista_comandas` (
-	`idcomanda` VARCHAR(50) NOT NULL COLLATE 'utf8_spanish_ci',
-	`razon_social` VARCHAR(350) NULL COLLATE 'utf8_spanish_ci',
+	`idcomanda` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	`razon_social` VARCHAR(350) NULL COLLATE 'utf8_general_ci',
 	`fecha` DATETIME NULL,
 	`num_comanda` INT(11) NOT NULL,
 	`para_llevar` BIT(1) NULL,
-	`desc_mesa` VARCHAR(50) NULL COLLATE 'utf8_spanish_ci',
+	`desc_mesa` VARCHAR(50) NULL COLLATE 'utf8_general_ci',
 	`total` DECIMAL(10,2) NULL
 ) ENGINE=MyISAM;
 
@@ -813,41 +877,41 @@ CREATE TABLE `vw_lista_comandas` (
 -- Volcando estructura para vista bd_guajiro.vw_lista_direcciones
 -- Creando tabla temporal para superar errores de dependencia de VIEW
 CREATE TABLE `vw_lista_direcciones` (
-	`iddireccion` VARCHAR(50) NOT NULL COLLATE 'utf8_spanish_ci',
-	`idpersona` VARCHAR(50) NOT NULL COLLATE 'utf8_spanish_ci',
-	`direccion` TEXT NOT NULL COLLATE 'utf8_spanish_ci'
+	`iddireccion` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	`idpersona` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	`direccion` TEXT NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
 
 
 -- Volcando estructura para vista bd_guajiro.vw_lista_ordenes
 -- Creando tabla temporal para superar errores de dependencia de VIEW
 CREATE TABLE `vw_lista_ordenes` (
-	`idorden` VARCHAR(50) NOT NULL COLLATE 'utf8_spanish_ci',
-	`iditem` VARCHAR(50) NULL COLLATE 'utf8_spanish_ci',
-	`cveitem` VARCHAR(50) NULL COLLATE 'utf8_spanish_ci',
-	`descripcion` VARCHAR(50) NULL COLLATE 'utf8_spanish_ci',
-	`nombre` VARCHAR(50) NULL COLLATE 'utf8_spanish_ci',
-	`nombreguarnicion` VARCHAR(100) NULL COLLATE 'utf8_spanish_ci'
+	`idorden` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	`iditem` VARCHAR(50) NULL COLLATE 'utf8_general_ci',
+	`cveitem` VARCHAR(50) NULL COLLATE 'utf8_general_ci',
+	`descripcion` VARCHAR(50) NULL COLLATE 'utf8_general_ci',
+	`nombre` VARCHAR(50) NULL COLLATE 'utf8_general_ci',
+	`nombreguarnicion` VARCHAR(100) NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
 
 
 -- Volcando estructura para vista bd_guajiro.vw_lista_personas
 -- Creando tabla temporal para superar errores de dependencia de VIEW
 CREATE TABLE `vw_lista_personas` (
-	`idpersona` VARCHAR(50) NOT NULL COLLATE 'utf8_spanish_ci',
-	`login` VARCHAR(20) NULL COLLATE 'utf8_spanish_ci',
-	`razon_social` VARCHAR(350) NULL COLLATE 'utf8_spanish_ci'
+	`idpersona` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	`login` VARCHAR(20) NULL COLLATE 'utf8_general_ci',
+	`razon_social` VARCHAR(350) NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
 
 
 -- Volcando estructura para vista bd_guajiro.vw_lista_precios
 -- Creando tabla temporal para superar errores de dependencia de VIEW
 CREATE TABLE `vw_lista_precios` (
-	`iditem` VARCHAR(50) NOT NULL COLLATE 'utf8_spanish_ci',
-	`descripcion` VARCHAR(100) NULL COLLATE 'utf8_spanish_ci',
+	`iditem` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	`descripcion` VARCHAR(100) NULL COLLATE 'utf8_general_ci',
 	`valor` DECIMAL(10,2) NULL,
-	`unidad` VARCHAR(100) NULL COLLATE 'utf8_spanish_ci',
-	`tipo` VARCHAR(100) NULL COLLATE 'utf8_spanish_ci'
+	`unidad` VARCHAR(100) NULL COLLATE 'utf8_general_ci',
+	`tipo` VARCHAR(100) NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
 
 
@@ -866,7 +930,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- Volcando estructura para vista bd_guajiro.vw_lista_direcciones
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `vw_lista_direcciones`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_lista_direcciones` AS select `d`.`iddireccion` AS `iddireccion`,`p`.`idpersona` AS `idpersona`,concat(ifnull(`d`.`calle1`,''),' ',ifnull(`d`.`calle2`,''),' ',ifnull(`d`.`interior`,''),' ',ifnull(`d`.`exterior`,''),', ',ifnull(`d`.`colonia`,''),', CP: ',ifnull(`d`.`codigopostal`,''),', ',ifnull(`m`.`nombre`,''),', ',ifnull(`e`.`nombre`,'')) AS `direccion` from ((((`tbl_personas` `p` join `tbl_direcciones` `d` on((`p`.`idpersona` = `d`.`idpersona`))) join `tbl_usuarios` `u` on((`p`.`idpersona` <> `u`.`idpersona`))) join `tbl_municipios` `m` on((`d`.`idmunicipio` = convert(`m`.`idmunicipio` using utf8)))) join `tbl_estados` `e` on((`m`.`idestado` = `e`.`idestado`)));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_lista_direcciones` AS select `d`.`iddireccion` AS `iddireccion`,`p`.`idpersona` AS `idpersona`,(case `d`.`entrega` when 0 then 'Sin dirección de entrega' when 1 then concat(ifnull(`d`.`calle1`,''),' ',ifnull(`d`.`calle2`,''),' ',ifnull(`d`.`interior`,''),' ',ifnull(`d`.`exterior`,''),', ',ifnull(`d`.`colonia`,''),', CP: ',ifnull(`d`.`codigopostal`,''),', ',ifnull(`m`.`nombre`,''),', ',ifnull(`e`.`nombre`,'')) end) AS `direccion` from ((((`tbl_personas` `p` join `tbl_direcciones` `d` on((`p`.`idpersona` = `d`.`idpersona`))) join `tbl_usuarios` `u` on((`p`.`idpersona` <> `u`.`idpersona`))) join `tbl_municipios` `m` on((`d`.`idmunicipio` = `m`.`idmunicipio`))) join `tbl_estados` `e` on((`m`.`idestado` = `e`.`idestado`)));
 
 
 -- Volcando estructura para vista bd_guajiro.vw_lista_ordenes

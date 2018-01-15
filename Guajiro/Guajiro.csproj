@@ -211,6 +211,9 @@
     <Compile Include="Views\DatosClienteView.xaml.cs">
       <DependentUpon>DatosClienteView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\DatosProductoView.xaml.cs">
+      <DependentUpon>DatosProductoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DatosProveedoresView.xaml.cs">
       <DependentUpon>DatosProveedoresView.xaml</DependentUpon>
     </Compile>
@@ -261,11 +264,18 @@
     <Compile Include="Views\PuntoVentaView.xaml.cs">
       <DependentUpon>PuntoVentaView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RegistrarGastosView.xaml.cs">
+      <DependentUpon>RegistrarGastosView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\ComandasView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DatosClienteView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DatosProductoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -318,6 +328,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PuntoVentaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RegistrarGastosView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

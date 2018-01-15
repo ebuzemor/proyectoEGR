@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="Guajiro.Views.DatosProductoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfMD="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf" 
+             xmlns:local="clr-namespace:Guajiro.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="900"
+             TextElement.Foreground="{StaticResource PrimaryHueLightBrush}"
+             FontFamily="/Fonts/#Tulia"
+             Height="300" Width="400">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="#791D06">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="45"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="Información del Producto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="1" wpfMD:HintAssist.Hint="Descripción del producto" HorizontalAlignment="Center" 
+                 VerticalAlignment="Center"/>
+        <UniformGrid Grid.Row="2" Columns="2">
+            <ComboBox wpfMD:HintAssist.Hint="Unidad:" Margin="5 0 0 0" 
+                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                <ComboBoxItem Content="Pieza"/>
+                <ComboBoxItem Content="Botella"/>
+            </ComboBox>
+            <ComboBox wpfMD:HintAssist.Hint="Tipo:" Margin="5 0 0 0" 
+                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                <ComboBoxItem Content="Pieza"/>
+                <ComboBoxItem Content="Botella"/>
+            </ComboBox>
+        </UniformGrid>
+        <UniformGrid Grid.Row="3" Columns="2">
+            <TextBox wpfMD:HintAssist.Hint="Existencias:" VerticalAlignment="Center" TextAlignment="Right"/>
+            <TextBox wpfMD:HintAssist.Hint="Precio:" VerticalAlignment="Center" TextAlignment="Right"/>
+        </UniformGrid>
+        <CheckBox Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Inventariable"
+                  IsChecked="False"/>
+        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Command="{Binding GuardarProductoCommand}" Content="Guardar" Margin="5"/>
+            <Button IsCancel="True" Command="{x:Static wpfMD:DialogHost.CloseDialogCommand}"
+                    CommandParameter="CANCELAR" Content="Cerrar" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

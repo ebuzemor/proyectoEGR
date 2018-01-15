@@ -43,18 +43,24 @@ namespace Guajiro.ViewModels
                 DataContext = vmLtaCte
             };
 
+            MenuDiaViewModel vmMenuDia = new MenuDiaViewModel { };
+            MenuDiaView vwMenuDia = new MenuDiaView {
+                DataContext = vmMenuDia
+            };
+
             MenuOpcion = new[]
             {
                 new MenuOpciones("Punto de Venta", vwPdV),
                 new MenuOpciones("Comandas", vwCom),
-                new MenuOpciones("Menú del Día", new MenuDiaView()),
+                new MenuOpciones("Menú del Día", vwMenuDia),
                 new MenuOpciones("Clientes", vwLtaCte),
                 new MenuOpciones("Proveedores", new ListaProveedoresView()),
                 new MenuOpciones("Inventario", new InventarioView()),
-                new MenuOpciones("Movimientos", new InventarioView()),
-                new MenuOpciones("Facturas", new InventarioView()),
-                new MenuOpciones("Lista de Compras", new InventarioView()),
-                new MenuOpciones("Reportes", new InventarioView())
+                //new MenuOpciones("Facturas", new InventarioView()),
+                new MenuOpciones("Registrar Gastos", new RegistrarGastosView()),
+                new MenuOpciones("Registrar Compras", new InventarioView()),
+                new MenuOpciones("Movimientos", new InventarioView())
+                //new MenuOpciones("Reportes", new InventarioView())
             };
         }
         #endregion

@@ -170,10 +170,9 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button IsDefault="False" Grid.Column="1" Command="{x:Static wpfMD:DialogHost.CloseDialogCommand}" 
-                    CommandParameter="OK" Content="Guardar" Margin="5"/>
+            <Button Grid.Column="1" Command="{Binding GuardarClienteCommand}" Content="Guardar" Margin="5"/>
             <Button IsCancel="True" Grid.Column="2" Command="{x:Static wpfMD:DialogHost.CloseDialogCommand}" 
-                    CommandParameter="CANCELAR" Content="Cancelar" Margin="5"/>
+                    CommandParameter="CANCELAR" Content="Cerrar" Margin="5"/>
         </Grid>
     </Grid>
 </UserControl>

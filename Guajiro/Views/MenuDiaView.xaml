@@ -17,11 +17,11 @@
             <!--AREA DE BUSQUEDA DE PRODUCTOS-->
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height=".5*"/>
-                    <RowDefinition Height=".3*"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="45"/>
                     <RowDefinition Height="3*"/>
                 </Grid.RowDefinitions>
-                <UniformGrid Grid.Row="0" Rows="2" Columns="2">
+                <UniformGrid Grid.Row="0" Columns="2">
                     <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding TxtBuscar}">
                         <wpfMD:HintAssist.Hint>
                             <StackPanel Orientation="Horizontal" Margin="2 0 0 0">
@@ -85,16 +85,28 @@
                         <TextBlock Text="Menú del Día:" Foreground="{StaticResource PrimaryHueLightBrush}" 
                                    VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 5 20 0"/>
                         <DatePicker Margin="0 5 0 0" HorizontalAlignment="Left" wpfMD:HintAssist.Hint="Elegir Fecha"
-                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" DisplayDate="{Binding FechaMenu}"/>
                     </UniformGrid>
-                    <ListView x:Name="ListaMenuDia" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+                    <ListView x:Name="ListaMenu" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding ListaMenuDia}"
                               ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                               ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Descripcion"/>
-                                <GridViewColumn Header="Precio"/>
-                                <GridViewColumn Header="Quitar"/>
+                                <GridViewColumn Header="Descripcion" Width="300" DisplayMemberBinding="{Binding descripcion}"/>
+                                <GridViewColumn Header="Precio" Width="100" DisplayMemberBinding="{Binding valor}"/>
+                                <GridViewColumn Header="Quitar" Width="auto">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                                Margin="0 0 8 0" HorizontalAlignment="Left"
+                                                Content="{wpfMD:PackIcon Kind=Delete}"
+                                                ToolTip="Agregar producto al ticket"
+                                                Height="22" Width="22"
+                                                Command="{Binding ElementName=ListaMenu, Path=DataContext.QuitarItemCommand}"
+                                                CommandParameter="{Binding iditem}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>

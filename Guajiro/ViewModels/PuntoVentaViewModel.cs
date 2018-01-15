@@ -299,6 +299,7 @@ namespace Guajiro.ViewModels
                             idmovimiento = Convert.ToString(Guid.NewGuid()),
                             idlstipomovimiento = "e47c55ba-368a-11e7-b904-204747335338", //ingreso
                             fecha = DateTime.Now,
+                            descripcion = "Venta de Comida",
                             monto = TotalTicket,
                             crea_usuario = Usuario.idusuario
                         };

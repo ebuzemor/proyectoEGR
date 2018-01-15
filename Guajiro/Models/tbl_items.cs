@@ -29,6 +29,7 @@ namespace Guajiro.Models
         public Nullable<System.DateTime> fecha_creacion { get; set; }
         public Nullable<System.DateTime> fecha_modificacion { get; set; }
         public string crea_usuario { get; set; }
+        public Nullable<bool> inventariable { get; set; }
     
         public virtual tbl_listadoseldetalle tbl_listadoseldetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

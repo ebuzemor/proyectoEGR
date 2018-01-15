@@ -126,6 +126,7 @@
           <Property Name="idlstipoitem" Type="varchar" MaxLength="50" />
           <Property Name="descripcion" Type="varchar" MaxLength="100" />
           <Property Name="existencia" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="inventariable" Type="bit" />
           <Property Name="fecha_creacion" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
           <Property Name="fecha_modificacion" Type="datetime" Precision="0" />
           <Property Name="crea_usuario" Type="varchar" MaxLength="50" />
@@ -167,6 +168,7 @@
           <Property Name="idmovimiento" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="idlstipomovimiento" Type="varchar" MaxLength="50" />
           <Property Name="fecha" Type="datetime" Precision="0" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" />
           <Property Name="monto" Type="decimal" Precision="10" Scale="2" />
           <Property Name="fecha_creacion" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
           <Property Name="fecha_modificacion" Type="datetime" Precision="0" />
@@ -580,6 +582,7 @@ FROM `vw_lista_precios` AS `vw_lista_precios`</DefiningQuery>
           <NavigationProperty Name="tbl_detallemenu" Relationship="bd_guajiroModel.FK_tbl_detallemenu_tbl_items" FromRole="tbl_items" ToRole="tbl_detallemenu" />
           <NavigationProperty Name="tbl_detallesguarnicion" Relationship="bd_guajiroModel.FK_tbl_detallesguarnicion_tbl_items" FromRole="tbl_items" ToRole="tbl_detallesguarnicion" />
           <NavigationProperty Name="tbl_detallescomanda" Relationship="bd_guajiroModel.FK_tbl_detallescomanda_tbl_items" FromRole="tbl_items" ToRole="tbl_detallescomanda" />
+          <Property Name="inventariable" Type="Boolean" />
         </EntityType>
         <EntityType Name="tbl_listadoseldetalle">
           <Key>
@@ -889,6 +892,7 @@ FROM `vw_lista_precios` AS `vw_lista_precios`</DefiningQuery>
           <Property Name="fecha_modificacion" Type="DateTime" />
           <Property Name="crea_usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tbl_corte_mov" Relationship="bd_guajiroModel.FK_tbl_corte_mov_tbl_movimientos" FromRole="tbl_movimientos" ToRole="tbl_corte_mov" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_tbl_corte_mov_tbl_movimientos">
           <End Type="bd_guajiroModel.tbl_movimientos" Role="tbl_movimientos" Multiplicity="0..1" />
@@ -1062,6 +1066,7 @@ FROM `vw_lista_precios` AS `vw_lista_precios`</DefiningQuery>
           <EntitySetMapping Name="tbl_items">
             <EntityTypeMapping TypeName="bd_guajiroModel.tbl_items">
               <MappingFragment StoreEntitySet="tbl_items">
+                <ScalarProperty Name="inventariable" ColumnName="inventariable" />
                 <ScalarProperty Name="iditem" ColumnName="iditem" />
                 <ScalarProperty Name="idlstipoitem" ColumnName="idlstipoitem" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
@@ -1260,6 +1265,7 @@ FROM `vw_lista_precios` AS `vw_lista_precios`</DefiningQuery>
           <EntitySetMapping Name="tbl_movimientos">
             <EntityTypeMapping TypeName="bd_guajiroModel.tbl_movimientos">
               <MappingFragment StoreEntitySet="tbl_movimientos">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="crea_usuario" ColumnName="crea_usuario" />
                 <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
                 <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
