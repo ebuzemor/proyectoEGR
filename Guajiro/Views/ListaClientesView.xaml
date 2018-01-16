@@ -21,11 +21,22 @@
         <Grid Background="#791D06">
             <Grid.RowDefinitions>
                 <RowDefinition Height="45"/>
+                <RowDefinition Height="45"/>
                 <RowDefinition/>
                 <RowDefinition Height="45"/>
             </Grid.RowDefinitions>
+            <!--Titulo-->
             <TextBlock Grid.Row="0" Text="Lista de Clientes" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <DataGrid Grid.Row="1" Background="#791D06" Margin="10" CanUserAddRows="False" CanUserReorderColumns="False"
+            <!--Area de Filtros-->
+            <UniformGrid Grid.Row="1" Columns="4">
+                <TextBox wpfMD:HintAssist.Hint="Escriba nombre o apellidos..." 
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding TxtBuscar}"/>
+                <Button Margin="5" Content="Realizar Búsqueda" Command="{Binding BuscarClienteCommand}"/>
+                <Button Margin="5" Content="Mostrar Todos" Command="{Binding MostrarTodosCommand}"/>
+                <Button Margin="5" Content="Mostrar Ultimos 10" Command="{Binding MostrarUltimosCommand}"/>
+            </UniformGrid>
+            <!--Listado de Clientes-->
+            <DataGrid Grid.Row="2" Background="#791D06" Margin="10" CanUserAddRows="False" CanUserReorderColumns="False"
                       CanUserSortColumns="True" AutoGenerateColumns="False" SelectionUnit="FullRow" SelectionMode="Single"
                       wpfMD:DataGridAssist.CellPadding="13 8 8 8" wpfMD:DataGridAssist.ColumnHeaderPadding="8"
                       VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding}">
@@ -42,7 +53,8 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Grid.Row="2" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Center"
+            <!--Botón de Nuevo Cliente-->
+            <Button Grid.Row="3" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Center"
                     Command="{Binding NuevoClienteCommand}">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">

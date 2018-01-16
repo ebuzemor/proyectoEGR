@@ -1,9 +1,11 @@
 ﻿using Guajiro.Common;
 using Guajiro.Models;
+using Guajiro.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using MaterialDesignThemes.Wpf;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,7 +19,9 @@ namespace Guajiro.ViewModels
         public RelayCommand BebidasCommand { get; set; }
         public RelayCommand ComidasCommand { get; set; }
         public RelayCommand AgregarItemCommand { get; set; }
-        public RelayCommand QuitarItemCommand { get; set; }        
+        public RelayCommand QuitarItemCommand { get; set; }
+        public RelayCommand GuardarMenuCommand { get; set; }
+        public RelayCommand CerrarMensajeCommand { get; set; }
         #endregion
 
         #region Variables
@@ -49,6 +53,8 @@ namespace Guajiro.ViewModels
             DesayunosCommand = new RelayCommand(CargarDesayunos);
             BebidasCommand = new RelayCommand(CargarBebidas);
             ComidasCommand = new RelayCommand(CargarComidas);
+            GuardarMenuCommand = new RelayCommand(GuardarMenu);
+            CerrarMensajeCommand = new RelayCommand(CerrarMensaje);
             ListaMenuDia = new ObservableCollection<vw_lista_precios>();
             FechaMenu = DateTime.Now;
         }
@@ -101,6 +107,74 @@ namespace Guajiro.ViewModels
             List<vw_lista_precios> prueba = GuajiroEF.vw_lista_precios.Where(x => x.tipo == "Comida").ToList();
             ListaProductos = new ObservableCollection<vw_lista_precios>(prueba);
         }
+
+        private async void GuardarMenu(object parameter)
+        {
+            try
+            {
+                if (ListaMenuDia.Count > 0)
+                {
+                    var lstmenu = GuajiroEF.tbl_menudeldia.ToList();
+                    tbl_menudeldia checkmenu = lstmenu.SingleOrDefault(x => Convert.ToDateTime(x.fecha).Date == FechaMenu.Date);
+                    if (checkmenu == null)
+                    {
+                        int ban = 0;
+                        using (var bd = new bd_guajiroEntities())
+                        {
+                            tbl_menudeldia menudia = new tbl_menudeldia
+                            {
+                                idmenu = Convert.ToString(Guid.NewGuid()),
+                                fecha = FechaMenu
+                            };
+                            bd.tbl_menudeldia.Add(menudia);
+
+                            foreach (vw_lista_precios item in ListaMenuDia)
+                            {
+                                tbl_detallemenu detalle = new tbl_detallemenu
+                                {
+                                    iddetalle = Convert.ToString(Guid.NewGuid()),
+                                    idmenu = menudia.idmenu,
+                                    iditem = item.iditem
+                                };
+                                bd.tbl_detallemenu.Add(detalle);
+                            }
+                            ban = bd.SaveChanges();
+                        }
+                        if (ban > 0)
+                        {
+                            var vmMensaje = new MensajeViewModel
+                            {
+                                TituloMensaje = "Aviso",
+                                CuerpoMensaje = "El menú del día ha sido guardado correctamente"
+                            };
+                            var vwMensaje = new MensajeView
+                            {
+                                DataContext = vmMensaje
+                            };
+                            var result = await DialogHost.Show(vwMensaje, "MenuDia");
+                            ListaMenuDia.Clear();
+                            FechaMenu = DateTime.Now;
+                        }
+                    }
+                    else
+                    {
+                        TxtMensaje = "Ya se ha generado un menú de este día: " + FechaMenu.Date.ToShortDateString();
+                        VerMensaje = true;
+                    }
+                }
+                else
+                {
+                    TxtMensaje = "Debes agregar un platillo o bebida a la lista para guardarlo en el Menú del Día";
+                    VerMensaje = true;
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
+        }
+
+        private void CerrarMensaje(object parameter) => VerMensaje = false;
         #endregion
     }
 }
