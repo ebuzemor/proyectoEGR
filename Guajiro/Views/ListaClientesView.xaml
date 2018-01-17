@@ -29,7 +29,7 @@
             <TextBlock Grid.Row="0" Text="Lista de Clientes" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <!--Area de Filtros-->
             <UniformGrid Grid.Row="1" Columns="4">
-                <TextBox wpfMD:HintAssist.Hint="Escriba nombre o apellidos..." 
+                <TextBox wpfMD:HintAssist.Hint="Escriba nombre o apellidos..." Margin="10 0 0 0"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding TxtBuscar}"/>
                 <Button Margin="5" Content="Realizar Búsqueda" Command="{Binding BuscarClienteCommand}"/>
                 <Button Margin="5" Content="Mostrar Todos" Command="{Binding MostrarTodosCommand}"/>
@@ -41,39 +41,25 @@
                       wpfMD:DataGridAssist.CellPadding="13 8 8 8" wpfMD:DataGridAssist.ColumnHeaderPadding="8"
                       VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding ListaClientes}">
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="Nombre Primario" IsReadOnly="True">
+                    <DataGridTemplateColumn Header="Nombre del Cliente" IsReadOnly="True" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding nprimario}"/>
+                                <TextBlock Text="{Binding razon_social}" ToolTip="{Binding razon_social}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Nombre Secundario" IsReadOnly="True">
+                    <DataGridTemplateColumn Header="Dirección del Cliente" IsReadOnly="True" Width="1.5*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding nsecundario}"/>
+                                <TextBlock Text="{Binding direccion}" ToolTip="{Binding direccion}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Apellido Paterno" IsReadOnly="True">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding paterno}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Apellido Materno" IsReadOnly="True">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding materno}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Acciones" IsReadOnly="True">
+                    <DataGridTemplateColumn Header="Acciones" IsReadOnly="True" Width=".5*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Style="{StaticResource MaterialDesignFlotatingActionMiniButton}"
+                                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                                             Margin="0 0 8 0" HorizontalAlignment="Left"
                                             Content="{wpfMD:PackIcon Kind=Pencil}"
                                             ToolTip="Editar Item" Height="22" Width="22"

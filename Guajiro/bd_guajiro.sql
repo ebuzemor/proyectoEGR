@@ -229,13 +229,26 @@ CREATE TABLE IF NOT EXISTS `tbl_detallemenu` (
   CONSTRAINT `FK_tbl_detallemenu_tbl_menudeldia` FOREIGN KEY (`idmenu`) REFERENCES `tbl_menudeldia` (`idmenu`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_detallemenu: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_detallemenu: ~17 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_detallemenu` DISABLE KEYS */;
 INSERT INTO `tbl_detallemenu` (`iddetalle`, `idmenu`, `iditem`) VALUES
+	('0370d93c-d7ae-4eb8-8bc3-e99ff0c33b36', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f43cf2-3b42-11e7-a2b5-204747335338'),
+	('0bd53dc2-bec7-4f08-b0af-0d5984ac8c7f', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f44064-3b42-11e7-a2b5-204747335338'),
+	('457903f5-8a7b-4c32-993c-1aaaa8ac7958', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f43c61-3b42-11e7-a2b5-204747335338'),
+	('45b5cd2c-5dc0-4cbb-a5a8-d6e92f1a392c', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f45ac1-3b42-11e7-a2b5-204747335338'),
+	('5f114a9d-f7c8-4ee8-aa1e-16440be5e99a', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f43e1a-3b42-11e7-a2b5-204747335338'),
+	('6eb66a49-a37e-4158-95d1-808a9974b2d7', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f44f1b-3b42-11e7-a2b5-204747335338'),
+	('7167e1b4-e5f7-4cd8-bec4-3e710d0c7d23', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f43bbe-3b42-11e7-a2b5-204747335338'),
+	('a3c3c4c5-28ec-46d8-8d07-ec4c67880f2e', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f43eab-3b42-11e7-a2b5-204747335338'),
+	('a440d7f8-3a03-48ff-954f-40e139687eb2', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f43f3c-3b42-11e7-a2b5-204747335338'),
+	('b94adf00-ae0a-460f-8a2a-092c8afd7a07', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f43fcd-3b42-11e7-a2b5-204747335338'),
+	('c232fecb-4523-4db8-871f-4f62d794b235', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f451f5-3b42-11e7-a2b5-204747335338'),
+	('c55f346c-e6b7-4995-8446-4914cd8d972a', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f44e90-3b42-11e7-a2b5-204747335338'),
 	('c7f199ef-e235-11e7-9155-204747335338', '635ccee7-e232-11e7-9155-204747335338', 'c1f43bbe-3b42-11e7-a2b5-204747335338'),
 	('c7f1a413-e235-11e7-9155-204747335338', '635ccee7-e232-11e7-9155-204747335338', 'c1f43f3c-3b42-11e7-a2b5-204747335338'),
 	('c7f1a62c-e235-11e7-9155-204747335338', '635ccee7-e232-11e7-9155-204747335338', 'c1f44100-3b42-11e7-a2b5-204747335338'),
-	('c7f1a6b7-e235-11e7-9155-204747335338', '635ccee7-e232-11e7-9155-204747335338', 'c1f44838-3b42-11e7-a2b5-204747335338');
+	('c7f1a6b7-e235-11e7-9155-204747335338', '635ccee7-e232-11e7-9155-204747335338', 'c1f44838-3b42-11e7-a2b5-204747335338'),
+	('c881f8e0-3946-4fdf-b132-c9cb38660723', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f43d89-3b42-11e7-a2b5-204747335338');
 /*!40000 ALTER TABLE `tbl_detallemenu` ENABLE KEYS */;
 
 
@@ -578,8 +591,8 @@ INSERT INTO `tbl_listadoseldetalle` (`idlsselecciondetalle`, `idlistadoseleccion
 	('9ae3b470-39dc-11e7-b904-204747335338', '434bf20e-3688-11e7-b904-204747335338', 'Comida'),
 	('abdaa948-3b86-11e7-a2b5-204747335338', '5fd493ef-3688-11e7-b904-204747335338', 'Taza'),
 	('e47c55ba-368a-11e7-b904-204747335338', '34110ff8-3688-11e7-b904-204747335338', 'Ingreso'),
-	('e47c6009-368a-11e7-b904-204747335338', '595922d0-3688-11e7-b904-204747335338', 'Física'),
-	('e47c61f8-368a-11e7-b904-204747335338', '595922d0-3688-11e7-b904-204747335338', 'Moral'),
+	('e47c6009-368a-11e7-b904-204747335338', '595922d0-3688-11e7-b904-204747335338', 'Cliente'),
+	('e47c61f8-368a-11e7-b904-204747335338', '595922d0-3688-11e7-b904-204747335338', 'Proveedor'),
 	('e47c6405-368a-11e7-b904-204747335338', '64a0a6ab-3688-11e7-b904-204747335338', 'Precio'),
 	('e47c6587-368a-11e7-b904-204747335338', '64a0a6ab-3688-11e7-b904-204747335338', 'Peso'),
 	('e47c66f1-368a-11e7-b904-204747335338', '5fd493ef-3688-11e7-b904-204747335338', 'Pieza'),
@@ -630,10 +643,11 @@ CREATE TABLE IF NOT EXISTS `tbl_menudeldia` (
   PRIMARY KEY (`idmenu`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_menudeldia: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_menudeldia: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_menudeldia` DISABLE KEYS */;
 INSERT INTO `tbl_menudeldia` (`idmenu`, `fecha`) VALUES
-	('635ccee7-e232-11e7-9155-204747335338', '2017-12-16 01:42:25');
+	('635ccee7-e232-11e7-9155-204747335338', '2017-12-16 01:42:25'),
+	('ccae6972-cf45-46d4-8122-8714a176833e', '2018-01-15 20:53:20');
 /*!40000 ALTER TABLE `tbl_menudeldia` ENABLE KEYS */;
 
 
@@ -810,25 +824,28 @@ CREATE TABLE IF NOT EXISTS `tbl_personas` (
   `paterno` varchar(100) DEFAULT NULL,
   `materno` varchar(100) DEFAULT NULL,
   `razon_social` varchar(350) DEFAULT NULL,
+  `fecha_creacion` datetime DEFAULT CURRENT_TIMESTAMP,
+  `fecha_modificacion` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `crea_usuario` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idpersona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla bd_guajiro.tbl_personas: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_personas` DISABLE KEYS */;
-INSERT INTO `tbl_personas` (`idpersona`, `idlstipopersona`, `nprimario`, `nsecundario`, `paterno`, `materno`, `razon_social`) VALUES
-	('1c87a56f-e479-11e7-8cd6-204747335338', 'e47c6009-368a-11e7-b904-204747335338', 'Público', NULL, 'General', NULL, 'Público General'),
-	('3ec57991-da4a-11e7-9155-204747335338', 'e47c6009-368a-11e7-b904-204747335338', 'Juan', 'José', 'López', 'Caste', 'Juan José López Caste'),
-	('954b649c-3c10-11e7-a2b5-204747335338', 'e47c6009-368a-11e7-b904-204747335338', 'Elí', 'Bulmaro', 'Zenteno', 'Moreno', 'Elí Bulmaro Zenteno Moreno');
+INSERT INTO `tbl_personas` (`idpersona`, `idlstipopersona`, `nprimario`, `nsecundario`, `paterno`, `materno`, `razon_social`, `fecha_creacion`, `fecha_modificacion`, `crea_usuario`) VALUES
+	('1c87a56f-e479-11e7-8cd6-204747335338', 'e47c6009-368a-11e7-b904-204747335338', 'Público', NULL, 'General', NULL, 'Público General', '2018-01-17 00:37:49', NULL, NULL),
+	('3ec57991-da4a-11e7-9155-204747335338', 'e47c6009-368a-11e7-b904-204747335338', 'Juan', 'José', 'López', 'Caste', 'Juan José López Caste', '2018-01-17 00:37:49', NULL, NULL),
+	('954b649c-3c10-11e7-a2b5-204747335338', 'e47c6009-368a-11e7-b904-204747335338', 'Elí', 'Bulmaro', 'Zenteno', 'Moreno', 'Elí Bulmaro Zenteno Moreno', '2018-01-17 00:37:49', NULL, NULL);
 /*!40000 ALTER TABLE `tbl_personas` ENABLE KEYS */;
 
 
 -- Volcando estructura para tabla bd_guajiro.tbl_telefonos
 CREATE TABLE IF NOT EXISTS `tbl_telefonos` (
-  `id_telefono` varchar(50) NOT NULL,
-  `id_persona` varchar(50) DEFAULT NULL,
+  `idtelefono` varchar(50) NOT NULL,
+  `idpersona` varchar(50) DEFAULT NULL,
   `idlstipotelefono` varchar(50) DEFAULT NULL,
-  `numero_telefono` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id_telefono`)
+  `numtelefono` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`idtelefono`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla bd_guajiro.tbl_telefonos: ~0 rows (aproximadamente)
@@ -850,6 +867,16 @@ CREATE TABLE IF NOT EXISTS `tbl_usuarios` (
 INSERT INTO `tbl_usuarios` (`idusuario`, `idpersona`, `login`, `password`) VALUES
 	('c7bfeac8-3c10-11e7-a2b5-204747335338', '954b649c-3c10-11e7-a2b5-204747335338', 'admin', '21232f297a57a5a743894a0e4a801fc3');
 /*!40000 ALTER TABLE `tbl_usuarios` ENABLE KEYS */;
+
+
+-- Volcando estructura para vista bd_guajiro.vw_clientes_directorio
+-- Creando tabla temporal para superar errores de dependencia de VIEW
+CREATE TABLE `vw_clientes_directorio` (
+	`idpersona` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	`razon_social` VARCHAR(350) NULL COLLATE 'utf8_general_ci',
+	`direccion` VARCHAR(470) NOT NULL COLLATE 'utf8_general_ci',
+	`fecha_creacion` DATETIME NULL
+) ENGINE=MyISAM;
 
 
 -- Volcando estructura para vista bd_guajiro.vw_lista_clientes
@@ -913,6 +940,12 @@ CREATE TABLE `vw_lista_precios` (
 	`unidad` VARCHAR(100) NULL COLLATE 'utf8_general_ci',
 	`tipo` VARCHAR(100) NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
+
+
+-- Volcando estructura para vista bd_guajiro.vw_clientes_directorio
+-- Eliminando tabla temporal y crear estructura final de VIEW
+DROP TABLE IF EXISTS `vw_clientes_directorio`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_clientes_directorio` AS select `p`.`idpersona` AS `idpersona`,`p`.`razon_social` AS `razon_social`,concat(ifnull(`d`.`calle1`,''),' ',ifnull(`d`.`calle2`,''),' ',ifnull(`d`.`interior`,''),' ',ifnull(`d`.`exterior`,''),' ',ifnull(`d`.`colonia`,''),' ',ifnull(concat('C.P.',`d`.`codigopostal`),''),' ',ifnull(`m`.`nombre`,'')) AS `direccion`,`p`.`fecha_creacion` AS `fecha_creacion` from (((`tbl_personas` `p` left join `tbl_direcciones` `d` on((`p`.`idpersona` = `d`.`idpersona`))) left join `tbl_telefonos` `t` on((`p`.`idpersona` = `t`.`idpersona`))) left join `tbl_municipios` `m` on((`d`.`idmunicipio` = `m`.`idmunicipio`))) where (`p`.`idlstipopersona` = 'e47c6009-368a-11e7-b904-204747335338') order by `p`.`paterno`,`p`.`materno`;
 
 
 -- Volcando estructura para vista bd_guajiro.vw_lista_clientes

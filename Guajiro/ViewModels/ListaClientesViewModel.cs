@@ -26,10 +26,10 @@ namespace Guajiro.ViewModels
         public bd_guajiroEntities GuajiroEF;
 
         private string _txtBuscar;
-        private ObservableCollection<tbl_personas> _listaClientes;
+        private ObservableCollection<vw_clientes_directorio> _listaClientes;
 
         public string TxtBuscar { get => _txtBuscar; set { _txtBuscar = value; OnPropertyChanged("TxtBuscar"); } }
-        public ObservableCollection<tbl_personas> ListaClientes { get => _listaClientes; set { _listaClientes = value; OnPropertyChanged("ListaClientes"); } }
+        public ObservableCollection<vw_clientes_directorio> ListaClientes { get => _listaClientes; set { _listaClientes = value; OnPropertyChanged("ListaClientes"); } }
         #endregion
 
         #region Constructor
@@ -54,18 +54,20 @@ namespace Guajiro.ViewModels
 
         private void BuscarCliente(object parameter)
         {
-            var lista = GuajiroEF.tbl_personas.Where(x => x.razon_social.Contains(TxtBuscar)).ToList();
-            ListaClientes = new ObservableCollection<tbl_personas>(lista);
+            var lista = GuajiroEF.vw_clientes_directorio.Where(x => x.razon_social.Contains(TxtBuscar)).ToList();
+            ListaClientes = new ObservableCollection<vw_clientes_directorio>(lista);
         }
 
         private void MostrarTodos(object parameter)
         {
-
+            var lista = GuajiroEF.vw_clientes_directorio.ToList();
+            ListaClientes = new ObservableCollection<vw_clientes_directorio>(lista);
         }
 
         private void MostrarUltimos(object parameter)
         {
-
+            var lista = GuajiroEF.vw_clientes_directorio.SqlQuery("SELECT * FROM vw_clientes_directorio ORDER BY fecha_creacion LIMIT 10").ToList();
+            ListaClientes = new ObservableCollection<vw_clientes_directorio>(lista);
         }
 
         private void EditarCliente(object parameter)

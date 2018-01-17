@@ -21,5 +21,8 @@ namespace Guajiro.Models
         public string paterno { get; set; }
         public string materno { get; set; }
         public string razon_social { get; set; }
+        public Nullable<System.DateTime> fecha_creacion { get; set; }
+        public Nullable<System.DateTime> fecha_modificacion { get; set; }
+        public string crea_usuario { get; set; }
     }
 }

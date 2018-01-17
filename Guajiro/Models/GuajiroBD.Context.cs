@@ -34,7 +34,6 @@ namespace Guajiro.Models
         public virtual DbSet<tbl_listadoseleccion> tbl_listadoseleccion { get; set; }
         public virtual DbSet<tbl_ordenes> tbl_ordenes { get; set; }
         public virtual DbSet<tbl_personas> tbl_personas { get; set; }
-        public virtual DbSet<tbl_telefonos> tbl_telefonos { get; set; }
         public virtual DbSet<tbl_usuarios> tbl_usuarios { get; set; }
         public virtual DbSet<vw_lista_personas> vw_lista_personas { get; set; }
         public virtual DbSet<vw_lista_precios> vw_lista_precios { get; set; }
@@ -52,5 +51,8 @@ namespace Guajiro.Models
         public virtual DbSet<tbl_comandas> tbl_comandas { get; set; }
         public virtual DbSet<vw_lista_comandas> vw_lista_comandas { get; set; }
         public virtual DbSet<tbl_detallescomanda> tbl_detallescomanda { get; set; }
+        public virtual DbSet<tbl_detallesobservacion> tbl_detallesobservacion { get; set; }
+        public virtual DbSet<tbl_telefonos> tbl_telefonos { get; set; }
+        public virtual DbSet<vw_clientes_directorio> vw_clientes_directorio { get; set; }
     }
 }

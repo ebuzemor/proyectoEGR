@@ -85,6 +85,14 @@
           <Property Name="fecha_modificacion" Type="datetime" Precision="0" />
           <Property Name="crea_usuario" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="tbl_detallesobservacion">
+          <Key>
+            <PropertyRef Name="iddetalle" />
+          </Key>
+          <Property Name="iddetalle" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idobservacion" Type="varchar" MaxLength="50" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="tbl_direcciones">
           <Key>
             <PropertyRef Name="iddireccion" />
@@ -205,15 +213,18 @@
           <Property Name="paterno" Type="varchar" MaxLength="100" />
           <Property Name="materno" Type="varchar" MaxLength="100" />
           <Property Name="razon_social" Type="varchar" MaxLength="350" />
+          <Property Name="fecha_creacion" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="fecha_modificacion" Type="datetime" Precision="0" />
+          <Property Name="crea_usuario" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tbl_telefonos">
           <Key>
-            <PropertyRef Name="id_telefono" />
+            <PropertyRef Name="idtelefono" />
           </Key>
-          <Property Name="id_telefono" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="id_persona" Type="varchar" MaxLength="50" />
+          <Property Name="idtelefono" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idpersona" Type="varchar" MaxLength="50" />
           <Property Name="idlstipotelefono" Type="varchar" MaxLength="50" />
-          <Property Name="numero_telefono" Type="varchar" MaxLength="20" />
+          <Property Name="numtelefono" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="tbl_usuarios">
           <Key>
@@ -223,6 +234,16 @@
           <Property Name="idpersona" Type="varchar" MaxLength="50" />
           <Property Name="login" Type="varchar" MaxLength="20" />
           <Property Name="password" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'def.bd_guajiro.vw_clientes_directorio' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="vw_clientes_directorio">
+          <Key>
+            <PropertyRef Name="idpersona" />
+          </Key>
+          <Property Name="idpersona" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="razon_social" Type="varchar" MaxLength="350" />
+          <Property Name="direccion" Type="varchar" MaxLength="470" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'def.bd_guajiro.vw_lista_clientes' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -412,6 +433,7 @@ advertencia 6002: La tabla o vista 'def.bd_guajiro.vw_lista_precios' no tiene de
           <EntitySet Name="tbl_detallemenu" EntityType="Self.tbl_detallemenu" Schema="bd_guajiro" store:Type="Tables" />
           <EntitySet Name="tbl_detallescomanda" EntityType="Self.tbl_detallescomanda" Schema="bd_guajiro" store:Type="Tables" />
           <EntitySet Name="tbl_detallesguarnicion" EntityType="Self.tbl_detallesguarnicion" Schema="bd_guajiro" store:Type="Tables" />
+          <EntitySet Name="tbl_detallesobservacion" EntityType="Self.tbl_detallesobservacion" Schema="bd_guajiro" store:Type="Tables" />
           <EntitySet Name="tbl_direcciones" EntityType="Self.tbl_direcciones" Schema="bd_guajiro" store:Type="Tables" />
           <EntitySet Name="tbl_estados" EntityType="Self.tbl_estados" Schema="bd_guajiro" store:Type="Tables" />
           <EntitySet Name="tbl_guarniciones" EntityType="Self.tbl_guarniciones" Schema="bd_guajiro" store:Type="Tables" />
@@ -426,6 +448,13 @@ advertencia 6002: La tabla o vista 'def.bd_guajiro.vw_lista_precios' no tiene de
           <EntitySet Name="tbl_personas" EntityType="Self.tbl_personas" Schema="bd_guajiro" store:Type="Tables" />
           <EntitySet Name="tbl_telefonos" EntityType="Self.tbl_telefonos" Schema="bd_guajiro" store:Type="Tables" />
           <EntitySet Name="tbl_usuarios" EntityType="Self.tbl_usuarios" Schema="bd_guajiro" store:Type="Tables" />
+          <EntitySet Name="vw_clientes_directorio" EntityType="Self.vw_clientes_directorio" store:Type="Views" store:Schema="bd_guajiro">
+            <DefiningQuery>SELECT
+`vw_clientes_directorio`.`idpersona`, 
+`vw_clientes_directorio`.`razon_social`, 
+`vw_clientes_directorio`.`direccion`
+FROM `vw_clientes_directorio` AS `vw_clientes_directorio`</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="vw_lista_clientes" EntityType="Self.vw_lista_clientes" store:Type="Views" store:Schema="bd_guajiro">
             <DefiningQuery>SELECT
 `vw_lista_clientes`.`idpersona`, 
@@ -625,15 +654,9 @@ FROM `vw_lista_precios` AS `vw_lista_precios`</DefiningQuery>
           <Property Name="paterno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="materno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="razon_social" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="tbl_telefonos">
-          <Key>
-            <PropertyRef Name="id_telefono" />
-          </Key>
-          <Property Name="id_telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="id_persona" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="idlstipotelefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="numero_telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_creacion" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha_modificacion" Type="DateTime" />
+          <Property Name="crea_usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tbl_usuarios">
           <Key>
@@ -708,7 +731,6 @@ FROM `vw_lista_precios` AS `vw_lista_precios`</DefiningQuery>
           <EntitySet Name="tbl_listadoseleccion" EntityType="Self.tbl_listadoseleccion" />
           <EntitySet Name="tbl_ordenes" EntityType="Self.tbl_ordenes" />
           <EntitySet Name="tbl_personas" EntityType="Self.tbl_personas" />
-          <EntitySet Name="tbl_telefonos" EntityType="Self.tbl_telefonos" />
           <EntitySet Name="tbl_usuarios" EntityType="Self.tbl_usuarios" />
           <EntitySet Name="vw_lista_personas" EntityType="Self.vw_lista_personas" />
           <EntitySet Name="vw_lista_precios" EntityType="Self.vw_lista_precios" />
@@ -766,6 +788,9 @@ FROM `vw_lista_precios` AS `vw_lista_precios`</DefiningQuery>
             <End Role="tbl_items" EntitySet="tbl_items" />
             <End Role="tbl_detallescomanda" EntitySet="tbl_detallescomanda" />
           </AssociationSet>
+          <EntitySet Name="tbl_detallesobservacion" EntityType="bd_guajiroModel.tbl_detallesobservacion" />
+          <EntitySet Name="tbl_telefonos" EntityType="bd_guajiroModel.tbl_telefonos" />
+          <EntitySet Name="vw_clientes_directorio" EntityType="bd_guajiroModel.vw_clientes_directorio" />
         </EntityContainer>
         <EntityType Name="tbl_detallesguarnicion">
           <Key>
@@ -1008,6 +1033,31 @@ FROM `vw_lista_precios` AS `vw_lista_precios`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="tbl_detallesobservacion">
+          <Key>
+            <PropertyRef Name="iddetalle" />
+          </Key>
+          <Property Name="iddetalle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idobservacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_telefonos">
+          <Key>
+            <PropertyRef Name="idtelefono" />
+          </Key>
+          <Property Name="idtelefono" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idpersona" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idlstipotelefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="numtelefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vw_clientes_directorio">
+          <Key>
+            <PropertyRef Name="idpersona" />
+          </Key>
+          <Property Name="idpersona" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="razon_social" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="470" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1110,6 +1160,9 @@ FROM `vw_lista_precios` AS `vw_lista_precios`</DefiningQuery>
           <EntitySetMapping Name="tbl_personas">
             <EntityTypeMapping TypeName="bd_guajiroModel.tbl_personas">
               <MappingFragment StoreEntitySet="tbl_personas">
+                <ScalarProperty Name="crea_usuario" ColumnName="crea_usuario" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
                 <ScalarProperty Name="idpersona" ColumnName="idpersona" />
                 <ScalarProperty Name="idlstipopersona" ColumnName="idlstipopersona" />
                 <ScalarProperty Name="nprimario" ColumnName="nprimario" />
@@ -1117,16 +1170,6 @@ FROM `vw_lista_precios` AS `vw_lista_precios`</DefiningQuery>
                 <ScalarProperty Name="paterno" ColumnName="paterno" />
                 <ScalarProperty Name="materno" ColumnName="materno" />
                 <ScalarProperty Name="razon_social" ColumnName="razon_social" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbl_telefonos">
-            <EntityTypeMapping TypeName="bd_guajiroModel.tbl_telefonos">
-              <MappingFragment StoreEntitySet="tbl_telefonos">
-                <ScalarProperty Name="id_telefono" ColumnName="id_telefono" />
-                <ScalarProperty Name="id_persona" ColumnName="id_persona" />
-                <ScalarProperty Name="idlstipotelefono" ColumnName="idlstipotelefono" />
-                <ScalarProperty Name="numero_telefono" ColumnName="numero_telefono" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1314,6 +1357,34 @@ FROM `vw_lista_precios` AS `vw_lista_precios`</DefiningQuery>
                 <ScalarProperty Name="iditem" ColumnName="iditem" />
                 <ScalarProperty Name="idcomanda" ColumnName="idcomanda" />
                 <ScalarProperty Name="iddetalle" ColumnName="iddetalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_detallesobservacion">
+            <EntityTypeMapping TypeName="bd_guajiroModel.tbl_detallesobservacion">
+              <MappingFragment StoreEntitySet="tbl_detallesobservacion">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="idobservacion" ColumnName="idobservacion" />
+                <ScalarProperty Name="iddetalle" ColumnName="iddetalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_telefonos">
+            <EntityTypeMapping TypeName="bd_guajiroModel.tbl_telefonos">
+              <MappingFragment StoreEntitySet="tbl_telefonos">
+                <ScalarProperty Name="numtelefono" ColumnName="numtelefono" />
+                <ScalarProperty Name="idlstipotelefono" ColumnName="idlstipotelefono" />
+                <ScalarProperty Name="idpersona" ColumnName="idpersona" />
+                <ScalarProperty Name="idtelefono" ColumnName="idtelefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_clientes_directorio">
+            <EntityTypeMapping TypeName="bd_guajiroModel.vw_clientes_directorio">
+              <MappingFragment StoreEntitySet="vw_clientes_directorio">
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="razon_social" ColumnName="razon_social" />
+                <ScalarProperty Name="idpersona" ColumnName="idpersona" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
