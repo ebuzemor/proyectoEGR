@@ -36,20 +36,52 @@
                 <Button Margin="5" Content="Mostrar Ultimos 10" Command="{Binding MostrarUltimosCommand}"/>
             </UniformGrid>
             <!--Listado de Clientes-->
-            <DataGrid Grid.Row="2" Background="#791D06" Margin="10" CanUserAddRows="False" CanUserReorderColumns="False"
+            <DataGrid x:Name="ListaClientes" Grid.Row="2" Background="#791D06" Margin="10" CanUserAddRows="False" CanUserReorderColumns="False"
                       CanUserSortColumns="True" AutoGenerateColumns="False" SelectionUnit="FullRow" SelectionMode="Single"
                       wpfMD:DataGridAssist.CellPadding="13 8 8 8" wpfMD:DataGridAssist.ColumnHeaderPadding="8"
-                      VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding}">
+                      VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding ListaClientes}">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Header="Nombre Primario" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding nprimario}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTemplateColumn Header="Nombre Secundario" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding nsecundario}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTemplateColumn Header="Apellido Paterno" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding paterno}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTemplateColumn Header="Apellido Materno" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding materno}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTemplateColumn Header="Acciones" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Style="{StaticResource MaterialDesignFlotatingActionMiniButton}"
+                                            Margin="0 0 8 0" HorizontalAlignment="Left"
+                                            Content="{wpfMD:PackIcon Kind=Pencil}"
+                                            ToolTip="Editar Item" Height="22" Width="22"
+                                            Command="{Binding ElementName=ListaClientes, Path=DataContext.EditarClienteCommand}"
+                                            CommandParameter="{Binding idpersona}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
