@@ -48,8 +48,15 @@ namespace Guajiro.ViewModels
         #region Métodos
         private async void NuevoCliente(object parameter)
         {
-            var vwDatosCliente = new DatosClienteView { };
+            var vmDatosCliente = new DatosClienteViewModel
+            {
+            };
+            var vwDatosCliente = new DatosClienteView
+            {
+                DataContext = vmDatosCliente
+            };
             var result = await DialogHost.Show(vwDatosCliente, "ListaClientes");
+            Console.Write(vmDatosCliente.TxtNPrimario);
         }
 
         private void BuscarCliente(object parameter)

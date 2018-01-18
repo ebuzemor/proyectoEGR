@@ -201,6 +201,7 @@
       <DependentUpon>GuajiroBD.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ComandasViewModel.cs" />
+    <Compile Include="ViewModels\DatosClienteViewModel.cs" />
     <Compile Include="ViewModels\DetallesComandaViewModel.cs" />
     <Compile Include="ViewModels\EditarItemViewModel.cs" />
     <Compile Include="ViewModels\ListaClientesViewModel.cs" />
