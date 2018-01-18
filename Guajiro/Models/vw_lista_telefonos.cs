@@ -12,11 +12,11 @@ namespace Guajiro.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class vw_clientes_directorio
+    public partial class vw_lista_telefonos
     {
+        public string idtelefono { get; set; }
         public string idpersona { get; set; }
-        public string razon_social { get; set; }
-        public string direccion { get; set; }
-        public Nullable<System.DateTime> fecha_creacion { get; set; }
+        public string numtelefono { get; set; }
+        public string descripcion { get; set; }
     }
 }

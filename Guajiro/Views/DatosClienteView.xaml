@@ -69,10 +69,13 @@
             <UniformGrid Columns="3" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4">
                 <ComboBox wpfMD:HintAssist.Hint="Tipo de Teléfono:" Margin="5 0 0 0"
                           Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                          HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <ComboBoxItem Content="Movil"/>
-                    <ComboBoxItem Content="Movil"/>
-                    <ComboBoxItem Content="Movil"/>
+                          HorizontalAlignment="Left" VerticalAlignment="Center"
+                          ItemsSource="{Binding TiposTelefono}" SelectedItem="{Binding TipoTel}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding descripcion}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
                 </ComboBox>
                 <TextBox Text="{Binding TxtNumTelefono}" wpfMD:HintAssist.Hint="Número de Teléfono:"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" MaxLength="10"
@@ -130,17 +133,23 @@
                          Margin="10 0 10 0" MaxLength="8"/>
                 <ComboBox wpfMD:HintAssist.Hint="Estado:" Margin="5 0 0 0"
                           Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                          HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <ComboBoxItem Content="Movil"/>
-                    <ComboBoxItem Content="Movil"/>
-                    <ComboBoxItem Content="Movil"/>
+                          HorizontalAlignment="Left" VerticalAlignment="Center"
+                          ItemsSource="{Binding ListaEstados}" SelectedItem="{Binding Estado}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding nombre}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
                 </ComboBox>
                 <ComboBox wpfMD:HintAssist.Hint="Municipio:" Margin="5 0 0 0"
                           Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                          HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <ComboBoxItem Content="Movil"/>
-                    <ComboBoxItem Content="Movil"/>
-                    <ComboBoxItem Content="Movil"/>
+                          HorizontalAlignment="Left" VerticalAlignment="Center"
+                          ItemsSource="{Binding ListaMunicipios}" SelectedItem="{Binding Municipio}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding nombre}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
                 </ComboBox>
             </UniformGrid>
             <UniformGrid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Columns="3">

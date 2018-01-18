@@ -41,8 +41,11 @@ namespace Guajiro.ViewModels
         private string _txtCPostal;
         private bool _chkEntrega;
         private bool _chkFactura;
+        private tbl_listadoseldetalle _tipoTel;
         private ObservableCollection<tbl_listadoseldetalle> _tiposTelefono;
+        private tbl_estados _estado;
         private ObservableCollection<tbl_estados> _listaEstados;
+        private tbl_municipios _municipio;
         private ObservableCollection<tbl_municipios> _listaMunicipios;
 
         public string TxtNPrimario { get => _txtNPrimario; set { _txtNPrimario = value; OnPropertyChanged(); } }
@@ -61,6 +64,9 @@ namespace Guajiro.ViewModels
         public ObservableCollection<tbl_listadoseldetalle> TiposTelefono { get => _tiposTelefono; set { _tiposTelefono = value; OnPropertyChanged(); } }
         public ObservableCollection<tbl_estados> ListaEstados { get => _listaEstados; set { _listaEstados = value; OnPropertyChanged(); } }
         public ObservableCollection<tbl_municipios> ListaMunicipios { get => _listaMunicipios; set { _listaMunicipios = value; OnPropertyChanged(); } }
+        public tbl_municipios Municipio { get => _municipio; set { _municipio = value; OnPropertyChanged(); } }
+        public tbl_estados Estado { get => _estado; set { _estado = value; OnPropertyChanged(); } }
+        public tbl_listadoseldetalle TipoTel { get => _tipoTel; set { _tipoTel = value; OnPropertyChanged(); } }
         #endregion
 
         #region Constructor

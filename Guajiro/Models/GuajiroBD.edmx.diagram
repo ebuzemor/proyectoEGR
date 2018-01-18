@@ -14,20 +14,20 @@
         <EntityTypeShape EntityType="bd_guajiroModel.tbl_listadoseleccion" Width="1.5" PointX="3.25" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="bd_guajiroModel.tbl_ordenes" Width="1.5" PointX="4.625" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bd_guajiroModel.tbl_personas" Width="1.5" PointX="11.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="bd_guajiroModel.tbl_usuarios" Width="1.5" PointX="12" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_guajiroModel.tbl_usuarios" Width="1.5" PointX="8.875" PointY="10.625" IsExpanded="true" />
         <EntityTypeShape EntityType="bd_guajiroModel.vw_lista_personas" Width="1.5" PointX="6.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bd_guajiroModel.vw_lista_precios" Width="1.5" PointX="8.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_guajiroModel.vw_lista_precios" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
         <AssociationConnector Association="bd_guajiroModel.FK_tbl_corte_mov_tbl_corte" ManuallyRouted="false" />
         <AssociationConnector Association="bd_guajiroModel.FK_tbl_items_tbl_listadoseldetalle" ManuallyRouted="false" />
         <AssociationConnector Association="bd_guajiroModel.FK_tbl_listadoseldetalle_tbl_listadoseleccion" ManuallyRouted="false" />
         <EntityTypeShape EntityType="bd_guajiroModel.tbl_detallesguarnicion" Width="2" PointX="0.875" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="bd_guajiroModel.vw_lista_ordenes" Width="1.625" PointX="11.375" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_guajiroModel.vw_lista_ordenes" Width="1.625" PointX="9.25" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bd_guajiroModel.tbl_mesas" Width="1.5" PointX="12.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bd_guajiroModel.vw_lista_clientes" Width="1.5" PointX="8.875" PointY="13.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="bd_guajiroModel.vw_lista_direcciones" Width="1.5" PointX="11.5" PointY="13.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="bd_guajiroModel.tbl_estados" Width="1.5" PointX="5.375" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bd_guajiroModel.tbl_municipios" Width="1.5" PointX="14.375" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bd_guajiroModel.tbl_direcciones" Width="1.5" PointX="14.375" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_guajiroModel.vw_lista_clientes" Width="1.5" PointX="2.875" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_guajiroModel.vw_lista_direcciones" Width="1.5" PointX="4.875" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_guajiroModel.tbl_estados" Width="1.5" PointX="5" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_guajiroModel.tbl_municipios" Width="1.5" PointX="10.875" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_guajiroModel.tbl_direcciones" Width="1.5" PointX="11.5" PointY="6.875" IsExpanded="true" />
         <EntityTypeShape EntityType="bd_guajiroModel.tbl_detallemenu" Width="1.5" PointX="14.375" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="bd_guajiroModel.tbl_menudeldia" Width="1.5" PointX="16.625" PointY="1.625" IsExpanded="true" />
         <AssociationConnector Association="bd_guajiroModel.FK_tbl_detallemenu_tbl_menudeldia" />
@@ -43,7 +43,8 @@
         <AssociationConnector Association="bd_guajiroModel.FK_tbl_detallescomanda_tbl_items" />
         <EntityTypeShape EntityType="bd_guajiroModel.tbl_detallesobservacion" Width="1.5" PointX="0.75" PointY="12.75" />
         <EntityTypeShape EntityType="bd_guajiroModel.tbl_telefonos" Width="1.5" PointX="10" PointY="4.75" />
-        <EntityTypeShape EntityType="bd_guajiroModel.vw_clientes_directorio" Width="1.5" PointX="3.75" PointY="11" />
+        <EntityTypeShape EntityType="bd_guajiroModel.vw_clientes_directorio" Width="1.5" PointX="2.875" PointY="9.625" />
+        <EntityTypeShape EntityType="bd_guajiroModel.vw_lista_telefonos" Width="1.5" PointX="12.625" PointY="10.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

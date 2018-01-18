@@ -200,6 +200,9 @@
     <Compile Include="Models\vw_lista_precios.cs">
       <DependentUpon>GuajiroBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\vw_lista_telefonos.cs">
+      <DependentUpon>GuajiroBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\ComandasViewModel.cs" />
     <Compile Include="ViewModels\DatosClienteViewModel.cs" />
     <Compile Include="ViewModels\DetallesComandaViewModel.cs" />
