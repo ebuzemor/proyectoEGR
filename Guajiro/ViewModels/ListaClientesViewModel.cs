@@ -49,13 +49,13 @@ namespace Guajiro.ViewModels
         private async void NuevoCliente(object parameter)
         {
             List<tbl_listadoseldetalle> tiposTelefono = GuajiroEF.tbl_listadoseldetalle.Where(x => x.idlistadoseleccion == "b06d265a-f42a-11e7-83f1-204747335338").ToList();
-            List<tbl_municipios> listaMunicipios = GuajiroEF.tbl_municipios.ToList();
+            //List<tbl_municipios> listaMunicipios = GuajiroEF.tbl_municipios.ToList();
             List<tbl_estados> listaEstados = GuajiroEF.tbl_estados.ToList();
             var vmDatosCliente = new DatosClienteViewModel
             {
                 TiposTelefono = new ObservableCollection<tbl_listadoseldetalle>(tiposTelefono),
                 ListaEstados = new ObservableCollection<tbl_estados>(listaEstados),
-                ListaMunicipios = new ObservableCollection<tbl_municipios>(listaMunicipios)
+                ListaMunicipios = new ObservableCollection<tbl_municipios>()
             };
             var vwDatosCliente = new DatosClienteView
             {

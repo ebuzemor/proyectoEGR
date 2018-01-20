@@ -7,15 +7,17 @@
              xmlns:local="clr-namespace:Guajiro.Views"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="900"
-             TextElement.Foreground="{StaticResource PrimaryHueLightBrush}"
+             TextElement.Foreground="{DynamicResource PrimaryHueMidBrush}"
              FontFamily="/Fonts/#Tulia"
-             Height="500" Width="900">
+             Height="500" Width="900"
+             >
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Snackbar.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -81,7 +83,7 @@
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" MaxLength="10"
                          Foreground="{DynamicResource PrimaryHueLightBrush}"
                          HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Button Margin="5">
+                <Button Margin="5" Command="{Binding AgregarTelefonoCommand}">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <wpfMD:PackIcon Width="24" Height="24" Kind="PhonePlus"/>
@@ -90,16 +92,37 @@
                     </Button.Content>
                 </Button>
             </UniformGrid>
-            <ListView x:Name="LstTelefono" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" 
-                      Foreground="Green">
+            <ListView x:Name="LstTelefono" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5"  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding ListaTelefonos}" SelectedItem="{Binding DatosTel}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Tipo Teléfono"/>
-                        <GridViewColumn Header="Número Teléfono"/>
-                        <GridViewColumn Header="Acciones"/>
+                        <GridViewColumn Width="150" Header="Tipo Teléfono" DisplayMemberBinding="{Binding TipoTel}"/>
+                        <GridViewColumn Width="170" Header="Número Teléfono" DisplayMemberBinding="{Binding NumTelefono}"/>
+                        <GridViewColumn Width="100" Header="Acciones">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                            Margin="0 0 8 0" HorizontalAlignment="Left"
+                                            Content="{wpfMD:PackIcon Kind=Delete}"
+                                            ToolTip="Quitar Item" Height="22" Width="22"
+                                            Command="{Binding ElementName=LstTelefono, Path=DataContext.BorrarTelefonoCommand}"
+                                            CommandParameter="{Binding IdTelefono}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
+            <wpfMD:Snackbar Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" IsActive="{Binding VerMensaje}" Background="{DynamicResource PrimaryHueDarkBrush}">
+                <wpfMD:SnackbarMessage ActionCommand="{Binding CerrarMensajeCommand}" ActionContent="Cerrar">
+                    <wpfMD:SnackbarMessage.Content>
+                        <TextBlock Text="{Binding TxtMensaje}" TextWrapping="Wrap" Style="{StaticResource MaterialDesignCaptionTextBlock}" 
+                                   Foreground="White"/>
+                    </wpfMD:SnackbarMessage.Content>
+                </wpfMD:SnackbarMessage>
+            </wpfMD:Snackbar>
         </Grid>
         <!--Divisor-->
         <GridSplitter Grid.Column="1" Grid.Row="1" Width="5" HorizontalAlignment="Stretch"/>
@@ -167,7 +190,9 @@
             <ListView x:Name="LstDirecciones" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Dirección"/>
+                        <GridViewColumn Header="Calle"/>
+                        <GridViewColumn Header="# Exterior"/>
+                        <GridViewColumn Header="Colonia"/>
                         <GridViewColumn Header="Acciones"/>
                     </GridView>
                 </ListView.View>
