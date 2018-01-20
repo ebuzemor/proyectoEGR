@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Guajiro.Views
@@ -22,6 +23,13 @@ namespace Guajiro.Views
         public MainView()
         {
             InitializeComponent();
+        }
+
+        //Deshabilita la navegación con las teclas alt-izq y alt-der
+        private void Navegador_Navigating(object sender, NavigatingCancelEventArgs e)
+        {
+            if (e.NavigationMode == NavigationMode.Forward || e.NavigationMode == NavigationMode.Back)
+                e.Cancel = true;
         }
     }
 }

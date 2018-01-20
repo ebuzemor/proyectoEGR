@@ -11,19 +11,20 @@ namespace Guajiro.ViewModels
 {
     public class DatosClienteViewModel : INotifyPropertyChanged
     {
-
+        #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
-
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        #endregion
 
         #region Commands
         public RelayCommand AgregarTelefonoCommand { get; set; }
         public RelayCommand BorrarTelefonoCommand { get; set; }
         public RelayCommand AgregarDireccionCommand { get; set; }
         public RelayCommand CerrarMensajeCommand { get; set; }
+        public RelayCommand GuardarClienteCommand { get; set; }
         #endregion
 
         #region Variables
@@ -39,6 +40,7 @@ namespace Guajiro.ViewModels
         private string _txtColonia;
         private string _txtCPostal;
         private string _txtMensaje;
+        private string _idPersona;
         private bool _verMensaje;
         private bool _chkEntrega;
         private bool _chkFactura;
@@ -50,6 +52,7 @@ namespace Guajiro.ViewModels
         private ObservableCollection<tbl_municipios> _listaMunicipios;
         private Telefonos _datosTel;
         private ObservableCollection<Telefonos> _listaTelefonos;
+        private tbl_direcciones _datosDir;
         private ObservableCollection<tbl_direcciones> _listaDirecciones;
 
         public bd_guajiroEntities GuajiroEF;
@@ -63,10 +66,11 @@ namespace Guajiro.ViewModels
         public string TxtInterior { get => _txtInterior; set { _txtInterior = value; OnPropertyChanged(); } }
         public string TxtExterior { get => _txtExterior; set { _txtExterior = value; OnPropertyChanged(); } }
         public string TxtColonia { get => _txtColonia; set { _txtColonia = value; OnPropertyChanged(); } }
-        public string TxtCPostal { get => _txtCPostal; set { _txtCPostal = value; OnPropertyChanged(); } } 
+        public string TxtCPostal { get => _txtCPostal; set { _txtCPostal = value; OnPropertyChanged(); } }
+        public string TxtMensaje { get => _txtMensaje; set { _txtMensaje = value; OnPropertyChanged(); } }
+        public string IdPersona { get => _idPersona; set { _idPersona = value; OnPropertyChanged(); } }
         public bool ChkEntrega { get => _chkEntrega; set { _chkEntrega = value; OnPropertyChanged(); } }
         public bool ChkFactura { get => _chkFactura; set { _chkFactura = value; OnPropertyChanged(); } }
-        public string TxtMensaje { get => _txtMensaje; set { _txtMensaje = value; OnPropertyChanged(); } }
         public bool VerMensaje { get => _verMensaje; set { _verMensaje = value; OnPropertyChanged(); } }
         public ObservableCollection<tbl_listadoseldetalle> TiposTelefono { get => _tiposTelefono; set { _tiposTelefono = value; OnPropertyChanged(); } }
         public ObservableCollection<tbl_estados> ListaEstados { get => _listaEstados; set { _listaEstados = value; OnPropertyChanged(); } }
@@ -76,7 +80,8 @@ namespace Guajiro.ViewModels
         public tbl_listadoseldetalle TipoTel { get => _tipoTel; set { _tipoTel = value; OnPropertyChanged(); } }
         public Telefonos DatosTel { get => _datosTel; set { _datosTel = value; OnPropertyChanged(); } }
         public ObservableCollection<Telefonos> ListaTelefonos { get => _listaTelefonos; set { _listaTelefonos = value; OnPropertyChanged(); } }
-        public ObservableCollection<tbl_direcciones> ListaDirecciones { get => _listaDirecciones; set { _listaDirecciones = value; OnPropertyChanged(); } }        
+        public tbl_direcciones DatosDir { get => _datosDir; set { _datosDir = value; OnPropertyChanged(); } }
+        public ObservableCollection<tbl_direcciones> ListaDirecciones { get => _listaDirecciones; set { _listaDirecciones = value; OnPropertyChanged(); } }
         #endregion
 
         #region Constructor
@@ -86,15 +91,94 @@ namespace Guajiro.ViewModels
             AgregarTelefonoCommand = new RelayCommand(AgregarTelefono);
             BorrarTelefonoCommand = new RelayCommand(BorrarTelefono);
             CerrarMensajeCommand = new RelayCommand(CerrarMensaje);
+            GuardarClienteCommand = new RelayCommand(GuardarCliente);
             GuajiroEF = new bd_guajiroEntities();
             ListaTelefonos = new ObservableCollection<Telefonos>();
+            ListaDirecciones = new ObservableCollection<tbl_direcciones>();
+            ChkEntrega = false;
+            ChkFactura = false;
         }
         #endregion
 
         #region Métodos
         private void AgregarDireccion(object parameter)
         {
+            tbl_direcciones dir = ListaDirecciones.SingleOrDefault(x => x.calle1 == TxtCalle1 && x.colonia == TxtColonia
+                                    && x.codigopostal == TxtCPostal && x.idmunicipio == Municipio.idmunicipio);
+            if(dir != null)
+            {
+                TxtMensaje = "Existe una dirección con datos similares, verifique por favor";
+                VerMensaje = true;
+            }
+            else
+            {
+                bool error = ErrorDatosDireccion();
+                if (error != true)
+                {
+                    DatosDir = new tbl_direcciones
+                    {
+                        iddireccion = Convert.ToString(Guid.NewGuid()),
+                        calle1 = TxtCalle1,
+                        calle2 = TxtCalle2,
+                        interior = TxtInterior,
+                        exterior = TxtExterior,
+                        colonia = TxtColonia,
+                        codigopostal = TxtCPostal,
+                        idmunicipio = Municipio.idmunicipio,
+                        entrega = ChkEntrega,
+                        fiscal = ChkFactura,
+                        idpersona = IdPersona
+                    };
+                    ListaDirecciones.Add(DatosDir);
+                    LimpiarDireccion();
+                }
+                else
+                {
+                    TxtMensaje = "Los siguientes campos son obligatorios Calle1, Núm. Exterior, Colonia, Código Postal, Municipio.";
+                    VerMensaje = true;
+                }
+            }
+        }
 
+        private void LimpiarDireccion()
+        {
+            TxtCalle1 = "";
+            TxtCalle2 = "";
+            TxtColonia = "";
+            TxtCPostal = "";
+            TxtExterior = "";
+            TxtInterior = "";
+            ListaMunicipios.Clear();
+            ChkEntrega = false;
+            ChkFactura = false;
+        }
+
+        private void LimpiarPantalla()
+        {
+            TxtNPrimario = "";
+            TxtNSecundario = "";
+            TxtPaterno = "";
+            TxtMaterno = "";
+            TxtNumTelefono = "";
+            ListaTelefonos.Clear();
+            LimpiarDireccion();
+            ListaDirecciones.Clear();
+        }
+
+        private bool ErrorDatosDireccion()
+        {
+            bool existeError = false;
+            if (string.IsNullOrWhiteSpace(TxtCalle1) == true)
+                existeError = true;
+            else if (string.IsNullOrWhiteSpace(TxtExterior) == true)
+                existeError = true;
+            else if (string.IsNullOrWhiteSpace(TxtColonia) == true)
+                existeError = true;
+            else if (string.IsNullOrWhiteSpace(TxtCPostal) == true)
+                existeError = true;
+            else if (Municipio == null)
+                existeError = true;
+            return existeError;
         }
 
         private void AgregarTelefono(object parameter)
@@ -112,10 +196,14 @@ namespace Guajiro.ViewModels
                         TipoTel = TipoTel.descripcion
                     };
                     ListaTelefonos.Add(DatosTel);
+                    TxtNumTelefono = "";
                 }
                 else
                 {
-                    TxtMensaje = "El número telefónico ingresado ya existe en la lista.";
+                    if (string.IsNullOrWhiteSpace(TxtNumTelefono) != false)
+                        TxtMensaje = "El número telefónico ingresado ya existe en la lista.";
+                    else
+                        TxtMensaje = "Debe ingresar un número telefónico.";
                     VerMensaje = true;
                 }
             }
@@ -136,11 +224,87 @@ namespace Guajiro.ViewModels
 
         private void FiltrarMunicipios(string idestado)
         {
-            List<tbl_municipios> lista = GuajiroEF.tbl_municipios.Where(x => x.idestado == idestado).ToList();
-            ListaMunicipios = new ObservableCollection<tbl_municipios>(lista);
+            if (idestado != null)
+            {
+                List<tbl_municipios> lista = GuajiroEF.tbl_municipios.Where(x => x.idestado == idestado).ToList();
+                ListaMunicipios = new ObservableCollection<tbl_municipios>(lista);
+            }
         }
 
         private void CerrarMensaje(object parameter) => VerMensaje = false;
+
+        private bool ErrorDatosPersonales()
+        {
+            bool existeError = false;
+            if (string.IsNullOrWhiteSpace(TxtNPrimario) == true)
+                existeError = true;
+            else if (string.IsNullOrWhiteSpace(TxtPaterno) == true)
+                existeError = true;
+            else if (string.IsNullOrWhiteSpace(TxtMaterno) == true)
+                existeError = true;
+            return existeError;
+        }
+
+        private void GuardarCliente(object parameter)
+        {
+            bool checkPersona = ErrorDatosPersonales();
+            if (checkPersona != true && ListaDirecciones.Count > 0)
+            {
+                int guardados = 0;
+                using (var bd=new bd_guajiroEntities())
+                {
+                    tbl_personas persona = new tbl_personas {
+                        idpersona = Convert.ToString(Guid.NewGuid()),
+                        idlstipopersona = "e47c6009-368a-11e7-b904-204747335338",
+                        nprimario = TxtNPrimario,
+                        nsecundario = TxtNSecundario,
+                        paterno = TxtPaterno,
+                        materno = TxtMaterno,
+                        razon_social = TxtNPrimario + " " + TxtNSecundario + " " + TxtPaterno + " " + TxtMaterno,
+                        crea_usuario = IdPersona
+                    };
+                    bd.tbl_personas.Add(persona);
+                    if (ListaTelefonos.Count > 0)
+                    { foreach (Telefonos item in ListaTelefonos)
+                        {
+                            tbl_telefonos phone = new tbl_telefonos
+                            {
+                                idtelefono = Convert.ToString(Guid.NewGuid()),
+                                idlstipotelefono = item.IdlsTipoTelefono,
+                                idpersona = persona.idpersona,
+                                numtelefono = item.NumTelefono
+                            };
+                            bd.tbl_telefonos.Add(phone);
+                        }
+                    }
+                    foreach(tbl_direcciones item in ListaDirecciones)
+                    {
+                        tbl_direcciones dir = new tbl_direcciones
+                        {
+                            iddireccion = item.iddireccion,
+                            idpersona = persona.idpersona,
+                            idmunicipio = item.idmunicipio,
+                            calle1 = item.calle1,
+                            calle2 = item.calle2,
+                            exterior = item.exterior,
+                            interior = item.interior,
+                            colonia = item.colonia,
+                            codigopostal = item.codigopostal,
+                            entrega = item.entrega,
+                            fiscal = item.fiscal
+                        };
+                        bd.tbl_direcciones.Add(dir);
+                    }
+                    guardados = bd.SaveChanges();
+                    if (guardados > 0)
+                    {
+                        TxtMensaje = "Los datos del Cliente han sido guardados correctamente";
+                        VerMensaje = true;
+                        LimpiarPantalla();
+                    }
+                }
+            }
+        }
         #endregion
     }
 }

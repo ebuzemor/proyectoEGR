@@ -48,7 +48,7 @@
                 <RowDefinition Height="45"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Column="0" Grid.Row="0" Text="Nombre Primario: " 
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Nombre Primario: *" 
                        HorizontalAlignment="Right" VerticalAlignment="Center"/>
             <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding TxtNPrimario}" Width="180" Margin="5"
                      Foreground="{DynamicResource PrimaryHueLightBrush}"
@@ -58,27 +58,21 @@
             <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding TxtNSecundario}" Width="180" Margin="5"
                      Foreground="{DynamicResource PrimaryHueLightBrush}"
                      HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <TextBlock Grid.Column="0" Grid.Row="2" Text="Apellido Paterno: " 
+            <TextBlock Grid.Column="0" Grid.Row="2" Text="Apellido Paterno: *" 
                        HorizontalAlignment="Right" VerticalAlignment="Center"/>
             <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding TxtPaterno}" Width="180" Margin="5"
                      Foreground="{DynamicResource PrimaryHueLightBrush}"
                      HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <TextBlock Grid.Column="0" Grid.Row="3" Text="Apellido Materno: " 
+            <TextBlock Grid.Column="0" Grid.Row="3" Text="Apellido Materno: *" 
                        HorizontalAlignment="Right" VerticalAlignment="Center"/>
             <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding TxtMaterno}" Width="180" Margin="5"
                      Foreground="{DynamicResource PrimaryHueLightBrush}"
                      HorizontalAlignment="Left" VerticalAlignment="Center"/>
             <UniformGrid Columns="3" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4">
-                <ComboBox wpfMD:HintAssist.Hint="Tipo de Teléfono:" Margin="5 0 0 0"
-                          Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                <ComboBox wpfMD:HintAssist.Hint="Tipo de Teléfono:" Margin="5 0 0 0" DisplayMemberPath="descripcion"
+                          Style="{StaticResource MaterialDesignFloatingHintComboBox}" IsEditable="True"
                           HorizontalAlignment="Left" VerticalAlignment="Center"
-                          ItemsSource="{Binding TiposTelefono}" SelectedItem="{Binding TipoTel}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding descripcion}"/>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
+                          ItemsSource="{Binding TiposTelefono}" SelectedItem="{Binding TipoTel}"/>
                 <TextBox Text="{Binding TxtNumTelefono}" wpfMD:HintAssist.Hint="Número de Teléfono:"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" MaxLength="10"
                          Foreground="{DynamicResource PrimaryHueLightBrush}"
@@ -115,14 +109,6 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <wpfMD:Snackbar Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" IsActive="{Binding VerMensaje}" Background="{DynamicResource PrimaryHueDarkBrush}">
-                <wpfMD:SnackbarMessage ActionCommand="{Binding CerrarMensajeCommand}" ActionContent="Cerrar">
-                    <wpfMD:SnackbarMessage.Content>
-                        <TextBlock Text="{Binding TxtMensaje}" TextWrapping="Wrap" Style="{StaticResource MaterialDesignCaptionTextBlock}" 
-                                   Foreground="White"/>
-                    </wpfMD:SnackbarMessage.Content>
-                </wpfMD:SnackbarMessage>
-            </wpfMD:Snackbar>
         </Grid>
         <!--Divisor-->
         <GridSplitter Grid.Column="1" Grid.Row="1" Width="5" HorizontalAlignment="Stretch"/>
@@ -141,44 +127,32 @@
                 <RowDefinition Height="45"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" wpfMD:HintAssist.Hint="Calle 1:"
+            <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" wpfMD:HintAssist.Hint="Calle 1: *" Text="{Binding TxtCalle1}"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 10 0"/>
-            <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" wpfMD:HintAssist.Hint="Calle 2:"
+            <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" wpfMD:HintAssist.Hint="Calle 2:" Text="{Binding TxtCalle2}"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 10 0"/>
-            <TextBox Grid.Column="0" Grid.Row="2" wpfMD:HintAssist.Hint="Número Interior:"
+            <TextBox Grid.Column="0" Grid.Row="2" wpfMD:HintAssist.Hint="Número Exterior: *" Text="{Binding TxtExterior}"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 10 0"/>
-            <TextBox Grid.Column="1" Grid.Row="2" wpfMD:HintAssist.Hint="Número Exterior:"
+            <TextBox Grid.Column="1" Grid.Row="2" wpfMD:HintAssist.Hint="Número Interior:" Text="{Binding TxtInterior}"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 10 0"/>
-            <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" wpfMD:HintAssist.Hint="Colonia o Fraccionamiento:"
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 10 0"/>
+            <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" wpfMD:HintAssist.Hint="Colonia o Fraccionamiento: *"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 10 0" Text="{Binding TxtColonia}"/>
             <UniformGrid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Columns="3">
-                <TextBox wpfMD:HintAssist.Hint="Código Postal:" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                         Margin="10 0 10 0" MaxLength="8"/>
-                <ComboBox wpfMD:HintAssist.Hint="Estado:" Margin="5 0 0 0"
+                <TextBox wpfMD:HintAssist.Hint="Código Postal: *" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         Margin="10 0 10 0" MaxLength="8" Text="{Binding TxtCPostal}"/>
+                <ComboBox wpfMD:HintAssist.Hint="Estado:" Margin="5 0 0 0" IsEditable="True" DisplayMemberPath="nombre"
                           Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                           HorizontalAlignment="Left" VerticalAlignment="Center"
-                          ItemsSource="{Binding ListaEstados}" SelectedItem="{Binding Estado}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding nombre}"/>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-                <ComboBox wpfMD:HintAssist.Hint="Municipio:" Margin="5 0 0 0"
+                          ItemsSource="{Binding ListaEstados}" SelectedItem="{Binding Estado}"/>
+                <ComboBox wpfMD:HintAssist.Hint="Municipio: *" Margin="5 0 0 0" IsEditable="True" DisplayMemberPath="nombre"
                           Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                           HorizontalAlignment="Left" VerticalAlignment="Center"
-                          ItemsSource="{Binding ListaMunicipios}" SelectedItem="{Binding Municipio}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding nombre}"/>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
+                          ItemsSource="{Binding ListaMunicipios}" SelectedItem="{Binding Municipio}"/>
             </UniformGrid>
             <UniformGrid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Columns="3">
-                <CheckBox IsChecked="False" HorizontalAlignment="Center">Entrega</CheckBox>
-                <CheckBox IsChecked="False" HorizontalAlignment="Center">Factura</CheckBox>
-                <Button Margin="5">
+                <CheckBox IsChecked="{Binding ChkEntrega}" HorizontalAlignment="Center">Entrega</CheckBox>
+                <CheckBox IsChecked="{Binding ChkFactura}" HorizontalAlignment="Center">Factura</CheckBox>
+                <Button Margin="5" Command="{Binding AgregarDireccionCommand}">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <wpfMD:PackIcon Width="24" Height="24" Kind="BookPlus"/>
@@ -187,13 +161,28 @@
                     </Button.Content>
                 </Button>
             </UniformGrid>
-            <ListView x:Name="LstDirecciones" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6">
+            <ListView x:Name="LstDirecciones" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" ItemsSource="{Binding ListaDirecciones}"
+                      SelectedItem="{Binding DatosDir}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Calle"/>
-                        <GridViewColumn Header="# Exterior"/>
-                        <GridViewColumn Header="Colonia"/>
-                        <GridViewColumn Header="Acciones"/>
+                        <GridViewColumn Width="130" Header="Calle" DisplayMemberBinding="{Binding calle1}"/>
+                        <GridViewColumn Width="110" Header="# Exterior" DisplayMemberBinding="{Binding exterior}"/>
+                        <GridViewColumn Width="120" Header="Colonia" DisplayMemberBinding="{Binding colonia}"/>
+                        <GridViewColumn Width="100" Header="Acciones">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                            Margin="0 0 8 0" HorizontalAlignment="Left"
+                                            Content="{wpfMD:PackIcon Kind=Delete}"
+                                            ToolTip="Quitar Item" Height="22" Width="22"
+                                            Command="{Binding ElementName=LstDirecciones, Path=DataContext.BorrarDireccionCommand}"
+                                            CommandParameter="{Binding IdTelefono}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -208,5 +197,13 @@
             <Button IsCancel="True" Grid.Column="2" Command="{x:Static wpfMD:DialogHost.CloseDialogCommand}" 
                     CommandParameter="CANCELAR" Content="Cerrar" Margin="5"/>
         </Grid>
+        <wpfMD:Snackbar Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" IsActive="{Binding VerMensaje}" Background="{DynamicResource PrimaryHueDarkBrush}">
+            <wpfMD:SnackbarMessage ActionCommand="{Binding CerrarMensajeCommand}" ActionContent="Cerrar">
+                <wpfMD:SnackbarMessage.Content>
+                    <TextBlock Text="{Binding TxtMensaje}" TextWrapping="Wrap" Style="{StaticResource MaterialDesignCaptionTextBlock}" 
+                                   Foreground="White"/>
+                </wpfMD:SnackbarMessage.Content>
+            </wpfMD:SnackbarMessage>
+        </wpfMD:Snackbar>
     </Grid>
 </UserControl>

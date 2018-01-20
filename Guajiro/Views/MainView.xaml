@@ -13,7 +13,10 @@
     <Window.DataContext>
         <vm:MainViewModel/>
     </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Key="Left" Modifiers="Alt" Command="NotACommand"/>
+    </Window.InputBindings>
     <Grid>
-        <Frame x:Name="Navegador" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="Navegador" NavigationUIVisibility="Hidden" Navigating="Navegador_Navigating"/>
     </Grid>
 </Window>

@@ -37,7 +37,10 @@ namespace Guajiro.ViewModels
                 DataContext = vmCom
             };
 
-            ListaClientesViewModel vmLtaCte = new ListaClientesViewModel { };
+            ListaClientesViewModel vmLtaCte = new ListaClientesViewModel
+            {
+                IdPersona = UsuarioActual.idpersona
+            };
             ListaClientesView vwLtaCte = new ListaClientesView
             {
                 DataContext = vmLtaCte
