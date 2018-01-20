@@ -18,9 +18,9 @@ namespace Guajiro.Views
     /// <summary>
     /// Lógica de interacción para DatosProveedoresView.xaml
     /// </summary>
-    public partial class DatosProveedoresView : UserControl
+    public partial class DatosProveedorView : UserControl
     {
-        public DatosProveedoresView()
+        public DatosProveedorView()
         {
             InitializeComponent();
         }

@@ -206,6 +206,7 @@
     </Compile>
     <Compile Include="ViewModels\ComandasViewModel.cs" />
     <Compile Include="ViewModels\DatosClienteViewModel.cs" />
+    <Compile Include="ViewModels\DatosProveedorViewModel.cs" />
     <Compile Include="ViewModels\DetallesComandaViewModel.cs" />
     <Compile Include="ViewModels\EditarItemViewModel.cs" />
     <Compile Include="ViewModels\ListaClientesViewModel.cs" />
@@ -225,8 +226,8 @@
     <Compile Include="Views\DatosProductoView.xaml.cs">
       <DependentUpon>DatosProductoView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DatosProveedoresView.xaml.cs">
-      <DependentUpon>DatosProveedoresView.xaml</DependentUpon>
+    <Compile Include="Views\DatosProveedorView.xaml.cs">
+      <DependentUpon>DatosProveedorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DetallesComandaView.xaml.cs">
       <DependentUpon>DetallesComandaView.xaml</DependentUpon>
@@ -290,7 +291,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DatosProveedoresView.xaml">
+    <Page Include="Views\DatosProveedorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
