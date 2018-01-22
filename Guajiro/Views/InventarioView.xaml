@@ -21,32 +21,83 @@
         <Grid Background="#791D06">
             <Grid.RowDefinitions>
                 <RowDefinition Height="45"/>
+                <RowDefinition Height="45"/>
                 <RowDefinition/>
                 <RowDefinition Height="45"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="Inventario de Productos" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <DataGrid Grid.Row="1" Background="#791D06" Margin="10" CanUserAddRows="False" CanUserReorderColumns="False"
+            <!--Titulo-->
+            <TextBlock Grid.Row="0" Text="Lista de Productos" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <!--Area de Filtros-->
+            <UniformGrid Grid.Row="1" Columns="4">
+                <TextBox wpfMD:HintAssist.Hint="Escriba nombre del producto..." Margin="10 0 0 0"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding TxtBuscar}"/>
+                <Button Margin="5" Content="Realizar Búsqueda" Command="{Binding BuscarProductoCommand}"/>
+                <Button Margin="5" Content="Mostrar Todos" Command="{Binding MostrarTodosCommand}"/>
+                <Button Margin="5" Content="Mostrar Ultimos 10" Command="{Binding MostrarUltimosCommand}"/>
+            </UniformGrid>
+            <!--Listado de Productos-->
+            <DataGrid x:Name="ListaProductos" Grid.Row="2" Background="#791D06" Margin="10" CanUserAddRows="False" CanUserReorderColumns="False"
                       CanUserSortColumns="True" AutoGenerateColumns="False" SelectionUnit="FullRow" SelectionMode="Single"
                       wpfMD:DataGridAssist.CellPadding="13 8 8 8" wpfMD:DataGridAssist.ColumnHeaderPadding="8"
-                      VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding}">
+                      VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding ListaProductos}">
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="Descripción" IsReadOnly="True">
+                    <DataGridTemplateColumn Header="Descripción del Producto" IsReadOnly="True" Width="1.5*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding descripcion}" ToolTip="{Binding descripcion}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Existencias" IsReadOnly="True">
+                    <DataGridTemplateColumn Header="Existencias" IsReadOnly="True" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding existencia}" ToolTip="{Binding existencia}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Precio" IsReadOnly="True">
+                    <DataGridTemplateColumn Header="Precio" IsReadOnly="True" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding valor}" ToolTip="{Binding valor}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Unidad" IsReadOnly="True">
+                    <DataGridTemplateColumn Header="Unidad" IsReadOnly="True" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding unidad}" ToolTip="{Binding unidad}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Acciones" IsReadOnly="True">
+                    <DataGridTemplateColumn Header="Tipo Producto" IsReadOnly="True" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding tipo}" ToolTip="{Binding tipo}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Acciones" IsReadOnly="True" Width=".5*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                            Margin="0 0 8 0" HorizontalAlignment="Left"
+                                            Content="{wpfMD:PackIcon Kind=Pencil}"
+                                            ToolTip="Editar Item" Height="22" Width="22"
+                                            Command="{Binding ElementName=ListaProductos, Path=DataContext.EditarProductoCommand}"
+                                            CommandParameter="{Binding iditem}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Grid.Row="2" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Center"
+            <!--Botón de Nuevo Cliente-->
+            <Button Grid.Row="3" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Center"
                     Command="{Binding NuevoProductoCommand}">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
-                        <wpfMD:PackIcon Width="24" Height="24" Kind="AccountPlus" VerticalAlignment="Center"/>
+                        <wpfMD:PackIcon Width="24" Height="24" Kind="PlusCircle" VerticalAlignment="Center"/>
                         <TextBlock Text="Nuevo Producto" VerticalAlignment="Center" Margin="5"/>
                     </StackPanel>
                 </Button.Content>

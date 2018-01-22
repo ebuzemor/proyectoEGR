@@ -46,19 +46,37 @@ namespace Guajiro.ViewModels
                 DataContext = vmLtaCte
             };
 
+            ListaProveedoresViewModel vmLtaProv = new ListaProveedoresViewModel
+            {
+                IdPersona = UsuarioActual.idpersona
+            };
+            ListaProveedoresView vwLtaProv = new ListaProveedoresView
+            {
+                DataContext = vmLtaProv
+            };
+
             MenuDiaViewModel vmMenuDia = new MenuDiaViewModel { };
             MenuDiaView vwMenuDia = new MenuDiaView {
                 DataContext = vmMenuDia
             };
 
+            InventarioViewModel vmInventario = new InventarioViewModel
+            {
+                IdPersona = UsuarioActual.idpersona
+            };
+            InventarioView vwInventario = new InventarioView
+            {
+                DataContext = vmInventario
+            };
+            
             MenuOpcion = new[]
             {
                 new MenuOpciones("Punto de Venta", vwPdV),
                 new MenuOpciones("Comandas", vwCom),
                 new MenuOpciones("Menú del Día", vwMenuDia),
                 new MenuOpciones("Clientes", vwLtaCte),
-                new MenuOpciones("Proveedores", new ListaProveedoresView()),
-                new MenuOpciones("Inventario", new InventarioView()),
+                new MenuOpciones("Proveedores", vwLtaProv),
+                new MenuOpciones("Inventario", vwInventario),
                 //new MenuOpciones("Facturas", new InventarioView()),
                 new MenuOpciones("Registrar Gastos", new RegistrarGastosView()),
                 new MenuOpciones("Registrar Compras", new InventarioView()),

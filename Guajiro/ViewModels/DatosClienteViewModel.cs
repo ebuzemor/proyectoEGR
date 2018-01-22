@@ -32,6 +32,9 @@ namespace Guajiro.ViewModels
         private string _txtNSecundario;
         private string _txtPaterno;
         private string _txtMaterno;
+        private string _txtRFC;
+        private string _txtRazonSocial;
+        private string _txtEmail;
         private string _txtNumTelefono;
         private string _txtCalle1;
         private string _txtCalle2;
@@ -41,25 +44,31 @@ namespace Guajiro.ViewModels
         private string _txtCPostal;
         private string _txtMensaje;
         private string _idPersona;
+        private string _tipoPersona;
         private bool _verMensaje;
+        private bool _chkFisica;
+        private bool _chkMoral;
         private bool _chkEntrega;
         private bool _chkFactura;
-        private tbl_listadoseldetalle _tipoTel;
         private ObservableCollection<tbl_listadoseldetalle> _tiposTelefono;
-        private tbl_estados _estado;
         private ObservableCollection<tbl_estados> _listaEstados;
-        private tbl_municipios _municipio;
         private ObservableCollection<tbl_municipios> _listaMunicipios;
-        private Telefonos _datosTel;
         private ObservableCollection<Telefonos> _listaTelefonos;
-        private tbl_direcciones _datosDir;
         private ObservableCollection<tbl_direcciones> _listaDirecciones;
+        private tbl_listadoseldetalle _tipoTel;
+        private tbl_estados _estado;
+        private tbl_municipios _municipio;
+        private Telefonos _datosTel;
+        private tbl_direcciones _datosDir;
 
         public bd_guajiroEntities GuajiroEF;
         public string TxtNPrimario { get => _txtNPrimario; set { _txtNPrimario = value; OnPropertyChanged(); } }
         public string TxtNSecundario { get => _txtNSecundario; set { _txtNSecundario = value; OnPropertyChanged();} }
         public string TxtPaterno { get => _txtPaterno; set { _txtPaterno = value; OnPropertyChanged(); } }
         public string TxtMaterno { get => _txtMaterno; set { _txtMaterno = value; OnPropertyChanged(); } }
+        public string TxtRFC { get => _txtRFC; set { _txtRFC = value; OnPropertyChanged(); } }
+        public string TxtRazonSocial { get => _txtRazonSocial; set { _txtRazonSocial = value; OnPropertyChanged(); } }
+        public string TxtEmail { get => _txtEmail; set { _txtEmail = value; OnPropertyChanged(); } }
         public string TxtNumTelefono { get => _txtNumTelefono; set { _txtNumTelefono = value; OnPropertyChanged(); } }
         public string TxtCalle1 { get => _txtCalle1; set { _txtCalle1 = value; OnPropertyChanged(); } }
         public string TxtCalle2 { get => _txtCalle2; set { _txtCalle2 = value; OnPropertyChanged(); } }
@@ -69,19 +78,40 @@ namespace Guajiro.ViewModels
         public string TxtCPostal { get => _txtCPostal; set { _txtCPostal = value; OnPropertyChanged(); } }
         public string TxtMensaje { get => _txtMensaje; set { _txtMensaje = value; OnPropertyChanged(); } }
         public string IdPersona { get => _idPersona; set { _idPersona = value; OnPropertyChanged(); } }
+        public string TipoPersona { get => _tipoPersona; set { _tipoPersona = value; OnPropertyChanged(); } }
+        public bool ChkFisica
+        {
+            get => _chkFisica;
+            set
+            {
+                _chkFisica = value;
+                OnPropertyChanged();
+                TipoPersona = (_chkFisica == true) ? "e0eaa02f-fe83-11e7-83f1-204747335338" : "e0e8f331-fe83-11e7-83f1-204747335338";
+            }
+        }
+        public bool ChkMoral
+        {
+            get => _chkMoral;
+            set
+            {
+                _chkMoral = value;
+                OnPropertyChanged();
+                TipoPersona = (_chkMoral == true) ? "e0e8f331-fe83-11e7-83f1-204747335338" : "e0eaa02f-fe83-11e7-83f1-204747335338";
+            }
+        }
         public bool ChkEntrega { get => _chkEntrega; set { _chkEntrega = value; OnPropertyChanged(); } }
         public bool ChkFactura { get => _chkFactura; set { _chkFactura = value; OnPropertyChanged(); } }
         public bool VerMensaje { get => _verMensaje; set { _verMensaje = value; OnPropertyChanged(); } }
         public ObservableCollection<tbl_listadoseldetalle> TiposTelefono { get => _tiposTelefono; set { _tiposTelefono = value; OnPropertyChanged(); } }
         public ObservableCollection<tbl_estados> ListaEstados { get => _listaEstados; set { _listaEstados = value; OnPropertyChanged(); } }
         public ObservableCollection<tbl_municipios> ListaMunicipios { get => _listaMunicipios; set { _listaMunicipios = value; OnPropertyChanged(); } }
+        public ObservableCollection<Telefonos> ListaTelefonos { get => _listaTelefonos; set { _listaTelefonos = value; OnPropertyChanged(); } }
+        public ObservableCollection<tbl_direcciones> ListaDirecciones { get => _listaDirecciones; set { _listaDirecciones = value; OnPropertyChanged(); } }
         public tbl_municipios Municipio { get => _municipio; set { _municipio = value; OnPropertyChanged(); } }
         public tbl_estados Estado { get => _estado; set { _estado = value; OnPropertyChanged();  FiltrarMunicipios(value.idestado); } }
         public tbl_listadoseldetalle TipoTel { get => _tipoTel; set { _tipoTel = value; OnPropertyChanged(); } }
         public Telefonos DatosTel { get => _datosTel; set { _datosTel = value; OnPropertyChanged(); } }
-        public ObservableCollection<Telefonos> ListaTelefonos { get => _listaTelefonos; set { _listaTelefonos = value; OnPropertyChanged(); } }
         public tbl_direcciones DatosDir { get => _datosDir; set { _datosDir = value; OnPropertyChanged(); } }
-        public ObservableCollection<tbl_direcciones> ListaDirecciones { get => _listaDirecciones; set { _listaDirecciones = value; OnPropertyChanged(); } }
         #endregion
 
         #region Constructor
@@ -97,6 +127,8 @@ namespace Guajiro.ViewModels
             ListaDirecciones = new ObservableCollection<tbl_direcciones>();
             ChkEntrega = false;
             ChkFactura = false;
+            ChkFisica = true;
+            ChkMoral = false;
         }
         #endregion
 
@@ -160,6 +192,9 @@ namespace Guajiro.ViewModels
             TxtPaterno = "";
             TxtMaterno = "";
             TxtNumTelefono = "";
+            TxtRazonSocial = "";
+            TxtRFC = "";
+            TxtEmail = "";
             ListaTelefonos.Clear();
             LimpiarDireccion();
             ListaDirecciones.Clear();
@@ -233,39 +268,58 @@ namespace Guajiro.ViewModels
 
         private void CerrarMensaje(object parameter) => VerMensaje = false;
 
-        private bool ErrorDatosPersonales()
+        private bool ErrorDatosPersonales(bool esPFisica)
         {
             bool existeError = false;
-            if (string.IsNullOrWhiteSpace(TxtNPrimario) == true)
-                existeError = true;
-            else if (string.IsNullOrWhiteSpace(TxtPaterno) == true)
-                existeError = true;
-            else if (string.IsNullOrWhiteSpace(TxtMaterno) == true)
-                existeError = true;
+            if(esPFisica == true)
+            {
+                existeError = string.IsNullOrWhiteSpace(TxtNPrimario);
+                existeError = string.IsNullOrWhiteSpace(TxtPaterno);
+            }
+            else
+            {
+                existeError = string.IsNullOrWhiteSpace(TxtRazonSocial);
+            }
             return existeError;
         }
 
         private void GuardarCliente(object parameter)
         {
-            bool checkPersona = ErrorDatosPersonales();
+            string razsoc = string.Empty;
+            bool checkPersona = false;
+            if (TipoPersona != "e0e8f331-fe83-11e7-83f1-204747335338") //Persona Física
+            {
+                razsoc = TxtNPrimario + " " + TxtNSecundario + " " + TxtPaterno + " " + TxtMaterno;
+                checkPersona = ErrorDatosPersonales(true);
+            }
+            else
+            {
+                razsoc = TxtRazonSocial;
+                checkPersona = ErrorDatosPersonales(false);
+            }
             if (checkPersona != true && ListaDirecciones.Count > 0)
             {
                 int guardados = 0;
-                using (var bd=new bd_guajiroEntities())
+                using (var bd = new bd_guajiroEntities())
                 {
-                    tbl_personas persona = new tbl_personas {
+                    tbl_personas persona = new tbl_personas
+                    {
                         idpersona = Convert.ToString(Guid.NewGuid()),
-                        idlstipopersona = "e47c6009-368a-11e7-b904-204747335338",
+                        idlstipopersona = "e47c6009-368a-11e7-b904-204747335338", //Tipo Cliente
+                        idlstipocontribuyente = TipoPersona,
                         nprimario = TxtNPrimario,
                         nsecundario = TxtNSecundario,
                         paterno = TxtPaterno,
                         materno = TxtMaterno,
-                        razon_social = TxtNPrimario + " " + TxtNSecundario + " " + TxtPaterno + " " + TxtMaterno,
+                        razon_social = razsoc,
+                        rfc = TxtRFC,
+                        email = TxtEmail,
                         crea_usuario = IdPersona
                     };
                     bd.tbl_personas.Add(persona);
                     if (ListaTelefonos.Count > 0)
-                    { foreach (Telefonos item in ListaTelefonos)
+                    {
+                        foreach (Telefonos item in ListaTelefonos)
                         {
                             tbl_telefonos phone = new tbl_telefonos
                             {
@@ -277,7 +331,7 @@ namespace Guajiro.ViewModels
                             bd.tbl_telefonos.Add(phone);
                         }
                     }
-                    foreach(tbl_direcciones item in ListaDirecciones)
+                    foreach (tbl_direcciones item in ListaDirecciones)
                     {
                         tbl_direcciones dir = new tbl_direcciones
                         {
@@ -304,7 +358,13 @@ namespace Guajiro.ViewModels
                     }
                 }
             }
+            else
+            {
+                TxtMensaje = "Existe un error que no permite guardar los datos. Verifique que los campos obligatorios contengan información.";
+                VerMensaje = true;
+            }
         }
+
         #endregion
     }
 }

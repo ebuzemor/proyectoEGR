@@ -48,6 +48,13 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="R.F.C." IsReadOnly="True" Width=".5*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding rfc}" ToolTip="{Binding rfc}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTemplateColumn Header="Dirección del Cliente" IsReadOnly="True" Width="1.5*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

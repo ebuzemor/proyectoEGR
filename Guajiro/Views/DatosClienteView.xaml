@@ -9,8 +9,7 @@
              d:DesignHeight="500" d:DesignWidth="900"
              TextElement.Foreground="{DynamicResource PrimaryHueMidBrush}"
              FontFamily="/Fonts/#Tulia"
-             Height="500" Width="900"
-             >
+             Height="500" Width="900">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -46,29 +45,33 @@
                 <RowDefinition Height="45"/>
                 <RowDefinition Height="45"/>
                 <RowDefinition Height="45"/>
+                <RowDefinition Height="45"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Column="0" Grid.Row="0" Text="Nombre Primario: *" 
-                       HorizontalAlignment="Right" VerticalAlignment="Center"/>
-            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding TxtNPrimario}" Width="180" Margin="5"
-                     Foreground="{DynamicResource PrimaryHueLightBrush}"
-                     HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <TextBlock Grid.Column="0" Grid.Row="1" Text="Nombre Secundario: " 
-                       HorizontalAlignment="Right" VerticalAlignment="Center"/>
-            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding TxtNSecundario}" Width="180" Margin="5"
-                     Foreground="{DynamicResource PrimaryHueLightBrush}"
-                     HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <TextBlock Grid.Column="0" Grid.Row="2" Text="Apellido Paterno: *" 
-                       HorizontalAlignment="Right" VerticalAlignment="Center"/>
-            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding TxtPaterno}" Width="180" Margin="5"
-                     Foreground="{DynamicResource PrimaryHueLightBrush}"
-                     HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <TextBlock Grid.Column="0" Grid.Row="3" Text="Apellido Materno: *" 
-                       HorizontalAlignment="Right" VerticalAlignment="Center"/>
-            <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding TxtMaterno}" Width="180" Margin="5"
-                     Foreground="{DynamicResource PrimaryHueLightBrush}"
-                     HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <UniformGrid Columns="3" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4">
+            <RadioButton x:Name="rbtFisica" Grid.Column="0" Grid.Row="0" Style="{StaticResource MaterialDesignRadioButton}" 
+                         Content="Persona Física" VerticalAlignment="Center" IsChecked="{Binding ChkFisica}"/>
+            <RadioButton x:Name="rbtMoral" Grid.Column="1" Grid.Row="0" Style="{StaticResource MaterialDesignRadioButton}" 
+                         Content="Persona Moral" VerticalAlignment="Center" IsChecked="{Binding ChkMoral}"/>
+            <TextBox Grid.Column="0" Grid.Row="1" wpfMD:HintAssist.Hint="Nombre Primario:*" Text="{Binding TxtNPrimario}"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 0 0"
+                     IsEnabled="{Binding ElementName=rbtFisica, Path=IsChecked}"/>
+            <TextBox Grid.Column="1" Grid.Row="1" wpfMD:HintAssist.Hint="Nombre Secundario:" Text="{Binding TxtNSecundario}"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 0 0"
+                     IsEnabled="{Binding ElementName=rbtFisica, Path=IsChecked}"/>
+            <TextBox Grid.Column="0" Grid.Row="2" wpfMD:HintAssist.Hint="Apellido Paterno:*" Text="{Binding TxtPaterno}"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 0 0"
+                     IsEnabled="{Binding ElementName=rbtFisica, Path=IsChecked}"/>
+            <TextBox Grid.Column="1" Grid.Row="2" wpfMD:HintAssist.Hint="Apellido Materno:" Text="{Binding TxtMaterno}"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 0 0"
+                     IsEnabled="{Binding ElementName=rbtFisica, Path=IsChecked}"/>
+            <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" wpfMD:HintAssist.Hint="Razón Social: *" 
+                     Text="{Binding TxtRazonSocial}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                     Margin="10 0 0 0" IsEnabled="{Binding ElementName=rbtMoral, Path=IsChecked}"/>
+            <TextBox Grid.Column="0" Grid.Row="4" wpfMD:HintAssist.Hint="R.F.C.:" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     Text="{Binding TxtRFC}" Margin="10 0 0 0"/>
+            <TextBox Grid.Column="1" Grid.Row="4" wpfMD:HintAssist.Hint="Email:" Text="{Binding TxtEmail}"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 0 0"/>
+            <UniformGrid Columns="3" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5">
                 <ComboBox wpfMD:HintAssist.Hint="Tipo de Teléfono:" Margin="5 0 0 0" DisplayMemberPath="descripcion"
                           Style="{StaticResource MaterialDesignFloatingHintComboBox}" IsEditable="True"
                           HorizontalAlignment="Left" VerticalAlignment="Center"
@@ -86,7 +89,7 @@
                     </Button.Content>
                 </Button>
             </UniformGrid>
-            <ListView x:Name="LstTelefono" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5"  ScrollViewer.VerticalScrollBarVisibility="Auto"
+            <ListView x:Name="LstTelefono" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6"  ScrollViewer.VerticalScrollBarVisibility="Auto"
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding ListaTelefonos}" SelectedItem="{Binding DatosTel}">
                 <ListView.View>
                     <GridView>

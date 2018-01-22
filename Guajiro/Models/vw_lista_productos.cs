@@ -12,20 +12,15 @@ namespace Guajiro.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_personas
+    public partial class vw_lista_productos
     {
-        public string idpersona { get; set; }
-        public string idlstipopersona { get; set; }
-        public string nprimario { get; set; }
-        public string nsecundario { get; set; }
-        public string paterno { get; set; }
-        public string materno { get; set; }
-        public string razon_social { get; set; }
+        public string iditem { get; set; }
+        public string descripcion { get; set; }
+        public Nullable<decimal> existencia { get; set; }
+        public Nullable<decimal> valor { get; set; }
+        public string unidad { get; set; }
+        public string tipo { get; set; }
         public Nullable<System.DateTime> fecha_creacion { get; set; }
-        public Nullable<System.DateTime> fecha_modificacion { get; set; }
-        public string crea_usuario { get; set; }
-        public string rfc { get; set; }
-        public string idlstipocontribuyente { get; set; }
-        public string email { get; set; }
+        public Nullable<bool> inventariable { get; set; }
     }
 }

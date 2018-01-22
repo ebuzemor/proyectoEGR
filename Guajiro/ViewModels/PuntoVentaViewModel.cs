@@ -361,8 +361,8 @@ namespace Guajiro.ViewModels
         {
             if (Cliente != null)
             {
-                InfoDireccion = GuajiroEF.vw_lista_direcciones.Where(x => x.idpersona == Cliente.idpersona).First();
-                ClienteDireccion = InfoDireccion.direccion;
+                InfoDireccion = GuajiroEF.vw_lista_direcciones.SingleOrDefault(x => x.idpersona == Cliente.idpersona);
+                ClienteDireccion = (InfoDireccion != null) ? InfoDireccion.direccion : "No tiene dirección registrada.";
             }
             else
             {

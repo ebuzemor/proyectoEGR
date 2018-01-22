@@ -201,15 +201,24 @@
     <Compile Include="Models\vw_lista_precios.cs">
       <DependentUpon>GuajiroBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\vw_lista_productos.cs">
+      <DependentUpon>GuajiroBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\vw_lista_telefonos.cs">
+      <DependentUpon>GuajiroBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_proveedores_directorio.cs">
       <DependentUpon>GuajiroBD.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ComandasViewModel.cs" />
     <Compile Include="ViewModels\DatosClienteViewModel.cs" />
+    <Compile Include="ViewModels\DatosProductoViewModel.cs" />
     <Compile Include="ViewModels\DatosProveedorViewModel.cs" />
     <Compile Include="ViewModels\DetallesComandaViewModel.cs" />
     <Compile Include="ViewModels\EditarItemViewModel.cs" />
+    <Compile Include="ViewModels\InventarioViewModel.cs" />
     <Compile Include="ViewModels\ListaClientesViewModel.cs" />
+    <Compile Include="ViewModels\ListaProveedoresViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MensajeViewModel.cs" />

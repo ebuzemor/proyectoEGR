@@ -1,20 +1,19 @@
 -- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Versión del servidor:         5.7.20-log - MySQL Community Server (GPL)
+-- Host:                         localhost
+-- Versión del servidor:         5.6.36-log - MySQL Community Server (GPL)
 -- SO del servidor:              Win32
--- HeidiSQL Versión:             9.5.0.5196
+-- HeidiSQL Versión:             9.1.0.4867
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-
 
 -- Volcando estructura de base de datos para bd_guajiro
 CREATE DATABASE IF NOT EXISTS `bd_guajiro` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `bd_guajiro`;
+
 
 -- Volcando estructura para tabla bd_guajiro.tbl_caracteristicasitem
 CREATE TABLE IF NOT EXISTS `tbl_caracteristicasitem` (
@@ -29,9 +28,10 @@ CREATE TABLE IF NOT EXISTS `tbl_caracteristicasitem` (
   PRIMARY KEY (`idcaracteristica`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_caracteristicasitem: ~119 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_caracteristicasitem: ~120 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_caracteristicasitem` DISABLE KEYS */;
 INSERT INTO `tbl_caracteristicasitem` (`idcaracteristica`, `iditem`, `idlsunidadmedida`, `idlstipocaracteristica`, `valor`, `fecha_creacion`, `fecha_modificacion`, `crea_usuario`) VALUES
+	('a971e762-ff2b-11e7-83f1-204747335338', '6d04a3e7-ff26-11e7-83f1-204747335338', 'e47c66f1-368a-11e7-b904-204747335338', 'e47c6405-368a-11e7-b904-204747335338', 2.50, '2018-01-21 22:18:26', NULL, NULL),
 	('f657508f-3b87-11e7-a2b5-204747335338', 'c1e2ade4-3b42-11e7-a2b5-204747335338', '604a3263-3b86-11e7-a2b5-204747335338', 'e47c6405-368a-11e7-b904-204747335338', 10.00, '2017-05-18 00:07:59', '2017-05-18 00:25:59', NULL),
 	('f6576c81-3b87-11e7-a2b5-204747335338', 'c1f41760-3b42-11e7-a2b5-204747335338', '604a3263-3b86-11e7-a2b5-204747335338', 'e47c6405-368a-11e7-b904-204747335338', 10.00, '2017-05-18 00:07:59', '2017-05-18 00:25:59', NULL),
 	('f657706c-3b87-11e7-a2b5-204747335338', 'c1f41fa1-3b42-11e7-a2b5-204747335338', '604a3263-3b86-11e7-a2b5-204747335338', 'e47c6405-368a-11e7-b904-204747335338', 10.00, '2017-05-18 00:07:59', '2017-05-18 00:25:59', NULL),
@@ -153,6 +153,7 @@ INSERT INTO `tbl_caracteristicasitem` (`idcaracteristica`, `iditem`, `idlsunidad
 	('f65f044f-3b87-11e7-a2b5-204747335338', 'c1f935e8-3b42-11e7-a2b5-204747335338', 'ed1679d5-3b84-11e7-a2b5-204747335338', 'e47c6405-368a-11e7-b904-204747335338', 40.00, '2017-05-18 00:07:59', '2017-05-18 00:11:00', NULL);
 /*!40000 ALTER TABLE `tbl_caracteristicasitem` ENABLE KEYS */;
 
+
 -- Volcando estructura para tabla bd_guajiro.tbl_comandas
 CREATE TABLE IF NOT EXISTS `tbl_comandas` (
   `idcomanda` varchar(50) NOT NULL,
@@ -180,6 +181,7 @@ INSERT INTO `tbl_comandas` (`idcomanda`, `fecha`, `num_comanda`, `idmesa`, `tota
 	('e9e4f5e3-046e-4aeb-9894-6ee0de543c18', '2017-12-11 01:11:14', 2, '1e2164b4-83a4-11e7-b695-204747335338', 70.00, b'0', '1c87a56f-e479-11e7-8cd6-204747335338', 'c7bfeac8-3c10-11e7-a2b5-204747335338', '2017-12-11 01:12:08', '2017-12-18 22:57:53');
 /*!40000 ALTER TABLE `tbl_comandas` ENABLE KEYS */;
 
+
 -- Volcando estructura para tabla bd_guajiro.tbl_corte
 CREATE TABLE IF NOT EXISTS `tbl_corte` (
   `idcorte` varchar(50) NOT NULL DEFAULT '',
@@ -198,6 +200,7 @@ CREATE TABLE IF NOT EXISTS `tbl_corte` (
 /*!40000 ALTER TABLE `tbl_corte` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tbl_corte` ENABLE KEYS */;
 
+
 -- Volcando estructura para tabla bd_guajiro.tbl_corte_mov
 CREATE TABLE IF NOT EXISTS `tbl_corte_mov` (
   `idcortemov` int(11) NOT NULL AUTO_INCREMENT,
@@ -214,6 +217,7 @@ CREATE TABLE IF NOT EXISTS `tbl_corte_mov` (
 /*!40000 ALTER TABLE `tbl_corte_mov` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tbl_corte_mov` ENABLE KEYS */;
 
+
 -- Volcando estructura para tabla bd_guajiro.tbl_detallemenu
 CREATE TABLE IF NOT EXISTS `tbl_detallemenu` (
   `iddetalle` varchar(50) NOT NULL,
@@ -226,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `tbl_detallemenu` (
   CONSTRAINT `FK_tbl_detallemenu_tbl_menudeldia` FOREIGN KEY (`idmenu`) REFERENCES `tbl_menudeldia` (`idmenu`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_detallemenu: ~17 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_detallemenu: ~18 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_detallemenu` DISABLE KEYS */;
 INSERT INTO `tbl_detallemenu` (`iddetalle`, `idmenu`, `iditem`) VALUES
 	('0370d93c-d7ae-4eb8-8bc3-e99ff0c33b36', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f43cf2-3b42-11e7-a2b5-204747335338'),
@@ -236,6 +240,7 @@ INSERT INTO `tbl_detallemenu` (`iddetalle`, `idmenu`, `iditem`) VALUES
 	('5f114a9d-f7c8-4ee8-aa1e-16440be5e99a', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f43e1a-3b42-11e7-a2b5-204747335338'),
 	('6eb66a49-a37e-4158-95d1-808a9974b2d7', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f44f1b-3b42-11e7-a2b5-204747335338'),
 	('7167e1b4-e5f7-4cd8-bec4-3e710d0c7d23', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f43bbe-3b42-11e7-a2b5-204747335338'),
+	('95f8f642-ae12-4b30-aad1-acf062b46feb', '14159f86-188a-4e27-a350-711db0b4c2e6', 'c1f45b58-3b42-11e7-a2b5-204747335338'),
 	('a3c3c4c5-28ec-46d8-8d07-ec4c67880f2e', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f43eab-3b42-11e7-a2b5-204747335338'),
 	('a440d7f8-3a03-48ff-954f-40e139687eb2', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f43f3c-3b42-11e7-a2b5-204747335338'),
 	('b94adf00-ae0a-460f-8a2a-092c8afd7a07', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f43fcd-3b42-11e7-a2b5-204747335338'),
@@ -247,6 +252,7 @@ INSERT INTO `tbl_detallemenu` (`iddetalle`, `idmenu`, `iditem`) VALUES
 	('c7f1a6b7-e235-11e7-9155-204747335338', '635ccee7-e232-11e7-9155-204747335338', 'c1f44838-3b42-11e7-a2b5-204747335338'),
 	('c881f8e0-3946-4fdf-b132-c9cb38660723', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f43d89-3b42-11e7-a2b5-204747335338');
 /*!40000 ALTER TABLE `tbl_detallemenu` ENABLE KEYS */;
+
 
 -- Volcando estructura para tabla bd_guajiro.tbl_detallescomanda
 CREATE TABLE IF NOT EXISTS `tbl_detallescomanda` (
@@ -286,6 +292,7 @@ INSERT INTO `tbl_detallescomanda` (`iddetalle`, `idcomanda`, `iditem`, `observac
 	('f36ae20c-6b34-4655-911b-5f2e2d68a329', 'd35ec7f9-35dc-492a-8706-8d08f711772d', 'c1e2ade4-3b42-11e7-a2b5-204747335338', '', 'Vaso de Horchata', 10.00);
 /*!40000 ALTER TABLE `tbl_detallescomanda` ENABLE KEYS */;
 
+
 -- Volcando estructura para tabla bd_guajiro.tbl_detallesguarnicion
 CREATE TABLE IF NOT EXISTS `tbl_detallesguarnicion` (
   `iddetalleguarnicion` varchar(50) NOT NULL,
@@ -311,6 +318,7 @@ INSERT INTO `tbl_detallesguarnicion` (`iddetalleguarnicion`, `idguarnicion`, `id
 	('d2cc1efe-7b9c-11e7-9e1c-204747335338', 'b8a7543d-7b9a-11e7-9e1c-204747335338', 'ab046a4b-6359-11e7-a068-204747335338', '2017-08-07 13:18:33', NULL, NULL);
 /*!40000 ALTER TABLE `tbl_detallesguarnicion` ENABLE KEYS */;
 
+
 -- Volcando estructura para tabla bd_guajiro.tbl_detallesobservacion
 CREATE TABLE IF NOT EXISTS `tbl_detallesobservacion` (
   `iddetalle` varchar(50) NOT NULL,
@@ -322,6 +330,7 @@ CREATE TABLE IF NOT EXISTS `tbl_detallesobservacion` (
 -- Volcando datos para la tabla bd_guajiro.tbl_detallesobservacion: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_detallesobservacion` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tbl_detallesobservacion` ENABLE KEYS */;
+
 
 -- Volcando estructura para tabla bd_guajiro.tbl_direcciones
 CREATE TABLE IF NOT EXISTS `tbl_direcciones` (
@@ -339,12 +348,19 @@ CREATE TABLE IF NOT EXISTS `tbl_direcciones` (
   PRIMARY KEY (`iddireccion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_direcciones: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_direcciones: ~8 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_direcciones` DISABLE KEYS */;
 INSERT INTO `tbl_direcciones` (`iddireccion`, `idpersona`, `idmunicipio`, `calle1`, `calle2`, `interior`, `exterior`, `colonia`, `codigopostal`, `entrega`, `fiscal`) VALUES
-	('c53dfad2-db0a-11e7-9155-204747335338', '3ec57991-da4a-11e7-9155-204747335338', 'c6b41a5b-db09-11e7-9155-204747335338', 'Calle Ixhuatán', 'entre Simojovel e Ixtacomitan', '#341', NULL, 'Col. Centenario', '29025', b'1', b'0'),
-	('cc5f4754-f3fc-11e7-83f1-204747335338', '1c87a56f-e479-11e7-8cd6-204747335338', 'c6b41a5b-db09-11e7-9155-204747335338', '', NULL, NULL, NULL, NULL, NULL, b'0', b'0');
+	('119faf2d-c9b5-476b-8190-548cd967751f', 'cdf75403-7c45-4689-a7fb-3b613684739c', '4929fcbf-fcd3-11e7-83f1-204747335338', 'Conocida1', 'Conocida2', '1234', '123', 'Barrio Conocido', '12345', b'1', b'1'),
+	('8cc901a8-dd9c-4d6e-b84d-c87ceb924b7c', '12284d7a-e164-4732-8d55-3a86ac97973d', '4929fcbf-fcd3-11e7-83f1-204747335338', 'Independencia', NULL, NULL, '66', 'Industrial Vallejo', '55000', b'0', b'1'),
+	('904aaba3-aaef-4528-bb45-b632256da04c', 'e7e56c93-8f4c-4c7a-96c3-a2c30e741b30', '4929fcbf-fcd3-11e7-83f1-204747335338', 'Principal', NULL, NULL, '3452', 'Conocida', '12345', b'0', b'1'),
+	('a3d0771d-8ae8-43d3-a596-ea16792b782b', 'a31b0a0f-c6ef-4961-9c96-7ee2cef96b81', '4929fcbf-fcd3-11e7-83f1-204747335338', 'Centro', NULL, NULL, '1234', 'Barrio Viejo', '99999', b'1', b'0'),
+	('bb61de93-7091-4064-a0c7-82df536b32e4', '4b342018-1724-464b-bbdb-6b2e1597664f', '4929fcbf-fcd3-11e7-83f1-204747335338', '3a poniente', NULL, NULL, '312', 'Barrio', '41234', NULL, b'1'),
+	('c53dfad2-db0a-11e7-9155-204747335338', '3ec57991-da4a-11e7-9155-204747335338', '4929fcbf-fcd3-11e7-83f1-204747335338', 'Calle Ixhuatán', 'entre Simojovel e Ixtacomitan', '#341', NULL, 'Col. Centenario', '29025', b'1', b'0'),
+	('cc5f4754-f3fc-11e7-83f1-204747335338', '1c87a56f-e479-11e7-8cd6-204747335338', '4929fcbf-fcd3-11e7-83f1-204747335338', '', NULL, NULL, NULL, NULL, NULL, b'0', b'0'),
+	('f3755939-056a-431d-8b90-98334a561954', '1f546f39-9ed6-4ff2-8ad4-376d3bb510d5', '4929fcbf-fcd3-11e7-83f1-204747335338', 'qqq', NULL, NULL, '1111', 'qwer', '1324', b'0', b'1');
 /*!40000 ALTER TABLE `tbl_direcciones` ENABLE KEYS */;
+
 
 -- Volcando estructura para tabla bd_guajiro.tbl_estados
 CREATE TABLE IF NOT EXISTS `tbl_estados` (
@@ -356,40 +372,41 @@ CREATE TABLE IF NOT EXISTS `tbl_estados` (
 -- Volcando datos para la tabla bd_guajiro.tbl_estados: ~33 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_estados` DISABLE KEYS */;
 INSERT INTO `tbl_estados` (`idestado`, `nombre`) VALUES
-	('4b8f4865-f68c-11e7-83f1-204747335338', 'AGUASCALIENTES'),
-	('4b8f4b64-f68c-11e7-83f1-204747335338', 'BAJA CALIFORNIA'),
-	('4b8f4bc4-f68c-11e7-83f1-204747335338', 'BAJA CALIFORNIA SUR'),
-	('4b8f4bfb-f68c-11e7-83f1-204747335338', 'CAMPECHE'),
-	('4b8f4c31-f68c-11e7-83f1-204747335338', 'CHIAPAS'),
-	('4b8f4c6d-f68c-11e7-83f1-204747335338', 'CHIHUAHUA'),
-	('4b8f4ca4-f68c-11e7-83f1-204747335338', 'CIUDAD DE MEXICO'),
-	('4b8f4cd4-f68c-11e7-83f1-204747335338', 'COAHUILA'),
-	('4b8f4d04-f68c-11e7-83f1-204747335338', 'COLIMA'),
-	('4b8f4d35-f68c-11e7-83f1-204747335338', 'DURANGO'),
-	('4b8f4d65-f68c-11e7-83f1-204747335338', 'EXTRANJERO'),
-	('4b8f4d8f-f68c-11e7-83f1-204747335338', 'GUANAJUATO'),
-	('4b8f4dc0-f68c-11e7-83f1-204747335338', 'GUERRERO'),
-	('4b8f4e4a-f68c-11e7-83f1-204747335338', 'HIDALGO'),
-	('4b8f4ee7-f68c-11e7-83f1-204747335338', 'JALISCO'),
-	('4b8f4f12-f68c-11e7-83f1-204747335338', 'MEXICO'),
-	('4b8f4f3c-f68c-11e7-83f1-204747335338', 'MICHOACAN'),
-	('4b8f4f72-f68c-11e7-83f1-204747335338', 'MORELOS'),
-	('4b8f4f97-f68c-11e7-83f1-204747335338', 'NAYARIT'),
-	('4b8f4fc1-f68c-11e7-83f1-204747335338', 'NUEVO LEON'),
-	('4b8f4feb-f68c-11e7-83f1-204747335338', 'OAXACA'),
-	('4b8f5015-f68c-11e7-83f1-204747335338', 'PUEBLA'),
-	('4b8f5040-f68c-11e7-83f1-204747335338', 'QUERETARO'),
-	('4b8f506a-f68c-11e7-83f1-204747335338', 'QUINTANA ROO'),
-	('4b8f5094-f68c-11e7-83f1-204747335338', 'SAN LUIS POTOSI'),
-	('4b8f50be-f68c-11e7-83f1-204747335338', 'SINALOA'),
-	('4b8f50e9-f68c-11e7-83f1-204747335338', 'SONORA'),
-	('4b8f510d-f68c-11e7-83f1-204747335338', 'TABASCO'),
-	('4b8f513d-f68c-11e7-83f1-204747335338', 'TAMAULIPAS'),
-	('4b8f5167-f68c-11e7-83f1-204747335338', 'TLAXCALA'),
-	('4b8f5192-f68c-11e7-83f1-204747335338', 'VERACRUZ'),
-	('4b8f51c2-f68c-11e7-83f1-204747335338', 'YUCATAN'),
-	('4b8f51ec-f68c-11e7-83f1-204747335338', 'ZACATECAS');
+	('4b8f4865-f68c-11e7-83f1-204747335338', 'Aguascalientes'),
+	('4b8f4b64-f68c-11e7-83f1-204747335338', 'Baja California'),
+	('4b8f4bc4-f68c-11e7-83f1-204747335338', 'Baja California Sur'),
+	('4b8f4bfb-f68c-11e7-83f1-204747335338', 'Campeche'),
+	('4b8f4c31-f68c-11e7-83f1-204747335338', 'Chiapas'),
+	('4b8f4c6d-f68c-11e7-83f1-204747335338', 'Chihuahua'),
+	('4b8f4ca4-f68c-11e7-83f1-204747335338', 'Ciudad de Mexico'),
+	('4b8f4cd4-f68c-11e7-83f1-204747335338', 'Coahuila'),
+	('4b8f4d04-f68c-11e7-83f1-204747335338', 'Colima'),
+	('4b8f4d35-f68c-11e7-83f1-204747335338', 'Durango'),
+	('4b8f4d65-f68c-11e7-83f1-204747335338', 'Extranjero'),
+	('4b8f4d8f-f68c-11e7-83f1-204747335338', 'Guanajuato'),
+	('4b8f4dc0-f68c-11e7-83f1-204747335338', 'Guerrero'),
+	('4b8f4e4a-f68c-11e7-83f1-204747335338', 'Hidalgo'),
+	('4b8f4ee7-f68c-11e7-83f1-204747335338', 'Jalisco'),
+	('4b8f4f12-f68c-11e7-83f1-204747335338', 'Mexico'),
+	('4b8f4f3c-f68c-11e7-83f1-204747335338', 'Michoacan'),
+	('4b8f4f72-f68c-11e7-83f1-204747335338', 'Morelos'),
+	('4b8f4f97-f68c-11e7-83f1-204747335338', 'Nayarit'),
+	('4b8f4fc1-f68c-11e7-83f1-204747335338', 'Nuevo Leon'),
+	('4b8f4feb-f68c-11e7-83f1-204747335338', 'Oaxaca'),
+	('4b8f5015-f68c-11e7-83f1-204747335338', 'Puebla'),
+	('4b8f5040-f68c-11e7-83f1-204747335338', 'Queretaro'),
+	('4b8f506a-f68c-11e7-83f1-204747335338', 'Quintana Roo'),
+	('4b8f5094-f68c-11e7-83f1-204747335338', 'San Luis Potosi'),
+	('4b8f50be-f68c-11e7-83f1-204747335338', 'Sinaloa'),
+	('4b8f50e9-f68c-11e7-83f1-204747335338', 'Sonora'),
+	('4b8f510d-f68c-11e7-83f1-204747335338', 'Tabasco'),
+	('4b8f513d-f68c-11e7-83f1-204747335338', 'Tamaulipas'),
+	('4b8f5167-f68c-11e7-83f1-204747335338', 'Tlaxcala'),
+	('4b8f5192-f68c-11e7-83f1-204747335338', 'Veracruz'),
+	('4b8f51c2-f68c-11e7-83f1-204747335338', 'Yucatan'),
+	('4b8f51ec-f68c-11e7-83f1-204747335338', 'Zacatecas');
 /*!40000 ALTER TABLE `tbl_estados` ENABLE KEYS */;
+
 
 -- Volcando estructura para tabla bd_guajiro.tbl_guarniciones
 CREATE TABLE IF NOT EXISTS `tbl_guarniciones` (
@@ -409,13 +426,14 @@ INSERT INTO `tbl_guarniciones` (`idguarnicion`, `nombre`, `fecha_creacion`, `fec
 	('b8a7543d-7b9a-11e7-9e1c-204747335338', 'Guarnición Caldos', '2017-08-07 13:03:31', NULL, NULL);
 /*!40000 ALTER TABLE `tbl_guarniciones` ENABLE KEYS */;
 
+
 -- Volcando estructura para tabla bd_guajiro.tbl_items
 CREATE TABLE IF NOT EXISTS `tbl_items` (
   `iditem` varchar(50) NOT NULL,
   `idlstipoitem` varchar(50) DEFAULT NULL,
   `descripcion` varchar(100) DEFAULT NULL,
   `existencia` decimal(10,2) DEFAULT NULL,
-  `inventariable` bit(1) DEFAULT NULL,
+  `inventariable` bit(1) DEFAULT b'0',
   `fecha_creacion` datetime DEFAULT CURRENT_TIMESTAMP,
   `fecha_modificacion` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `crea_usuario` varchar(50) DEFAULT NULL,
@@ -423,143 +441,145 @@ CREATE TABLE IF NOT EXISTS `tbl_items` (
   KEY `FK_tbl_items_tbl_listadoseldetalle` (`idlstipoitem`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_items: ~133 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_items: ~134 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_items` DISABLE KEYS */;
 INSERT INTO `tbl_items` (`iditem`, `idlstipoitem`, `descripcion`, `existencia`, `inventariable`, `fecha_creacion`, `fecha_modificacion`, `crea_usuario`) VALUES
-	('203ed470-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Sin queso', NULL, NULL, '2017-07-07 16:20:25', NULL, NULL),
-	('2363df31-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Sin crema', NULL, NULL, '2017-07-07 16:20:30', NULL, NULL),
-	('278ffee8-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Sin chile', NULL, NULL, '2017-07-07 16:20:37', NULL, NULL),
-	('2cf64c98-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Sin pepinillos', NULL, NULL, '2017-07-07 16:20:46', NULL, NULL),
-	('3ab4e624-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Cocido', NULL, NULL, '2017-07-07 16:21:09', NULL, NULL),
-	('453126ef-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Hervido', NULL, NULL, '2017-07-07 16:21:27', NULL, NULL),
-	('4e77d9d5-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Término Medio', NULL, NULL, '2017-07-07 16:21:42', '2017-07-07 16:23:14', NULL),
-	('5f579499-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Término 3/4', NULL, NULL, '2017-07-07 16:22:11', NULL, NULL),
-	('60bde04e-6359-11e7-a068-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Platanitos con Crema', NULL, NULL, '2017-07-07 16:15:04', NULL, NULL),
-	('6f83bd38-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Término Bien Cocido', NULL, NULL, '2017-07-07 16:22:38', NULL, NULL),
-	('7e17226c-6359-11e7-a068-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Frijoles refritos', NULL, NULL, '2017-07-07 16:15:53', NULL, NULL),
-	('96dde0eb-635a-11e7-a068-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Verduras hervidas', NULL, NULL, '2017-07-07 16:23:44', NULL, NULL),
-	('ab046a4b-6359-11e7-a068-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Arroz cocido', NULL, NULL, '2017-07-07 16:17:08', NULL, NULL),
-	('bf51059c-6359-11e7-a068-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Ensalada de lechuga, tomate y cebolla', NULL, NULL, '2017-07-07 16:17:42', NULL, NULL),
-	('c1e2ade4-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Vaso de Horchata', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f41760-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Vaso de Jamaica', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f41fa1-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Vaso de Tascalate', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f420bd-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Litro de Horchata', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f42166-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Litro de Jamaica', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f42221-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Litro de Tascalate', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f422ca-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Agua Bonafont 600 ml', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f4235b-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Manzana Lift 600 ml', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f4328c-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Senzao 600 ml', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f434b7-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Sprite 600 ml', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f435c7-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Fresca 600 ml', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f4366a-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Coca 500 ml cristal', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f43713-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Café', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f437c2-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Café con Leche', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f43859-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Té (Manzanilla, Limón, Verde)', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f43938-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Capuchino', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f439cf-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Malteadas (Fresa, Vainilla, Chocolate)', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f43a90-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Frappé (Café, Oreo)', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f43b33-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Chocolate', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f43bbe-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo con Verduras', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f43c61-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo con Chorizo', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f43cf2-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo con Jamón', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f43d89-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo con Tocino', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f43e1a-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo con Ejotes', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f43eab-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo a la Mexicana', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f43f3c-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo en Torta', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f43fcd-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo estrellado', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44064-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos rancheros', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44100-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos divorciados', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44191-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos con camarón seco', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44253-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos con machaca', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f442ea-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos con pollo deshebrado', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44386-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos con longaniza', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44417-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos motuleños', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f444a8-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Omelette de champiñones', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44545-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Omelette vegetariano', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f446ce-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Omelette con jamón', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f447a1-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Omelette con chorizo', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44838-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Chilaquiles con pollo', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f448c9-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Chilaquiles con huevo', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44960-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Enchiladas suizas', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f449f7-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Enfrijoladas', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44a8e-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Tostadas de pollo', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44b1f-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Tacos dorados', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44bb5-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Quesadillas', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44c46-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Torta de pollo', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44cdd-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Torta con huevo al gusto', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44d6e-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Plátano fritos', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44dff-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Papas a la francesa', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44e90-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Pan tostado (2 pzas)', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f44f1b-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Wafles (3 pzas)', NULL, NULL, '2017-05-17 15:52:36', '2017-07-07 16:25:16', NULL),
-	('c1f44fb2-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Jugo Verde', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45049-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Jugo de Naranja', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f450d4-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Jugo de Zanahoria', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45165-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Jugo Combinado', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f451f5-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Fruta del día', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f452b1-3b42-11e7-a2b5-204747335338', 'e47c720d-368a-11e7-b904-204747335338', 'Flan napolitano (rebanada)', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45348-3b42-11e7-a2b5-204747335338', 'e47c720d-368a-11e7-b904-204747335338', 'Helado ', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45427-3b42-11e7-a2b5-204747335338', 'e47c720d-368a-11e7-b904-204747335338', 'Bolis', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f4551e-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Ensalada sencilla', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f4561c-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Ensalada especial', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45720-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Ensalada de nopal', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f457cf-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Orden de arroz', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45860-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Orden de frijol', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f458f7-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Orden de espaguetti', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f4598d-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Orden de verduras al vapor', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45a24-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Sandwich de pollo', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45ac1-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Sandwich de jamón', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45b58-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Albóndiga en caldo', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45be9-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Albóndiga enchipotlada', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45c8c-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Arrachera', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45d17-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Barbacoa de res', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45da8-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Bistec a la mexicana', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f45e39-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Calabacita rellena de queso', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f900d2-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Caldo de marisco', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f90284-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Caldo de pescado', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f90352-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Caldo de res', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f90498-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Caldo tlalpeño', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f90595-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Camarón al mojo de ajo', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f90699-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Carne adobada frita', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f9079d-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Chilaquiles con pollo', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f9083a-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Chiles rellenos', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f908d0-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Chuleta ahumada frita', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f90961-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Chuleta de puerco frita', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f909f8-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Chuleta de res frita', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f90aa1-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Cochinita pibil', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f915ff-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Cochito', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f91764-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Costilla a la mexicana', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f9186d-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Costilla adobada', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f91965-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Costilla frita', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f91a5c-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Ejote capeado', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f91b4e-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Enchiladas de mole', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f91c4b-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Enchiladas suizas', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f91d3d-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Estofado de res', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f91e28-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Fajitas de pollo enchipotladas', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f91f62-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Filete de pescado al vapor', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f9206c-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Filete de pescado empanizado', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f921a0-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Hamburguesas', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f92285-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Higado encebollado', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f92383-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Mojarra frita', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f92480-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pechuga a la Cordon Blue', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f92578-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pechuga asada', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f9267c-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pechuga empanizada', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f92773-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pechuga frita', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f92871-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pechuga italiana', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f92962-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Picadillo de res', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f92a54-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo a la jardinera', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f92b4b-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo a la mexicana', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f92c43-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo en barbacoa', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f92d3a-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo en caldo', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f92e32-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo en estofado', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f92f29-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo en mole', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f9301b-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo en salsa de cochito', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f9310c-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo en salsa verde', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f931f8-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pozole', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f932dd-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Puerco en salsa verde', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f933db-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Sopa caldosa', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f934f1-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Tazajo con frijol y arroz', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL),
-	('c1f935e8-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Tortitas de papa', NULL, NULL, '2017-05-17 15:52:36', NULL, NULL);
+	('203ed470-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Sin queso', NULL, b'0', '2017-07-07 16:20:25', '2018-01-21 19:25:37', NULL),
+	('2363df31-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Sin crema', NULL, b'0', '2017-07-07 16:20:30', '2018-01-21 19:25:37', NULL),
+	('278ffee8-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Sin chile', NULL, b'0', '2017-07-07 16:20:37', '2018-01-21 19:25:37', NULL),
+	('2cf64c98-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Sin pepinillos', NULL, b'0', '2017-07-07 16:20:46', '2018-01-21 19:25:37', NULL),
+	('3ab4e624-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Cocido', NULL, b'0', '2017-07-07 16:21:09', '2018-01-21 19:25:37', NULL),
+	('453126ef-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Hervido', NULL, b'0', '2017-07-07 16:21:27', '2018-01-21 19:25:37', NULL),
+	('4e77d9d5-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Término Medio', NULL, b'0', '2017-07-07 16:21:42', '2018-01-21 19:25:37', NULL),
+	('5f579499-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Término 3/4', NULL, b'0', '2017-07-07 16:22:11', '2018-01-21 19:25:37', NULL),
+	('60bde04e-6359-11e7-a068-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Platanitos con Crema', NULL, b'0', '2017-07-07 16:15:04', '2018-01-21 19:25:37', NULL),
+	('6d04a3e7-ff26-11e7-83f1-204747335338', 'e47c66f1-368a-11e7-b904-204747335338', 'Huevos', 100.00, b'1', '2018-01-21 21:40:57', NULL, NULL),
+	('6f83bd38-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Término Bien Cocido', NULL, b'0', '2017-07-07 16:22:38', '2018-01-21 19:25:37', NULL),
+	('7e17226c-6359-11e7-a068-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Frijoles refritos', NULL, b'0', '2017-07-07 16:15:53', '2018-01-21 19:25:37', NULL),
+	('96dde0eb-635a-11e7-a068-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Verduras hervidas', NULL, b'0', '2017-07-07 16:23:44', '2018-01-21 19:25:37', NULL),
+	('ab046a4b-6359-11e7-a068-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Arroz cocido', NULL, b'0', '2017-07-07 16:17:08', '2018-01-21 19:25:37', NULL),
+	('bf51059c-6359-11e7-a068-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Ensalada de lechuga, tomate y cebolla', NULL, b'0', '2017-07-07 16:17:42', '2018-01-21 19:25:37', NULL),
+	('c1e2ade4-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Vaso de Horchata', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f41760-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Vaso de Jamaica', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f41fa1-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Vaso de Tascalate', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f420bd-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Litro de Horchata', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f42166-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Litro de Jamaica', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f42221-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Litro de Tascalate', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f422ca-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Agua Bonafont 600 ml', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f4235b-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Manzana Lift 600 ml', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f4328c-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Senzao 600 ml', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f434b7-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Sprite 600 ml', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f435c7-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Fresca 600 ml', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f4366a-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Coca 500 ml cristal', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f43713-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Café', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f437c2-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Café con Leche', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f43859-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Té (Manzanilla, Limón, Verde)', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f43938-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Capuchino', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f439cf-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Malteadas (Fresa, Vainilla, Chocolate)', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f43a90-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Frappé (Café, Oreo)', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f43b33-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Chocolate', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f43bbe-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo con Verduras', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f43c61-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo con Chorizo', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f43cf2-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo con Jamón', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f43d89-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo con Tocino', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f43e1a-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo con Ejotes', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f43eab-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo a la Mexicana', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f43f3c-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo en Torta', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f43fcd-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevo estrellado', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f44064-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos rancheros', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f44100-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos divorciados', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f44191-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos con camarón seco', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f44253-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos con machaca', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f442ea-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos con pollo deshebrado', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f44386-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos con longaniza', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f44417-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Huevos motuleños', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f444a8-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Omelette de champiñones', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f44545-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Omelette vegetariano', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f446ce-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Omelette con jamón', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f447a1-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Omelette con chorizo', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f44838-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Chilaquiles con pollo', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f448c9-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Chilaquiles con huevo', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f44960-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Enchiladas suizas', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f449f7-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Enfrijoladas', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f44a8e-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Tostadas de pollo', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f44b1f-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Tacos dorados', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f44bb5-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Quesadillas', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f44c46-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Torta de pollo', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f44cdd-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Torta con huevo al gusto', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f44d6e-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Plátano fritos', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f44dff-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Papas a la francesa', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f44e90-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Pan tostado (2 pzas)', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f44f1b-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Wafles (3 pzas)', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f44fb2-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Jugo Verde', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f45049-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Jugo de Naranja', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f450d4-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Jugo de Zanahoria', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f45165-3b42-11e7-a2b5-204747335338', 'e47c70cd-368a-11e7-b904-204747335338', 'Jugo Combinado', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f451f5-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Fruta del día', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f452b1-3b42-11e7-a2b5-204747335338', 'e47c720d-368a-11e7-b904-204747335338', 'Flan napolitano (rebanada)', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f45348-3b42-11e7-a2b5-204747335338', 'e47c720d-368a-11e7-b904-204747335338', 'Helado ', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f45427-3b42-11e7-a2b5-204747335338', 'e47c720d-368a-11e7-b904-204747335338', 'Bolis', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f4551e-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Ensalada sencilla', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f4561c-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Ensalada especial', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f45720-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Ensalada de nopal', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f457cf-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Orden de arroz', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f45860-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Orden de frijol', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f458f7-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Orden de espaguetti', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f4598d-3b42-11e7-a2b5-204747335338', '10c9f0b5-39dd-11e7-b904-204747335338', 'Orden de verduras al vapor', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f45a24-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Sandwich de pollo', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f45ac1-3b42-11e7-a2b5-204747335338', 'e47c6f87-368a-11e7-b904-204747335338', 'Sandwich de jamón', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f45b58-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Albóndiga en caldo', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f45be9-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Albóndiga enchipotlada', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f45c8c-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Arrachera', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f45d17-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Barbacoa de res', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f45da8-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Bistec a la mexicana', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f45e39-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Calabacita rellena de queso', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f900d2-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Caldo de marisco', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f90284-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Caldo de pescado', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f90352-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Caldo de res', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f90498-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Caldo tlalpeño', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f90595-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Camarón al mojo de ajo', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f90699-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Carne adobada frita', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f9079d-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Chilaquiles con pollo', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f9083a-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Chiles rellenos', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f908d0-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Chuleta ahumada frita', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f90961-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Chuleta de puerco frita', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f909f8-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Chuleta de res frita', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f90aa1-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Cochinita pibil', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f915ff-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Cochito', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f91764-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Costilla a la mexicana', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f9186d-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Costilla adobada', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f91965-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Costilla frita', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f91a5c-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Ejote capeado', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f91b4e-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Enchiladas de mole', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f91c4b-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Enchiladas suizas', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f91d3d-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Estofado de res', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f91e28-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Fajitas de pollo enchipotladas', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f91f62-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Filete de pescado al vapor', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f9206c-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Filete de pescado empanizado', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f921a0-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Hamburguesas', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f92285-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Higado encebollado', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f92383-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Mojarra frita', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f92480-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pechuga a la Cordon Blue', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f92578-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pechuga asada', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f9267c-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pechuga empanizada', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f92773-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pechuga frita', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f92871-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pechuga italiana', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f92962-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Picadillo de res', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f92a54-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo a la jardinera', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f92b4b-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo a la mexicana', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f92c43-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo en barbacoa', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f92d3a-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo en caldo', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f92e32-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo en estofado', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f92f29-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo en mole', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f9301b-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo en salsa de cochito', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f9310c-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pollo en salsa verde', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f931f8-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Pozole', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f932dd-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Puerco en salsa verde', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f933db-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Sopa caldosa', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f934f1-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Tazajo con frijol y arroz', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('c1f935e8-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Tortitas de papa', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL);
 /*!40000 ALTER TABLE `tbl_items` ENABLE KEYS */;
+
 
 -- Volcando estructura para tabla bd_guajiro.tbl_listadoseldetalle
 CREATE TABLE IF NOT EXISTS `tbl_listadoseldetalle` (
@@ -571,7 +591,7 @@ CREATE TABLE IF NOT EXISTS `tbl_listadoseldetalle` (
   CONSTRAINT `FK_tbl_listadoseldetalle_tbl_listadoseleccion` FOREIGN KEY (`idlistadoseleccion`) REFERENCES `tbl_listadoseleccion` (`idlistadoseleccion`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_listadoseldetalle: ~28 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_listadoseldetalle: ~30 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_listadoseldetalle` DISABLE KEYS */;
 INSERT INTO `tbl_listadoseldetalle` (`idlsselecciondetalle`, `idlistadoseleccion`, `descripcion`) VALUES
 	('10c9f0b5-39dd-11e7-b904-204747335338', '434bf20e-3688-11e7-b904-204747335338', 'Guarnición'),
@@ -579,6 +599,8 @@ INSERT INTO `tbl_listadoseldetalle` (`idlsselecciondetalle`, `idlistadoseleccion
 	('6c221cc9-6284-11e7-a068-204747335338', '64a0a6ab-3688-11e7-b904-204747335338', 'Opciones'),
 	('9ae3b470-39dc-11e7-b904-204747335338', '434bf20e-3688-11e7-b904-204747335338', 'Comida'),
 	('abdaa948-3b86-11e7-a2b5-204747335338', '5fd493ef-3688-11e7-b904-204747335338', 'Taza'),
+	('e0e8f331-fe83-11e7-83f1-204747335338', '4f6f64bf-3688-11e7-b904-204747335338', 'Moral'),
+	('e0eaa02f-fe83-11e7-83f1-204747335338', '4f6f64bf-3688-11e7-b904-204747335338', 'Fisica'),
 	('e47c55ba-368a-11e7-b904-204747335338', '34110ff8-3688-11e7-b904-204747335338', 'Ingreso'),
 	('e47c6009-368a-11e7-b904-204747335338', '595922d0-3688-11e7-b904-204747335338', 'Cliente'),
 	('e47c61f8-368a-11e7-b904-204747335338', '595922d0-3688-11e7-b904-204747335338', 'Proveedor'),
@@ -604,6 +626,7 @@ INSERT INTO `tbl_listadoseldetalle` (`idlsselecciondetalle`, `idlistadoseleccion
 	('ff9a4ea2-f42a-11e7-83f1-204747335338', 'b06d265a-f42a-11e7-83f1-204747335338', 'Trabajo');
 /*!40000 ALTER TABLE `tbl_listadoseldetalle` ENABLE KEYS */;
 
+
 -- Volcando estructura para tabla bd_guajiro.tbl_listadoseleccion
 CREATE TABLE IF NOT EXISTS `tbl_listadoseleccion` (
   `idlistadoseleccion` varchar(50) NOT NULL,
@@ -623,6 +646,7 @@ INSERT INTO `tbl_listadoseleccion` (`idlistadoseleccion`, `descripcion`) VALUES
 	('b06d265a-f42a-11e7-83f1-204747335338', 'Tipo Teléfono');
 /*!40000 ALTER TABLE `tbl_listadoseleccion` ENABLE KEYS */;
 
+
 -- Volcando estructura para tabla bd_guajiro.tbl_menudeldia
 CREATE TABLE IF NOT EXISTS `tbl_menudeldia` (
   `idmenu` varchar(50) NOT NULL,
@@ -630,12 +654,14 @@ CREATE TABLE IF NOT EXISTS `tbl_menudeldia` (
   PRIMARY KEY (`idmenu`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_menudeldia: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_menudeldia: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_menudeldia` DISABLE KEYS */;
 INSERT INTO `tbl_menudeldia` (`idmenu`, `fecha`) VALUES
+	('14159f86-188a-4e27-a350-711db0b4c2e6', '2018-01-21 14:12:08'),
 	('635ccee7-e232-11e7-9155-204747335338', '2017-12-16 01:42:25'),
 	('ccae6972-cf45-46d4-8122-8714a176833e', '2018-01-15 20:53:20');
 /*!40000 ALTER TABLE `tbl_menudeldia` ENABLE KEYS */;
+
 
 -- Volcando estructura para tabla bd_guajiro.tbl_mesas
 CREATE TABLE IF NOT EXISTS `tbl_mesas` (
@@ -661,6 +687,7 @@ INSERT INTO `tbl_mesas` (`idmesa`, `num_mesa`, `desc_mesa`) VALUES
 	('1e23f0fd-83a4-11e7-b695-204747335338', 10, 'Mesa 10');
 /*!40000 ALTER TABLE `tbl_mesas` ENABLE KEYS */;
 
+
 -- Volcando estructura para tabla bd_guajiro.tbl_movimientos
 CREATE TABLE IF NOT EXISTS `tbl_movimientos` (
   `idmovimiento` varchar(50) NOT NULL,
@@ -685,6 +712,7 @@ INSERT INTO `tbl_movimientos` (`idmovimiento`, `idlstipomovimiento`, `fecha`, `d
 	('ea37a7ee-e2f0-11e7-9155-204747335338', 'e47c55ba-368a-11e7-b904-204747335338', '2017-12-11 01:11:14', 'Venta de Comida', 70.00, '2017-12-17 00:06:14', '2018-01-13 18:16:10', 'c7bfeac8-3c10-11e7-a2b5-204747335338');
 /*!40000 ALTER TABLE `tbl_movimientos` ENABLE KEYS */;
 
+
 -- Volcando estructura para tabla bd_guajiro.tbl_municipios
 CREATE TABLE IF NOT EXISTS `tbl_municipios` (
   `idmunicipio` varchar(100) NOT NULL,
@@ -693,26 +721,145 @@ CREATE TABLE IF NOT EXISTS `tbl_municipios` (
   PRIMARY KEY (`idmunicipio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_municipios: ~16 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_municipios: ~134 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_municipios` DISABLE KEYS */;
 INSERT INTO `tbl_municipios` (`idmunicipio`, `idestado`, `nombre`) VALUES
-	('0DEDFD4A-BC92-466E-A801-072163B09CF1', '4b8f4865-f68c-11e7-83f1-204747335338', 'RINCON DE ROMOS'),
-	('0E5FD219-ADA1-41F1-B6AF-F9947716B161', '4b8f4865-f68c-11e7-83f1-204747335338', 'SAN FRANCISCO DE LOS ROMO'),
-	('1A9EFA34-B0FB-4A30-BBC5-2B3E9A0F10EE', '4b8f4865-f68c-11e7-83f1-204747335338', 'SAN JOSE DE GRACIA'),
-	('1e919eff-f73c-11e7-83f1-204747335338', '4b8f4b64-f68c-11e7-83f1-204747335338', 'ENSENADA'),
-	('1e91a5b8-f73c-11e7-83f1-204747335338', '4b8f4b64-f68c-11e7-83f1-204747335338', 'MEXICALI'),
-	('1e91a685-f73c-11e7-83f1-204747335338', '4b8f4b64-f68c-11e7-83f1-204747335338', 'PLAYAS DE ROSARITO'),
-	('1e91a76a-f73c-11e7-83f1-204747335338', '4b8f4b64-f68c-11e7-83f1-204747335338', 'TECATE'),
-	('1e91a813-f73c-11e7-83f1-204747335338', '4b8f4b64-f68c-11e7-83f1-204747335338', 'TIJUANA'),
-	('3E5B4EB2-89C9-4005-95CB-ABE09B5B9F07', '4b8f4865-f68c-11e7-83f1-204747335338', 'CALVILLO'),
-	('4A6E5A17-C9C9-4BDB-991E-CBBED0819A26', '4b8f4865-f68c-11e7-83f1-204747335338', 'AGUASCALIENTES'),
-	('5A9BB178-DE43-4508-BC20-EC49F6C431A5', '4b8f4865-f68c-11e7-83f1-204747335338', 'ASIENTOS'),
-	('6342D3BF-62AF-4AA5-BA25-9B506AAC06F3', '4b8f4865-f68c-11e7-83f1-204747335338', 'JESUS MARIA'),
-	('66EB9365-E952-46AB-8F0F-22E4A1D02462', '4b8f4865-f68c-11e7-83f1-204747335338', 'TEPEZALA'),
-	('6860D91D-9C4D-4FA2-A1D0-EB5E2C52C676', '4b8f4865-f68c-11e7-83f1-204747335338', 'COSIO'),
-	('7C237197-A585-4173-8B33-73A74680B2C3', '4b8f4865-f68c-11e7-83f1-204747335338', 'PABELLON DE ARTEAGA'),
-	('CC4B4142-EC40-4CF5-A90C-0D68689BFBA7', '4b8f4865-f68c-11e7-83f1-204747335338', 'EL LLANO');
+	('0DEDFD4A-BC92-466E-A801-072163B09CF1', '4b8f4865-f68c-11e7-83f1-204747335338', 'Rincon de Romos'),
+	('0E5FD219-ADA1-41F1-B6AF-F9947716B161', '4b8f4865-f68c-11e7-83f1-204747335338', 'San Francisco de los Romo'),
+	('1A9EFA34-B0FB-4A30-BBC5-2B3E9A0F10EE', '4b8f4865-f68c-11e7-83f1-204747335338', 'San Jose de Gracia'),
+	('1e919eff-f73c-11e7-83f1-204747335338', '4b8f4b64-f68c-11e7-83f1-204747335338', 'Ensenada'),
+	('1e91a5b8-f73c-11e7-83f1-204747335338', '4b8f4b64-f68c-11e7-83f1-204747335338', 'Mexicali'),
+	('1e91a685-f73c-11e7-83f1-204747335338', '4b8f4b64-f68c-11e7-83f1-204747335338', 'Playas de Rosarito'),
+	('1e91a76a-f73c-11e7-83f1-204747335338', '4b8f4b64-f68c-11e7-83f1-204747335338', 'Tecate'),
+	('1e91a813-f73c-11e7-83f1-204747335338', '4b8f4b64-f68c-11e7-83f1-204747335338', 'Tijuana'),
+	('3E5B4EB2-89C9-4005-95CB-ABE09B5B9F07', '4b8f4865-f68c-11e7-83f1-204747335338', 'Calvillo'),
+	('4929d9ef-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Acacoyagua'),
+	('4929debf-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Acala'),
+	('4929df4a-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Acapetahua'),
+	('4929e029-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Aldama'),
+	('4929e090-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Altamirano'),
+	('4929e0f0-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Amatan'),
+	('4929e14b-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Amatenango de la Frontera'),
+	('4929e1be-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Amatenango del Valle'),
+	('4929e23c-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Angel Albino Corzo'),
+	('4929e291-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Arriaga'),
+	('4929e2eb-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Bejucal de Ocampo'),
+	('4929e33a-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Bella Vista'),
+	('4929e395-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Benemerito de las Americas'),
+	('4929e3f5-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Berriozabal'),
+	('4929e450-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Bochil'),
+	('4929e4a4-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Cacahoatan'),
+	('4929e505-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Catazaja'),
+	('4929e565-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Chalchihuitan'),
+	('4929e5d8-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Chamula'),
+	('4929e621-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Chanal'),
+	('4929e65d-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Chapultenango'),
+	('4929e9aa-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Chenalho'),
+	('4929ea2f-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Chiapa de Corzo'),
+	('4929ea6b-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Chiapilla'),
+	('4929eaa8-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Chicoasen'),
+	('4929eade-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Chicomuselo'),
+	('4929eb1a-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Chilon'),
+	('4929eb57-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Cintalapa'),
+	('4929eb87-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Coapilla'),
+	('4929ebbd-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Comitan de Dominguez'),
+	('4929ebf4-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Copainala'),
+	('4929ec24-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'El Bosque'),
+	('4929ec5a-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'El Porvenir'),
+	('4929ec97-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Escuintla'),
+	('4929eccd-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Francisco Leon'),
+	('4929ed04-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Frontera Comalapa'),
+	('4929ed3a-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Frontera Hidalgo'),
+	('4929ed70-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Huehuetan'),
+	('4929eda7-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Huitiupan'),
+	('4929eddd-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Huixtan'),
+	('4929ee13-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Huixtla'),
+	('4929ee44-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Ixhuatan'),
+	('4929ee7a-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Ixtacomitan'),
+	('4929eeb0-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Ixtapa'),
+	('4929eeff-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Ixtapangajoya'),
+	('4929ef35-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Jiquipilas'),
+	('4929ef6b-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Jitotol'),
+	('4929efa2-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Juarez'),
+	('4929efd8-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'La Concordia'),
+	('4929f00e-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'La Grandeza'),
+	('4929f045-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'La Independencia'),
+	('4929f081-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'La Libertad'),
+	('4929f0b1-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'La Trinitaria'),
+	('4929f0e8-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Larrainzar'),
+	('4929f11e-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Las Margaritas'),
+	('4929f14e-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Las Rosas'),
+	('4929f185-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Mapastepec'),
+	('4929f1bb-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Maravilla Tenejapa'),
+	('4929f1f7-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Marques de Comillas'),
+	('4929f228-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Mazapa de Madero'),
+	('4929f25e-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Mazatan'),
+	('4929f2b3-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Metapa'),
+	('4929f2e3-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Mitontic'),
+	('4929f319-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Montecristo de Guerrero'),
+	('4929f356-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Motozintla'),
+	('4929f38c-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Nicolas Ruiz'),
+	('4929f3bc-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Ocosingo'),
+	('4929f3ff-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Ocotepec'),
+	('4929f43b-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Ocozocoautla de Espinosa'),
+	('4929f471-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Ostuacan'),
+	('4929f4a2-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Osumacinta'),
+	('4929f4f0-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Oxchuc'),
+	('4929f526-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Palenque'),
+	('4929f557-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Pantelho'),
+	('4929f58d-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Pantepec'),
+	('4929f5c9-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Pichucalco'),
+	('4929f600-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Pijijiapan'),
+	('4929f630-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Pueblo Nuevo Solistahuacan'),
+	('4929f666-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Rayon'),
+	('4929f69d-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Reforma'),
+	('4929f6d3-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Sabanilla'),
+	('4929f709-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Salto de Agua'),
+	('4929f740-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'San Andres Duraznal'),
+	('4929f770-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'San Cristobal de las Casas'),
+	('4929f7ac-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'San Fernando'),
+	('4929f7e3-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'San Juan Cancuc'),
+	('4929f81f-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'San Lucas'),
+	('4929f856-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Santiago El Pinar'),
+	('4929f88c-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Siltepec'),
+	('4929f8da-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Simojovel'),
+	('4929f911-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Sitala'),
+	('4929f947-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Socoltenango'),
+	('4929f983-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Solosuchiapa'),
+	('4929f9b4-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Soyalo'),
+	('4929f9e4-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Suchiapa'),
+	('4929fa1a-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Suchiate'),
+	('4929fa51-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Sunuapa'),
+	('4929fa81-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Tapachula'),
+	('4929fabd-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Tapalapa'),
+	('4929faee-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Tapilula'),
+	('4929fb1e-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Tecpatan'),
+	('4929fb54-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Tenejapa'),
+	('4929fb85-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Teopisca'),
+	('4929fbbb-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Tila'),
+	('4929fbf1-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Tonala'),
+	('4929fc22-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Totolapa'),
+	('4929fc58-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Tumbala'),
+	('4929fc88-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Tuxtla Chico'),
+	('4929fcbf-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Tuxtla Gutierrez'),
+	('4929fcef-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Tuzantan'),
+	('4929fd25-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Tzimol'),
+	('4929fd5b-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Union Juarez'),
+	('4929fd92-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Venustiano Carranza'),
+	('4929fdce-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Villa Comaltitlan'),
+	('4929fe0b-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Villa Corzo'),
+	('4929fe41-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Villaflores'),
+	('4929fe71-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Yajalon'),
+	('4929fea2-fcd3-11e7-83f1-204747335338', '4b8f4c31-f68c-11e7-83f1-204747335338', 'Zinacantan'),
+	('4A6E5A17-C9C9-4BDB-991E-CBBED0819A26', '4b8f4865-f68c-11e7-83f1-204747335338', 'Aguascalientes'),
+	('5A9BB178-DE43-4508-BC20-EC49F6C431A5', '4b8f4865-f68c-11e7-83f1-204747335338', 'Asientos'),
+	('6342D3BF-62AF-4AA5-BA25-9B506AAC06F3', '4b8f4865-f68c-11e7-83f1-204747335338', 'Jesús María'),
+	('66EB9365-E952-46AB-8F0F-22E4A1D02462', '4b8f4865-f68c-11e7-83f1-204747335338', 'Tepezala'),
+	('6860D91D-9C4D-4FA2-A1D0-EB5E2C52C676', '4b8f4865-f68c-11e7-83f1-204747335338', 'Cosío'),
+	('7C237197-A585-4173-8B33-73A74680B2C3', '4b8f4865-f68c-11e7-83f1-204747335338', 'Pabellón de Arteaga'),
+	('CC4B4142-EC40-4CF5-A90C-0D68689BFBA7', '4b8f4865-f68c-11e7-83f1-204747335338', 'El Llano');
 /*!40000 ALTER TABLE `tbl_municipios` ENABLE KEYS */;
+
 
 -- Volcando estructura para tabla bd_guajiro.tbl_ordenes
 CREATE TABLE IF NOT EXISTS `tbl_ordenes` (
@@ -797,28 +944,39 @@ INSERT INTO `tbl_ordenes` (`idorden`, `iditem`, `idguarnicion`, `descripcion`, `
 	('80bc8740-6385-11e7-a068-204747335338', 'c1f935e8-3b42-11e7-a2b5-204747335338', '204e3315-7b3a-11e7-955d-204747335338', 'Tortitas de papa', '2017-07-07 21:30:55', '2017-08-07 12:55:55', NULL);
 /*!40000 ALTER TABLE `tbl_ordenes` ENABLE KEYS */;
 
+
 -- Volcando estructura para tabla bd_guajiro.tbl_personas
 CREATE TABLE IF NOT EXISTS `tbl_personas` (
   `idpersona` varchar(50) NOT NULL,
   `idlstipopersona` varchar(50) DEFAULT NULL,
+  `idlstipocontribuyente` varchar(50) DEFAULT NULL,
+  `rfc` varchar(15) DEFAULT NULL,
   `nprimario` varchar(100) DEFAULT NULL,
   `nsecundario` varchar(100) DEFAULT NULL,
   `paterno` varchar(100) DEFAULT NULL,
   `materno` varchar(100) DEFAULT NULL,
   `razon_social` varchar(350) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
   `fecha_creacion` datetime DEFAULT CURRENT_TIMESTAMP,
   `fecha_modificacion` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `crea_usuario` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idpersona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_personas: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_personas: ~9 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_personas` DISABLE KEYS */;
-INSERT INTO `tbl_personas` (`idpersona`, `idlstipopersona`, `nprimario`, `nsecundario`, `paterno`, `materno`, `razon_social`, `fecha_creacion`, `fecha_modificacion`, `crea_usuario`) VALUES
-	('1c87a56f-e479-11e7-8cd6-204747335338', 'e47c6009-368a-11e7-b904-204747335338', 'Público', NULL, 'General', NULL, 'Público General', '2018-01-17 00:37:49', NULL, NULL),
-	('3ec57991-da4a-11e7-9155-204747335338', 'e47c6009-368a-11e7-b904-204747335338', 'Juan', 'José', 'López', 'Caste', 'Juan José López Caste', '2018-01-17 00:37:49', NULL, NULL),
-	('954b649c-3c10-11e7-a2b5-204747335338', 'e47c6009-368a-11e7-b904-204747335338', 'Elí', 'Bulmaro', 'Zenteno', 'Moreno', 'Elí Bulmaro Zenteno Moreno', '2018-01-17 00:37:49', NULL, NULL);
+INSERT INTO `tbl_personas` (`idpersona`, `idlstipopersona`, `idlstipocontribuyente`, `rfc`, `nprimario`, `nsecundario`, `paterno`, `materno`, `razon_social`, `email`, `fecha_creacion`, `fecha_modificacion`, `crea_usuario`) VALUES
+	('12284d7a-e164-4732-8d55-3a86ac97973d', 'e47c61f8-368a-11e7-b904-204747335338', 'e0e8f331-fe83-11e7-83f1-204747335338', 'SAMS', 'Sam\'s', NULL, 'Club', 'Walmart', 'Tiendas Walmart S.A. de C.V.', NULL, '2018-01-21 12:30:38', '2018-01-21 12:32:45', '954b649c-3c10-11e7-a2b5-204747335338'),
+	('1c87a56f-e479-11e7-8cd6-204747335338', 'e47c6009-368a-11e7-b904-204747335338', 'e0eaa02f-fe83-11e7-83f1-204747335338', 'XAXX010101000', 'Público', NULL, 'General', NULL, 'Público General', NULL, '2018-01-17 00:37:49', '2018-01-21 08:53:45', '954b649c-3c10-11e7-a2b5-204747335338'),
+	('1f546f39-9ed6-4ff2-8ad4-376d3bb510d5', 'e47c6009-368a-11e7-b904-204747335338', 'e0e8f331-fe83-11e7-83f1-204747335338', 'ABCD123456789', NULL, NULL, NULL, NULL, 'Llantera 7 Leguas', NULL, '2018-01-21 14:53:59', NULL, '954b649c-3c10-11e7-a2b5-204747335338'),
+	('3ec57991-da4a-11e7-9155-204747335338', 'e47c6009-368a-11e7-b904-204747335338', 'e0eaa02f-fe83-11e7-83f1-204747335338', 'LOCJ680608JW3', 'Juan', 'José', 'López', 'Caste', 'Juan José López Caste', NULL, '2018-01-17 00:37:49', '2018-01-21 08:53:47', '954b649c-3c10-11e7-a2b5-204747335338'),
+	('4b342018-1724-464b-bbdb-6b2e1597664f', 'e47c61f8-368a-11e7-b904-204747335338', 'e0eaa02f-fe83-11e7-83f1-204747335338', 'qwert', 'Juan', '', 'Pérez', NULL, 'Juan  Pérez ', NULL, '2018-01-21 18:45:57', NULL, '954b649c-3c10-11e7-a2b5-204747335338'),
+	('954b649c-3c10-11e7-a2b5-204747335338', 'e47c6009-368a-11e7-b904-204747335338', 'e0eaa02f-fe83-11e7-83f1-204747335338', 'ZEME790501KE1', 'Elí', 'Bulmaro', 'Zenteno', 'Moreno', 'Elí Bulmaro Zenteno Moreno', NULL, '2018-01-17 00:37:49', '2018-01-21 08:53:49', '954b649c-3c10-11e7-a2b5-204747335338'),
+	('a31b0a0f-c6ef-4961-9c96-7ee2cef96b81', 'e47c6009-368a-11e7-b904-204747335338', 'e0eaa02f-fe83-11e7-83f1-204747335338', 'BAKB800101CA5', 'Benito', 'Carlos', 'Baez', 'Kuh', 'Benito Carlos Baez Kuh', NULL, '2018-01-20 00:30:18', '2018-01-21 08:53:51', '954b649c-3c10-11e7-a2b5-204747335338'),
+	('cdf75403-7c45-4689-a7fb-3b613684739c', 'e47c6009-368a-11e7-b904-204747335338', 'e0eaa02f-fe83-11e7-83f1-204747335338', 'COCS750721LR9', 'Stephen', 'T.', 'Colbert', 'C.', 'Stephen T. Colbert C.', NULL, '2018-01-20 00:08:42', '2018-01-21 08:53:53', '954b649c-3c10-11e7-a2b5-204747335338'),
+	('e7e56c93-8f4c-4c7a-96c3-a2c30e741b30', 'e47c61f8-368a-11e7-b904-204747335338', 'e0e8f331-fe83-11e7-83f1-204747335338', 'PLPB123456AS1', 'Plásticos', NULL, 'Pablin', 'S.A. de C.V.', 'Plásticos  Pablin S.A. de C.V.', NULL, '2018-01-21 10:14:48', '2018-01-21 12:32:41', '954b649c-3c10-11e7-a2b5-204747335338');
 /*!40000 ALTER TABLE `tbl_personas` ENABLE KEYS */;
+
 
 -- Volcando estructura para tabla bd_guajiro.tbl_telefonos
 CREATE TABLE IF NOT EXISTS `tbl_telefonos` (
@@ -829,11 +987,16 @@ CREATE TABLE IF NOT EXISTS `tbl_telefonos` (
   PRIMARY KEY (`idtelefono`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_telefonos: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_telefonos: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_telefonos` DISABLE KEYS */;
 INSERT INTO `tbl_telefonos` (`idtelefono`, `idpersona`, `idlstipotelefono`, `numtelefono`) VALUES
-	('0e849f3a-fbb1-11e7-9da6-1c1b0dd5d000', '3ec57991-da4a-11e7-9155-204747335338', 'ff9a4a3f-f42a-11e7-83f1-204747335338', '961-123-4567');
+	('0e849f3a-fbb1-11e7-9da6-1c1b0dd5d000', '3ec57991-da4a-11e7-9155-204747335338', 'ff9a4a3f-f42a-11e7-83f1-204747335338', '961-123-4567'),
+	('145ab96d-44d3-41d4-86d0-9809b422ee80', '1f546f39-9ed6-4ff2-8ad4-376d3bb510d5', 'ff9a4ea2-f42a-11e7-83f1-204747335338', '1234565422'),
+	('c7df8d58-e375-4788-9c96-b51da56bd694', 'e7e56c93-8f4c-4c7a-96c3-a2c30e741b30', 'ff9a4ea2-f42a-11e7-83f1-204747335338', '123456789'),
+	('cba209bf-2e58-4745-8780-c18052c5c7a1', 'cdf75403-7c45-4689-a7fb-3b613684739c', 'ff9a4a3f-f42a-11e7-83f1-204747335338', '9611234567'),
+	('fcf9da47-ebea-46fb-a27a-79de6a0dc71f', 'a31b0a0f-c6ef-4961-9c96-7ee2cef96b81', 'ff9a4a3f-f42a-11e7-83f1-204747335338', '9611234567');
 /*!40000 ALTER TABLE `tbl_telefonos` ENABLE KEYS */;
+
 
 -- Volcando estructura para tabla bd_guajiro.tbl_usuarios
 CREATE TABLE IF NOT EXISTS `tbl_usuarios` (
@@ -850,14 +1013,17 @@ INSERT INTO `tbl_usuarios` (`idusuario`, `idpersona`, `login`, `password`) VALUE
 	('c7bfeac8-3c10-11e7-a2b5-204747335338', '954b649c-3c10-11e7-a2b5-204747335338', 'admin', '21232f297a57a5a743894a0e4a801fc3');
 /*!40000 ALTER TABLE `tbl_usuarios` ENABLE KEYS */;
 
+
 -- Volcando estructura para vista bd_guajiro.vw_clientes_directorio
 -- Creando tabla temporal para superar errores de dependencia de VIEW
 CREATE TABLE `vw_clientes_directorio` (
 	`idpersona` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
 	`razon_social` VARCHAR(350) NULL COLLATE 'utf8_general_ci',
+	`rfc` VARCHAR(15) NULL COLLATE 'utf8_general_ci',
 	`direccion` VARCHAR(470) NOT NULL COLLATE 'utf8_general_ci',
 	`fecha_creacion` DATETIME NULL
 ) ENGINE=MyISAM;
+
 
 -- Volcando estructura para vista bd_guajiro.vw_lista_clientes
 -- Creando tabla temporal para superar errores de dependencia de VIEW
@@ -866,6 +1032,7 @@ CREATE TABLE `vw_lista_clientes` (
 	`idlstipopersona` VARCHAR(50) NULL COLLATE 'utf8_general_ci',
 	`razon_social` VARCHAR(350) NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
+
 
 -- Volcando estructura para vista bd_guajiro.vw_lista_comandas
 -- Creando tabla temporal para superar errores de dependencia de VIEW
@@ -879,6 +1046,7 @@ CREATE TABLE `vw_lista_comandas` (
 	`total` DECIMAL(10,2) NULL
 ) ENGINE=MyISAM;
 
+
 -- Volcando estructura para vista bd_guajiro.vw_lista_direcciones
 -- Creando tabla temporal para superar errores de dependencia de VIEW
 CREATE TABLE `vw_lista_direcciones` (
@@ -886,6 +1054,7 @@ CREATE TABLE `vw_lista_direcciones` (
 	`idpersona` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
 	`direccion` TEXT NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
+
 
 -- Volcando estructura para vista bd_guajiro.vw_lista_ordenes
 -- Creando tabla temporal para superar errores de dependencia de VIEW
@@ -898,6 +1067,7 @@ CREATE TABLE `vw_lista_ordenes` (
 	`nombreguarnicion` VARCHAR(100) NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
 
+
 -- Volcando estructura para vista bd_guajiro.vw_lista_personas
 -- Creando tabla temporal para superar errores de dependencia de VIEW
 CREATE TABLE `vw_lista_personas` (
@@ -905,6 +1075,7 @@ CREATE TABLE `vw_lista_personas` (
 	`login` VARCHAR(20) NULL COLLATE 'utf8_general_ci',
 	`razon_social` VARCHAR(350) NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
+
 
 -- Volcando estructura para vista bd_guajiro.vw_lista_precios
 -- Creando tabla temporal para superar errores de dependencia de VIEW
@@ -916,6 +1087,21 @@ CREATE TABLE `vw_lista_precios` (
 	`tipo` VARCHAR(100) NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
 
+
+-- Volcando estructura para vista bd_guajiro.vw_lista_productos
+-- Creando tabla temporal para superar errores de dependencia de VIEW
+CREATE TABLE `vw_lista_productos` (
+	`iditem` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	`descripcion` VARCHAR(100) NULL COLLATE 'utf8_general_ci',
+	`existencia` DECIMAL(10,2) NULL,
+	`valor` DECIMAL(10,2) NULL,
+	`unidad` VARCHAR(100) NULL COLLATE 'utf8_general_ci',
+	`tipo` VARCHAR(100) NULL COLLATE 'utf8_general_ci',
+	`fecha_creacion` DATETIME NULL,
+	`inventariable` BIT(1) NULL
+) ENGINE=MyISAM;
+
+
 -- Volcando estructura para vista bd_guajiro.vw_lista_telefonos
 -- Creando tabla temporal para superar errores de dependencia de VIEW
 CREATE TABLE `vw_lista_telefonos` (
@@ -925,46 +1111,76 @@ CREATE TABLE `vw_lista_telefonos` (
 	`descripcion` VARCHAR(100) NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
 
+
+-- Volcando estructura para vista bd_guajiro.vw_proveedores_directorio
+-- Creando tabla temporal para superar errores de dependencia de VIEW
+CREATE TABLE `vw_proveedores_directorio` (
+	`idpersona` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	`razon_social` VARCHAR(350) NULL COLLATE 'utf8_general_ci',
+	`rfc` VARCHAR(15) NULL COLLATE 'utf8_general_ci',
+	`direccion` VARCHAR(470) NOT NULL COLLATE 'utf8_general_ci',
+	`fecha_creacion` DATETIME NULL
+) ENGINE=MyISAM;
+
+
 -- Volcando estructura para vista bd_guajiro.vw_clientes_directorio
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `vw_clientes_directorio`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_clientes_directorio` AS select `p`.`idpersona` AS `idpersona`,`p`.`razon_social` AS `razon_social`,concat(ifnull(`d`.`calle1`,''),' ',ifnull(`d`.`calle2`,''),' ',ifnull(`d`.`interior`,''),' ',ifnull(`d`.`exterior`,''),' ',ifnull(`d`.`colonia`,''),' ',ifnull(concat('C.P.',`d`.`codigopostal`),''),' ',ifnull(`m`.`nombre`,'')) AS `direccion`,`p`.`fecha_creacion` AS `fecha_creacion` from (((`tbl_personas` `p` left join `tbl_direcciones` `d` on((`p`.`idpersona` = `d`.`idpersona`))) left join `tbl_telefonos` `t` on((`p`.`idpersona` = `t`.`idpersona`))) left join `tbl_municipios` `m` on((`d`.`idmunicipio` = `m`.`idmunicipio`))) where (`p`.`idlstipopersona` = 'e47c6009-368a-11e7-b904-204747335338') order by `p`.`paterno`,`p`.`materno`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_clientes_directorio` AS select `p`.`idpersona` AS `idpersona`,`p`.`razon_social` AS `razon_social`,`p`.`rfc` AS `rfc`,concat(ifnull(`d`.`calle1`,''),' ',ifnull(`d`.`calle2`,''),' ',ifnull(`d`.`interior`,''),' ',ifnull(`d`.`exterior`,''),' ',ifnull(`d`.`colonia`,''),' ',ifnull(concat('C.P.',`d`.`codigopostal`),''),' ',ifnull(`m`.`nombre`,'')) AS `direccion`,`p`.`fecha_creacion` AS `fecha_creacion` from (((`tbl_personas` `p` left join `tbl_direcciones` `d` on((`p`.`idpersona` = `d`.`idpersona`))) left join `tbl_telefonos` `t` on((`p`.`idpersona` = `t`.`idpersona`))) left join `tbl_municipios` `m` on((`d`.`idmunicipio` = `m`.`idmunicipio`))) where (`p`.`idlstipopersona` = 'e47c6009-368a-11e7-b904-204747335338') order by `p`.`paterno`,`p`.`materno`;
+
 
 -- Volcando estructura para vista bd_guajiro.vw_lista_clientes
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `vw_lista_clientes`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_lista_clientes` AS select `p`.`idpersona` AS `idpersona`,`p`.`idlstipopersona` AS `idlstipopersona`,`p`.`razon_social` AS `razon_social` from (`tbl_personas` `p` join `tbl_usuarios` `u` on((`p`.`idpersona` <> `u`.`idpersona`)));
 
+
 -- Volcando estructura para vista bd_guajiro.vw_lista_comandas
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `vw_lista_comandas`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_lista_comandas` AS select `c`.`idcomanda` AS `idcomanda`,`p`.`razon_social` AS `razon_social`,`c`.`fecha` AS `fecha`,`c`.`num_comanda` AS `num_comanda`,`c`.`para_llevar` AS `para_llevar`,`m`.`desc_mesa` AS `desc_mesa`,`c`.`total` AS `total` from ((`tbl_comandas` `c` join `tbl_personas` `p` on((`c`.`idpersona` = `p`.`idpersona`))) join `tbl_mesas` `m` on((`c`.`idmesa` = `m`.`idmesa`)));
+
 
 -- Volcando estructura para vista bd_guajiro.vw_lista_direcciones
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `vw_lista_direcciones`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_lista_direcciones` AS select `d`.`iddireccion` AS `iddireccion`,`p`.`idpersona` AS `idpersona`,(case `d`.`entrega` when 0 then 'Sin dirección de entrega' when 1 then concat(ifnull(`d`.`calle1`,''),' ',ifnull(`d`.`calle2`,''),' ',ifnull(`d`.`interior`,''),' ',ifnull(`d`.`exterior`,''),', ',ifnull(`d`.`colonia`,''),', CP: ',ifnull(`d`.`codigopostal`,''),', ',ifnull(`m`.`nombre`,''),', ',ifnull(`e`.`nombre`,'')) end) AS `direccion` from ((((`tbl_personas` `p` join `tbl_direcciones` `d` on((`p`.`idpersona` = `d`.`idpersona`))) join `tbl_usuarios` `u` on((`p`.`idpersona` <> `u`.`idpersona`))) join `tbl_municipios` `m` on((`d`.`idmunicipio` = `m`.`idmunicipio`))) join `tbl_estados` `e` on((`m`.`idestado` = `e`.`idestado`)));
 
+
 -- Volcando estructura para vista bd_guajiro.vw_lista_ordenes
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `vw_lista_ordenes`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_lista_ordenes` AS select `o`.`idorden` AS `idorden`,`o`.`iditem` AS `iditem`,`d`.`iditem` AS `cveitem`,`o`.`descripcion` AS `descripcion`,`g`.`nombre` AS `nombre`,`i`.`descripcion` AS `nombreguarnicion` from (((`tbl_ordenes` `o` join `tbl_guarniciones` `g` on((`o`.`idguarnicion` = `g`.`idguarnicion`))) join `tbl_detallesguarnicion` `d` on((`g`.`idguarnicion` = `d`.`idguarnicion`))) join `tbl_items` `i` on((`d`.`iditem` = `i`.`iditem`)));
+
 
 -- Volcando estructura para vista bd_guajiro.vw_lista_personas
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `vw_lista_personas`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_lista_personas` AS select `p`.`idpersona` AS `idpersona`,`u`.`login` AS `login`,`p`.`razon_social` AS `razon_social` from (`tbl_personas` `p` join `tbl_usuarios` `u` on((`p`.`idpersona` = `u`.`idpersona`)));
 
+
 -- Volcando estructura para vista bd_guajiro.vw_lista_precios
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `vw_lista_precios`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_lista_precios` AS select `i`.`iditem` AS `iditem`,`i`.`descripcion` AS `descripcion`,`c`.`valor` AS `valor`,`d`.`descripcion` AS `unidad`,`t`.`descripcion` AS `tipo` from (((`tbl_items` `i` join `tbl_caracteristicasitem` `c` on((`i`.`iditem` = `c`.`iditem`))) join `tbl_listadoseldetalle` `d` on((`c`.`idlstipocaracteristica` = `d`.`idlsselecciondetalle`))) join `tbl_listadoseldetalle` `t` on((`i`.`idlstipoitem` = `t`.`idlsselecciondetalle`)));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_lista_precios` AS select `i`.`iditem` AS `iditem`,`i`.`descripcion` AS `descripcion`,`c`.`valor` AS `valor`,`d`.`descripcion` AS `unidad`,`t`.`descripcion` AS `tipo` from (((`tbl_items` `i` join `tbl_caracteristicasitem` `c` on((`i`.`iditem` = `c`.`iditem`))) join `tbl_listadoseldetalle` `d` on((`c`.`idlstipocaracteristica` = `d`.`idlsselecciondetalle`))) join `tbl_listadoseldetalle` `t` on((`i`.`idlstipoitem` = `t`.`idlsselecciondetalle`))) where (`i`.`inventariable` = 0);
+
+
+-- Volcando estructura para vista bd_guajiro.vw_lista_productos
+-- Eliminando tabla temporal y crear estructura final de VIEW
+DROP TABLE IF EXISTS `vw_lista_productos`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_lista_productos` AS select `i`.`iditem` AS `iditem`,`i`.`descripcion` AS `descripcion`,`i`.`existencia` AS `existencia`,`c`.`valor` AS `valor`,`t`.`descripcion` AS `unidad`,`d`.`descripcion` AS `tipo`,`i`.`fecha_creacion` AS `fecha_creacion`,`i`.`inventariable` AS `inventariable` from (((`tbl_items` `i` join `tbl_caracteristicasitem` `c` on((`i`.`iditem` = `c`.`iditem`))) join `tbl_listadoseldetalle` `d` on((`c`.`idlstipocaracteristica` = `d`.`idlsselecciondetalle`))) join `tbl_listadoseldetalle` `t` on((`i`.`idlstipoitem` = `t`.`idlsselecciondetalle`)));
+
 
 -- Volcando estructura para vista bd_guajiro.vw_lista_telefonos
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `vw_lista_telefonos`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_lista_telefonos` AS select `t`.`idtelefono` AS `idtelefono`,`t`.`idpersona` AS `idpersona`,`t`.`numtelefono` AS `numtelefono`,`l`.`descripcion` AS `descripcion` from (`tbl_telefonos` `t` join `tbl_listadoseldetalle` `l` on((`t`.`idlstipotelefono` = `l`.`idlsselecciondetalle`))) where (`l`.`idlistadoseleccion` = 'b06d265a-f42a-11e7-83f1-204747335338');
 
+
+-- Volcando estructura para vista bd_guajiro.vw_proveedores_directorio
+-- Eliminando tabla temporal y crear estructura final de VIEW
+DROP TABLE IF EXISTS `vw_proveedores_directorio`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_proveedores_directorio` AS select `p`.`idpersona` AS `idpersona`,`p`.`razon_social` AS `razon_social`,`p`.`rfc` AS `rfc`,concat(ifnull(`d`.`calle1`,''),' ',ifnull(`d`.`calle2`,''),' ',ifnull(`d`.`interior`,''),' ',ifnull(`d`.`exterior`,''),' ',ifnull(`d`.`colonia`,''),' ',ifnull(concat('C.P.',`d`.`codigopostal`),''),' ',ifnull(`m`.`nombre`,'')) AS `direccion`,`p`.`fecha_creacion` AS `fecha_creacion` from (((`tbl_personas` `p` left join `tbl_direcciones` `d` on((`p`.`idpersona` = `d`.`idpersona`))) left join `tbl_telefonos` `t` on((`p`.`idpersona` = `t`.`idpersona`))) left join `tbl_municipios` `m` on((`d`.`idmunicipio` = `m`.`idmunicipio`))) where (`p`.`idlstipopersona` = 'e47c61f8-368a-11e7-b904-204747335338') order by `p`.`paterno`,`p`.`materno`;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

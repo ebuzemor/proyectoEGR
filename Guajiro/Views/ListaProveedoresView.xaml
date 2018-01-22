@@ -21,28 +21,65 @@
         <Grid Background="#791D06">
             <Grid.RowDefinitions>
                 <RowDefinition Height="45"/>
+                <RowDefinition Height="45"/>
                 <RowDefinition/>
                 <RowDefinition Height="45"/>
             </Grid.RowDefinitions>
+            <!--Titulo-->
             <TextBlock Grid.Row="0" Text="Lista de Proveedores" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <DataGrid Grid.Row="1" Background="#791D06" Margin="10" CanUserAddRows="False" CanUserReorderColumns="False"
+            <!--Area de Filtros-->
+            <UniformGrid Grid.Row="1" Columns="4">
+                <TextBox wpfMD:HintAssist.Hint="Escriba nombre o apellidos..." Margin="10 0 0 0"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding TxtBuscar}"/>
+                <Button Margin="5" Content="Realizar Búsqueda" Command="{Binding BuscarProveedorCommand}"/>
+                <Button Margin="5" Content="Mostrar Todos" Command="{Binding MostrarTodosCommand}"/>
+                <Button Margin="5" Content="Mostrar Ultimos 10" Command="{Binding MostrarUltimosCommand}"/>
+            </UniformGrid>
+            <!--Listado de Proveedores-->
+            <DataGrid x:Name="ListaProveedor" Grid.Row="2" Background="#791D06" Margin="10" CanUserAddRows="False" CanUserReorderColumns="False"
                       CanUserSortColumns="True" AutoGenerateColumns="False" SelectionUnit="FullRow" SelectionMode="Single"
                       wpfMD:DataGridAssist.CellPadding="13 8 8 8" wpfMD:DataGridAssist.ColumnHeaderPadding="8"
-                      VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding}">
+                      VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding ListaProveedores}">
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="Razón Social" IsReadOnly="True">
+                    <DataGridTemplateColumn Header="Nombre del Cliente" IsReadOnly="True" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding razon_social}" ToolTip="{Binding razon_social}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="RFC" IsReadOnly="True">
+                    <DataGridTemplateColumn Header="R.F.C." IsReadOnly="True" Width=".5*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding rfc}" ToolTip="{Binding rfc}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Dirección" IsReadOnly="True">
+                    <DataGridTemplateColumn Header="Dirección del Cliente" IsReadOnly="True" Width="1.5*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding direccion}" ToolTip="{Binding direccion}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Teléfono" IsReadOnly="True">
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Acciones" IsReadOnly="True">
+                    <DataGridTemplateColumn Header="Acciones" IsReadOnly="True" Width=".5*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                            Margin="0 0 8 0" HorizontalAlignment="Left"
+                                            Content="{wpfMD:PackIcon Kind=Pencil}"
+                                            ToolTip="Editar Item" Height="22" Width="22"
+                                            Command="{Binding ElementName=ListaProveedor, Path=DataContext.EditarProveedorCommand}"
+                                            CommandParameter="{Binding idpersona}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Grid.Row="2" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Center"
+            <!--Botón de Nuevo Proveedor-->
+            <Button Grid.Row="3" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Center"
                     Command="{Binding NuevoProveedorCommand}">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">

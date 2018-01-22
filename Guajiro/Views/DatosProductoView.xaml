@@ -28,30 +28,29 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition/>
             <RowDefinition Height="45"/>
         </Grid.RowDefinitions>
+        <!--TITULO-->
         <TextBlock Grid.Row="0" Text="Información del Producto" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox Grid.Row="1" wpfMD:HintAssist.Hint="Descripción del producto" HorizontalAlignment="Center" 
-                 VerticalAlignment="Center"/>
-        <UniformGrid Grid.Row="2" Columns="2">
-            <ComboBox wpfMD:HintAssist.Hint="Unidad:" Margin="5 0 0 0" 
-                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                <ComboBoxItem Content="Pieza"/>
-                <ComboBoxItem Content="Botella"/>
-            </ComboBox>
-            <ComboBox wpfMD:HintAssist.Hint="Tipo:" Margin="5 0 0 0" 
-                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                <ComboBoxItem Content="Pieza"/>
-                <ComboBoxItem Content="Botella"/>
-            </ComboBox>
+        <!--CUERPO-->
+        <TextBox Grid.Row="1" wpfMD:HintAssist.Hint="Descripción del producto: *" Margin="10 0 10 0" 
+                 Text="{Binding TxtDescripcion}" VerticalAlignment="Center"/>
+        <UniformGrid Columns="2" Grid.Row="2">
+            <CheckBox x:Name="ChkInventariable" VerticalAlignment="Center" Margin="5 0 0 0"
+                      Content="Inventariable" IsChecked="{Binding chkInventariable}"/>
+            <TextBox wpfMD:HintAssist.Hint="Existencias:" Margin="5 0 5 0"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     VerticalAlignment="Center" Text="{Binding TxtExistencias, StringFormat=N2}"
+                     IsEnabled="{Binding ElementName=ChkInventariable, Path=IsChecked}"/>
         </UniformGrid>
-        <UniformGrid Grid.Row="3" Columns="2">
-            <TextBox wpfMD:HintAssist.Hint="Existencias:" VerticalAlignment="Center" TextAlignment="Right"/>
-            <TextBox wpfMD:HintAssist.Hint="Precio:" VerticalAlignment="Center" TextAlignment="Right"/>
+        <UniformGrid Columns="2" Grid.Row="3">
+            <TextBox wpfMD:HintAssist.Hint="Precio: *" Margin="10 0 10 0"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     VerticalAlignment="Center" Text="{Binding TxtPrecio, StringFormat=C2}"/>
+            <ComboBox wpfMD:HintAssist.Hint="Unidad: *" Margin="5 0 5 0"
+                      Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                      ItemsSource="{Binding ListaUnidades}" SelectedItem="{Binding unidad}"/>
         </UniformGrid>
-        <CheckBox Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Inventariable"
-                  IsChecked="False"/>
         <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Command="{Binding GuardarProductoCommand}" Content="Guardar" Margin="5"/>
             <Button IsCancel="True" Command="{x:Static wpfMD:DialogHost.CloseDialogCommand}"

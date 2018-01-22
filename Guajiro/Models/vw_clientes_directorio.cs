@@ -18,5 +18,6 @@ namespace Guajiro.Models
         public string razon_social { get; set; }
         public string direccion { get; set; }
         public Nullable<System.DateTime> fecha_creacion { get; set; }
+        public string rfc { get; set; }
     }
 }

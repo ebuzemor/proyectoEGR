@@ -180,13 +180,8 @@
                             <RadioButton.Content>
                                 <ComboBox wpfMD:HintAssist.Hint="Cliente Existente" Foreground="{DynamicResource PrimaryHueLightBrush}" Width="350" 
                                           IsEnabled="{Binding ElementName=Existente, Path=IsChecked}" Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
-                                          ItemsSource="{Binding ListaClientes}" SelectedItem="{Binding Cliente}" FontSize="12" Background="#791D06">
-                                    <ComboBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding razon_social}"/>
-                                        </DataTemplate>
-                                    </ComboBox.ItemTemplate>
-                                </ComboBox>
+                                          ItemsSource="{Binding ListaClientes}" SelectedItem="{Binding Cliente}" FontSize="12" Background="#791D06"
+                                          IsEditable="True" DisplayMemberPath="razon_social"/>
                             </RadioButton.Content>
                         </RadioButton>
                         <RadioButton x:Name="NoRegistrado" Grid.Row="2" Style="{StaticResource MaterialDesignRadioButton}" VerticalContentAlignment="Center" 
