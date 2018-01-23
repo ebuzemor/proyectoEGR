@@ -287,6 +287,20 @@ advertencia 6002: La tabla o vista 'def.bd_guajiro.vw_lista_direcciones' no tien
           <Property Name="direccion" Type="text" />
         </EntityType>
         <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'def.bd_guajiro.vw_lista_movimientos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="vw_lista_movimientos">
+          <Key>
+            <PropertyRef Name="idmovimiento" />
+          </Key>
+          <Property Name="idmovimiento" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idlstipomovimiento" Type="varchar" MaxLength="50" />
+          <Property Name="fecha" Type="datetime" Precision="0" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="tipo" Type="varchar" MaxLength="100" />
+          <Property Name="monto" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="usuario" Type="varchar" MaxLength="350" />
+        </EntityType>
+        <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'def.bd_guajiro.vw_lista_ordenes' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="vw_lista_ordenes">
           <Key>
@@ -524,6 +538,17 @@ FROM `vw_lista_comandas` AS `vw_lista_comandas`</DefiningQuery>
 `vw_lista_direcciones`.`idpersona`, 
 `vw_lista_direcciones`.`direccion`
 FROM `vw_lista_direcciones` AS `vw_lista_direcciones`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_lista_movimientos" EntityType="Self.vw_lista_movimientos" store:Type="Views" store:Schema="bd_guajiro">
+            <DefiningQuery>SELECT
+`vw_lista_movimientos`.`idmovimiento`, 
+`vw_lista_movimientos`.`idlstipomovimiento`, 
+`vw_lista_movimientos`.`fecha`, 
+`vw_lista_movimientos`.`descripcion`, 
+`vw_lista_movimientos`.`tipo`, 
+`vw_lista_movimientos`.`monto`, 
+`vw_lista_movimientos`.`usuario`
+FROM `vw_lista_movimientos` AS `vw_lista_movimientos`</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vw_lista_ordenes" EntityType="Self.vw_lista_ordenes" store:Type="Views" store:Schema="bd_guajiro">
             <DefiningQuery>SELECT
@@ -871,6 +896,7 @@ FROM `vw_proveedores_directorio` AS `vw_proveedores_directorio`</DefiningQuery>
           <EntitySet Name="vw_lista_telefonos" EntityType="bd_guajiroModel.vw_lista_telefonos" />
           <EntitySet Name="vw_proveedores_directorio" EntityType="bd_guajiroModel.vw_proveedores_directorio" />
           <EntitySet Name="vw_lista_productos" EntityType="bd_guajiroModel.vw_lista_productos" />
+          <EntitySet Name="vw_lista_movimientos" EntityType="bd_guajiroModel.vw_lista_movimientos" />
         </EntityContainer>
         <EntityType Name="tbl_detallesguarnicion">
           <Key>
@@ -1171,6 +1197,18 @@ FROM `vw_proveedores_directorio` AS `vw_proveedores_directorio`</DefiningQuery>
           <Property Name="tipo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="fecha_creacion" Type="DateTime" />
           <Property Name="inventariable" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="vw_lista_movimientos">
+          <Key>
+            <PropertyRef Name="idmovimiento" />
+          </Key>
+          <Property Name="idmovimiento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idlstipomovimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha" Type="DateTime" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tipo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="monto" Type="Decimal" />
+          <Property Name="usuario" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1539,6 +1577,19 @@ FROM `vw_proveedores_directorio` AS `vw_proveedores_directorio`</DefiningQuery>
                 <ScalarProperty Name="existencia" ColumnName="existencia" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="iditem" ColumnName="iditem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_lista_movimientos">
+            <EntityTypeMapping TypeName="bd_guajiroModel.vw_lista_movimientos">
+              <MappingFragment StoreEntitySet="vw_lista_movimientos">
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="idlstipomovimiento" ColumnName="idlstipomovimiento" />
+                <ScalarProperty Name="idmovimiento" ColumnName="idmovimiento" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

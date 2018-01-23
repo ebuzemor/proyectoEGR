@@ -192,6 +192,9 @@
     <Compile Include="Models\vw_lista_direcciones.cs">
       <DependentUpon>GuajiroBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\vw_lista_movimientos.cs">
+      <DependentUpon>GuajiroBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\vw_lista_ordenes.cs">
       <DependentUpon>GuajiroBD.tt</DependentUpon>
     </Compile>
@@ -212,6 +215,7 @@
     </Compile>
     <Compile Include="ViewModels\ComandasViewModel.cs" />
     <Compile Include="ViewModels\DatosClienteViewModel.cs" />
+    <Compile Include="ViewModels\DatosMovimientoViewModel.cs" />
     <Compile Include="ViewModels\DatosProductoViewModel.cs" />
     <Compile Include="ViewModels\DatosProveedorViewModel.cs" />
     <Compile Include="ViewModels\DetallesComandaViewModel.cs" />
@@ -232,6 +236,9 @@
     </Compile>
     <Compile Include="Views\DatosClienteView.xaml.cs">
       <DependentUpon>DatosClienteView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DatosMovimientoView.xaml.cs">
+      <DependentUpon>DatosMovimientoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DatosProductoView.xaml.cs">
       <DependentUpon>DatosProductoView.xaml</DependentUpon>
@@ -294,6 +301,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DatosClienteView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DatosMovimientoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

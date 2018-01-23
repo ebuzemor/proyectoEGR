@@ -1,11 +1,14 @@
 ﻿using Guajiro.Common;
 using Guajiro.Models;
+using Guajiro.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using MaterialDesignThemes.Wpf;
+
 namespace Guajiro.ViewModels
 {
     public class MovimientosViewModel : INotifyPropertyChanged
@@ -20,8 +23,7 @@ namespace Guajiro.ViewModels
 
         #region Commands
         public RelayCommand BuscarMovimientosCommand { get; set; }
-        public RelayCommand RegistrarIngresosCommand { get; set; }
-        public RelayCommand RegistrarGastosCommand { get; set; }
+        public RelayCommand RegistrarMovimientoCommand { get; set; }
         public RelayCommand EditarMovimientoCommand { get; set; }
         public RelayCommand BorrarMovimientoCommand { get; set; }
         public RelayCommand CerrarMensajeCommand { get; set; }
@@ -36,7 +38,7 @@ namespace Guajiro.ViewModels
         private bool _chkTodos;
         private bool _chkIngreso;
         private bool _chkEgreso;
-        private ObservableCollection<tbl_movimientos> _listaMovimientos;
+        private ObservableCollection<vw_lista_movimientos> _listaMovimientos;
 
         public bd_guajiroEntities GuajiroEF;
         public DateTime FechaInicial { get => _fechaInicial; set { _fechaInicial = value; OnPropertyChanged(); } }
@@ -47,7 +49,7 @@ namespace Guajiro.ViewModels
         public bool ChkTodos { get => _chkTodos; set { _chkTodos = value; OnPropertyChanged(); } }
         public bool ChkIngreso { get => _chkIngreso; set { _chkIngreso = value; OnPropertyChanged(); } }
         public bool ChkEgreso { get => _chkEgreso; set { _chkEgreso = value; OnPropertyChanged(); } }
-        public ObservableCollection<tbl_movimientos> ListaMovimientos { get => _listaMovimientos; set { _listaMovimientos = value; OnPropertyChanged(); } }        
+        public ObservableCollection<vw_lista_movimientos> ListaMovimientos { get => _listaMovimientos; set { _listaMovimientos = value; OnPropertyChanged(); } }        
         #endregion
 
         #region Constructor
@@ -55,8 +57,7 @@ namespace Guajiro.ViewModels
         {
             GuajiroEF = new bd_guajiroEntities();
             BuscarMovimientosCommand = new RelayCommand(BuscarMovimientos);
-            RegistrarIngresosCommand = new RelayCommand(RegistrarIngresos);
-            RegistrarGastosCommand = new RelayCommand(RegistrarGastos);
+            RegistrarMovimientoCommand = new RelayCommand(RegistrarMovimiento);
             EditarMovimientoCommand = new RelayCommand(EditarMovimiento);
             BorrarMovimientoCommand = new RelayCommand(BorrarMovimiento);
             CerrarMensajeCommand = new RelayCommand(CerrarMensaje);
@@ -70,21 +71,30 @@ namespace Guajiro.ViewModels
         #region Métodos
         private void BuscarMovimientos(object parameter)
         {
+            string cadSql = "SELECT * FROM vw_lista_movimientos ";
             if (FechaFinal > FechaInicial)
             {
-                var lista = GuajiroEF.tbl_movimientos.SqlQuery("SELECT * FROM tbl_movimientos WHERE fecha BETWEEN " + FechaInicial.Date + " AND " + FechaFinal.Date).ToList();
-                ListaMovimientos = new ObservableCollection<tbl_movimientos>(lista);
+                cadSql += "WHERE fecha BETWEEN '" + FechaInicial.ToString("yyyy-MM-dd") + "' AND '" + FechaFinal.ToString("yyyy-MM-dd") + "' ";
+                //var lista = GuajiroEF.vw_lista_movimientos.Where(x => x.fecha >= FechaInicial.Date && x.fecha <= FechaFinal.Date).OrderByDescending(x=>x.fecha).ToList();
+                if (string.IsNullOrWhiteSpace(TxtDescripcion) == false)
+                    cadSql += "AND descripcion LIKE '%" + TxtDescripcion + "%' ";
+                if(ChkIngreso == true)
+                    cadSql += "AND idlstipomovimiento = 'e47c55ba-368a-11e7-b904-204747335338' ";
+                else if (ChkEgreso==true)
+                    cadSql += "AND idlstipomovimiento = 'e47c6e3b-368a-11e7-b904-204747335338' ";
+                var lista = GuajiroEF.vw_lista_movimientos.SqlQuery(cadSql).ToList();
+                ListaMovimientos = new ObservableCollection<vw_lista_movimientos>(lista);
             }
         }
 
-        private async void RegistrarIngresos(object parameter)
+        private async void RegistrarMovimiento(object parameter)
         {
-
-        }
-
-        private async void RegistrarGastos(object parameter)
-        {
-
+            var vmDatos = new DatosMovimientoViewModel { };
+            var vwDatos = new DatosMovimientoView
+            {
+                DataContext = vmDatos
+            };
+            var result = await DialogHost.Show(vwDatos, "Movimientos");
         }
 
         private void EditarMovimiento(object parameter)

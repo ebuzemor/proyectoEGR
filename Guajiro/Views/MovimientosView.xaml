@@ -97,7 +97,7 @@
                     <DataGridTemplateColumn Header="Fecha" IsReadOnly="True" Width="*" HeaderStyle="{StaticResource CenterAlignmentColumnHeaderStyle}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding fecha_creacion, StringFormat=d}" ToolTip="{Binding fecha_creacion, StringFormat=d}" TextAlignment="Center"/>
+                                <TextBlock Text="{Binding fecha, StringFormat=d}" ToolTip="{Binding fecha, StringFormat=d}" TextAlignment="Center"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -108,14 +108,14 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Tipo Movimiento" IsReadOnly="True" Width="*">
+                    <DataGridTemplateColumn Header="Tipo" IsReadOnly="True" Width=".5*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding tipo}" ToolTip="{Binding tipo}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Monto" IsReadOnly="True" Width="*" HeaderStyle="{StaticResource RightAlignmentColumnHeaderStyle}">
+                    <DataGridTemplateColumn Header="Monto" IsReadOnly="True" Width=".5*" HeaderStyle="{StaticResource RightAlignmentColumnHeaderStyle}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding monto, StringFormat=C2}" ToolTip="{Binding monto, StringFormat=C2}" TextAlignment="Right"/>
@@ -129,7 +129,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Acciones" IsReadOnly="True" Width="*" HeaderStyle="{StaticResource CenterAlignmentColumnHeaderStyle}">
+                    <DataGridTemplateColumn Header="Acciones" IsReadOnly="True" Width=".5*" HeaderStyle="{StaticResource CenterAlignmentColumnHeaderStyle}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -152,8 +152,7 @@
                 </DataGrid.Columns>
             </DataGrid>
             <!--Botones de registrar movimientos-->
-            <Button Grid.Row="4" Grid.Column="2" Content="Registrar Ingresos" Command="{Binding RegistrarIngresosCommand}" Margin="10"/>
-            <Button Grid.Row="4" Grid.Column="3" Content="Registrar Gastos" Command="{Binding RegistrarGastosCommand}" Margin="10"/>
+            <Button Grid.Row="4" Grid.Column="3" Content="Registrar Movimiento" Command="{Binding RegistrarMovimientoCommand}" Margin="10"/>
         </Grid>
     </wpfMD:DialogHost>
 </UserControl>

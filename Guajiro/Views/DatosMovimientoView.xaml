@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="Guajiro.Views.DatosMovimientoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfMD="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf" 
+             xmlns:local="clr-namespace:Guajiro.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="900"
+             TextElement.Foreground="{StaticResource PrimaryHueLightBrush}"
+             FontFamily="/Fonts/#Tulia"
+             Height="250" Width="400">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Snackbar.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="#791D06">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height=".5*"/>
+            <RowDefinition Height=".5*"/>
+            <RowDefinition Height="45"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <!--Titulo-->
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Información del Movimiento" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <!--Fecha y Tipo-->
+        <DatePicker Grid.Row="1" Grid.Column="0" Margin="5 5 5 5" wpfMD:HintAssist.Hint="Fecha del Movimiento:*" 
+                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Language="es-Mx" 
+                    SelectedDate="{Binding FechaMov}" VerticalAlignment="Center"/>
+        <ComboBox Grid.Row="1" Grid.Column="1" wpfMD:HintAssist.Hint="Tipo de Movimiento: *" Margin="5 0 5 8"
+                  Style="{StaticResource MaterialDesignFloatingHintComboBox}" VerticalAlignment="Center"
+                  ItemsSource="{Binding ListaTiposMov}" Selected="{Binding TipoMov}" DisplayMemberPath="descripcion"/>
+        <!--Descripcion y Monto-->
+        <TextBox Grid.Row="2" Grid.Column="0" wpfMD:HintAssist.Hint="Descripción: *" VerticalAlignment="Center"
+                 Margin="5 0 5 0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding TxtDescripcion}"/>
+        <TextBox Grid.Row="2" Grid.Column="1" wpfMD:HintAssist.Hint="Monto: *" VerticalAlignment="Center"
+                 Margin="5 0 5 0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding TxtMonto, StringFormat=C2}"/>
+        <!--Botones-->
+        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" 
+                    HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Button Content="Guardar" Command="{Binding GuardarMovimientoCommand}" Margin="5"/>
+            <Button IsCancel="True" Command="{x:Static wpfMD:DialogHost.CloseDialogCommand}"
+                    CommandParameter="CANCELAR" Content="Cerrar" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
