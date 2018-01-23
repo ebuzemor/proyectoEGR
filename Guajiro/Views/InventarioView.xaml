@@ -51,14 +51,14 @@
                     <DataGridTemplateColumn Header="Existencias" IsReadOnly="True" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding existencia}" ToolTip="{Binding existencia}"/>
+                                <TextBlock Text="{Binding existencia}" ToolTip="{Binding existencia, StringFormat=N2}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTemplateColumn Header="Precio" IsReadOnly="True" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding valor}" ToolTip="{Binding valor}"/>
+                                <TextBlock Text="{Binding valor}" ToolTip="{Binding valor, StringFormat=C2}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -69,10 +69,10 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Tipo Producto" IsReadOnly="True" Width="*">
+                    <DataGridTemplateColumn Header="Inventariable" IsReadOnly="True" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding tipo}" ToolTip="{Binding tipo}"/>
+                                <CheckBox IsChecked="{Binding inventariable}" Style="{StaticResource MaterialDesignLightCheckBox}" IsHitTestVisible="False"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

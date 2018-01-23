@@ -18,7 +18,6 @@ namespace Guajiro.ViewModels
         public tbl_usuarios Usuario { get => _usuario; set { _usuario = value; OnPropertyChanged("Usuario"); } }
         #endregion
 
-
         #region Constructor
         public PrincipalViewModel(tbl_usuarios UsuarioActual)
         {
@@ -68,6 +67,15 @@ namespace Guajiro.ViewModels
             {
                 DataContext = vmInventario
             };
+
+            MovimientosViewModel vmMovimiento = new MovimientosViewModel
+            {
+
+            };
+            MovimientosView vwMovimiento = new MovimientosView
+            {
+                DataContext = vmMovimiento
+            };
             
             MenuOpcion = new[]
             {
@@ -76,11 +84,9 @@ namespace Guajiro.ViewModels
                 new MenuOpciones("Menú del Día", vwMenuDia),
                 new MenuOpciones("Clientes", vwLtaCte),
                 new MenuOpciones("Proveedores", vwLtaProv),
-                new MenuOpciones("Inventario", vwInventario),
+                new MenuOpciones("Inventario", vwInventario),                
+                new MenuOpciones("Movimientos", vwMovimiento)
                 //new MenuOpciones("Facturas", new InventarioView()),
-                new MenuOpciones("Registrar Gastos", new RegistrarGastosView()),
-                new MenuOpciones("Registrar Compras", new InventarioView()),
-                new MenuOpciones("Movimientos", new InventarioView())
                 //new MenuOpciones("Reportes", new InventarioView())
             };
         }

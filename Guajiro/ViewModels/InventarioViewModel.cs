@@ -59,7 +59,7 @@ namespace Guajiro.ViewModels
         {
             var vmDatosProducto = new DatosProductoViewModel
             {
-
+                IdPersona = IdPersona
             };
             var vwDatosProducto = new DatosProductoView
             {

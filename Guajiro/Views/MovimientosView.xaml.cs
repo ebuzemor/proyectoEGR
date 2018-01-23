@@ -18,9 +18,9 @@ namespace Guajiro.Views
     /// <summary>
     /// Lógica de interacción para RegistrarGastosView.xaml
     /// </summary>
-    public partial class RegistrarGastosView : UserControl
+    public partial class MovimientosView : UserControl
     {
-        public RegistrarGastosView()
+        public MovimientosView()
         {
             InitializeComponent();
         }

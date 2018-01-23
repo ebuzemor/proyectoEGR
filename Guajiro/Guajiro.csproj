@@ -223,6 +223,7 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MensajeViewModel.cs" />
     <Compile Include="ViewModels\MenuDiaViewModel.cs" />
+    <Compile Include="ViewModels\MovimientosViewModel.cs" />
     <Compile Include="ViewModels\PagarTicketViewModel.cs" />
     <Compile Include="ViewModels\PrincipalViewModel.cs" />
     <Compile Include="ViewModels\PuntoVentaViewModel.cs" />
@@ -285,8 +286,8 @@
     <Compile Include="Views\PuntoVentaView.xaml.cs">
       <DependentUpon>PuntoVentaView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RegistrarGastosView.xaml.cs">
-      <DependentUpon>RegistrarGastosView.xaml</DependentUpon>
+    <Compile Include="Views\MovimientosView.xaml.cs">
+      <DependentUpon>MovimientosView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\ComandasView.xaml">
       <SubType>Designer</SubType>
@@ -352,7 +353,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RegistrarGastosView.xaml">
+    <Page Include="Views\MovimientosView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

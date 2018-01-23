@@ -57,7 +57,7 @@ namespace Guajiro.ViewModels
         public string TxtNumInicio { get => _txtNumInicio; set { _txtNumInicio = value; OnPropertyChanged("TxtNumInicio"); } }
         public string TxtNumFinal { get => _txtNumFinal; set { _txtNumFinal = value; OnPropertyChanged("TxtNumFinal"); } }
         public string TxtCliente { get => _txtCliente; set { _txtCliente = value; OnPropertyChanged("TxtCliente"); } }
-        public bool EsParaLlevar { get => _esParaLlevar; set { _esParaLlevar = value; OnPropertyChanged("EsParaLlevar"); filtarParaLlevar(); } }
+        public bool EsParaLlevar { get => _esParaLlevar; set { _esParaLlevar = value; OnPropertyChanged("EsParaLlevar"); FiltarParaLlevar(); } }
         public ObservableCollection<tbl_detallescomanda> ListaDetalles { get => _listaDetalles; set { _listaDetalles = value; OnPropertyChanged("ListaDetalles"); } }
 
         public bd_guajiroEntities GuajiroEF;
@@ -130,7 +130,7 @@ namespace Guajiro.ViewModels
             };
         }
 
-        private void filtarParaLlevar()
+        private void FiltarParaLlevar()
         {
             if (ListaComandas != null && ListaComandas.Count > 0)
             {

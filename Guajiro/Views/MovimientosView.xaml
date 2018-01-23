@@ -1,0 +1,159 @@
+﻿<UserControl x:Class="Guajiro.Views.MovimientosView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpfMD="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Guajiro.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="1100"
+             TextElement.Foreground="{StaticResource PrimaryHueLightBrush}"
+             FontFamily="/Fonts/#Tulia" FontSize="14">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style x:Key="LeftAlignmentColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            </Style>
+            <Style x:Key="CenterAlignmentColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Style>
+            <Style x:Key="RightAlignmentColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                <Setter Property="HorizontalContentAlignment" Value="Right"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+            </Style>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <wpfMD:DialogHost Identifier="Movimientos">
+        <Grid Background="#791D06">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height=".5*"/>
+                <RowDefinition Height=".5*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <!--Titulo-->
+            <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       Text="Lista de Movimientos" Style="{StaticResource MaterialDesignTitleTextBlock}"/>
+            <!--Controles de seleccionar período-->
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center">
+                <TextBlock Text="Seleccione Período:" VerticalAlignment="Center" Width="150" Margin="10 0 0 0"/>
+                <DatePicker Margin="0 0 0 10" wpfMD:HintAssist.Hint="Fecha Inicial" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Language="es-Mx" 
+                        SelectedDate="{Binding FechaInicial}" VerticalAlignment="Center"/>
+                <TextBlock Width="30"/>
+                <DatePicker Margin="0 0 0 10" wpfMD:HintAssist.Hint="Fecha Final" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Language="es-Mx" 
+                        SelectedDate="{Binding FechaFinal}" VerticalAlignment="Center"/>
+            </StackPanel>
+            <!--Controles de buscar por descripción-->
+            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center">
+                <TextBlock Text="Buscar descripción: " Width="150" VerticalAlignment="Center" Margin="10 0 0 0"/>
+                <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}" Margin="0 0 0 5" Text="{Binding TxtDescripcion, UpdateSourceTrigger=PropertyChanged}">
+                    <wpfMD:HintAssist.Hint>
+                        <StackPanel Orientation="Horizontal" Margin="2 0 0 0">
+                            <wpfMD:PackIcon Kind="Receipt" Margin="2"/>
+                            <TextBlock Text="Ingrese la descripción del movimiento"/>
+                        </StackPanel>
+                    </wpfMD:HintAssist.Hint>
+                    <TextBox.InputBindings>
+                        <KeyBinding Command="{Binding BuscarMovimientosCommand}" Key="Return"/>
+                    </TextBox.InputBindings>
+                </TextBox>
+            </StackPanel>
+            <!--Controles para filtrar por tipo de movimiento-->
+            <UniformGrid Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Columns="4" VerticalAlignment="Center">
+                <TextBlock Text="Tipo de Movimiento:" VerticalAlignment="Center" FontSize="13"/>
+                <RadioButton IsChecked="{Binding ChkTodos}" Style="{StaticResource MaterialDesignRadioButton}" VerticalAlignment="Center"
+                             Content="Todos" ToolTip="Selecciona para ver todos los Movimientos Registrados" HorizontalAlignment="Center"/>
+                <RadioButton IsChecked="{Binding ChkIngreso}" Style="{StaticResource MaterialDesignRadioButton}" VerticalAlignment="Center"
+                             Content="Ingresos" ToolTip="Selecciona para ver sólo Movimientos de Tipo Ingresos" HorizontalAlignment="Center"/>
+                <RadioButton IsChecked="{Binding ChkEgreso}" Style="{StaticResource MaterialDesignRadioButton}" VerticalAlignment="Center"
+                             Content="Egresos" ToolTip="Selecciona para ver sólo Movimientos de Tipo Egreso" HorizontalAlignment="Center"/>
+            </UniformGrid>
+            <Button Grid.Row="2" Grid.Column="3" Command="{Binding BuscarMovimientosCommand}">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <wpfMD:PackIcon Width="24" Height="24" Kind="Magnify"/>
+                        <TextBlock Text="Realizar Búsqueda"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <!--Listado de movimientos-->
+            <DataGrid x:Name="ListaMovimientos" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Background="#791D06" Margin="10" 
+                      CanUserAddRows="False" CanUserReorderColumns="False" CanUserSortColumns="True" AutoGenerateColumns="False" 
+                      SelectionUnit="FullRow" SelectionMode="Single" wpfMD:DataGridAssist.CellPadding="13 8 8 8" wpfMD:DataGridAssist.ColumnHeaderPadding="8"
+                      VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding ListaMovimientos}">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Fecha" IsReadOnly="True" Width="*" HeaderStyle="{StaticResource CenterAlignmentColumnHeaderStyle}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding fecha_creacion, StringFormat=d}" ToolTip="{Binding fecha_creacion, StringFormat=d}" TextAlignment="Center"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Descripción" IsReadOnly="True" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding descripcion}" ToolTip="{Binding descripcion}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Tipo Movimiento" IsReadOnly="True" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding tipo}" ToolTip="{Binding tipo}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Monto" IsReadOnly="True" Width="*" HeaderStyle="{StaticResource RightAlignmentColumnHeaderStyle}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding monto, StringFormat=C2}" ToolTip="{Binding monto, StringFormat=C2}" TextAlignment="Right"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Usuario" IsReadOnly="True" Width="*" HeaderStyle="{StaticResource CenterAlignmentColumnHeaderStyle}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding usuario}" ToolTip="{Binding usuario}" TextAlignment="Center"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Acciones" IsReadOnly="True" Width="*" HeaderStyle="{StaticResource CenterAlignmentColumnHeaderStyle}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                            Margin="0 0 8 0" HorizontalAlignment="Left"
+                                            Content="{wpfMD:PackIcon Kind=Pencil}"
+                                            ToolTip="Editar Item" Height="22" Width="22"
+                                            Command="{Binding ElementName=ListaMovimientos, Path=DataContext.EditarMovimientoCommand}"
+                                            CommandParameter="{Binding idmovimiento}"/>
+                                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                            Margin="0 0 8 0" HorizontalAlignment="Left"
+                                            Content="{wpfMD:PackIcon Kind=Delete}"
+                                            ToolTip="Editar Item" Height="22" Width="22"
+                                            Command="{Binding ElementName=ListaMovimientos, Path=DataContext.BorrarMovimientoCommand}"
+                                            CommandParameter="{Binding idmovimiento}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <!--Botones de registrar movimientos-->
+            <Button Grid.Row="4" Grid.Column="2" Content="Registrar Ingresos" Command="{Binding RegistrarIngresosCommand}" Margin="10"/>
+            <Button Grid.Row="4" Grid.Column="3" Content="Registrar Gastos" Command="{Binding RegistrarGastosCommand}" Margin="10"/>
+        </Grid>
+    </wpfMD:DialogHost>
+</UserControl>
