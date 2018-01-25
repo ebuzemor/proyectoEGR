@@ -19,7 +19,6 @@ namespace Guajiro.ViewModels
         public RelayCommand CerrarMensajeCommand { get; set; }
         public RelayCommand CancelarTicketCommand { get; set; }
         public RelayCommand GuardarTicketCommand { get; set; }
-        public RelayCommand ClienteNuevoCommand { get; set; }
         public RelayCommand ClienteExistenteCommand { get; set; }
         public RelayCommand ComensalCommand { get; set; }
         public RelayCommand BebidasCommand { get; set; }
@@ -94,7 +93,6 @@ namespace Guajiro.ViewModels
             CerrarMensajeCommand = new RelayCommand(CerrarMensaje);
             CancelarTicketCommand = new RelayCommand(CancelarTicket);
             GuardarTicketCommand = new RelayCommand(GuardarTicket);
-            ClienteNuevoCommand = new RelayCommand(ClienteNuevo);
             ClienteExistenteCommand = new RelayCommand(ClienteExistente);
             ComensalCommand = new RelayCommand(Comensal);
             BebidasCommand = new RelayCommand(CargarBebidas);
@@ -276,7 +274,7 @@ namespace Guajiro.ViewModels
                             num_comanda = 0,
                             idmesa = Convert.ToString(Mesa.idmesa),
                             para_llevar = !EsParaComerAqui,
-                            //idpersona = 
+                            idpersona = (EsParaComerAqui == true) ? "1c87a56f-e479-11e7-8cd6-204747335338" : Cliente.idpersona,
                             total = TotalTicket,
                             crea_usuario = Usuario.idusuario
                         };
@@ -373,12 +371,6 @@ namespace Guajiro.ViewModels
         private void ClienteExistente(object parameter)
         {
             ActualizarDireccion();
-            Mesa = ListaMesas.First();
-        }
-
-        private void ClienteNuevo(object parameter)
-        {
-            ClienteDireccion = string.Empty;
             Mesa = ListaMesas.First();
         }
 

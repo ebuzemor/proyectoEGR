@@ -11,7 +11,7 @@
              TextElement.FontSize="15"
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
-             Background="{DynamicResource PrimaryHueDarkBrush}"
+             Background="{DynamicResource PrimaryHueLightBrush}"
              FontFamily="{StaticResource MaterialDesignFont}"
              Height="200" Width="500">
     <UserControl.Resources>

@@ -16,7 +16,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <wpfMD:DialogHost Identifier="PuntoVenta">
-        <Grid Background="#791D06">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="5"/>
@@ -155,11 +155,11 @@
                                 TextElement.Foreground="{DynamicResource MaterialDesignBody}" SelectedDate="{Binding FechaPago}" VerticalAlignment="Center"
                                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Language="es-Mx" FontSize="12" Grid.RowSpan="2"/>
                     <TextBox Grid.Row="0" Grid.Column="3" wpfMD:HintAssist.Hint="# Orden" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" FontSize="12"
-                             Text="{Binding NumComanda}" IsEnabled="False" Foreground="{DynamicResource PrimaryHueLightBrush}" Margin="0 0 5 0" VerticalAlignment="Center" Grid.RowSpan="2"/>
+                             Text="{Binding NumComanda}" IsEnabled="False" Foreground="White" Margin="0 0 5 0" VerticalAlignment="Center" Grid.RowSpan="2"/>
                     <TextBox Grid.Row="2" Grid.Column="0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding Usuario.login}" FontSize="12"
-                             wpfMD:HintAssist.Hint="Cajero:" Foreground="{DynamicResource PrimaryHueLightBrush}" Margin="5,2,0,1" VerticalAlignment="Center" IsEnabled="False"/>
+                             wpfMD:HintAssist.Hint="Cajero:" Foreground="White" Margin="5,2,0,1" VerticalAlignment="Center" IsEnabled="False"/>
                     <ComboBox Grid.Row="2" Grid.Column="3" wpfMD:HintAssist.Hint="Asignar mesa:" Style="{StaticResource MaterialDesignFloatingHintComboBox}" VerticalAlignment="Top"
-                              ItemsSource="{Binding ListaMesas}" SelectedItem="{Binding Mesa}" Foreground="{DynamicResource PrimaryHueLightBrush}" Margin="0 0 5 0" FontSize="12">
+                              ItemsSource="{Binding ListaMesas}" SelectedItem="{Binding Mesa}" Foreground="White" Margin="0 0 5 0" FontSize="12">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding desc_mesa}"/>
@@ -172,31 +172,22 @@
                             <RowDefinition/>
                             <RowDefinition Height="40"/>
                         </Grid.RowDefinitions>
-                        <RadioButton x:Name="Comensal" Grid.Row="0" Style="{StaticResource MaterialDesignRadioButton}" VerticalAlignment="Center" FontSize="12" 
-                                     Content="Comer aquí" IsChecked="{Binding EsParaComerAqui}" Foreground="{DynamicResource PrimaryHueLightBrush}" Margin="5 0 0 0"
-                                     Command="{Binding ComensalCommand}"/>
-                        <RadioButton x:Name="Existente" Grid.Row="1" Style="{StaticResource MaterialDesignRadioButton}" VerticalContentAlignment="Center" FontSize="12"
-                             Margin="5 0 0 0" Command="{Binding ClienteExistenteCommand}">
+                        <RadioButton x:Name="Comensal" Grid.Row="0" Style="{StaticResource MaterialDesignRadioButton}" 
+                                     VerticalAlignment="Center" FontSize="12" Content="Comer aquí" IsChecked="{Binding EsParaComerAqui}" 
+                                     Foreground="White" Margin="5 0 0 0" Command="{Binding ComensalCommand}"/>
+                        <RadioButton x:Name="Existente" Grid.Row="1" Style="{StaticResource MaterialDesignRadioButton}" VerticalContentAlignment="Center" 
+                                     FontSize="12" Margin="5 0 0 0" Command="{Binding ClienteExistenteCommand}" Foreground="White">
                             <RadioButton.Content>
-                                <ComboBox wpfMD:HintAssist.Hint="Cliente Existente" Foreground="{DynamicResource PrimaryHueLightBrush}" Width="350" 
+                                <ComboBox wpfMD:HintAssist.Hint="Cliente Existente" Width="350" ItemsSource="{Binding ListaClientes}" SelectedItem="{Binding Cliente}"
                                           IsEnabled="{Binding ElementName=Existente, Path=IsChecked}" Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
-                                          ItemsSource="{Binding ListaClientes}" SelectedItem="{Binding Cliente}" FontSize="12" Background="#791D06"
-                                          IsEditable="True" DisplayMemberPath="razon_social"/>
-                            </RadioButton.Content>
-                        </RadioButton>
-                        <RadioButton x:Name="NoRegistrado" Grid.Row="2" Style="{StaticResource MaterialDesignRadioButton}" VerticalContentAlignment="Center" 
-                                     Margin="5 0 0 0" Command="{Binding ClienteNuevoCommand}" FontSize="12">
-                            <RadioButton.Content>
-                                <TextBox wpfMD:HintAssist.Hint="Cliente No Registrado" Foreground="{DynamicResource PrimaryHueLightBrush}" Width="350" 
-                                         IsEnabled="{Binding ElementName=NoRegistrado, Path=IsChecked}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                                         Text="{Binding NombreCliente}" FontSize="12"/>
+                                          FontSize="12" IsEditable="True" DisplayMemberPath="razon_social" Background="#484848"/>
                             </RadioButton.Content>
                         </RadioButton>
                     </Grid>
                     <TextBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" wpfMD:HintAssist.Hint="Direccion:" Margin="10"
                              AcceptsReturn="True" Style="{StaticResource MaterialDesignTextAreaTextBox}" TextWrapping="Wrap"
-                             VerticalScrollBarVisibility="Auto" Text="{Binding ClienteDireccion}" TextElement.Foreground="{DynamicResource PrimaryHueLightBrush}"
-                             IsEnabled="{Binding ElementName=NoRegistrado, Path=IsChecked}" FontSize="12"/>
+                             VerticalScrollBarVisibility="Auto" Text="{Binding ClienteDireccion}" TextElement.Foreground="White"
+                             IsEnabled="False" FontSize="12"/>
                     <TextBox Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="2" wpfMD:HintAssist.Hint="Total Ticket:" FontSize="13" 
                              HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource MaterialDesignFloatingHintTextBox}"   
                              Text="{Binding TotalTicket, StringFormat=C2}" IsEnabled="False" TextElement.FontSize="20"/>
