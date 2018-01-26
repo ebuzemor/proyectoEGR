@@ -1,13 +1,11 @@
 ﻿using Guajiro.Common;
 using Guajiro.Models;
 using Guajiro.Views;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using MaterialDesignThemes.Wpf;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 
 namespace Guajiro.ViewModels

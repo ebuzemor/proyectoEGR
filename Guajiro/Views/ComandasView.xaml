@@ -1,18 +1,16 @@
 ﻿<UserControl x:Class="Guajiro.Views.ComandasView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Guajiro.Views"
              xmlns:mdWpf="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" 
              d:DesignHeight="768" d:DesignWidth="1024"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
              TextElement.FontSize="12"
              TextOptions.TextFormattingMode="Ideal"
-             TextOptions.TextRenderingMode="Auto"
-             Background="#791D06">
+             TextOptions.TextRenderingMode="Auto">
     <UserControl.Resources>
         <ResourceDictionary>
             <Style x:Key="LeftAlignmentColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
@@ -110,7 +108,7 @@
             <DataGrid x:Name="LstComandas" Margin="10" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" CanUserAddRows="False"
                   CanUserReorderColumns="False" CanUserSortColumns="True" AutoGenerateColumns="False" SelectionUnit="FullRow" SelectionMode="Single"
                   mdWpf:DataGridAssist.CellPadding="13 8 8 8" mdWpf:DataGridAssist.ColumnHeaderPadding="8" VerticalScrollBarVisibility="Auto"
-                  HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding CvsComandas.View}" Background="#791D06">
+                  HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding CvsComandas.View}">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Header="Cliente" IsReadOnly="True" Width="2.5*" HeaderStyle="{StaticResource CenterAlignmentColumnHeaderStyle}">
                         <DataGridTemplateColumn.CellTemplate>

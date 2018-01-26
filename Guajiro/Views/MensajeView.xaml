@@ -1,12 +1,12 @@
 ﻿<UserControl x:Class="Guajiro.Views.MensajeView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mdWpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mdWpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
-             TextElement.Foreground="{DynamicResource PrimaryHueLightBrush}"
+             TextElement.Foreground="{DynamicResource PrimaryHueDarkBrush}"
              TextElement.FontWeight="Regular"
              TextElement.FontSize="15"
              TextOptions.TextFormattingMode="Ideal"
@@ -35,9 +35,9 @@
         <TextBlock Grid.Row="1" Style="{DynamicResource MaterialDesignTitleTextBlock}" TextWrapping="Wrap" 
                    HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding CuerpoMensaje}"/>
         <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="0 16 0 0" HorizontalAlignment="Right">
-            <Button IsDefault="True" Style="{DynamicResource MaterialDesignRaisedAccentButton}" IsEnabled="{Binding ActivoBtnOk}"
+            <Button IsDefault="True" Style="{DynamicResource MaterialDesignRaisedDarkButton}" IsEnabled="{Binding ActivoBtnOk}"
                     Command="{x:Static mdWpf:DialogHost.CloseDialogCommand}" CommandParameter="OK" Content="{Binding TxtAceptar}"/>
-            <Button IsCancel="True" Margin="8 0 0 0" Style="{DynamicResource MaterialDesignRaisedLightButton}"
+            <Button IsCancel="True" Margin="8 0 0 0" Style="{DynamicResource MaterialDesignRaisedButton}"
                     Command="{x:Static mdWpf:DialogHost.CloseDialogCommand}" CommandParameter="CANCELAR" 
                     Content="{Binding TxtCancelar}" Visibility="{Binding Path=MostrarCancelar, Converter={StaticResource Converter}}"/>
         </StackPanel>

@@ -28,9 +28,10 @@ CREATE TABLE IF NOT EXISTS `tbl_caracteristicasitem` (
   PRIMARY KEY (`idcaracteristica`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_caracteristicasitem: ~120 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_caracteristicasitem: ~121 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_caracteristicasitem` DISABLE KEYS */;
 INSERT INTO `tbl_caracteristicasitem` (`idcaracteristica`, `iditem`, `idlsunidadmedida`, `idlstipocaracteristica`, `valor`, `fecha_creacion`, `fecha_modificacion`, `crea_usuario`) VALUES
+	('27aca478-41ce-4126-8074-d932e2f4467d', 'f6ffb10e-b5e9-4ba6-b713-b2ed3473853a', '9ae3b470-39dc-11e7-b904-204747335338', 'e47c6405-368a-11e7-b904-204747335338', 30.00, '2018-01-22 21:57:02', NULL, '954b649c-3c10-11e7-a2b5-204747335338'),
 	('a971e762-ff2b-11e7-83f1-204747335338', '6d04a3e7-ff26-11e7-83f1-204747335338', 'e47c66f1-368a-11e7-b904-204747335338', 'e47c6405-368a-11e7-b904-204747335338', 2.50, '2018-01-21 22:18:26', NULL, NULL),
 	('f657508f-3b87-11e7-a2b5-204747335338', 'c1e2ade4-3b42-11e7-a2b5-204747335338', '604a3263-3b86-11e7-a2b5-204747335338', 'e47c6405-368a-11e7-b904-204747335338', 10.00, '2017-05-18 00:07:59', '2017-05-18 00:25:59', NULL),
 	('f6576c81-3b87-11e7-a2b5-204747335338', 'c1f41760-3b42-11e7-a2b5-204747335338', '604a3263-3b86-11e7-a2b5-204747335338', 'e47c6405-368a-11e7-b904-204747335338', 10.00, '2017-05-18 00:07:59', '2017-05-18 00:25:59', NULL),
@@ -168,16 +169,19 @@ CREATE TABLE IF NOT EXISTS `tbl_comandas` (
   `fecha_modificacion` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`idcomanda`),
   KEY `num_comanda` (`num_comanda`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_comandas: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_comandas: ~7 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_comandas` DISABLE KEYS */;
 INSERT INTO `tbl_comandas` (`idcomanda`, `fecha`, `num_comanda`, `idmesa`, `total`, `para_llevar`, `idpersona`, `crea_usuario`, `fecha_creacion`, `fecha_modificacion`) VALUES
+	('05229778-2b76-49eb-ae70-b3aaed63b10d', '2018-01-22 21:39:20', 7, '1e2164b4-83a4-11e7-b695-204747335338', 180.00, b'0', '1c87a56f-e479-11e7-8cd6-204747335338', 'c7bfeac8-3c10-11e7-a2b5-204747335338', '2018-01-22 21:43:16', '2018-01-25 23:35:04'),
+	('59eb7d11-4bd4-45de-aac3-f9ca982bbde4', '2018-01-25 00:00:00', 8, '1e23f0fd-83a4-11e7-b695-204747335338', 45.00, b'0', '1c87a56f-e479-11e7-8cd6-204747335338', 'c7bfeac8-3c10-11e7-a2b5-204747335338', '2018-01-25 23:02:19', NULL),
 	('6928c1c3-7908-464e-b211-d5c0e148e8a1', '2017-12-12 23:26:35', 4, '1cc7415e-e484-11e7-8cd6-204747335338', 100.00, b'1', '1c87a56f-e479-11e7-8cd6-204747335338', 'c7bfeac8-3c10-11e7-a2b5-204747335338', '2017-12-12 23:27:22', '2017-12-19 00:17:02'),
 	('6de21753-bde2-4a93-b055-457f9e92bdaf', '2017-12-17 00:11:36', 5, '1e2164b4-83a4-11e7-b695-204747335338', 45.00, b'0', '3ec57991-da4a-11e7-9155-204747335338', 'c7bfeac8-3c10-11e7-a2b5-204747335338', '2017-12-17 00:12:52', '2017-12-18 22:58:33'),
 	('d079e7b3-a0a4-4a6a-bfa0-ce83a1cc61ee', '2017-12-11 01:05:23', 1, '1e2164b4-83a4-11e7-b695-204747335338', 80.00, b'0', '1c87a56f-e479-11e7-8cd6-204747335338', 'c7bfeac8-3c10-11e7-a2b5-204747335338', '2017-12-11 01:06:16', '2017-12-18 22:57:50'),
 	('d35ec7f9-35dc-492a-8706-8d08f711772d', '2017-12-11 01:24:30', 3, '1e2164b4-83a4-11e7-b695-204747335338', 50.00, b'0', '954b649c-3c10-11e7-a2b5-204747335338', 'c7bfeac8-3c10-11e7-a2b5-204747335338', '2017-12-11 01:25:08', '2017-12-18 22:58:22'),
 	('dc7338c5-d347-4fc7-9877-d5acc1619dea', '2017-12-22 23:54:43', 6, '1e23ebae-83a4-11e7-b695-204747335338', 170.00, b'0', '1c87a56f-e479-11e7-8cd6-204747335338', 'c7bfeac8-3c10-11e7-a2b5-204747335338', '2017-12-22 23:57:46', '2017-12-23 00:00:10'),
+	('e48a8fe0-8adc-43ad-a711-4670e80b2381', '2018-01-25 23:15:13', 9, '1cc7415e-e484-11e7-8cd6-204747335338', 45.00, b'0', '1c87a56f-e479-11e7-8cd6-204747335338', 'c7bfeac8-3c10-11e7-a2b5-204747335338', '2018-01-25 23:16:15', '2018-01-25 23:34:32'),
 	('e9e4f5e3-046e-4aeb-9894-6ee0de543c18', '2017-12-11 01:11:14', 2, '1e2164b4-83a4-11e7-b695-204747335338', 70.00, b'0', '1c87a56f-e479-11e7-8cd6-204747335338', 'c7bfeac8-3c10-11e7-a2b5-204747335338', '2017-12-11 01:12:08', '2017-12-18 22:57:53');
 /*!40000 ALTER TABLE `tbl_comandas` ENABLE KEYS */;
 
@@ -230,16 +234,23 @@ CREATE TABLE IF NOT EXISTS `tbl_detallemenu` (
   CONSTRAINT `FK_tbl_detallemenu_tbl_menudeldia` FOREIGN KEY (`idmenu`) REFERENCES `tbl_menudeldia` (`idmenu`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_detallemenu: ~18 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_detallemenu: ~27 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_detallemenu` DISABLE KEYS */;
 INSERT INTO `tbl_detallemenu` (`iddetalle`, `idmenu`, `iditem`) VALUES
+	('011ed639-a3a7-4787-878a-cf03b732a263', 'd8f9de72-6502-42d6-b110-380abd4d5560', 'c1f44838-3b42-11e7-a2b5-204747335338'),
 	('0370d93c-d7ae-4eb8-8bc3-e99ff0c33b36', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f43cf2-3b42-11e7-a2b5-204747335338'),
 	('0bd53dc2-bec7-4f08-b0af-0d5984ac8c7f', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f44064-3b42-11e7-a2b5-204747335338'),
+	('16e19b03-e7aa-4b11-8795-e229eb36ee1d', 'd8f9de72-6502-42d6-b110-380abd4d5560', 'c1f45d17-3b42-11e7-a2b5-204747335338'),
+	('416d65fc-af6c-46f5-a7a1-d40b1cd200e6', 'd8f9de72-6502-42d6-b110-380abd4d5560', 'c1f9079d-3b42-11e7-a2b5-204747335338'),
 	('457903f5-8a7b-4c32-993c-1aaaa8ac7958', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f43c61-3b42-11e7-a2b5-204747335338'),
 	('45b5cd2c-5dc0-4cbb-a5a8-d6e92f1a392c', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f45ac1-3b42-11e7-a2b5-204747335338'),
+	('4e0645ca-0af8-4851-967d-e0167538645c', 'd8f9de72-6502-42d6-b110-380abd4d5560', 'c1f44c46-3b42-11e7-a2b5-204747335338'),
+	('4fb8cbe0-606d-4231-a9d9-ce134c80fa3c', 'd8f9de72-6502-42d6-b110-380abd4d5560', 'c1f45be9-3b42-11e7-a2b5-204747335338'),
+	('58101ffc-05d1-40be-938e-a754df3d62f2', 'd8f9de72-6502-42d6-b110-380abd4d5560', 'c1f4328c-3b42-11e7-a2b5-204747335338'),
 	('5f114a9d-f7c8-4ee8-aa1e-16440be5e99a', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f43e1a-3b42-11e7-a2b5-204747335338'),
 	('6eb66a49-a37e-4158-95d1-808a9974b2d7', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f44f1b-3b42-11e7-a2b5-204747335338'),
 	('7167e1b4-e5f7-4cd8-bec4-3e710d0c7d23', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f43bbe-3b42-11e7-a2b5-204747335338'),
+	('7439871c-cf50-43da-bda5-49ce4352fe73', 'd8f9de72-6502-42d6-b110-380abd4d5560', 'c1f44a8e-3b42-11e7-a2b5-204747335338'),
 	('95f8f642-ae12-4b30-aad1-acf062b46feb', '14159f86-188a-4e27-a350-711db0b4c2e6', 'c1f45b58-3b42-11e7-a2b5-204747335338'),
 	('a3c3c4c5-28ec-46d8-8d07-ec4c67880f2e', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f43eab-3b42-11e7-a2b5-204747335338'),
 	('a440d7f8-3a03-48ff-954f-40e139687eb2', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f43f3c-3b42-11e7-a2b5-204747335338'),
@@ -250,7 +261,9 @@ INSERT INTO `tbl_detallemenu` (`iddetalle`, `idmenu`, `iditem`) VALUES
 	('c7f1a413-e235-11e7-9155-204747335338', '635ccee7-e232-11e7-9155-204747335338', 'c1f43f3c-3b42-11e7-a2b5-204747335338'),
 	('c7f1a62c-e235-11e7-9155-204747335338', '635ccee7-e232-11e7-9155-204747335338', 'c1f44100-3b42-11e7-a2b5-204747335338'),
 	('c7f1a6b7-e235-11e7-9155-204747335338', '635ccee7-e232-11e7-9155-204747335338', 'c1f44838-3b42-11e7-a2b5-204747335338'),
-	('c881f8e0-3946-4fdf-b132-c9cb38660723', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f43d89-3b42-11e7-a2b5-204747335338');
+	('c881f8e0-3946-4fdf-b132-c9cb38660723', 'ccae6972-cf45-46d4-8122-8714a176833e', 'c1f43d89-3b42-11e7-a2b5-204747335338'),
+	('d5090a82-cdd5-4967-bdae-f9a70f9c7ee3', 'd8f9de72-6502-42d6-b110-380abd4d5560', 'c1f434b7-3b42-11e7-a2b5-204747335338'),
+	('db522497-7143-4ce1-899b-96120bea2ce6', 'd8f9de72-6502-42d6-b110-380abd4d5560', 'c1f442ea-3b42-11e7-a2b5-204747335338');
 /*!40000 ALTER TABLE `tbl_detallemenu` ENABLE KEYS */;
 
 
@@ -269,27 +282,35 @@ CREATE TABLE IF NOT EXISTS `tbl_detallescomanda` (
   CONSTRAINT `FK_tbl_detallescomanda_tbl_items` FOREIGN KEY (`iditem`) REFERENCES `tbl_items` (`iditem`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_detallescomanda: ~18 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_detallescomanda: ~22 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_detallescomanda` DISABLE KEYS */;
 INSERT INTO `tbl_detallescomanda` (`iddetalle`, `idcomanda`, `iditem`, `observaciones`, `descripcion`, `precio`) VALUES
+	('191f6ba7-45f9-4c13-b728-8b6ba3dbb6cc', '05229778-2b76-49eb-ae70-b3aaed63b10d', 'c1f45be9-3b42-11e7-a2b5-204747335338', '', 'Albóndiga enchipotlada', 40.00),
 	('1fe0b051-9a1b-4fd3-9e7b-213df4c03898', '6928c1c3-7908-464e-b211-d5c0e148e8a1', 'c1f41760-3b42-11e7-a2b5-204747335338', '', 'Vaso de Jamaica', 10.00),
 	('250e7a8e-120c-4d5d-a5c5-7e91f57bca4a', 'd079e7b3-a0a4-4a6a-bfa0-ce83a1cc61ee', 'c1f44838-3b42-11e7-a2b5-204747335338', '', 'Chilaquiles con pollo', 40.00),
+	('281e7da0-f3f0-4c37-8d89-33bad6412bed', '05229778-2b76-49eb-ae70-b3aaed63b10d', 'c1f9079d-3b42-11e7-a2b5-204747335338', '', 'Chilaquiles con pollo', 40.00),
 	('312c1b50-b2ec-4a46-a1cf-5a31654f1925', 'dc7338c5-d347-4fc7-9877-d5acc1619dea', 'c1f41760-3b42-11e7-a2b5-204747335338', '', 'Vaso de Jamaica', 10.00),
 	('3588461f-23fa-4f0c-b047-8c10ed99dd79', 'dc7338c5-d347-4fc7-9877-d5acc1619dea', 'c1f41fa1-3b42-11e7-a2b5-204747335338', '', 'Vaso de Tascalate', 10.00),
+	('3d573804-daf8-4684-8839-4e17945656b4', '05229778-2b76-49eb-ae70-b3aaed63b10d', 'c1f45d17-3b42-11e7-a2b5-204747335338', '', 'Barbacoa de res', 60.00),
 	('3eb31ac5-7175-4992-8cbe-d119b6754adb', '6928c1c3-7908-464e-b211-d5c0e148e8a1', 'c1f442ea-3b42-11e7-a2b5-204747335338', '', 'Huevos con pollo deshebrado', 40.00),
 	('5f9970e0-31ca-4eaa-adae-44ad0be2fe44', 'e9e4f5e3-046e-4aeb-9894-6ee0de543c18', 'c1f43c61-3b42-11e7-a2b5-204747335338', '', 'Huevo con Chorizo', 35.00),
 	('60105b3e-e3c9-4ba8-b9db-44c87d775ed0', '6928c1c3-7908-464e-b211-d5c0e148e8a1', 'c1f44253-3b42-11e7-a2b5-204747335338', '', 'Huevos con machaca', 40.00),
+	('6e9ae6a5-99e6-4d5d-a3bd-9b4baffc95f9', 'e48a8fe0-8adc-43ad-a711-4670e80b2381', 'c1f44f1b-3b42-11e7-a2b5-204747335338', '', 'Wafles (3 pzas)', 30.00),
 	('730a4caa-89a0-4e92-b843-65786122a264', '6928c1c3-7908-464e-b211-d5c0e148e8a1', 'c1e2ade4-3b42-11e7-a2b5-204747335338', '', 'Vaso de Horchata', 10.00),
+	('96eb739f-d061-4c06-b461-402aa6161c04', '59eb7d11-4bd4-45de-aac3-f9ca982bbde4', 'c1e2ade4-3b42-11e7-a2b5-204747335338', '', 'Vaso de Horchata', 10.00),
 	('a14285f1-1789-4fab-b2b6-b9c2716dac1a', 'dc7338c5-d347-4fc7-9877-d5acc1619dea', 'c1f45b58-3b42-11e7-a2b5-204747335338', '', 'Albóndiga en caldo', 40.00),
 	('af5d64c4-ee1d-4b53-acc2-0db7cce491f4', 'e9e4f5e3-046e-4aeb-9894-6ee0de543c18', 'c1f43bbe-3b42-11e7-a2b5-204747335338', '', 'Huevo con Verduras', 35.00),
+	('b07d6810-e19e-41dd-8e8f-3221c4e1fa2d', '05229778-2b76-49eb-ae70-b3aaed63b10d', 'c1f44838-3b42-11e7-a2b5-204747335338', '', 'Chilaquiles con pollo', 40.00),
 	('b2519b76-9867-40a5-82d5-e004449dc632', 'dc7338c5-d347-4fc7-9877-d5acc1619dea', 'c1e2ade4-3b42-11e7-a2b5-204747335338', '', 'Vaso de Horchata', 10.00),
 	('b30a3bd2-097c-4ee3-90d7-9b647aa511fa', 'd079e7b3-a0a4-4a6a-bfa0-ce83a1cc61ee', 'c1f442ea-3b42-11e7-a2b5-204747335338', '', 'Huevos con pollo deshebrado', 40.00),
 	('b54a35d3-c33e-47e7-8551-99d2edea8cc6', 'dc7338c5-d347-4fc7-9877-d5acc1619dea', 'c1f45be9-3b42-11e7-a2b5-204747335338', '', 'Albóndiga enchipotlada', 40.00),
+	('d44c5911-d68d-4898-82d6-64bd65a78288', 'e48a8fe0-8adc-43ad-a711-4670e80b2381', 'c1f437c2-3b42-11e7-a2b5-204747335338', '', 'Café con Leche', 15.00),
 	('d954ef91-fa01-4530-8c88-65bccdd6bdcd', '6de21753-bde2-4a93-b055-457f9e92bdaf', 'c1f43bbe-3b42-11e7-a2b5-204747335338', '', 'Huevo con Verduras', 35.00),
 	('dac23aa8-92a3-4ce4-9b5f-ad8c4b9ac755', 'd35ec7f9-35dc-492a-8706-8d08f711772d', 'c1f90699-3b42-11e7-a2b5-204747335338', '', 'Carne adobada frita', 40.00),
 	('e1123d2d-cf88-4aba-b05d-3134c057cbc3', '6de21753-bde2-4a93-b055-457f9e92bdaf', 'c1e2ade4-3b42-11e7-a2b5-204747335338', '', 'Vaso de Horchata', 10.00),
 	('eadc1d8b-dd16-4c94-8c87-e03108f50a9f', 'dc7338c5-d347-4fc7-9877-d5acc1619dea', 'c1f45d17-3b42-11e7-a2b5-204747335338', '', 'Barbacoa de res', 60.00),
-	('f36ae20c-6b34-4655-911b-5f2e2d68a329', 'd35ec7f9-35dc-492a-8706-8d08f711772d', 'c1e2ade4-3b42-11e7-a2b5-204747335338', '', 'Vaso de Horchata', 10.00);
+	('f36ae20c-6b34-4655-911b-5f2e2d68a329', 'd35ec7f9-35dc-492a-8706-8d08f711772d', 'c1e2ade4-3b42-11e7-a2b5-204747335338', '', 'Vaso de Horchata', 10.00),
+	('f557fdb2-2ebe-4398-a3b4-740228a710b9', '59eb7d11-4bd4-45de-aac3-f9ca982bbde4', 'c1f43bbe-3b42-11e7-a2b5-204747335338', '', 'Huevo con Verduras', 35.00);
 /*!40000 ALTER TABLE `tbl_detallescomanda` ENABLE KEYS */;
 
 
@@ -348,7 +369,7 @@ CREATE TABLE IF NOT EXISTS `tbl_direcciones` (
   PRIMARY KEY (`iddireccion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_direcciones: ~8 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_direcciones: ~9 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_direcciones` DISABLE KEYS */;
 INSERT INTO `tbl_direcciones` (`iddireccion`, `idpersona`, `idmunicipio`, `calle1`, `calle2`, `interior`, `exterior`, `colonia`, `codigopostal`, `entrega`, `fiscal`) VALUES
 	('119faf2d-c9b5-476b-8190-548cd967751f', 'cdf75403-7c45-4689-a7fb-3b613684739c', '4929fcbf-fcd3-11e7-83f1-204747335338', 'Conocida1', 'Conocida2', '1234', '123', 'Barrio Conocido', '12345', b'1', b'1'),
@@ -358,6 +379,7 @@ INSERT INTO `tbl_direcciones` (`iddireccion`, `idpersona`, `idmunicipio`, `calle
 	('bb61de93-7091-4064-a0c7-82df536b32e4', '4b342018-1724-464b-bbdb-6b2e1597664f', '4929fcbf-fcd3-11e7-83f1-204747335338', '3a poniente', NULL, NULL, '312', 'Barrio', '41234', NULL, b'1'),
 	('c53dfad2-db0a-11e7-9155-204747335338', '3ec57991-da4a-11e7-9155-204747335338', '4929fcbf-fcd3-11e7-83f1-204747335338', 'Calle Ixhuatán', 'entre Simojovel e Ixtacomitan', '#341', NULL, 'Col. Centenario', '29025', b'1', b'0'),
 	('cc5f4754-f3fc-11e7-83f1-204747335338', '1c87a56f-e479-11e7-8cd6-204747335338', '4929fcbf-fcd3-11e7-83f1-204747335338', '', NULL, NULL, NULL, NULL, NULL, b'0', b'0'),
+	('ce4b78a7-aec8-471c-ab64-b85a1fde8353', 'df26992d-0a81-46cb-9829-fb92ec9a5dc7', '4929fcbf-fcd3-11e7-83f1-204747335338', 'Conocida', NULL, NULL, '1234', 'Centenario', '29000', b'1', b'1'),
 	('f3755939-056a-431d-8b90-98334a561954', '1f546f39-9ed6-4ff2-8ad4-376d3bb510d5', '4929fcbf-fcd3-11e7-83f1-204747335338', 'qqq', NULL, NULL, '1111', 'qwer', '1324', b'0', b'1');
 /*!40000 ALTER TABLE `tbl_direcciones` ENABLE KEYS */;
 
@@ -441,7 +463,7 @@ CREATE TABLE IF NOT EXISTS `tbl_items` (
   KEY `FK_tbl_items_tbl_listadoseldetalle` (`idlstipoitem`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_items: ~134 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_items: ~135 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_items` DISABLE KEYS */;
 INSERT INTO `tbl_items` (`iditem`, `idlstipoitem`, `descripcion`, `existencia`, `inventariable`, `fecha_creacion`, `fecha_modificacion`, `crea_usuario`) VALUES
 	('203ed470-635a-11e7-a068-204747335338', 'ed9a8d7c-6358-11e7-a068-204747335338', 'Sin queso', NULL, b'0', '2017-07-07 16:20:25', '2018-01-21 19:25:37', NULL),
@@ -577,7 +599,8 @@ INSERT INTO `tbl_items` (`iditem`, `idlstipoitem`, `descripcion`, `existencia`, 
 	('c1f932dd-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Puerco en salsa verde', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
 	('c1f933db-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Sopa caldosa', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
 	('c1f934f1-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Tazajo con frijol y arroz', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
-	('c1f935e8-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Tortitas de papa', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL);
+	('c1f935e8-3b42-11e7-a2b5-204747335338', '9ae3b470-39dc-11e7-b904-204747335338', 'Tortitas de papa', NULL, b'0', '2017-05-17 15:52:36', '2018-01-21 19:25:37', NULL),
+	('f6ffb10e-b5e9-4ba6-b713-b2ed3473853a', '9ae3b470-39dc-11e7-b904-204747335338', 'Nachos Salvajes', 0.00, b'0', '2018-01-22 21:57:02', NULL, '954b649c-3c10-11e7-a2b5-204747335338');
 /*!40000 ALTER TABLE `tbl_items` ENABLE KEYS */;
 
 
@@ -654,12 +677,13 @@ CREATE TABLE IF NOT EXISTS `tbl_menudeldia` (
   PRIMARY KEY (`idmenu`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_menudeldia: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_menudeldia: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_menudeldia` DISABLE KEYS */;
 INSERT INTO `tbl_menudeldia` (`idmenu`, `fecha`) VALUES
 	('14159f86-188a-4e27-a350-711db0b4c2e6', '2018-01-21 14:12:08'),
 	('635ccee7-e232-11e7-9155-204747335338', '2017-12-16 01:42:25'),
-	('ccae6972-cf45-46d4-8122-8714a176833e', '2018-01-15 20:53:20');
+	('ccae6972-cf45-46d4-8122-8714a176833e', '2018-01-15 20:53:20'),
+	('d8f9de72-6502-42d6-b110-380abd4d5560', '2018-01-22 21:39:21');
 /*!40000 ALTER TABLE `tbl_menudeldia` ENABLE KEYS */;
 
 
@@ -701,11 +725,14 @@ CREATE TABLE IF NOT EXISTS `tbl_movimientos` (
   PRIMARY KEY (`idmovimiento`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_movimientos: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_movimientos: ~7 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_movimientos` DISABLE KEYS */;
 INSERT INTO `tbl_movimientos` (`idmovimiento`, `idlstipomovimiento`, `fecha`, `descripcion`, `monto`, `fecha_creacion`, `fecha_modificacion`, `crea_usuario`) VALUES
+	('12204006-fb23-4428-9b75-ed012db6518a', 'e47c55ba-368a-11e7-b904-204747335338', '2018-01-25 23:16:09', 'Venta de Comida', 45.00, '2018-01-25 23:16:15', NULL, 'c7bfeac8-3c10-11e7-a2b5-204747335338'),
 	('227e15b1-5370-4804-9338-b3c02a336116', 'e47c55ba-368a-11e7-b904-204747335338', '2017-12-17 00:12:02', 'Venta de Comida', 45.00, '2017-12-17 00:12:52', '2018-01-13 18:15:46', 'c7bfeac8-3c10-11e7-a2b5-204747335338'),
+	('236707f2-fb1d-46a9-8769-9bb87c204f52', 'e47c55ba-368a-11e7-b904-204747335338', '2018-01-25 23:02:08', 'Venta de Comida', 45.00, '2018-01-25 23:02:20', NULL, 'c7bfeac8-3c10-11e7-a2b5-204747335338'),
 	('b838c33f-c5ea-49f2-9ade-0f4e64972819', 'e47c55ba-368a-11e7-b904-204747335338', '2017-12-22 23:57:38', 'Venta de Comida', 170.00, '2017-12-22 23:57:47', '2018-01-13 18:15:52', 'c7bfeac8-3c10-11e7-a2b5-204747335338'),
+	('e4d7b656-0397-4238-b991-607f6ace3ef2', 'e47c55ba-368a-11e7-b904-204747335338', '2018-01-22 21:42:57', 'Venta de Comida', 180.00, '2018-01-22 21:43:16', NULL, 'c7bfeac8-3c10-11e7-a2b5-204747335338'),
 	('ea379dfa-e2f0-11e7-9155-204747335338', 'e47c55ba-368a-11e7-b904-204747335338', '2017-12-12 23:26:35', 'Venta de Comida', 100.00, '2017-12-17 00:06:14', '2018-01-13 18:15:56', 'c7bfeac8-3c10-11e7-a2b5-204747335338'),
 	('ea37a61d-e2f0-11e7-9155-204747335338', 'e47c55ba-368a-11e7-b904-204747335338', '2017-12-11 01:05:23', 'Venta de Comida', 80.00, '2017-12-17 00:06:14', '2018-01-13 18:15:59', 'c7bfeac8-3c10-11e7-a2b5-204747335338'),
 	('ea37a775-e2f0-11e7-9155-204747335338', 'e47c55ba-368a-11e7-b904-204747335338', '2017-12-11 01:24:30', 'Venta de Comida', 50.00, '2017-12-17 00:06:14', '2018-01-13 18:16:03', 'c7bfeac8-3c10-11e7-a2b5-204747335338'),
@@ -963,7 +990,7 @@ CREATE TABLE IF NOT EXISTS `tbl_personas` (
   PRIMARY KEY (`idpersona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_personas: ~9 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_personas: ~10 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_personas` DISABLE KEYS */;
 INSERT INTO `tbl_personas` (`idpersona`, `idlstipopersona`, `idlstipocontribuyente`, `rfc`, `nprimario`, `nsecundario`, `paterno`, `materno`, `razon_social`, `email`, `fecha_creacion`, `fecha_modificacion`, `crea_usuario`) VALUES
 	('12284d7a-e164-4732-8d55-3a86ac97973d', 'e47c61f8-368a-11e7-b904-204747335338', 'e0e8f331-fe83-11e7-83f1-204747335338', 'SAMS', 'Sam\'s', NULL, 'Club', 'Walmart', 'Tiendas Walmart S.A. de C.V.', NULL, '2018-01-21 12:30:38', '2018-01-21 12:32:45', '954b649c-3c10-11e7-a2b5-204747335338'),
@@ -974,6 +1001,7 @@ INSERT INTO `tbl_personas` (`idpersona`, `idlstipopersona`, `idlstipocontribuyen
 	('954b649c-3c10-11e7-a2b5-204747335338', 'e47c6009-368a-11e7-b904-204747335338', 'e0eaa02f-fe83-11e7-83f1-204747335338', 'ZEME790501KE1', 'Elí', 'Bulmaro', 'Zenteno', 'Moreno', 'Elí Bulmaro Zenteno Moreno', NULL, '2018-01-17 00:37:49', '2018-01-21 08:53:49', '954b649c-3c10-11e7-a2b5-204747335338'),
 	('a31b0a0f-c6ef-4961-9c96-7ee2cef96b81', 'e47c6009-368a-11e7-b904-204747335338', 'e0eaa02f-fe83-11e7-83f1-204747335338', 'BAKB800101CA5', 'Benito', 'Carlos', 'Baez', 'Kuh', 'Benito Carlos Baez Kuh', NULL, '2018-01-20 00:30:18', '2018-01-21 08:53:51', '954b649c-3c10-11e7-a2b5-204747335338'),
 	('cdf75403-7c45-4689-a7fb-3b613684739c', 'e47c6009-368a-11e7-b904-204747335338', 'e0eaa02f-fe83-11e7-83f1-204747335338', 'COCS750721LR9', 'Stephen', 'T.', 'Colbert', 'C.', 'Stephen T. Colbert C.', NULL, '2018-01-20 00:08:42', '2018-01-21 08:53:53', '954b649c-3c10-11e7-a2b5-204747335338'),
+	('df26992d-0a81-46cb-9829-fb92ec9a5dc7', 'e47c6009-368a-11e7-b904-204747335338', 'e0eaa02f-fe83-11e7-83f1-204747335338', 'GAL123456789', 'Alejandro', NULL, 'Gutiérrez', NULL, 'Alejandro  Gutiérrez ', NULL, '2018-01-22 21:49:47', NULL, '954b649c-3c10-11e7-a2b5-204747335338'),
 	('e7e56c93-8f4c-4c7a-96c3-a2c30e741b30', 'e47c61f8-368a-11e7-b904-204747335338', 'e0e8f331-fe83-11e7-83f1-204747335338', 'PLPB123456AS1', 'Plásticos', NULL, 'Pablin', 'S.A. de C.V.', 'Plásticos  Pablin S.A. de C.V.', NULL, '2018-01-21 10:14:48', '2018-01-21 12:32:41', '954b649c-3c10-11e7-a2b5-204747335338');
 /*!40000 ALTER TABLE `tbl_personas` ENABLE KEYS */;
 
@@ -987,11 +1015,12 @@ CREATE TABLE IF NOT EXISTS `tbl_telefonos` (
   PRIMARY KEY (`idtelefono`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_telefonos: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_telefonos: ~6 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_telefonos` DISABLE KEYS */;
 INSERT INTO `tbl_telefonos` (`idtelefono`, `idpersona`, `idlstipotelefono`, `numtelefono`) VALUES
 	('0e849f3a-fbb1-11e7-9da6-1c1b0dd5d000', '3ec57991-da4a-11e7-9155-204747335338', 'ff9a4a3f-f42a-11e7-83f1-204747335338', '961-123-4567'),
 	('145ab96d-44d3-41d4-86d0-9809b422ee80', '1f546f39-9ed6-4ff2-8ad4-376d3bb510d5', 'ff9a4ea2-f42a-11e7-83f1-204747335338', '1234565422'),
+	('627bb62c-9d9c-4fd8-b04d-b2abd35479ea', 'df26992d-0a81-46cb-9829-fb92ec9a5dc7', 'ff9a4a3f-f42a-11e7-83f1-204747335338', '9611234567'),
 	('c7df8d58-e375-4788-9c96-b51da56bd694', 'e7e56c93-8f4c-4c7a-96c3-a2c30e741b30', 'ff9a4ea2-f42a-11e7-83f1-204747335338', '123456789'),
 	('cba209bf-2e58-4745-8780-c18052c5c7a1', 'cdf75403-7c45-4689-a7fb-3b613684739c', 'ff9a4a3f-f42a-11e7-83f1-204747335338', '9611234567'),
 	('fcf9da47-ebea-46fb-a27a-79de6a0dc71f', 'a31b0a0f-c6ef-4961-9c96-7ee2cef96b81', 'ff9a4a3f-f42a-11e7-83f1-204747335338', '9611234567');
@@ -1053,6 +1082,19 @@ CREATE TABLE `vw_lista_direcciones` (
 	`iddireccion` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
 	`idpersona` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
 	`direccion` TEXT NULL COLLATE 'utf8_general_ci'
+) ENGINE=MyISAM;
+
+
+-- Volcando estructura para vista bd_guajiro.vw_lista_movimientos
+-- Creando tabla temporal para superar errores de dependencia de VIEW
+CREATE TABLE `vw_lista_movimientos` (
+	`idmovimiento` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	`idlstipomovimiento` VARCHAR(50) NULL COLLATE 'utf8_general_ci',
+	`fecha` DATETIME NULL,
+	`descripcion` VARCHAR(50) NULL COLLATE 'utf8_general_ci',
+	`tipo` VARCHAR(100) NULL COLLATE 'utf8_general_ci',
+	`monto` DECIMAL(10,2) NULL,
+	`usuario` VARCHAR(350) NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
 
 
@@ -1132,7 +1174,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- Volcando estructura para vista bd_guajiro.vw_lista_clientes
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `vw_lista_clientes`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_lista_clientes` AS select `p`.`idpersona` AS `idpersona`,`p`.`idlstipopersona` AS `idlstipopersona`,`p`.`razon_social` AS `razon_social` from (`tbl_personas` `p` join `tbl_usuarios` `u` on((`p`.`idpersona` <> `u`.`idpersona`)));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_lista_clientes` AS select `p`.`idpersona` AS `idpersona`,`p`.`idlstipopersona` AS `idlstipopersona`,`p`.`razon_social` AS `razon_social` from (`tbl_personas` `p` join `tbl_usuarios` `u` on((`p`.`idpersona` <> `u`.`idpersona`))) where (`p`.`idlstipopersona` = 'e47c6009-368a-11e7-b904-204747335338');
 
 
 -- Volcando estructura para vista bd_guajiro.vw_lista_comandas
@@ -1145,6 +1187,12 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `vw_lista_direcciones`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_lista_direcciones` AS select `d`.`iddireccion` AS `iddireccion`,`p`.`idpersona` AS `idpersona`,(case `d`.`entrega` when 0 then 'Sin dirección de entrega' when 1 then concat(ifnull(`d`.`calle1`,''),' ',ifnull(`d`.`calle2`,''),' ',ifnull(`d`.`interior`,''),' ',ifnull(`d`.`exterior`,''),', ',ifnull(`d`.`colonia`,''),', CP: ',ifnull(`d`.`codigopostal`,''),', ',ifnull(`m`.`nombre`,''),', ',ifnull(`e`.`nombre`,'')) end) AS `direccion` from ((((`tbl_personas` `p` join `tbl_direcciones` `d` on((`p`.`idpersona` = `d`.`idpersona`))) join `tbl_usuarios` `u` on((`p`.`idpersona` <> `u`.`idpersona`))) join `tbl_municipios` `m` on((`d`.`idmunicipio` = `m`.`idmunicipio`))) join `tbl_estados` `e` on((`m`.`idestado` = `e`.`idestado`)));
+
+
+-- Volcando estructura para vista bd_guajiro.vw_lista_movimientos
+-- Eliminando tabla temporal y crear estructura final de VIEW
+DROP TABLE IF EXISTS `vw_lista_movimientos`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_lista_movimientos` AS select `m`.`idmovimiento` AS `idmovimiento`,`m`.`idlstipomovimiento` AS `idlstipomovimiento`,`m`.`fecha` AS `fecha`,`m`.`descripcion` AS `descripcion`,`d`.`descripcion` AS `tipo`,`m`.`monto` AS `monto`,`p`.`razon_social` AS `usuario` from (((`tbl_movimientos` `m` join `tbl_listadoseldetalle` `d` on((`m`.`idlstipomovimiento` = `d`.`idlsselecciondetalle`))) join `tbl_usuarios` `u` on((`m`.`crea_usuario` = `u`.`idusuario`))) join `tbl_personas` `p` on((`u`.`idpersona` = `p`.`idpersona`)));
 
 
 -- Volcando estructura para vista bd_guajiro.vw_lista_ordenes
