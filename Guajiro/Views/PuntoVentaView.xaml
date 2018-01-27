@@ -194,7 +194,7 @@
                              Text="{Binding TotalTicket, StringFormat=C2}" IsEnabled="False" TextElement.FontSize="20"/>
                     <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" 
                                 HorizontalAlignment="Right">
-                        <Button Margin="5" Content="Registrar Pago" Command="{Binding GuardarTicketCommand}"/>
+                        <Button Margin="5" Content="Registrar Pago" Style="{StaticResource MaterialDesignRaisedAccentButton}" Command="{Binding GuardarTicketCommand}"/>
                         <Button Margin="5" Content="Cancelar Orden" Command="{Binding CancelarTicketCommand}"/>
                     </StackPanel>
                 </Grid>

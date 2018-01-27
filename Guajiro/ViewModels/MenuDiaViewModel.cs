@@ -145,7 +145,8 @@ namespace Guajiro.ViewModels
                             var vmMensaje = new MensajeViewModel
                             {
                                 TituloMensaje = "Aviso",
-                                CuerpoMensaje = "El menú del día ha sido guardado correctamente"
+                                CuerpoMensaje = "El menú del día ha sido guardado correctamente",
+                                TxtAceptar = "Aceptar"
                             };
                             var vwMensaje = new MensajeView
                             {

@@ -44,15 +44,14 @@
                     <GridViewColumn Header="Descripcion" Width="270">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding descripcion}" Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+                                <TextBlock Text="{Binding descripcion}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="Precio" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding precio, StringFormat=C2}" TextAlignment="Right" Margin="5"
-                                           Foreground="{DynamicResource PrimaryHueMidForegroundBrush}"/>
+                                <TextBlock Text="{Binding precio, StringFormat=C2}" TextAlignment="Right" Margin="5"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
