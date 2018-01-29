@@ -6,9 +6,10 @@
              xmlns:wpfMD="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="900"
-             TextElement.Foreground="{StaticResource PrimaryHueLightBrush}"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              FontFamily="/Fonts/#Tulia"
-             Height="250" Width="400">
+             Height="250" Width="400"
+             Background="{DynamicResource MaterialDesignPaper}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -47,7 +48,7 @@
         <!--Botones-->
         <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" 
                     HorizontalAlignment="Right" VerticalAlignment="Center">
-            <Button Content="Guardar" Command="{Binding GuardarMovimientoCommand}" Margin="5"/>
+            <Button Content="Guardar" Command="{Binding GuardarMovimientoCommand}" Margin="5" Style="{StaticResource MaterialDesignRaisedAccentButton}"/>
             <Button IsCancel="True" Command="{x:Static wpfMD:DialogHost.CloseDialogCommand}"
                     CommandParameter="CANCELAR" Content="Cerrar" Margin="5"/>
         </StackPanel>

@@ -183,6 +183,9 @@
     <Compile Include="Models\vw_clientes_directorio.cs">
       <DependentUpon>GuajiroBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\vw_detallemenu.cs">
+      <DependentUpon>GuajiroBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\vw_lista_clientes.cs">
       <DependentUpon>GuajiroBD.tt</DependentUpon>
     </Compile>
@@ -219,6 +222,7 @@
     <Compile Include="ViewModels\DatosProductoViewModel.cs" />
     <Compile Include="ViewModels\DatosProveedorViewModel.cs" />
     <Compile Include="ViewModels\DetallesComandaViewModel.cs" />
+    <Compile Include="ViewModels\DetallesMenuDiaViewModel.cs" />
     <Compile Include="ViewModels\EditarItemViewModel.cs" />
     <Compile Include="ViewModels\InventarioViewModel.cs" />
     <Compile Include="ViewModels\ListaClientesViewModel.cs" />
@@ -248,6 +252,9 @@
     </Compile>
     <Compile Include="Views\DetallesComandaView.xaml.cs">
       <DependentUpon>DetallesComandaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DetallesMenuDiaView.xaml.cs">
+      <DependentUpon>DetallesMenuDiaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditarItemView.xaml.cs">
       <DependentUpon>EditarItemView.xaml</DependentUpon>
@@ -317,6 +324,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DetallesComandaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DetallesMenuDiaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

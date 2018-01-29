@@ -86,6 +86,7 @@ namespace Guajiro.ViewModels
                 _chkFisica = value;
                 OnPropertyChanged();
                 TipoPersona = (_chkFisica == true) ? "e0eaa02f-fe83-11e7-83f1-204747335338" : "e0e8f331-fe83-11e7-83f1-204747335338";
+                TxtRazonSocial = "";
             }
         }
         public bool ChkMoral
@@ -96,6 +97,7 @@ namespace Guajiro.ViewModels
                 _chkMoral = value;
                 OnPropertyChanged();
                 TipoPersona = (_chkMoral == true) ? "e0e8f331-fe83-11e7-83f1-204747335338" : "e0eaa02f-fe83-11e7-83f1-204747335338";
+                TxtNPrimario = ""; TxtNSecundario = ""; TxtPaterno = ""; TxtMaterno = "";
             }
         }
         public bool ChkFactura { get => _chkFactura; set { _chkFactura = value; OnPropertyChanged(); } }

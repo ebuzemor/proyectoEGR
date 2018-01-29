@@ -6,9 +6,10 @@
              xmlns:wpfMD="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="900"
-             TextElement.Foreground="{DynamicResource PrimaryHueLightBrush}"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              FontFamily="/Fonts/#Tulia"
-             Height="500" Width="900">
+             Height="500" Width="900"
+             Background="{DynamicResource MaterialDesignPaper}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -48,7 +49,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <RadioButton x:Name="rbtFisica" Grid.Column="0" Grid.Row="0" Style="{StaticResource MaterialDesignRadioButton}" 
-                         Content="Persona Física" VerticalAlignment="Center" IsChecked="{Binding ChkFisica}"/>
+                         Content="Persona Física" VerticalAlignment="Center" IsChecked="{Binding ChkFisica}" Margin="10 0 0 0"/>
             <RadioButton x:Name="rbtMoral" Grid.Column="1" Grid.Row="0" Style="{StaticResource MaterialDesignRadioButton}" 
                          Content="Persona Moral" VerticalAlignment="Center" IsChecked="{Binding ChkMoral}"/>
             <TextBox Grid.Column="0" Grid.Row="1" wpfMD:HintAssist.Hint="Nombre Primario:*" Text="{Binding TxtNPrimario}"
@@ -77,9 +78,9 @@
                           ItemsSource="{Binding TiposTelefono}" SelectedItem="{Binding TipoTel}"/>
                 <TextBox Text="{Binding TxtNumTelefono}" wpfMD:HintAssist.Hint="Número de Teléfono:"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" MaxLength="10"
-                         Foreground="{DynamicResource PrimaryHueLightBrush}"
                          HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Button Margin="5" Command="{Binding AgregarTelefonoCommand}">
+                <Button Margin="5" Command="{Binding AgregarTelefonoCommand}" 
+                        Style="{StaticResource MaterialDesignRaisedLightButton}">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <wpfMD:PackIcon Width="24" Height="24" Kind="PhonePlus"/>
@@ -154,7 +155,8 @@
             <UniformGrid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Columns="3">
                 <CheckBox IsChecked="{Binding ChkEntrega}" HorizontalAlignment="Center">Entrega</CheckBox>
                 <CheckBox IsChecked="{Binding ChkFactura}" HorizontalAlignment="Center">Factura</CheckBox>
-                <Button Margin="5" Command="{Binding AgregarDireccionCommand}">
+                <Button Margin="5" Command="{Binding AgregarDireccionCommand}" 
+                        Style="{StaticResource MaterialDesignRaisedLightButton}">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <wpfMD:PackIcon Width="24" Height="24" Kind="BookPlus"/>
@@ -195,9 +197,11 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="1" Command="{Binding GuardarClienteCommand}" Content="Guardar" Margin="5"/>
+            <Button Grid.Column="1" Command="{Binding GuardarClienteCommand}" 
+                    Style="{StaticResource MaterialDesignRaisedAccentButton}" 
+                    Content="Guardar" Margin="5"/>
             <Button IsCancel="True" Grid.Column="2" Command="{x:Static wpfMD:DialogHost.CloseDialogCommand}" 
-                    CommandParameter="CANCELAR" Content="Cerrar" Margin="5"/>
+                    Style="{StaticResource MaterialDesignRaisedButton}" CommandParameter="CANCELAR" Content="Cerrar" Margin="5"/>
         </Grid>
         <wpfMD:Snackbar Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" IsActive="{Binding VerMensaje}" Background="{DynamicResource PrimaryHueDarkBrush}">
             <wpfMD:SnackbarMessage ActionCommand="{Binding CerrarMensajeCommand}" ActionContent="Cerrar">

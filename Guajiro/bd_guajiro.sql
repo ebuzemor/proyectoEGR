@@ -171,7 +171,7 @@ CREATE TABLE IF NOT EXISTS `tbl_comandas` (
   KEY `num_comanda` (`num_comanda`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_comandas: ~7 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_comandas: ~9 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_comandas` DISABLE KEYS */;
 INSERT INTO `tbl_comandas` (`idcomanda`, `fecha`, `num_comanda`, `idmesa`, `total`, `para_llevar`, `idpersona`, `crea_usuario`, `fecha_creacion`, `fecha_modificacion`) VALUES
 	('05229778-2b76-49eb-ae70-b3aaed63b10d', '2018-01-22 21:39:20', 7, '1e2164b4-83a4-11e7-b695-204747335338', 180.00, b'0', '1c87a56f-e479-11e7-8cd6-204747335338', 'c7bfeac8-3c10-11e7-a2b5-204747335338', '2018-01-22 21:43:16', '2018-01-25 23:35:04'),
@@ -230,8 +230,8 @@ CREATE TABLE IF NOT EXISTS `tbl_detallemenu` (
   PRIMARY KEY (`iddetalle`),
   KEY `FK_tbl_detallemenu_tbl_menudeldia` (`idmenu`),
   KEY `FK_tbl_detallemenu_tbl_items` (`iditem`),
-  CONSTRAINT `FK_tbl_detallemenu_tbl_items` FOREIGN KEY (`iditem`) REFERENCES `tbl_items` (`iditem`),
-  CONSTRAINT `FK_tbl_detallemenu_tbl_menudeldia` FOREIGN KEY (`idmenu`) REFERENCES `tbl_menudeldia` (`idmenu`)
+  CONSTRAINT `FK_tbl_detallemenu_tbl_items` FOREIGN KEY (`iditem`) REFERENCES `tbl_items` (`iditem`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `FK_tbl_detallemenu_tbl_menudeldia` FOREIGN KEY (`idmenu`) REFERENCES `tbl_menudeldia` (`idmenu`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla bd_guajiro.tbl_detallemenu: ~27 rows (aproximadamente)
@@ -282,7 +282,7 @@ CREATE TABLE IF NOT EXISTS `tbl_detallescomanda` (
   CONSTRAINT `FK_tbl_detallescomanda_tbl_items` FOREIGN KEY (`iditem`) REFERENCES `tbl_items` (`iditem`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_detallescomanda: ~22 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_detallescomanda: ~26 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_detallescomanda` DISABLE KEYS */;
 INSERT INTO `tbl_detallescomanda` (`iddetalle`, `idcomanda`, `iditem`, `observaciones`, `descripcion`, `precio`) VALUES
 	('191f6ba7-45f9-4c13-b728-8b6ba3dbb6cc', '05229778-2b76-49eb-ae70-b3aaed63b10d', 'c1f45be9-3b42-11e7-a2b5-204747335338', '', 'Albóndiga enchipotlada', 40.00),
@@ -725,7 +725,7 @@ CREATE TABLE IF NOT EXISTS `tbl_movimientos` (
   PRIMARY KEY (`idmovimiento`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_movimientos: ~7 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_movimientos: ~9 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_movimientos` DISABLE KEYS */;
 INSERT INTO `tbl_movimientos` (`idmovimiento`, `idlstipomovimiento`, `fecha`, `descripcion`, `monto`, `fecha_creacion`, `fecha_modificacion`, `crea_usuario`) VALUES
 	('12204006-fb23-4428-9b75-ed012db6518a', 'e47c55ba-368a-11e7-b904-204747335338', '2018-01-25 23:16:09', 'Venta de Comida', 45.00, '2018-01-25 23:16:15', NULL, 'c7bfeac8-3c10-11e7-a2b5-204747335338'),
@@ -1054,6 +1054,16 @@ CREATE TABLE `vw_clientes_directorio` (
 ) ENGINE=MyISAM;
 
 
+-- Volcando estructura para vista bd_guajiro.vw_detallemenu
+-- Creando tabla temporal para superar errores de dependencia de VIEW
+CREATE TABLE `vw_detallemenu` (
+	`iddetalle` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	`idmenu` VARCHAR(50) NULL COLLATE 'utf8_general_ci',
+	`iditem` VARCHAR(50) NULL COLLATE 'utf8_general_ci',
+	`descripcion` VARCHAR(100) NULL COLLATE 'utf8_general_ci'
+) ENGINE=MyISAM;
+
+
 -- Volcando estructura para vista bd_guajiro.vw_lista_clientes
 -- Creando tabla temporal para superar errores de dependencia de VIEW
 CREATE TABLE `vw_lista_clientes` (
@@ -1169,6 +1179,12 @@ CREATE TABLE `vw_proveedores_directorio` (
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `vw_clientes_directorio`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_clientes_directorio` AS select `p`.`idpersona` AS `idpersona`,`p`.`razon_social` AS `razon_social`,`p`.`rfc` AS `rfc`,concat(ifnull(`d`.`calle1`,''),' ',ifnull(`d`.`calle2`,''),' ',ifnull(`d`.`interior`,''),' ',ifnull(`d`.`exterior`,''),' ',ifnull(`d`.`colonia`,''),' ',ifnull(concat('C.P.',`d`.`codigopostal`),''),' ',ifnull(`m`.`nombre`,'')) AS `direccion`,`p`.`fecha_creacion` AS `fecha_creacion` from (((`tbl_personas` `p` left join `tbl_direcciones` `d` on((`p`.`idpersona` = `d`.`idpersona`))) left join `tbl_telefonos` `t` on((`p`.`idpersona` = `t`.`idpersona`))) left join `tbl_municipios` `m` on((`d`.`idmunicipio` = `m`.`idmunicipio`))) where (`p`.`idlstipopersona` = 'e47c6009-368a-11e7-b904-204747335338') order by `p`.`paterno`,`p`.`materno`;
+
+
+-- Volcando estructura para vista bd_guajiro.vw_detallemenu
+-- Eliminando tabla temporal y crear estructura final de VIEW
+DROP TABLE IF EXISTS `vw_detallemenu`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_detallemenu` AS select `d`.`iddetalle` AS `iddetalle`,`d`.`idmenu` AS `idmenu`,`d`.`iditem` AS `iditem`,`i`.`descripcion` AS `descripcion` from (`tbl_items` `i` join `tbl_detallemenu` `d` on((`i`.`iditem` = `d`.`iditem`)));
 
 
 -- Volcando estructura para vista bd_guajiro.vw_lista_clientes

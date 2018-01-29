@@ -22,6 +22,9 @@ namespace Guajiro.ViewModels
         public RelayCommand QuitarItemCommand { get; set; }
         public RelayCommand GuardarMenuCommand { get; set; }
         public RelayCommand CerrarMensajeCommand { get; set; }
+        public RelayCommand VerMenuCommand { get; set; }
+        public RelayCommand CopiarMenuCommand { get; set; }
+        public RelayCommand BorrarMenuCommand { get; set; }
         #endregion
 
         #region Variables
@@ -32,6 +35,9 @@ namespace Guajiro.ViewModels
         private string _txtMensaje;
         private bool _verMensaje;
         private DateTime _fechaMenu;
+        private ObservableCollection<tbl_menudeldia> _listaHistoricos;
+        private tbl_menudeldia _menuHistorico;
+        private ObservableCollection<tbl_detallemenu> _listaDetalles;
 
         public bd_guajiroEntities GuajiroEF;
         public string TxtBuscar { get => _txtBuscar; set { _txtBuscar = value; OnPropertyChanged("TxtBuscar"); } }
@@ -41,6 +47,9 @@ namespace Guajiro.ViewModels
         public string TxtMensaje { get => _txtMensaje; set { _txtMensaje = value; OnPropertyChanged("TxtMensaje"); } }
         public bool VerMensaje { get => _verMensaje; set { _verMensaje = value; OnPropertyChanged("VerMensaje"); } }
         public DateTime FechaMenu { get => _fechaMenu; set { _fechaMenu = value; OnPropertyChanged("FechaMenu"); } }
+        public ObservableCollection<tbl_menudeldia> ListaHistoricos { get => _listaHistoricos; set { _listaHistoricos = value; OnPropertyChanged("ListaMenuHistoricos"); } }
+        public tbl_menudeldia MenuHistorico { get => _menuHistorico; set { _menuHistorico = value; OnPropertyChanged("MenuHistorico"); } }
+        public ObservableCollection<tbl_detallemenu> ListaDetalles { get => _listaDetalles; set { _listaDetalles = value; OnPropertyChanged("ListaDetalles"); } }
         #endregion
 
         #region Constructor
@@ -55,8 +64,13 @@ namespace Guajiro.ViewModels
             ComidasCommand = new RelayCommand(CargarComidas);
             GuardarMenuCommand = new RelayCommand(GuardarMenu);
             CerrarMensajeCommand = new RelayCommand(CerrarMensaje);
+            VerMenuCommand = new RelayCommand(VerMenu);
+            CopiarMenuCommand = new RelayCommand(CopiarMenu);
+            BorrarMenuCommand = new RelayCommand(BorrarMenu);
             ListaMenuDia = new ObservableCollection<vw_lista_precios>();
             FechaMenu = DateTime.Now;
+            var lista = GuajiroEF.tbl_menudeldia.SqlQuery("SELECT * FROM tbl_menudeldia ORDER BY fecha DESC LIMIT 10").ToList();
+            ListaHistoricos = new ObservableCollection<tbl_menudeldia>(lista);
         }
         #endregion
 
@@ -176,6 +190,68 @@ namespace Guajiro.ViewModels
         }
 
         private void CerrarMensaje(object parameter) => VerMensaje = false;
+
+        private async void VerMenu(object parameter) {
+            string idmenu = parameter as string;
+            var lista = GuajiroEF.vw_detallemenu.Where(x => x.idmenu == idmenu).ToList();
+            var vmDetalles = new DetallesMenuDiaViewModel
+            {
+                ListaDetalles = new ObservableCollection<vw_detallemenu>(lista)
+            };
+            var vwDetalles = new DetallesMenuDiaView
+            {
+                DataContext = vmDetalles
+            };
+            var result = await DialogHost.Show(vwDetalles, "MenuDia");
+        }
+
+        private async void CopiarMenu(object parameter) {
+            string idmenu = parameter as string;
+            var lista = GuajiroEF.vw_detallemenu.Where(x => x.idmenu == idmenu).ToList();
+            var vmMsj = new MensajeViewModel
+            {
+                TituloMensaje = "Aviso",
+                CuerpoMensaje = "¿Deseas duplicar este menú?",
+                MostrarCancelar = true,
+                TxtAceptar = "Sí",
+                TxtCancelar = "No"
+            };
+            var vwMsj = new MensajeView
+            {
+                DataContext = vmMsj
+            };
+            var result = await DialogHost.Show(vwMsj, "MenuDia");
+            if (result.Equals("OK") == true)
+            {
+                ListaMenuDia.Clear();
+                foreach(vw_detallemenu det in lista)
+                {
+                    var d = GuajiroEF.vw_lista_precios.Single(w => w.iditem == det.iditem);
+                    ListaMenuDia.Add(d);
+                }
+            }
+        }
+
+        private async void BorrarMenu(object parameter) {
+            string idmenu = parameter as string;
+            var vmMsj = new MensajeViewModel
+            {
+                TituloMensaje = "Aviso",
+                CuerpoMensaje = "¿Deseas borrar este menú?",
+                MostrarCancelar = true,
+                TxtAceptar = "Sí",
+                TxtCancelar = "No"
+            };
+            var vwMsj = new MensajeView
+            {
+                DataContext = vmMsj
+            };
+            var result = await DialogHost.Show(vwMsj, "MenuDia");
+            if (result.Equals("OK") == true)
+            {
+               
+            }
+        }
         #endregion
     }
 }

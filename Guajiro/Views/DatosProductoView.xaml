@@ -6,9 +6,10 @@
              xmlns:wpfMD="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="900"
-             TextElement.Foreground="{StaticResource PrimaryHueLightBrush}"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              FontFamily="/Fonts/#Tulia"
-             Height="300" Width="400">
+             Height="300" Width="400"
+             Background="{DynamicResource MaterialDesignPaper}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

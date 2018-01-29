@@ -251,6 +251,17 @@ advertencia 6002: La tabla o vista 'def.bd_guajiro.vw_clientes_directorio' no ti
           <Property Name="fecha_creacion" Type="datetime" Precision="0" />
         </EntityType>
         <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'def.bd_guajiro.vw_detallemenu' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="vw_detallemenu">
+          <Key>
+            <PropertyRef Name="iddetalle" />
+          </Key>
+          <Property Name="iddetalle" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idmenu" Type="varchar" MaxLength="50" />
+          <Property Name="iditem" Type="varchar" MaxLength="50" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'def.bd_guajiro.vw_lista_clientes' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="vw_lista_clientes">
           <Key>
@@ -411,7 +422,9 @@ advertencia 6002: La tabla o vista 'def.bd_guajiro.vw_proveedores_directorio' no
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbl_detallemenu_tbl_menudeldia">
-          <End Role="tbl_menudeldia" Type="Self.tbl_menudeldia" Multiplicity="0..1" />
+          <End Role="tbl_menudeldia" Type="Self.tbl_menudeldia" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="tbl_detallemenu" Type="Self.tbl_detallemenu" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbl_menudeldia">
@@ -513,6 +526,14 @@ advertencia 6002: La tabla o vista 'def.bd_guajiro.vw_proveedores_directorio' no
 `vw_clientes_directorio`.`direccion`, 
 `vw_clientes_directorio`.`fecha_creacion`
 FROM `vw_clientes_directorio` AS `vw_clientes_directorio`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_detallemenu" EntityType="Self.vw_detallemenu" store:Type="Views" store:Schema="bd_guajiro">
+            <DefiningQuery>SELECT
+`vw_detallemenu`.`iddetalle`, 
+`vw_detallemenu`.`idmenu`, 
+`vw_detallemenu`.`iditem`, 
+`vw_detallemenu`.`descripcion`
+FROM `vw_detallemenu` AS `vw_detallemenu`</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vw_lista_clientes" EntityType="Self.vw_lista_clientes" store:Type="Views" store:Schema="bd_guajiro">
             <DefiningQuery>SELECT
@@ -897,6 +918,7 @@ FROM `vw_proveedores_directorio` AS `vw_proveedores_directorio`</DefiningQuery>
           <EntitySet Name="vw_proveedores_directorio" EntityType="bd_guajiroModel.vw_proveedores_directorio" />
           <EntitySet Name="vw_lista_productos" EntityType="bd_guajiroModel.vw_lista_productos" />
           <EntitySet Name="vw_lista_movimientos" EntityType="bd_guajiroModel.vw_lista_movimientos" />
+          <EntitySet Name="vw_detallemenu" EntityType="bd_guajiroModel.vw_detallemenu" />
         </EntityContainer>
         <EntityType Name="tbl_detallesguarnicion">
           <Key>
@@ -1209,6 +1231,15 @@ FROM `vw_proveedores_directorio` AS `vw_proveedores_directorio`</DefiningQuery>
           <Property Name="tipo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="monto" Type="Decimal" />
           <Property Name="usuario" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vw_detallemenu">
+          <Key>
+            <PropertyRef Name="iddetalle" />
+          </Key>
+          <Property Name="iddetalle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idmenu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="iditem" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1590,6 +1621,16 @@ FROM `vw_proveedores_directorio` AS `vw_proveedores_directorio`</DefiningQuery>
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="idlstipomovimiento" ColumnName="idlstipomovimiento" />
                 <ScalarProperty Name="idmovimiento" ColumnName="idmovimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_detallemenu">
+            <EntityTypeMapping TypeName="bd_guajiroModel.vw_detallemenu">
+              <MappingFragment StoreEntitySet="vw_detallemenu">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="iditem" ColumnName="iditem" />
+                <ScalarProperty Name="idmenu" ColumnName="idmenu" />
+                <ScalarProperty Name="iddetalle" ColumnName="iddetalle" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

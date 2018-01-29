@@ -5,7 +5,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="1100">
+             d:DesignHeight="700" d:DesignWidth="1100"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.SnackBar.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <wpfMD:DialogHost Identifier="MenuDia">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -65,6 +76,8 @@
             <Grid Grid.Column="2">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 <!--LISTA DE MENU DEL DIA A GUARDAR-->
                 <Grid Grid.Row="0" x:Name="GridMenuNuevo">
@@ -79,8 +92,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <UniformGrid Grid.Row="0" Grid.Column="1" Columns="2" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <TextBlock Text="Menú del Día:" Foreground="{StaticResource PrimaryHueLightBrush}" 
-                                   VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 5 20 0"/>
+                        <TextBlock Text="Menú del Día:" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 5 20 0"/>
                         <DatePicker Margin="0 5 0 0" HorizontalAlignment="Left" wpfMD:HintAssist.Hint="Elegir Fecha"
                                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}" SelectedDate="{Binding FechaMenu}"/>
                     </UniformGrid>
@@ -107,7 +119,8 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Button Grid.Row="2" Grid.Column="2" Margin="5" Command="{Binding GuardarMenuCommand}">
+                    <Button Grid.Row="2" Grid.Column="2" Margin="5" Command="{Binding GuardarMenuCommand}"
+                            Style="{StaticResource MaterialDesignRaisedAccentButton}">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
                                 <wpfMD:PackIcon Width="24" Height="24" Kind="ContentSave"/>
@@ -115,13 +128,71 @@
                             </StackPanel>
                         </Button.Content>
                     </Button>
-                    <wpfMD:Snackbar IsActive="{Binding VerMensaje}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Background="{DynamicResource PrimaryHueLightBrush}">
-                        <wpfMD:SnackbarMessage ActionCommand="{Binding CerrarMensajeCommand}" ActionContent="Cerrar">
-                            <TextBlock Text="{Binding TxtMensaje}" TextWrapping="Wrap" Style="{StaticResource MaterialDesignCaptionTextBlock}"/>
-                        </wpfMD:SnackbarMessage>
-                    </wpfMD:Snackbar>
+                </Grid>
+                <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch"/>
+                <!--LISTA DE MENU DEL DIA HISTORICOS-->
+                <Grid Grid.Row="2" x:Name="GridMenuHistorico">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Ultimos Menús del Día Registrados" HorizontalAlignment="Center"/>
+                    <ListView x:Name="ListaHistoricos" Grid.Row="1" ItemsSource="{Binding ListaHistoricos}"
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                              ScrollViewer.VerticalScrollBarVisibility="Auto">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Fecha" Width="200"
+                                                DisplayMemberBinding="{Binding fecha, StringFormat=d, ConverterCulture=es-Mx}"/>
+                                <GridViewColumn Header="Ver Menú" Width="150">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                                Margin="0 0 8 0" HorizontalAlignment="Left"
+                                                Content="{wpfMD:PackIcon Kind=Eye}"
+                                                ToolTip="Ver Menú"
+                                                Height="22" Width="22"
+                                                Command="{Binding ElementName=ListaHistoricos, Path=DataContext.VerMenuCommand}"
+                                                CommandParameter="{Binding idmenu}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Copiar Menú" Width="150">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                                Margin="0 0 8 0" HorizontalAlignment="Left"
+                                                Content="{wpfMD:PackIcon Kind=ContentDuplicate}"
+                                                ToolTip="Copiar Menú"
+                                                Height="22" Width="22"
+                                                Command="{Binding ElementName=ListaHistoricos, Path=DataContext.CopiarMenuCommand}"
+                                                CommandParameter="{Binding idmenu}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Eliminar" Width="150">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                                Margin="0 0 8 0" HorizontalAlignment="Left"
+                                                Content="{wpfMD:PackIcon Kind=Delete}"
+                                                ToolTip="Eliminar Menú"
+                                                Height="22" Width="22"
+                                                Command="{Binding ElementName=ListaHistoricos, Path=DataContext.BorrarMenuCommand}"
+                                                CommandParameter="{Binding idmenu}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </Grid>
             </Grid>
+            <wpfMD:Snackbar IsActive="{Binding VerMensaje}" Grid.Column="0" Grid.ColumnSpan="3" ActionButtonStyle="{StaticResource MaterialDesignSnackbarActionDarkButton}">
+                <wpfMD:SnackbarMessage ActionCommand="{Binding CerrarMensajeCommand}" ActionContent="Cerrar">
+                    <TextBlock Text="{Binding TxtMensaje}" TextWrapping="Wrap" Style="{StaticResource MaterialDesignCaptionTextBlock}"/>
+                </wpfMD:SnackbarMessage>
+            </wpfMD:Snackbar>
         </Grid>
     </wpfMD:DialogHost>
 </UserControl>

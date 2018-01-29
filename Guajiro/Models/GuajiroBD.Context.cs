@@ -58,5 +58,6 @@ namespace Guajiro.Models
         public virtual DbSet<vw_proveedores_directorio> vw_proveedores_directorio { get; set; }
         public virtual DbSet<vw_lista_productos> vw_lista_productos { get; set; }
         public virtual DbSet<vw_lista_movimientos> vw_lista_movimientos { get; set; }
+        public virtual DbSet<vw_detallemenu> vw_detallemenu { get; set; }
     }
 }
