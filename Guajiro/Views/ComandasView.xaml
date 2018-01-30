@@ -156,19 +156,31 @@
                     <DataGridTemplateColumn Header="Ver" IsReadOnly="True" Width="*" HeaderStyle="{StaticResource CenterAlignmentColumnHeaderStyle}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <StackPanel>
+                                <StackPanel Orientation="Horizontal">
                                     <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                                                Margin="0 0 8 0" HorizontalAlignment="Left"
-                                                Content="{mdWpf:PackIcon Kind=Eye}"
-                                                ToolTip="Ver Detalles" Height="22" Width="22"
-                                                Command="{Binding ElementName=LstComandas, Path=DataContext.MostrarDetallesCommand}"
-                                                CommandParameter="{Binding idcomanda}"/>
+                                            Margin="0 0 8 0" HorizontalAlignment="Left" 
+                                            Content="{mdWpf:PackIcon Kind=Eye}" 
+                                            ToolTip="Ver Detalles" Height="22" Width="22" 
+                                            Command="{Binding ElementName=LstComandas, Path=DataContext.MostrarDetallesCommand}" 
+                                            CommandParameter="{Binding idcomanda}"/>
+                                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}" 
+                                            Margin="0 0 8 0" HorizontalAlignment="Left" 
+                                            Content="{mdWpf:PackIcon Kind=Delete}" 
+                                            ToolTip="Ver Detalles" Height="22" Width="22" 
+                                            Command="{Binding ElementName=LstComandas, Path=DataContext.BorrarComandaCommand}" 
+                                            CommandParameter="{Binding idcomanda}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
+            <!--Mensaje-->
+            <mdWpf:Snackbar IsActive="{Binding VerMensaje}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" ActionButtonStyle="{StaticResource MaterialDesignSnackbarActionDarkButton}">
+                <mdWpf:SnackbarMessage ActionCommand="{Binding CerrarMensajeCommand}" ActionContent="Cerrar">
+                    <TextBlock Text="{Binding TxtMensaje}" TextWrapping="Wrap" Style="{StaticResource MaterialDesignCaptionTextBlock}"/>
+                </mdWpf:SnackbarMessage>
+            </mdWpf:Snackbar>
         </Grid>
     </mdWpf:DialogHost>
 </UserControl>

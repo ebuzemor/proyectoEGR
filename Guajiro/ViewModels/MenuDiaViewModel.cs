@@ -169,6 +169,8 @@ namespace Guajiro.ViewModels
                             var result = await DialogHost.Show(vwMensaje, "MenuDia");
                             ListaMenuDia.Clear();
                             FechaMenu = DateTime.Now;
+                            var lista = GuajiroEF.tbl_menudeldia.SqlQuery("SELECT * FROM tbl_menudeldia ORDER BY fecha DESC LIMIT 10").ToList();
+                            ListaHistoricos = new ObservableCollection<tbl_menudeldia>(lista);
                         }
                     }
                     else
@@ -233,7 +235,7 @@ namespace Guajiro.ViewModels
         }
 
         private async void BorrarMenu(object parameter) {
-            string idmenu = parameter as string;
+            string idMenu = parameter as string;
             var vmMsj = new MensajeViewModel
             {
                 TituloMensaje = "Aviso",
@@ -252,7 +254,7 @@ namespace Guajiro.ViewModels
                 int ban = 0;
                 using (var bd = new bd_guajiroEntities())
                 {
-                    tbl_menudeldia menu = new tbl_menudeldia { idmenu = idmenu };
+                    tbl_menudeldia menu = new tbl_menudeldia { idmenu = idMenu };
                     bd.Entry(menu).State = System.Data.Entity.EntityState.Deleted;
                     ban = bd.SaveChanges();
                 }
@@ -260,6 +262,8 @@ namespace Guajiro.ViewModels
                 {
                     TxtMensaje = "El menú ha sido borrado correctamente";
                     VerMensaje = true;
+                    var men = ListaHistoricos.Single(x => x.idmenu == idMenu);
+                    ListaHistoricos.Remove(men);
                 }
             }
         }

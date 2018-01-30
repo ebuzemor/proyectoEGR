@@ -19,6 +19,8 @@ namespace Guajiro.ViewModels
         public RelayCommand FinalCommand { get; set; }
         public RelayCommand BuscarComandasCommand { get; set; }
         public RelayCommand MostrarDetallesCommand { get; set; }
+        public RelayCommand BorrarComandaCommand { get; set; }
+        public RelayCommand CerrarMensajeCommand { get; set; }
         #endregion
 
         #region Variables
@@ -38,6 +40,8 @@ namespace Guajiro.ViewModels
         private String _txtNumInicio;
         private String _txtNumFinal;
         private String _txtCliente;
+        private String _txtMensaje;
+        private Boolean _verMensaje;
         private Boolean _esParaLlevar;
 
         public int ItemsPorPag { get => _itemsPorPag; set { _itemsPorPag = value; OnPropertyChanged("ItemsPorPag"); }}
@@ -57,6 +61,8 @@ namespace Guajiro.ViewModels
         public string TxtCliente { get => _txtCliente; set { _txtCliente = value; OnPropertyChanged("TxtCliente"); } }
         public bool EsParaLlevar { get => _esParaLlevar; set { _esParaLlevar = value; OnPropertyChanged("EsParaLlevar"); FiltarParaLlevar(); } }
         public ObservableCollection<tbl_detallescomanda> ListaDetalles { get => _listaDetalles; set { _listaDetalles = value; OnPropertyChanged("ListaDetalles"); } }
+        public string TxtMensaje { get => _txtMensaje; set { _txtMensaje = value; OnPropertyChanged("TxtMensaje"); } }
+        public bool VerMensaje { get => _verMensaje; set { _verMensaje = value; OnPropertyChanged("VerMensaje"); } }
 
         public bd_guajiroEntities GuajiroEF;
         #endregion
@@ -67,6 +73,8 @@ namespace Guajiro.ViewModels
             GuajiroEF = new bd_guajiroEntities();
             BuscarComandasCommand = new RelayCommand(BuscarComandas);
             MostrarDetallesCommand = new RelayCommand(MostrarDetalles);
+            BorrarComandaCommand = new RelayCommand(BorrarComanda);
+            CerrarMensajeCommand = new RelayCommand(CerrarMensaje);
             DateTime hoy = DateTime.Now;
             FechaInicial = new DateTime(hoy.Year, hoy.Month, 1);
             FechaFinal = FechaInicial.AddMonths(1).AddDays(-1);
@@ -159,6 +167,43 @@ namespace Guajiro.ViewModels
             };
             var result = await DialogHost.Show(vwDetCom, "Comandas");
         }
+
+        private async void BorrarComanda(object parameter)
+        {
+            string idComanda = parameter as string;
+            var vmMsj = new MensajeViewModel
+            {
+                TituloMensaje = "Aviso",
+                CuerpoMensaje = "¿Deseas borrar este comanda?",
+                MostrarCancelar = true,
+                TxtAceptar = "Sí",
+                TxtCancelar = "No"
+            };
+            var vwMsj = new MensajeView
+            {
+                DataContext = vmMsj
+            };
+            var result = await DialogHost.Show(vwMsj, "Comandas");
+            if (result.Equals("OK") == true)
+            {
+                int ban = 0;
+                using (var bd = new bd_guajiroEntities())
+                {
+                    tbl_comandas comanda = new tbl_comandas { idcomanda = idComanda };
+                    bd.Entry(comanda).State = System.Data.Entity.EntityState.Deleted;
+                    ban = bd.SaveChanges();
+                }
+                if (ban > 0)
+                {
+                    TxtMensaje = "La comanda ha sido borrada correctamente";
+                    VerMensaje = true;
+                    var com = ListaComandas.Single(x => x.idcomanda == idComanda);
+                    ListaComandas.Remove(com);
+                }
+            }
+        }
+
+        private void CerrarMensaje(object parameter) => VerMensaje = false;
         #endregion
     }
 }
