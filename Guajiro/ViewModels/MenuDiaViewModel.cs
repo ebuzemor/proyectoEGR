@@ -249,7 +249,18 @@ namespace Guajiro.ViewModels
             var result = await DialogHost.Show(vwMsj, "MenuDia");
             if (result.Equals("OK") == true)
             {
-               
+                int ban = 0;
+                using (var bd = new bd_guajiroEntities())
+                {
+                    tbl_menudeldia menu = new tbl_menudeldia { idmenu = idmenu };
+                    bd.Entry(menu).State = System.Data.Entity.EntityState.Deleted;
+                    ban = bd.SaveChanges();
+                }
+                if (ban > 0)
+                {
+                    TxtMensaje = "El menú ha sido borrado correctamente";
+                    VerMensaje = true;
+                }
             }
         }
         #endregion
