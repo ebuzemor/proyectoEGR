@@ -71,6 +71,12 @@
                                             ToolTip="Editar Item" Height="22" Width="22"
                                             Command="{Binding ElementName=ListaClientes, Path=DataContext.EditarClienteCommand}"
                                             CommandParameter="{Binding idpersona}"/>
+                                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                            Margin="0 0 8 0" HorizontalAlignment="Left"
+                                            Content="{wpfMD:PackIcon Kind=Delete}"
+                                            ToolTip="Editar Item" Height="22" Width="22"
+                                            Command="{Binding ElementName=ListaClientes, Path=DataContext.BorrarClienteCommand}"
+                                            CommandParameter="{Binding idpersona}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

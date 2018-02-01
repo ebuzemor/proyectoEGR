@@ -17,7 +17,7 @@ namespace Guajiro.ViewModels
         public RelayCommand MostrarTodosCommand { get; set; }
         public RelayCommand MostrarUltimosCommand { get; set; }
         public RelayCommand EditarClienteCommand { get; set; }
-        public RelayCommand BorrarClienteCommand { get; set; }        
+        public RelayCommand BorrarClienteCommand { get; set; }
         #endregion
 
         #region Variables

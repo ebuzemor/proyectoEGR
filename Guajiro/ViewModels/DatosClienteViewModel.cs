@@ -50,6 +50,7 @@ namespace Guajiro.ViewModels
         private bool _chkMoral;
         private bool _chkEntrega;
         private bool _chkFactura;
+        private bool _esEditable;
         private ObservableCollection<tbl_listadoseldetalle> _tiposTelefono;
         private ObservableCollection<tbl_estados> _listaEstados;
         private ObservableCollection<tbl_municipios> _listaMunicipios;
@@ -114,6 +115,7 @@ namespace Guajiro.ViewModels
         public tbl_listadoseldetalle TipoTel { get => _tipoTel; set { _tipoTel = value; OnPropertyChanged(); } }
         public Telefonos DatosTel { get => _datosTel; set { _datosTel = value; OnPropertyChanged(); } }
         public tbl_direcciones DatosDir { get => _datosDir; set { _datosDir = value; OnPropertyChanged(); } }
+        public bool EsEditable { get => _esEditable; set { _esEditable = value; OnPropertyChanged(); } }
         #endregion
 
         #region Constructor

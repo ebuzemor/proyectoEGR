@@ -91,28 +91,20 @@ namespace Guajiro.ViewModels
             List<vw_lista_comandas> lista = new List<vw_lista_comandas>();
             int numInicio = string.IsNullOrEmpty(TxtNumInicio) ? 0 : Convert.ToInt32(TxtNumInicio);
             int numFinal = string.IsNullOrEmpty(TxtNumFinal) ? 0 : Convert.ToInt32(TxtNumFinal);
-            if ((FechaFinal >= FechaInicial) && (numFinal >= numInicio) && (numFinal > 0 && numInicio > 0) && (string.IsNullOrEmpty(TxtCliente) == false))
+            string cadSQL = "";
+            if (FechaFinal >= FechaInicial)
             {
-                lista = GuajiroEF.vw_lista_comandas.Where(x =>
-                            (x.fecha >= FechaInicial && x.fecha <= FechaFinal)
-                            && (x.num_comanda >= numInicio && x.num_comanda <= numFinal)
-                            && (x.razon_social.Contains(TxtCliente))).ToList();
-            }
-            else if ((FechaFinal >= FechaInicial) && (numFinal >= numInicio) && (numInicio > 0 && numFinal > 0))
-            {
-                lista = GuajiroEF.vw_lista_comandas.Where(x =>
-                            (x.fecha >= FechaInicial && x.fecha <= FechaFinal)
-                            && (x.num_comanda >= numInicio && x.num_comanda <= numFinal)).ToList();
-            }
-            else if ((FechaFinal >= FechaInicial) && (string.IsNullOrEmpty(TxtCliente) == false))
-            {
-                lista = GuajiroEF.vw_lista_comandas.Where(x =>
-                            (x.fecha >= FechaInicial && x.fecha <= FechaFinal)
-                            && (x.razon_social.Contains(TxtCliente))).ToList();
-            }
-            else if (FechaFinal >= FechaInicial)
-            {
-                lista = GuajiroEF.vw_lista_comandas.Where(x => (x.fecha >= FechaInicial && x.fecha <= FechaFinal)).ToList();
+                cadSQL = "SELECT * FROM vw_lista_comandas WHERE DATE(fecha) BETWEEN '"
+                            + FechaInicial.ToString("yyyy-MM-dd") + "' AND '" + FechaFinal.ToString("yyyy-MM-dd") + "'";
+                if ((numFinal >= numInicio) && (numInicio > 0 && numFinal > 0))
+                {
+                    cadSQL += " AND num_comanda BETWEEN " + numInicio + " AND " + numFinal;
+                }
+                if (string.IsNullOrWhiteSpace(TxtCliente) == false)
+                {
+                    cadSQL += " AND razon_social LIKE '%" + TxtCliente + "%'";
+                }
+                lista = GuajiroEF.vw_lista_comandas.SqlQuery(cadSQL).ToList();
             }
             else
             {
