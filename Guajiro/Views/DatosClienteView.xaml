@@ -104,7 +104,7 @@
                                             Content="{wpfMD:PackIcon Kind=Delete}"
                                             ToolTip="Quitar Item" Height="22" Width="22"
                                             Command="{Binding ElementName=LstTelefono, Path=DataContext.BorrarTelefonoCommand}"
-                                            CommandParameter="{Binding IdTelefono}"/>
+                                            CommandParameter="{Binding idtelefono}"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -179,10 +179,16 @@
                                     <StackPanel Orientation="Horizontal">
                                         <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                                             Margin="0 0 8 0" HorizontalAlignment="Left"
+                                            Content="{wpfMD:PackIcon Kind=Pencil}"
+                                            ToolTip="Quitar Item" Height="22" Width="22"
+                                            Command="{Binding ElementName=LstDirecciones, Path=DataContext.EditarDireccionCommand}"
+                                            CommandParameter="{Binding iddireccion}"/>
+                                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                            Margin="0 0 8 0" HorizontalAlignment="Left"
                                             Content="{wpfMD:PackIcon Kind=Delete}"
                                             ToolTip="Quitar Item" Height="22" Width="22"
                                             Command="{Binding ElementName=LstDirecciones, Path=DataContext.BorrarDireccionCommand}"
-                                            CommandParameter="{Binding IdTelefono}"/>
+                                            CommandParameter="{Binding iddireccion}"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>

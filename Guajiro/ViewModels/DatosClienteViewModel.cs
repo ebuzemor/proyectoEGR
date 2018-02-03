@@ -23,6 +23,8 @@ namespace Guajiro.ViewModels
         public RelayCommand AgregarTelefonoCommand { get; set; }
         public RelayCommand BorrarTelefonoCommand { get; set; }
         public RelayCommand AgregarDireccionCommand { get; set; }
+        public RelayCommand EditarDireccionCommand { get; set; }
+        public RelayCommand BorrarDireccionCommand { get; set; }
         public RelayCommand CerrarMensajeCommand { get; set; }
         public RelayCommand GuardarClienteCommand { get; set; }
         #endregion
@@ -120,10 +122,12 @@ namespace Guajiro.ViewModels
 
         #region Constructor
         public DatosClienteViewModel()
-        {
-            AgregarDireccionCommand = new RelayCommand(AgregarDireccion);
+        {            
             AgregarTelefonoCommand = new RelayCommand(AgregarTelefono);
             BorrarTelefonoCommand = new RelayCommand(BorrarTelefono);
+            AgregarDireccionCommand = new RelayCommand(AgregarDireccion);
+            EditarDireccionCommand = new RelayCommand(EditarDireccion);
+            BorrarDireccionCommand = new RelayCommand(BorrarDireccion);
             CerrarMensajeCommand = new RelayCommand(CerrarMensaje);
             GuardarClienteCommand = new RelayCommand(GuardarCliente);
             GuajiroEF = new bd_guajiroEntities();
@@ -133,7 +137,7 @@ namespace Guajiro.ViewModels
             ChkFactura = false;
             ChkFisica = true;
             ChkMoral = false;
-        }
+        }        
         #endregion
 
         #region Métodos
@@ -174,6 +178,16 @@ namespace Guajiro.ViewModels
                     VerMensaje = true;
                 }
             }
+        }
+
+        private void EditarDireccion(object parameter)
+        {
+
+        }
+
+        private void BorrarDireccion(object parameter)
+        {
+            
         }
 
         private void LimpiarDireccion()
