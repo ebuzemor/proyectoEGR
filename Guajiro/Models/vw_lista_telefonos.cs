@@ -18,5 +18,6 @@ namespace Guajiro.Models
         public string idpersona { get; set; }
         public string numtelefono { get; set; }
         public string descripcion { get; set; }
+        public string idlstipotelefono { get; set; }
     }
 }

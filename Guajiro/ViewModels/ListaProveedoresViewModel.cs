@@ -24,11 +24,11 @@ namespace Guajiro.ViewModels
         public bd_guajiroEntities GuajiroEF;
 
         private string _txtBuscar;
-        private string _idPersona;
+        private string _creaUsuario;
         private ObservableCollection<vw_proveedores_directorio> _listaProveedores;
 
         public string TxtBuscar { get => _txtBuscar; set { _txtBuscar = value; OnPropertyChanged("TxtBuscar"); } }
-        public string IdPersona { get => _idPersona; set { _idPersona = value; OnPropertyChanged("IdPersona"); } }
+        public string CreaUsuario { get => _creaUsuario; set { _creaUsuario = value; OnPropertyChanged("CreaUsuario"); } }
         public ObservableCollection<vw_proveedores_directorio> ListaProveedores { get => _listaProveedores; set { _listaProveedores = value; OnPropertyChanged("ListaProveedores"); } }
         #endregion
 
@@ -55,7 +55,7 @@ namespace Guajiro.ViewModels
                 TiposTelefono = new ObservableCollection<tbl_listadoseldetalle>(tiposTelefono),
                 ListaEstados = new ObservableCollection<tbl_estados>(listaEstados),
                 ListaMunicipios = new ObservableCollection<tbl_municipios>(),
-                IdPersona = IdPersona
+                CreaUsuario = CreaUsuario
             };
             var vwDatosProveedor = new DatosProveedorView
             {

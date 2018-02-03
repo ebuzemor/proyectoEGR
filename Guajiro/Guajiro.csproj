@@ -179,7 +179,6 @@
     <Compile Include="Models\tbl_usuarios.cs">
       <DependentUpon>GuajiroBD.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Telefonos.cs" />
     <Compile Include="Models\vw_clientes_directorio.cs">
       <DependentUpon>GuajiroBD.tt</DependentUpon>
     </Compile>

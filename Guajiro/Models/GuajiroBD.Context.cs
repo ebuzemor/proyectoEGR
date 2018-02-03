@@ -54,10 +54,10 @@ namespace Guajiro.Models
         public virtual DbSet<tbl_detallesobservacion> tbl_detallesobservacion { get; set; }
         public virtual DbSet<tbl_telefonos> tbl_telefonos { get; set; }
         public virtual DbSet<vw_clientes_directorio> vw_clientes_directorio { get; set; }
-        public virtual DbSet<vw_lista_telefonos> vw_lista_telefonos { get; set; }
         public virtual DbSet<vw_proveedores_directorio> vw_proveedores_directorio { get; set; }
         public virtual DbSet<vw_lista_productos> vw_lista_productos { get; set; }
         public virtual DbSet<vw_lista_movimientos> vw_lista_movimientos { get; set; }
         public virtual DbSet<vw_detallemenu> vw_detallemenu { get; set; }
+        public virtual DbSet<vw_lista_telefonos> vw_lista_telefonos { get; set; }
     }
 }

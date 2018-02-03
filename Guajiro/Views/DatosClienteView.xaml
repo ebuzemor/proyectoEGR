@@ -93,8 +93,8 @@
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding ListaTelefonos}" SelectedItem="{Binding DatosTel}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Width="150" Header="Tipo Teléfono" DisplayMemberBinding="{Binding TipoTel}"/>
-                        <GridViewColumn Width="170" Header="Número Teléfono" DisplayMemberBinding="{Binding NumTelefono}"/>
+                        <GridViewColumn Width="150" Header="Tipo Teléfono" DisplayMemberBinding="{Binding descripcion}"/>
+                        <GridViewColumn Width="170" Header="Número Teléfono" DisplayMemberBinding="{Binding numtelefono}"/>
                         <GridViewColumn Width="100" Header="Acciones">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>

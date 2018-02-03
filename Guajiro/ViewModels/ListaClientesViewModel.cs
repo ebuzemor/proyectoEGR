@@ -24,11 +24,11 @@ namespace Guajiro.ViewModels
         public bd_guajiroEntities GuajiroEF;
 
         private string _txtBuscar;
-        private string _idPersona;
+        private string _creaUsuario;
         private ObservableCollection<vw_clientes_directorio> _listaClientes;
 
         public string TxtBuscar { get => _txtBuscar; set { _txtBuscar = value; OnPropertyChanged("TxtBuscar"); } }
-        public string IdPersona { get => _idPersona; set { _idPersona = value; OnPropertyChanged("IdPersona"); } }
+        public string CreaUsuario { get => _creaUsuario; set { _creaUsuario = value; OnPropertyChanged("CreaUsuario"); } }
         public ObservableCollection<vw_clientes_directorio> ListaClientes { get => _listaClientes; set { _listaClientes = value; OnPropertyChanged("ListaClientes"); } }
         #endregion
 
@@ -49,21 +49,19 @@ namespace Guajiro.ViewModels
         private async void NuevoCliente(object parameter)
         {
             List<tbl_listadoseldetalle> tiposTelefono = GuajiroEF.tbl_listadoseldetalle.Where(x => x.idlistadoseleccion == "b06d265a-f42a-11e7-83f1-204747335338").ToList();
-            //List<tbl_municipios> listaMunicipios = GuajiroEF.tbl_municipios.ToList();
             List<tbl_estados> listaEstados = GuajiroEF.tbl_estados.ToList();
             var vmDatosCliente = new DatosClienteViewModel
             {
                 TiposTelefono = new ObservableCollection<tbl_listadoseldetalle>(tiposTelefono),
                 ListaEstados = new ObservableCollection<tbl_estados>(listaEstados),
                 ListaMunicipios = new ObservableCollection<tbl_municipios>(),
-                IdPersona = IdPersona
+                CreaUsuario = CreaUsuario
             };
             var vwDatosCliente = new DatosClienteView
             {
                 DataContext = vmDatosCliente
             };
             var result = await DialogHost.Show(vwDatosCliente, "ListaClientes");
-            Console.Write(vmDatosCliente.TxtNPrimario);
         }
 
         private void BuscarCliente(object parameter)
@@ -88,24 +86,10 @@ namespace Guajiro.ViewModels
         {
             string idpersona = parameter as string;
             tbl_personas cliente = GuajiroEF.tbl_personas.SingleOrDefault(x => x.idpersona == idpersona);
-            List<tbl_telefonos> ltaTel = GuajiroEF.tbl_telefonos.Where(x => x.idpersona == idpersona).ToList();
-            List<Telefonos> lista = new List<Telefonos>();
-            foreach(tbl_telefonos tel in ltaTel)
-            {
-                var tipotel = GuajiroEF.tbl_listadoseldetalle.Single(x => x.idlsselecciondetalle == tel.idlstipotelefono);
-                Telefonos ntel = new Telefonos
-                {
-                    IdlsTipoTelefono = tel.idlstipotelefono,
-                    IdPersona = tel.idpersona,
-                    IdTelefono = tel.idtelefono,
-                    NumTelefono = tel.numtelefono,
-                    TipoTel = tipotel.descripcion
-                };
-                lista.Add(ntel);
-            }
+            List<vw_lista_telefonos> ltaTel = GuajiroEF.vw_lista_telefonos.Where(x => x.idpersona == idpersona).ToList();
             List<tbl_direcciones> ltaDir = GuajiroEF.tbl_direcciones.Where(x => x.idpersona == idpersona).ToList();
             List<tbl_estados> ltaEdo = GuajiroEF.tbl_estados.ToList();
-            List<tbl_municipios> ltaMun = GuajiroEF.tbl_municipios.ToList();
+            List<tbl_listadoseldetalle> tiposTelefono = GuajiroEF.tbl_listadoseldetalle.Where(x => x.idlistadoseleccion == "b06d265a-f42a-11e7-83f1-204747335338").ToList();
             var vmDatos = new DatosClienteViewModel
             {
                 IdPersona = cliente.idpersona,
@@ -118,10 +102,11 @@ namespace Guajiro.ViewModels
                 TxtRazonSocial = (cliente.idlstipocontribuyente == "e0e8f331-fe83-11e7-83f1-204747335338") ? cliente.razon_social : null,
                 TxtRFC = cliente.rfc,
                 TxtEmail = cliente.email,
-                ListaTelefonos = new ObservableCollection<Telefonos>(lista),
+                ListaTelefonos = new ObservableCollection<vw_lista_telefonos>(ltaTel),
                 ListaDirecciones = new ObservableCollection<tbl_direcciones>(ltaDir),
                 ListaEstados = new ObservableCollection<tbl_estados>(ltaEdo),
-                ListaMunicipios = new ObservableCollection<tbl_municipios>(ltaMun)
+                ListaMunicipios = new ObservableCollection<tbl_municipios>(),
+                TiposTelefono = new ObservableCollection<tbl_listadoseldetalle>(tiposTelefono)
             };
             var vwDatos = new DatosClienteView
             {

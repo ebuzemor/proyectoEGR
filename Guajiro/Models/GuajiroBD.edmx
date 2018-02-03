@@ -367,11 +367,13 @@ advertencia 6002: La tabla o vista 'def.bd_guajiro.vw_lista_telefonos' no tiene 
         <EntityType Name="vw_lista_telefonos">
           <Key>
             <PropertyRef Name="idtelefono" />
+            <PropertyRef Name="idlstipotelefono" />
           </Key>
           <Property Name="idtelefono" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="idpersona" Type="varchar" MaxLength="50" />
           <Property Name="numtelefono" Type="varchar" MaxLength="20" />
           <Property Name="descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="idlstipotelefono" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'def.bd_guajiro.vw_proveedores_directorio' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -436,7 +438,9 @@ advertencia 6002: La tabla o vista 'def.bd_guajiro.vw_proveedores_directorio' no
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbl_detallescomanda_tbl_comandas">
-          <End Role="tbl_comandas" Type="Self.tbl_comandas" Multiplicity="0..1" />
+          <End Role="tbl_comandas" Type="Self.tbl_comandas" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="tbl_detallescomanda" Type="Self.tbl_detallescomanda" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbl_comandas">
@@ -614,7 +618,8 @@ FROM `vw_lista_productos` AS `vw_lista_productos`</DefiningQuery>
 `vw_lista_telefonos`.`idtelefono`, 
 `vw_lista_telefonos`.`idpersona`, 
 `vw_lista_telefonos`.`numtelefono`, 
-`vw_lista_telefonos`.`descripcion`
+`vw_lista_telefonos`.`descripcion`, 
+`vw_lista_telefonos`.`idlstipotelefono`
 FROM `vw_lista_telefonos` AS `vw_lista_telefonos`</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vw_proveedores_directorio" EntityType="Self.vw_proveedores_directorio" store:Type="Views" store:Schema="bd_guajiro">
@@ -914,11 +919,11 @@ FROM `vw_proveedores_directorio` AS `vw_proveedores_directorio`</DefiningQuery>
           <EntitySet Name="tbl_detallesobservacion" EntityType="bd_guajiroModel.tbl_detallesobservacion" />
           <EntitySet Name="tbl_telefonos" EntityType="bd_guajiroModel.tbl_telefonos" />
           <EntitySet Name="vw_clientes_directorio" EntityType="bd_guajiroModel.vw_clientes_directorio" />
-          <EntitySet Name="vw_lista_telefonos" EntityType="bd_guajiroModel.vw_lista_telefonos" />
           <EntitySet Name="vw_proveedores_directorio" EntityType="bd_guajiroModel.vw_proveedores_directorio" />
           <EntitySet Name="vw_lista_productos" EntityType="bd_guajiroModel.vw_lista_productos" />
           <EntitySet Name="vw_lista_movimientos" EntityType="bd_guajiroModel.vw_lista_movimientos" />
           <EntitySet Name="vw_detallemenu" EntityType="bd_guajiroModel.vw_detallemenu" />
+          <EntitySet Name="vw_lista_telefonos" EntityType="bd_guajiroModel.vw_lista_telefonos" />
         </EntityContainer>
         <EntityType Name="tbl_detallesguarnicion">
           <Key>
@@ -1188,15 +1193,6 @@ FROM `vw_proveedores_directorio` AS `vw_proveedores_directorio`</DefiningQuery>
           <Property Name="fecha_creacion" Type="DateTime" />
           <Property Name="rfc" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="vw_lista_telefonos">
-          <Key>
-            <PropertyRef Name="idtelefono" />
-          </Key>
-          <Property Name="idtelefono" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="idpersona" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="numtelefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="vw_proveedores_directorio">
           <Key>
             <PropertyRef Name="idpersona" />
@@ -1240,6 +1236,17 @@ FROM `vw_proveedores_directorio` AS `vw_proveedores_directorio`</DefiningQuery>
           <Property Name="idmenu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="iditem" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vw_lista_telefonos">
+          <Key>
+            <PropertyRef Name="idtelefono" />
+            <PropertyRef Name="idlstipotelefono" />
+          </Key>
+          <Property Name="idtelefono" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idpersona" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="numtelefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="idlstipotelefono" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1576,16 +1583,6 @@ FROM `vw_proveedores_directorio` AS `vw_proveedores_directorio`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vw_lista_telefonos">
-            <EntityTypeMapping TypeName="bd_guajiroModel.vw_lista_telefonos">
-              <MappingFragment StoreEntitySet="vw_lista_telefonos">
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="numtelefono" ColumnName="numtelefono" />
-                <ScalarProperty Name="idpersona" ColumnName="idpersona" />
-                <ScalarProperty Name="idtelefono" ColumnName="idtelefono" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="vw_proveedores_directorio">
             <EntityTypeMapping TypeName="bd_guajiroModel.vw_proveedores_directorio">
               <MappingFragment StoreEntitySet="vw_proveedores_directorio">
@@ -1631,6 +1628,17 @@ FROM `vw_proveedores_directorio` AS `vw_proveedores_directorio`</DefiningQuery>
                 <ScalarProperty Name="iditem" ColumnName="iditem" />
                 <ScalarProperty Name="idmenu" ColumnName="idmenu" />
                 <ScalarProperty Name="iddetalle" ColumnName="iddetalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_lista_telefonos">
+            <EntityTypeMapping TypeName="bd_guajiroModel.vw_lista_telefonos">
+              <MappingFragment StoreEntitySet="vw_lista_telefonos">
+                <ScalarProperty Name="idlstipotelefono" ColumnName="idlstipotelefono" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="numtelefono" ColumnName="numtelefono" />
+                <ScalarProperty Name="idpersona" ColumnName="idpersona" />
+                <ScalarProperty Name="idtelefono" ColumnName="idtelefono" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

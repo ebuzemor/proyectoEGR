@@ -38,7 +38,7 @@ namespace Guajiro.ViewModels
 
             ListaClientesViewModel vmLtaCte = new ListaClientesViewModel
             {
-                IdPersona = UsuarioActual.idpersona
+                CreaUsuario = UsuarioActual.idusuario
             };
             ListaClientesView vwLtaCte = new ListaClientesView
             {
@@ -47,7 +47,7 @@ namespace Guajiro.ViewModels
 
             ListaProveedoresViewModel vmLtaProv = new ListaProveedoresViewModel
             {
-                IdPersona = UsuarioActual.idpersona
+                CreaUsuario = UsuarioActual.idusuario
             };
             ListaProveedoresView vwLtaProv = new ListaProveedoresView
             {

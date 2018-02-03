@@ -51,16 +51,15 @@ namespace Guajiro.ViewModels
         private bool _chkMoral;
         private bool _chkEntrega;
         private bool _chkFactura;
-        private bool _esEditable;
         private ObservableCollection<tbl_listadoseldetalle> _tiposTelefono;
         private ObservableCollection<tbl_estados> _listaEstados;
         private ObservableCollection<tbl_municipios> _listaMunicipios;
-        private ObservableCollection<Telefonos> _listaTelefonos;
+        private ObservableCollection<vw_lista_telefonos> _listaTelefonos;
         private ObservableCollection<tbl_direcciones> _listaDirecciones;
         private tbl_listadoseldetalle _tipoTel;
         private tbl_estados _estado;
         private tbl_municipios _municipio;
-        private Telefonos _datosTel;
+        private vw_lista_telefonos _datosTel;
         private tbl_direcciones _datosDir;
 
         public bd_guajiroEntities GuajiroEF;
@@ -109,14 +108,13 @@ namespace Guajiro.ViewModels
         public ObservableCollection<tbl_listadoseldetalle> TiposTelefono { get => _tiposTelefono; set { _tiposTelefono = value; OnPropertyChanged(); } }
         public ObservableCollection<tbl_estados> ListaEstados { get => _listaEstados; set { _listaEstados = value; OnPropertyChanged(); } }
         public ObservableCollection<tbl_municipios> ListaMunicipios { get => _listaMunicipios; set { _listaMunicipios = value; OnPropertyChanged(); } }
-        public ObservableCollection<Telefonos> ListaTelefonos { get => _listaTelefonos; set { _listaTelefonos = value; OnPropertyChanged(); } }
+        public ObservableCollection<vw_lista_telefonos> ListaTelefonos { get => _listaTelefonos; set { _listaTelefonos = value; OnPropertyChanged(); } }
         public ObservableCollection<tbl_direcciones> ListaDirecciones { get => _listaDirecciones; set { _listaDirecciones = value; OnPropertyChanged(); } }
         public tbl_municipios Municipio { get => _municipio; set { _municipio = value; OnPropertyChanged(); } }
         public tbl_estados Estado { get => _estado; set { _estado = value; OnPropertyChanged();  FiltrarMunicipios(value.idestado); } }
         public tbl_listadoseldetalle TipoTel { get => _tipoTel; set { _tipoTel = value; OnPropertyChanged(); } }
-        public Telefonos DatosTel { get => _datosTel; set { _datosTel = value; OnPropertyChanged(); } }
+        public vw_lista_telefonos DatosTel { get => _datosTel; set { _datosTel = value; OnPropertyChanged(); } }
         public tbl_direcciones DatosDir { get => _datosDir; set { _datosDir = value; OnPropertyChanged(); } }
-        public bool EsEditable { get => _esEditable; set { _esEditable = value; OnPropertyChanged(); } }
         public string CreaUsuario { get => _creaUsuario; set { _creaUsuario = value; OnPropertyChanged(); } }
         #endregion
 
@@ -129,7 +127,7 @@ namespace Guajiro.ViewModels
             CerrarMensajeCommand = new RelayCommand(CerrarMensaje);
             GuardarClienteCommand = new RelayCommand(GuardarCliente);
             GuajiroEF = new bd_guajiroEntities();
-            ListaTelefonos = new ObservableCollection<Telefonos>();
+            ListaTelefonos = new ObservableCollection<vw_lista_telefonos>();
             ListaDirecciones = new ObservableCollection<tbl_direcciones>();
             ChkEntrega = false;
             ChkFactura = false;
@@ -226,25 +224,25 @@ namespace Guajiro.ViewModels
         {
             if (TipoTel != null)
             {
-                Telefonos consulta = ListaTelefonos.SingleOrDefault(x => x.NumTelefono == TxtNumTelefono);
+                vw_lista_telefonos consulta = ListaTelefonos.SingleOrDefault(x => x.numtelefono == TxtNumTelefono);
                 if (consulta == null && string.IsNullOrWhiteSpace(TxtNumTelefono) == false)
                 {
-                    DatosTel = new Telefonos
+                    DatosTel = new vw_lista_telefonos
                     {
-                        IdlsTipoTelefono = TipoTel.idlsselecciondetalle,
-                        IdTelefono = Convert.ToString(Guid.NewGuid()),
-                        NumTelefono = TxtNumTelefono,
-                        TipoTel = TipoTel.descripcion
+                        idlstipotelefono = TipoTel.idlsselecciondetalle,
+                        idtelefono = Convert.ToString(Guid.NewGuid()),
+                        numtelefono = TxtNumTelefono,
+                        descripcion = TipoTel.descripcion
                     };
                     ListaTelefonos.Add(DatosTel);
                     TxtNumTelefono = "";
                 }
                 else
                 {
-                    if (string.IsNullOrWhiteSpace(TxtNumTelefono) != false)
-                        TxtMensaje = "El número telefónico ingresado ya existe en la lista.";
-                    else
+                    if (string.IsNullOrWhiteSpace(TxtNumTelefono) == true)
                         TxtMensaje = "Debe ingresar un número telefónico.";
+                    else
+                        TxtMensaje = "El número telefónico ingresado ya existe en la lista.";
                     VerMensaje = true;
                 }
             }
@@ -258,7 +256,7 @@ namespace Guajiro.ViewModels
         private void BorrarTelefono(object parameter)
         {
             string idtel = parameter as string;
-            Telefonos consulta = ListaTelefonos.SingleOrDefault(x => x.IdTelefono == idtel);
+            vw_lista_telefonos consulta = ListaTelefonos.SingleOrDefault(x => x.idtelefono == idtel);
             if (consulta != null)
                 ListaTelefonos.Remove(consulta);
         }
@@ -291,7 +289,7 @@ namespace Guajiro.ViewModels
 
         private void GuardarCliente(object parameter)
         {
-            if (EsEditable == true)
+            if (string.IsNullOrEmpty(IdPersona) == false)
             {
                 EditarCliente();
             }
@@ -326,19 +324,19 @@ namespace Guajiro.ViewModels
                             razon_social = razsoc,
                             rfc = TxtRFC,
                             email = TxtEmail,
-                            crea_usuario = IdPersona
+                            crea_usuario = CreaUsuario
                         };
                         bd.tbl_personas.Add(persona);
                         if (ListaTelefonos.Count > 0)
                         {
-                            foreach (Telefonos item in ListaTelefonos)
+                            foreach (vw_lista_telefonos item in ListaTelefonos)
                             {
                                 tbl_telefonos phone = new tbl_telefonos
                                 {
                                     idtelefono = Convert.ToString(Guid.NewGuid()),
-                                    idlstipotelefono = item.IdlsTipoTelefono,
+                                    idlstipotelefono = item.idlstipotelefono,
                                     idpersona = persona.idpersona,
-                                    numtelefono = item.NumTelefono
+                                    numtelefono = item.numtelefono
                                 };
                                 bd.tbl_telefonos.Add(phone);
                             }
