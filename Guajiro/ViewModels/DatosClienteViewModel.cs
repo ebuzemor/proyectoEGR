@@ -44,6 +44,7 @@ namespace Guajiro.ViewModels
         private string _txtCPostal;
         private string _txtMensaje;
         private string _idPersona;
+        private string _creaUsuario;
         private string _tipoPersona;
         private bool _verMensaje;
         private bool _chkFisica;
@@ -116,6 +117,7 @@ namespace Guajiro.ViewModels
         public Telefonos DatosTel { get => _datosTel; set { _datosTel = value; OnPropertyChanged(); } }
         public tbl_direcciones DatosDir { get => _datosDir; set { _datosDir = value; OnPropertyChanged(); } }
         public bool EsEditable { get => _esEditable; set { _esEditable = value; OnPropertyChanged(); } }
+        public string CreaUsuario { get => _creaUsuario; set { _creaUsuario = value; OnPropertyChanged(); } }
         #endregion
 
         #region Constructor
@@ -289,84 +291,120 @@ namespace Guajiro.ViewModels
 
         private void GuardarCliente(object parameter)
         {
-            string razsoc = string.Empty;
-            bool checkPersona = false;
-            if (TipoPersona != "e0e8f331-fe83-11e7-83f1-204747335338") //Persona Física
+            if (EsEditable == true)
             {
-                razsoc = TxtNPrimario + " " + TxtNSecundario + " " + TxtPaterno + " " + TxtMaterno;
-                checkPersona = ErrorDatosPersonales(true);
+                EditarCliente();
             }
             else
             {
-                razsoc = TxtRazonSocial;
-                checkPersona = ErrorDatosPersonales(false);
-            }
-            if (checkPersona != true && ListaDirecciones.Count > 0)
-            {
-                int guardados = 0;
-                using (var bd = new bd_guajiroEntities())
+                string razsoc = string.Empty;
+                bool checkPersona = false;
+                if (TipoPersona != "e0e8f331-fe83-11e7-83f1-204747335338") //Persona Física
                 {
-                    tbl_personas persona = new tbl_personas
+                    razsoc = TxtNPrimario + " " + TxtNSecundario + " " + TxtPaterno + " " + TxtMaterno;
+                    checkPersona = ErrorDatosPersonales(true);
+                }
+                else
+                {
+                    razsoc = TxtRazonSocial;
+                    checkPersona = ErrorDatosPersonales(false);
+                }
+                if (checkPersona != true && ListaDirecciones.Count > 0)
+                {
+                    int guardados = 0;
+                    using (var bd = new bd_guajiroEntities())
                     {
-                        idpersona = Convert.ToString(Guid.NewGuid()),
-                        idlstipopersona = "e47c6009-368a-11e7-b904-204747335338", //Tipo Cliente
-                        idlstipocontribuyente = TipoPersona,
-                        nprimario = TxtNPrimario,
-                        nsecundario = TxtNSecundario,
-                        paterno = TxtPaterno,
-                        materno = TxtMaterno,
-                        razon_social = razsoc,
-                        rfc = TxtRFC,
-                        email = TxtEmail,
-                        crea_usuario = IdPersona
-                    };
-                    bd.tbl_personas.Add(persona);
-                    if (ListaTelefonos.Count > 0)
-                    {
-                        foreach (Telefonos item in ListaTelefonos)
+                        tbl_personas persona = new tbl_personas
                         {
-                            tbl_telefonos phone = new tbl_telefonos
+                            idpersona = Convert.ToString(Guid.NewGuid()),
+                            idlstipopersona = "e47c6009-368a-11e7-b904-204747335338", //Tipo Cliente
+                            idlstipocontribuyente = TipoPersona,
+                            nprimario = TxtNPrimario,
+                            nsecundario = TxtNSecundario,
+                            paterno = TxtPaterno,
+                            materno = TxtMaterno,
+                            razon_social = razsoc,
+                            rfc = TxtRFC,
+                            email = TxtEmail,
+                            crea_usuario = IdPersona
+                        };
+                        bd.tbl_personas.Add(persona);
+                        if (ListaTelefonos.Count > 0)
+                        {
+                            foreach (Telefonos item in ListaTelefonos)
                             {
-                                idtelefono = Convert.ToString(Guid.NewGuid()),
-                                idlstipotelefono = item.IdlsTipoTelefono,
+                                tbl_telefonos phone = new tbl_telefonos
+                                {
+                                    idtelefono = Convert.ToString(Guid.NewGuid()),
+                                    idlstipotelefono = item.IdlsTipoTelefono,
+                                    idpersona = persona.idpersona,
+                                    numtelefono = item.NumTelefono
+                                };
+                                bd.tbl_telefonos.Add(phone);
+                            }
+                        }
+                        foreach (tbl_direcciones item in ListaDirecciones)
+                        {
+                            tbl_direcciones dir = new tbl_direcciones
+                            {
+                                iddireccion = item.iddireccion,
                                 idpersona = persona.idpersona,
-                                numtelefono = item.NumTelefono
+                                idmunicipio = item.idmunicipio,
+                                calle1 = item.calle1,
+                                calle2 = item.calle2,
+                                exterior = item.exterior,
+                                interior = item.interior,
+                                colonia = item.colonia,
+                                codigopostal = item.codigopostal,
+                                entrega = item.entrega,
+                                fiscal = item.fiscal
                             };
-                            bd.tbl_telefonos.Add(phone);
+                            bd.tbl_direcciones.Add(dir);
+                        }
+                        guardados = bd.SaveChanges();
+                        if (guardados > 0)
+                        {
+                            TxtMensaje = "Los datos del Cliente han sido guardados correctamente";
+                            VerMensaje = true;
+                            LimpiarPantalla();
                         }
                     }
-                    foreach (tbl_direcciones item in ListaDirecciones)
-                    {
-                        tbl_direcciones dir = new tbl_direcciones
-                        {
-                            iddireccion = item.iddireccion,
-                            idpersona = persona.idpersona,
-                            idmunicipio = item.idmunicipio,
-                            calle1 = item.calle1,
-                            calle2 = item.calle2,
-                            exterior = item.exterior,
-                            interior = item.interior,
-                            colonia = item.colonia,
-                            codigopostal = item.codigopostal,
-                            entrega = item.entrega,
-                            fiscal = item.fiscal
-                        };
-                        bd.tbl_direcciones.Add(dir);
-                    }
-                    guardados = bd.SaveChanges();
-                    if (guardados > 0)
-                    {
-                        TxtMensaje = "Los datos del Cliente han sido guardados correctamente";
-                        VerMensaje = true;
-                        LimpiarPantalla();
-                    }
+                }
+                else
+                {
+                    TxtMensaje = "Existe un error que no permite guardar los datos. Verifique que los campos obligatorios contengan información.";
+                    VerMensaje = true;
                 }
             }
-            else
+        }
+
+        private void EditarCliente()
+        {
+            int editado = 0;
+            using (var bd = new bd_guajiroEntities())
             {
-                TxtMensaje = "Existe un error que no permite guardar los datos. Verifique que los campos obligatorios contengan información.";
-                VerMensaje = true;
-            }
+                tbl_personas editarPersona = bd.tbl_personas.Single(x => x.idpersona == IdPersona);
+                editarPersona.idlstipocontribuyente = TipoPersona;
+                editarPersona.nprimario = TxtNPrimario;
+                editarPersona.nsecundario = TxtNSecundario;
+                editarPersona.paterno = TxtPaterno;
+                editarPersona.materno = TxtMaterno;
+                string razsoc = string.Empty;
+                bool checkPersona = false;
+                if (TipoPersona != "e0e8f331-fe83-11e7-83f1-204747335338") //Persona Física
+                {
+                    razsoc = TxtNPrimario + " " + TxtNSecundario + " " + TxtPaterno + " " + TxtMaterno;
+                    checkPersona = ErrorDatosPersonales(true);
+                }
+                else
+                {
+                    razsoc = TxtRazonSocial;
+                    checkPersona = ErrorDatosPersonales(false);
+                }
+                editarPersona.razon_social = razsoc;
+                editarPersona.rfc = TxtRFC;
+                editarPersona.email = TxtEmail;
+            };
         }
 
         #endregion

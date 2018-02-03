@@ -90,22 +90,38 @@ namespace Guajiro.ViewModels
             tbl_personas cliente = GuajiroEF.tbl_personas.SingleOrDefault(x => x.idpersona == idpersona);
             List<tbl_telefonos> ltaTel = GuajiroEF.tbl_telefonos.Where(x => x.idpersona == idpersona).ToList();
             List<Telefonos> lista = new List<Telefonos>();
-            //foreach()
-            //List<tbl_direcciones> ltaDir = GuajiroEF.tbl_direcciones.Where(x => x.idpersona == idpersona).ToList();
+            foreach(tbl_telefonos tel in ltaTel)
+            {
+                var tipotel = GuajiroEF.tbl_listadoseldetalle.Single(x => x.idlsselecciondetalle == tel.idlstipotelefono);
+                Telefonos ntel = new Telefonos
+                {
+                    IdlsTipoTelefono = tel.idlstipotelefono,
+                    IdPersona = tel.idpersona,
+                    IdTelefono = tel.idtelefono,
+                    NumTelefono = tel.numtelefono,
+                    TipoTel = tipotel.descripcion
+                };
+                lista.Add(ntel);
+            }
+            List<tbl_direcciones> ltaDir = GuajiroEF.tbl_direcciones.Where(x => x.idpersona == idpersona).ToList();
             List<tbl_estados> ltaEdo = GuajiroEF.tbl_estados.ToList();
             List<tbl_municipios> ltaMun = GuajiroEF.tbl_municipios.ToList();
             var vmDatos = new DatosClienteViewModel
             {
+                IdPersona = cliente.idpersona,
+                ChkMoral = (cliente.idlstipocontribuyente == "e0e8f331-fe83-11e7-83f1-204747335338") ? true : false,
+                ChkFisica = (cliente.idlstipocontribuyente == "e0e8f331-fe83-11e7-83f1-204747335338") ? false : true,
                 TxtNPrimario = (cliente.idlstipocontribuyente == "e0e8f331-fe83-11e7-83f1-204747335338") ? null : cliente.nprimario,
                 TxtNSecundario = (cliente.idlstipocontribuyente == "e0e8f331-fe83-11e7-83f1-204747335338") ? null : cliente.nsecundario,
                 TxtPaterno = (cliente.idlstipocontribuyente == "e0e8f331-fe83-11e7-83f1-204747335338") ? null : cliente.paterno,
                 TxtMaterno = (cliente.idlstipocontribuyente == "e0e8f331-fe83-11e7-83f1-204747335338") ? null : cliente.materno,
                 TxtRazonSocial = (cliente.idlstipocontribuyente == "e0e8f331-fe83-11e7-83f1-204747335338") ? cliente.razon_social : null,
-                TxtRFC = cliente.razon_social,
+                TxtRFC = cliente.rfc,
                 TxtEmail = cliente.email,
-                ListaTelefonos = new ObservableCollection<Telefonos>(),
-                ListaDirecciones=new ObservableCollection<tbl_direcciones>(ltaDir),
-                ListaEstados = new ObservableCollection<tbl_estados>()
+                ListaTelefonos = new ObservableCollection<Telefonos>(lista),
+                ListaDirecciones = new ObservableCollection<tbl_direcciones>(ltaDir),
+                ListaEstados = new ObservableCollection<tbl_estados>(ltaEdo),
+                ListaMunicipios = new ObservableCollection<tbl_municipios>(ltaMun)
             };
             var vwDatos = new DatosClienteView
             {

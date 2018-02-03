@@ -183,6 +183,7 @@ namespace Guajiro.ViewModels
                 {
                     tbl_comandas comanda = new tbl_comandas { idcomanda = idComanda };
                     bd.Entry(comanda).State = System.Data.Entity.EntityState.Deleted;
+                    //bd.tbl_comandas.Remove(comanda);
                     ban = bd.SaveChanges();
                 }
                 if (ban > 0)
