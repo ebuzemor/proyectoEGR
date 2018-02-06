@@ -2,6 +2,7 @@
 using Guajiro.Models;
 using Guajiro.Views;
 using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -54,6 +55,7 @@ namespace Guajiro.ViewModels
                 TiposTelefono = new ObservableCollection<tbl_listadoseldetalle>(tiposTelefono),
                 ListaEstados = new ObservableCollection<tbl_estados>(listaEstados),
                 ListaMunicipios = new ObservableCollection<tbl_municipios>(),
+                IdPersona = Convert.ToString(Guid.NewGuid()),
                 CreaUsuario = CreaUsuario
             };
             var vwDatosCliente = new DatosClienteView

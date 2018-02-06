@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
@@ -170,6 +171,16 @@ namespace Guajiro.ViewModels
                         idpersona = IdPersona
                     };
                     ListaDirecciones.Add(DatosDir);
+                    using(var bd = new bd_guajiroEntities())
+                    {
+                        bd.tbl_direcciones.Add(DatosDir);
+                        int c = bd.SaveChanges();
+                        if (c > 0)
+                        {
+                            TxtMensaje = "La dirección fue agregada correctamente";
+                            VerMensaje = true;
+                        }
+                    }
                     LimpiarDireccion();
                 }
                 else
@@ -182,7 +193,21 @@ namespace Guajiro.ViewModels
 
         private void EditarDireccion(object parameter)
         {
-
+            string iddir = parameter as string;
+            tbl_direcciones dir = GuajiroEF.tbl_direcciones.SingleOrDefault(x => x.iddireccion == iddir);
+            if (dir != null)
+            {
+                TxtCalle1 = dir.calle1;
+                TxtCalle2 = dir.calle2;
+                TxtInterior = dir.interior;
+                TxtExterior = dir.exterior;
+                TxtColonia = dir.colonia;
+                TxtCPostal = dir.codigopostal;
+                Municipio = GuajiroEF.tbl_municipios.Single(m => m.idmunicipio == dir.idmunicipio);
+                Estado = ListaEstados.Single(e => e.idestado == Municipio.idestado);
+                ChkEntrega = (bool)dir.entrega;
+                ChkFactura = (bool)dir.fiscal;
+            }
         }
 
         private void BorrarDireccion(object parameter)
@@ -246,9 +271,27 @@ namespace Guajiro.ViewModels
                         idlstipotelefono = TipoTel.idlsselecciondetalle,
                         idtelefono = Convert.ToString(Guid.NewGuid()),
                         numtelefono = TxtNumTelefono,
+                        idpersona = IdPersona,
                         descripcion = TipoTel.descripcion
                     };
                     ListaTelefonos.Add(DatosTel);
+                    using (var bd = new bd_guajiroEntities())
+                    {
+                        var tel = new tbl_telefonos
+                        {
+                            idtelefono = DatosTel.idtelefono,
+                            idlstipotelefono = DatosTel.idlstipotelefono,
+                            idpersona = IdPersona,
+                            numtelefono = DatosTel.numtelefono
+                        };
+                        bd.tbl_telefonos.Add(tel);
+                        int c = bd.SaveChanges();
+                        if (c > 0)
+                        {
+                            TxtMensaje = "Los datos telefónicos han sido agregados correctamente.";
+                            VerMensaje = true;
+                        }
+                    }
                     TxtNumTelefono = "";
                 }
                 else
@@ -270,6 +313,15 @@ namespace Guajiro.ViewModels
         private void BorrarTelefono(object parameter)
         {
             string idtel = parameter as string;
+            var infoTel = GuajiroEF.tbl_telefonos.SingleOrDefault(x => x.idtelefono == idtel);
+            if (infoTel != null)
+            {
+                using(var bd = new bd_guajiroEntities())
+                {
+                    bd.Entry(infoTel).State = EntityState.Deleted;
+                    int b = bd.SaveChanges();
+                }
+            }
             vw_lista_telefonos consulta = ListaTelefonos.SingleOrDefault(x => x.idtelefono == idtel);
             if (consulta != null)
                 ListaTelefonos.Remove(consulta);
@@ -328,7 +380,7 @@ namespace Guajiro.ViewModels
                     {
                         tbl_personas persona = new tbl_personas
                         {
-                            idpersona = Convert.ToString(Guid.NewGuid()),
+                            idpersona = IdPersona,//Convert.ToString(Guid.NewGuid()),
                             idlstipopersona = "e47c6009-368a-11e7-b904-204747335338", //Tipo Cliente
                             idlstipocontribuyente = TipoPersona,
                             nprimario = TxtNPrimario,
@@ -341,38 +393,6 @@ namespace Guajiro.ViewModels
                             crea_usuario = CreaUsuario
                         };
                         bd.tbl_personas.Add(persona);
-                        if (ListaTelefonos.Count > 0)
-                        {
-                            foreach (vw_lista_telefonos item in ListaTelefonos)
-                            {
-                                tbl_telefonos phone = new tbl_telefonos
-                                {
-                                    idtelefono = Convert.ToString(Guid.NewGuid()),
-                                    idlstipotelefono = item.idlstipotelefono,
-                                    idpersona = persona.idpersona,
-                                    numtelefono = item.numtelefono
-                                };
-                                bd.tbl_telefonos.Add(phone);
-                            }
-                        }
-                        foreach (tbl_direcciones item in ListaDirecciones)
-                        {
-                            tbl_direcciones dir = new tbl_direcciones
-                            {
-                                iddireccion = item.iddireccion,
-                                idpersona = persona.idpersona,
-                                idmunicipio = item.idmunicipio,
-                                calle1 = item.calle1,
-                                calle2 = item.calle2,
-                                exterior = item.exterior,
-                                interior = item.interior,
-                                colonia = item.colonia,
-                                codigopostal = item.codigopostal,
-                                entrega = item.entrega,
-                                fiscal = item.fiscal
-                            };
-                            bd.tbl_direcciones.Add(dir);
-                        }
                         guardados = bd.SaveChanges();
                         if (guardados > 0)
                         {
@@ -416,6 +436,8 @@ namespace Guajiro.ViewModels
                 editarPersona.razon_social = razsoc;
                 editarPersona.rfc = TxtRFC;
                 editarPersona.email = TxtEmail;
+                bd.Entry(editarPersona).State = EntityState.Modified;
+                editado = bd.SaveChanges();
             };
         }
 
