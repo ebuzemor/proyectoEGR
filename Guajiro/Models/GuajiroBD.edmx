@@ -227,7 +227,9 @@
           <Property Name="idtelefono" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="idpersona" Type="varchar" MaxLength="50" />
           <Property Name="idlstipotelefono" Type="varchar" MaxLength="50" />
-          <Property Name="numtelefono" Type="varchar" MaxLength="20" />
+          <Property Name="lada" Type="varchar" MaxLength="3" />
+          <Property Name="numtelefono" Type="varchar" MaxLength="8" />
+          <Property Name="extension" Type="varchar" MaxLength="5" />
         </EntityType>
         <EntityType Name="tbl_usuarios">
           <Key>
@@ -371,7 +373,7 @@ advertencia 6002: La tabla o vista 'def.bd_guajiro.vw_lista_telefonos' no tiene 
           </Key>
           <Property Name="idtelefono" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="idpersona" Type="varchar" MaxLength="50" />
-          <Property Name="numtelefono" Type="varchar" MaxLength="20" />
+          <Property Name="numtelefono" Type="varchar" MaxLength="18" />
           <Property Name="descripcion" Type="varchar" MaxLength="100" />
           <Property Name="idlstipotelefono" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -1182,6 +1184,8 @@ FROM `vw_proveedores_directorio` AS `vw_proveedores_directorio`</DefiningQuery>
           <Property Name="idpersona" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="idlstipotelefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="numtelefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="lada" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="extension" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="vw_clientes_directorio">
           <Key>
@@ -1565,6 +1569,8 @@ FROM `vw_proveedores_directorio` AS `vw_proveedores_directorio`</DefiningQuery>
           <EntitySetMapping Name="tbl_telefonos">
             <EntityTypeMapping TypeName="bd_guajiroModel.tbl_telefonos">
               <MappingFragment StoreEntitySet="tbl_telefonos">
+                <ScalarProperty Name="extension" ColumnName="extension" />
+                <ScalarProperty Name="lada" ColumnName="lada" />
                 <ScalarProperty Name="numtelefono" ColumnName="numtelefono" />
                 <ScalarProperty Name="idlstipotelefono" ColumnName="idlstipotelefono" />
                 <ScalarProperty Name="idpersona" ColumnName="idpersona" />

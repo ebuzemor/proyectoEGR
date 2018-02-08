@@ -18,5 +18,7 @@ namespace Guajiro.Models
         public string idpersona { get; set; }
         public string idlstipotelefono { get; set; }
         public string numtelefono { get; set; }
+        public string lada { get; set; }
+        public string extension { get; set; }
     }
 }

@@ -1010,7 +1010,7 @@ INSERT INTO `tbl_personas` (`idpersona`, `idlstipopersona`, `idlstipocontribuyen
 	('4b342018-1724-464b-bbdb-6b2e1597664f', 'e47c61f8-368a-11e7-b904-204747335338', 'e0eaa02f-fe83-11e7-83f1-204747335338', 'qwert', 'Juan', '', 'Pérez', NULL, 'Juan  Pérez ', NULL, '2018-01-21 18:45:57', NULL, '954b649c-3c10-11e7-a2b5-204747335338'),
 	('954b649c-3c10-11e7-a2b5-204747335338', 'e47c6009-368a-11e7-b904-204747335338', 'e0eaa02f-fe83-11e7-83f1-204747335338', 'ZEME790501KE1', 'Elí', 'Bulmaro', 'Zenteno', 'Moreno', 'Elí Bulmaro Zenteno Moreno', NULL, '2018-01-17 00:37:49', '2018-01-21 08:53:49', '954b649c-3c10-11e7-a2b5-204747335338'),
 	('a31b0a0f-c6ef-4961-9c96-7ee2cef96b81', 'e47c6009-368a-11e7-b904-204747335338', 'e0eaa02f-fe83-11e7-83f1-204747335338', 'BAKB800101CA5', 'Benito', 'Carlos', 'Baez', 'Kuh', 'Benito Carlos Baez Kuh', NULL, '2018-01-20 00:30:18', '2018-01-21 08:53:51', '954b649c-3c10-11e7-a2b5-204747335338'),
-	('cdf75403-7c45-4689-a7fb-3b613684739c', 'e47c6009-368a-11e7-b904-204747335338', 'e0eaa02f-fe83-11e7-83f1-204747335338', 'COCS750721LR9', 'Stephen', 'T.', 'Colbert', 'C.', 'Stephen T. Colbert C.', NULL, '2018-01-20 00:08:42', '2018-01-21 08:53:53', '954b649c-3c10-11e7-a2b5-204747335338'),
+	('cdf75403-7c45-4689-a7fb-3b613684739c', 'e47c6009-368a-11e7-b904-204747335338', 'e0eaa02f-fe83-11e7-83f1-204747335338', 'COCS750721LR9', 'Steven', 'T.', 'Colbert', 'C.', 'Steven T. Colbert C.', NULL, '2018-01-20 00:08:42', '2018-01-21 08:53:53', '954b649c-3c10-11e7-a2b5-204747335338'),
 	('df26992d-0a81-46cb-9829-fb92ec9a5dc7', 'e47c6009-368a-11e7-b904-204747335338', 'e0eaa02f-fe83-11e7-83f1-204747335338', 'GAL123456789', 'Alejandro', NULL, 'Gutiérrez', NULL, 'Alejandro  Gutiérrez ', NULL, '2018-01-22 21:49:47', NULL, '954b649c-3c10-11e7-a2b5-204747335338'),
 	('e7e56c93-8f4c-4c7a-96c3-a2c30e741b30', 'e47c61f8-368a-11e7-b904-204747335338', 'e0e8f331-fe83-11e7-83f1-204747335338', 'PLPB123456AS1', 'Plásticos', NULL, 'Pablin', 'S.A. de C.V.', 'Plásticos  Pablin S.A. de C.V.', NULL, '2018-01-21 10:14:48', '2018-01-21 12:32:41', '954b649c-3c10-11e7-a2b5-204747335338');
 /*!40000 ALTER TABLE `tbl_personas` ENABLE KEYS */;
@@ -1021,19 +1021,20 @@ CREATE TABLE IF NOT EXISTS `tbl_telefonos` (
   `idtelefono` varchar(50) NOT NULL,
   `idpersona` varchar(50) DEFAULT NULL,
   `idlstipotelefono` varchar(50) DEFAULT NULL,
-  `numtelefono` varchar(20) DEFAULT NULL,
+  `lada` varchar(3) DEFAULT NULL,
+  `numtelefono` varchar(8) DEFAULT NULL,
+  `extension` varchar(5) DEFAULT NULL,
   PRIMARY KEY (`idtelefono`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla bd_guajiro.tbl_telefonos: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla bd_guajiro.tbl_telefonos: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_telefonos` DISABLE KEYS */;
-INSERT INTO `tbl_telefonos` (`idtelefono`, `idpersona`, `idlstipotelefono`, `numtelefono`) VALUES
-	('0e849f3a-fbb1-11e7-9da6-1c1b0dd5d000', '3ec57991-da4a-11e7-9155-204747335338', 'ff9a4a3f-f42a-11e7-83f1-204747335338', '961-123-4567'),
-	('145ab96d-44d3-41d4-86d0-9809b422ee80', '1f546f39-9ed6-4ff2-8ad4-376d3bb510d5', 'ff9a4ea2-f42a-11e7-83f1-204747335338', '1234565422'),
-	('627bb62c-9d9c-4fd8-b04d-b2abd35479ea', 'df26992d-0a81-46cb-9829-fb92ec9a5dc7', 'ff9a4a3f-f42a-11e7-83f1-204747335338', '9611234567'),
-	('c7df8d58-e375-4788-9c96-b51da56bd694', 'e7e56c93-8f4c-4c7a-96c3-a2c30e741b30', 'ff9a4ea2-f42a-11e7-83f1-204747335338', '123456789'),
-	('cba209bf-2e58-4745-8780-c18052c5c7a1', 'cdf75403-7c45-4689-a7fb-3b613684739c', 'ff9a4a3f-f42a-11e7-83f1-204747335338', '9611234567'),
-	('fcf9da47-ebea-46fb-a27a-79de6a0dc71f', 'a31b0a0f-c6ef-4961-9c96-7ee2cef96b81', 'ff9a4a3f-f42a-11e7-83f1-204747335338', '9611234567');
+INSERT INTO `tbl_telefonos` (`idtelefono`, `idpersona`, `idlstipotelefono`, `lada`, `numtelefono`, `extension`) VALUES
+	('0e849f3a-fbb1-11e7-9da6-1c1b0dd5d000', '3ec57991-da4a-11e7-9155-204747335338', 'ff9a4a3f-f42a-11e7-83f1-204747335338', '961', '12345678', NULL),
+	('145ab96d-44d3-41d4-86d0-9809b422ee80', '1f546f39-9ed6-4ff2-8ad4-376d3bb510d5', 'ff9a4ea2-f42a-11e7-83f1-204747335338', NULL, '11223344', NULL),
+	('627bb62c-9d9c-4fd8-b04d-b2abd35479ea', 'df26992d-0a81-46cb-9829-fb92ec9a5dc7', 'ff9a4a3f-f42a-11e7-83f1-204747335338', NULL, '98765432', NULL),
+	('c7df8d58-e375-4788-9c96-b51da56bd694', 'e7e56c93-8f4c-4c7a-96c3-a2c30e741b30', 'ff9a4ea2-f42a-11e7-83f1-204747335338', NULL, '32165470', NULL),
+	('fcf9da47-ebea-46fb-a27a-79de6a0dc71f', 'a31b0a0f-c6ef-4961-9c96-7ee2cef96b81', 'ff9a4a3f-f42a-11e7-83f1-204747335338', NULL, '32106547', NULL);
 /*!40000 ALTER TABLE `tbl_telefonos` ENABLE KEYS */;
 
 
@@ -1169,7 +1170,7 @@ CREATE TABLE `vw_lista_productos` (
 CREATE TABLE `vw_lista_telefonos` (
 	`idtelefono` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
 	`idpersona` VARCHAR(50) NULL COLLATE 'utf8_general_ci',
-	`numtelefono` VARCHAR(20) NULL COLLATE 'utf8_general_ci',
+	`numtelefono` VARCHAR(18) NULL COLLATE 'utf8_general_ci',
 	`descripcion` VARCHAR(100) NULL COLLATE 'utf8_general_ci',
 	`idlstipotelefono` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
@@ -1249,7 +1250,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- Volcando estructura para vista bd_guajiro.vw_lista_telefonos
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `vw_lista_telefonos`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_lista_telefonos` AS select `t`.`idtelefono` AS `idtelefono`,`t`.`idpersona` AS `idpersona`,`t`.`numtelefono` AS `numtelefono`,`l`.`descripcion` AS `descripcion`,`l`.`idlsselecciondetalle` AS `idlstipotelefono` from (`tbl_telefonos` `t` join `tbl_listadoseldetalle` `l` on((`t`.`idlstipotelefono` = `l`.`idlsselecciondetalle`))) where (`l`.`idlistadoseleccion` = 'b06d265a-f42a-11e7-83f1-204747335338');
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_lista_telefonos` AS select `t`.`idtelefono` AS `idtelefono`,`t`.`idpersona` AS `idpersona`,concat(ifnull(`t`.`lada`,''),' ',`t`.`numtelefono`,' ',ifnull(`t`.`extension`,'')) AS `numtelefono`,`l`.`descripcion` AS `descripcion`,`l`.`idlsselecciondetalle` AS `idlstipotelefono` from (`tbl_telefonos` `t` join `tbl_listadoseldetalle` `l` on((`t`.`idlstipotelefono` = `l`.`idlsselecciondetalle`))) where (`l`.`idlistadoseleccion` = 'b06d265a-f42a-11e7-83f1-204747335338');
 
 
 -- Volcando estructura para vista bd_guajiro.vw_proveedores_directorio
