@@ -263,51 +263,60 @@ namespace Guajiro.ViewModels
         {
             if (ErrorDatosPersonales(ChkFisica) != true)
             {
-                if (TipoTel != null)
+                tbl_personas cliente = GuajiroEF.tbl_personas.SingleOrDefault(c => c.idpersona == IdPersona);
+                if (cliente != null)
                 {
-                    vw_lista_telefonos consulta = ListaTelefonos.SingleOrDefault(x => x.numtelefono == TxtNumTelefono);
-                    if (consulta == null && string.IsNullOrWhiteSpace(TxtNumTelefono) == false)
+                    if (TipoTel != null)
                     {
-                        DatosTel = new vw_lista_telefonos
+                        vw_lista_telefonos consulta = ListaTelefonos.SingleOrDefault(x => x.numtelefono == TxtNumTelefono);
+                        if (consulta == null && string.IsNullOrWhiteSpace(TxtNumTelefono) == false)
                         {
-                            idlstipotelefono = TipoTel.idlsselecciondetalle,
-                            idtelefono = Convert.ToString(Guid.NewGuid()),
-                            numtelefono = TxtNumTelefono,
-                            idpersona = IdPersona,
-                            descripcion = TipoTel.descripcion
-                        };
-                        ListaTelefonos.Add(DatosTel);
-                        using (var bd = new bd_guajiroEntities())
-                        {
-                            var tel = new tbl_telefonos
+                            DatosTel = new vw_lista_telefonos
                             {
-                                idtelefono = DatosTel.idtelefono,
-                                idlstipotelefono = DatosTel.idlstipotelefono,
+                                idlstipotelefono = TipoTel.idlsselecciondetalle,
+                                idtelefono = Convert.ToString(Guid.NewGuid()),
+                                numtelefono = TxtNumTelefono,
                                 idpersona = IdPersona,
-                                numtelefono = DatosTel.numtelefono
+                                descripcion = TipoTel.descripcion
                             };
-                            bd.tbl_telefonos.Add(tel);
-                            int c = bd.SaveChanges();
-                            if (c > 0)
+                            ListaTelefonos.Add(DatosTel);
+                            using (var bd = new bd_guajiroEntities())
                             {
-                                TxtMensaje = "Los datos telefónicos han sido agregados correctamente.";
-                                VerMensaje = true;
+                                var tel = new tbl_telefonos
+                                {
+                                    idtelefono = DatosTel.idtelefono,
+                                    idlstipotelefono = DatosTel.idlstipotelefono,
+                                    idpersona = IdPersona,
+                                    numtelefono = DatosTel.numtelefono
+                                };
+                                bd.tbl_telefonos.Add(tel);
+                                int c = bd.SaveChanges();
+                                if (c > 0)
+                                {
+                                    TxtMensaje = "Los datos telefónicos han sido agregados correctamente.";
+                                    VerMensaje = true;
+                                }
                             }
+                            TxtNumTelefono = "";
                         }
-                        TxtNumTelefono = "";
+                        else
+                        {
+                            if (string.IsNullOrWhiteSpace(TxtNumTelefono) == true)
+                                TxtMensaje = "Debe ingresar un número telefónico.";
+                            else
+                                TxtMensaje = "El número telefónico ingresado ya existe en la lista.";
+                            VerMensaje = true;
+                        }
                     }
                     else
                     {
-                        if (string.IsNullOrWhiteSpace(TxtNumTelefono) == true)
-                            TxtMensaje = "Debe ingresar un número telefónico.";
-                        else
-                            TxtMensaje = "El número telefónico ingresado ya existe en la lista.";
+                        TxtMensaje = "Para agregar un teléfono a la lista debes elegir un tipo e ingresar un número telefónico.";
                         VerMensaje = true;
                     }
                 }
                 else
                 {
-                    TxtMensaje = "Para agregar un teléfono a la lista debes elegir un tipo e ingresar un número telefónico.";
+                    TxtMensaje = "Para agregar un teléfono a la lista debes guardar los datos personales del Cliente previamente.";
                     VerMensaje = true;
                 }
             }
