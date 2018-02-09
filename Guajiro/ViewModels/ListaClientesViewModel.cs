@@ -114,6 +114,9 @@ namespace Guajiro.ViewModels
                 DataContext = vmDatos
             };
             var result = await DialogHost.Show(vwDatos, "ListaClientes");
+            GuajiroEF = new bd_guajiroEntities();
+            var lista = GuajiroEF.vw_clientes_directorio.ToList();
+            ListaClientes = new ObservableCollection<vw_clientes_directorio>(lista);
         }
 
         private void BorrarCliente(object parameter)

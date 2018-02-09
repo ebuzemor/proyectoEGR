@@ -175,6 +175,12 @@ namespace Guajiro.ViewModels
                     {
                         bd.Entry(DatosDir).State = EntityState.Modified;
                         int c = bd.SaveChanges();
+                        if (c > 0)
+                        {
+                            TxtMensaje = "La información de la dirección se ha actualizado correctamente";
+                            VerMensaje = true;
+                            LimpiarDireccion();
+                        }
                     }
                 }
             }
@@ -197,7 +203,6 @@ namespace Guajiro.ViewModels
                         fiscal = ChkFactura,
                         idpersona = IdPersona
                     };
-                    ListaDirecciones.Add(DatosDir);
                     using (var bd = new bd_guajiroEntities())
                     {
                         bd.tbl_direcciones.Add(DatosDir);
@@ -206,9 +211,10 @@ namespace Guajiro.ViewModels
                         {
                             TxtMensaje = "La dirección fue agregada correctamente";
                             VerMensaje = true;
+                            LimpiarDireccion();
                         }
                     }
-                    LimpiarDireccion();
+                    
                 }
                 else
                 {
@@ -216,6 +222,8 @@ namespace Guajiro.ViewModels
                     VerMensaje = true;
                 }
             }
+            var lista = GuajiroEF.tbl_direcciones.Where(x => x.idpersona == IdPersona).ToList();
+            ListaDirecciones = new ObservableCollection<tbl_direcciones>(lista);
         }
 
         private void EditarDireccion(object parameter)
