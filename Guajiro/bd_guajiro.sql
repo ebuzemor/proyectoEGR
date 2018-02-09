@@ -1,19 +1,20 @@
 -- --------------------------------------------------------
--- Host:                         localhost
--- Versión del servidor:         5.6.36-log - MySQL Community Server (GPL)
+-- Host:                         127.0.0.1
+-- Versión del servidor:         5.7.20-log - MySQL Community Server (GPL)
 -- SO del servidor:              Win32
--- HeidiSQL Versión:             9.1.0.4867
+-- HeidiSQL Versión:             9.5.0.5196
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
 
 -- Volcando estructura de base de datos para bd_guajiro
 CREATE DATABASE IF NOT EXISTS `bd_guajiro` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `bd_guajiro`;
-
 
 -- Volcando estructura para tabla bd_guajiro.tbl_caracteristicasitem
 CREATE TABLE IF NOT EXISTS `tbl_caracteristicasitem` (
@@ -154,7 +155,6 @@ INSERT INTO `tbl_caracteristicasitem` (`idcaracteristica`, `iditem`, `idlsunidad
 	('f65f044f-3b87-11e7-a2b5-204747335338', 'c1f935e8-3b42-11e7-a2b5-204747335338', 'ed1679d5-3b84-11e7-a2b5-204747335338', 'e47c6405-368a-11e7-b904-204747335338', 40.00, '2017-05-18 00:07:59', '2017-05-18 00:11:00', NULL);
 /*!40000 ALTER TABLE `tbl_caracteristicasitem` ENABLE KEYS */;
 
-
 -- Volcando estructura para tabla bd_guajiro.tbl_comandas
 CREATE TABLE IF NOT EXISTS `tbl_comandas` (
   `idcomanda` varchar(50) NOT NULL,
@@ -183,7 +183,6 @@ INSERT INTO `tbl_comandas` (`idcomanda`, `fecha`, `num_comanda`, `idmesa`, `tota
 	('fb2f90a9-ff6b-4ad5-91c1-ccae35e90be3', '2018-01-31 22:10:30', 11, '1e2164b4-83a4-11e7-b695-204747335338', 85.00, b'0', '3ec57991-da4a-11e7-9155-204747335338', 'c7bfeac8-3c10-11e7-a2b5-204747335338', '2018-01-31 22:11:34', '2018-01-31 22:53:01');
 /*!40000 ALTER TABLE `tbl_comandas` ENABLE KEYS */;
 
-
 -- Volcando estructura para tabla bd_guajiro.tbl_corte
 CREATE TABLE IF NOT EXISTS `tbl_corte` (
   `idcorte` varchar(50) NOT NULL DEFAULT '',
@@ -202,7 +201,6 @@ CREATE TABLE IF NOT EXISTS `tbl_corte` (
 /*!40000 ALTER TABLE `tbl_corte` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tbl_corte` ENABLE KEYS */;
 
-
 -- Volcando estructura para tabla bd_guajiro.tbl_corte_mov
 CREATE TABLE IF NOT EXISTS `tbl_corte_mov` (
   `idcortemov` int(11) NOT NULL AUTO_INCREMENT,
@@ -218,7 +216,6 @@ CREATE TABLE IF NOT EXISTS `tbl_corte_mov` (
 -- Volcando datos para la tabla bd_guajiro.tbl_corte_mov: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_corte_mov` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tbl_corte_mov` ENABLE KEYS */;
-
 
 -- Volcando estructura para tabla bd_guajiro.tbl_detallemenu
 CREATE TABLE IF NOT EXISTS `tbl_detallemenu` (
@@ -274,7 +271,6 @@ INSERT INTO `tbl_detallemenu` (`iddetalle`, `idmenu`, `iditem`) VALUES
 	('fcc700c9-9082-4302-af61-450c77c163c3', '9c5c6687-f112-46f8-9fc8-44fe3b5449cd', 'c1f42221-3b42-11e7-a2b5-204747335338');
 /*!40000 ALTER TABLE `tbl_detallemenu` ENABLE KEYS */;
 
-
 -- Volcando estructura para tabla bd_guajiro.tbl_detallescomanda
 CREATE TABLE IF NOT EXISTS `tbl_detallescomanda` (
   `iddetalle` varchar(50) NOT NULL,
@@ -320,7 +316,6 @@ INSERT INTO `tbl_detallescomanda` (`iddetalle`, `idcomanda`, `iditem`, `observac
 	('fef6eee4-acb3-4ddb-95e7-3fe7295b9737', 'fb2f90a9-ff6b-4ad5-91c1-ccae35e90be3', 'c1f43cf2-3b42-11e7-a2b5-204747335338', '', 'Huevo con Jamón', 35.00);
 /*!40000 ALTER TABLE `tbl_detallescomanda` ENABLE KEYS */;
 
-
 -- Volcando estructura para tabla bd_guajiro.tbl_detallesguarnicion
 CREATE TABLE IF NOT EXISTS `tbl_detallesguarnicion` (
   `iddetalleguarnicion` varchar(50) NOT NULL,
@@ -346,7 +341,6 @@ INSERT INTO `tbl_detallesguarnicion` (`iddetalleguarnicion`, `idguarnicion`, `id
 	('d2cc1efe-7b9c-11e7-9e1c-204747335338', 'b8a7543d-7b9a-11e7-9e1c-204747335338', 'ab046a4b-6359-11e7-a068-204747335338', '2017-08-07 13:18:33', NULL, NULL);
 /*!40000 ALTER TABLE `tbl_detallesguarnicion` ENABLE KEYS */;
 
-
 -- Volcando estructura para tabla bd_guajiro.tbl_detallesobservacion
 CREATE TABLE IF NOT EXISTS `tbl_detallesobservacion` (
   `iddetalle` varchar(50) NOT NULL,
@@ -358,7 +352,6 @@ CREATE TABLE IF NOT EXISTS `tbl_detallesobservacion` (
 -- Volcando datos para la tabla bd_guajiro.tbl_detallesobservacion: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tbl_detallesobservacion` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tbl_detallesobservacion` ENABLE KEYS */;
-
 
 -- Volcando estructura para tabla bd_guajiro.tbl_direcciones
 CREATE TABLE IF NOT EXISTS `tbl_direcciones` (
@@ -387,9 +380,8 @@ INSERT INTO `tbl_direcciones` (`iddireccion`, `idpersona`, `idmunicipio`, `calle
 	('c53dfad2-db0a-11e7-9155-204747335338', '3ec57991-da4a-11e7-9155-204747335338', '4929fcbf-fcd3-11e7-83f1-204747335338', 'Calle Ixhuatán', 'entre Simojovel e Ixtacomitan', '#341', NULL, 'Col. Centenario', '29025', b'1', b'0'),
 	('cc5f4754-f3fc-11e7-83f1-204747335338', '1c87a56f-e479-11e7-8cd6-204747335338', '4929fcbf-fcd3-11e7-83f1-204747335338', '', NULL, NULL, NULL, NULL, NULL, b'0', b'0'),
 	('ce4b78a7-aec8-471c-ab64-b85a1fde8353', 'df26992d-0a81-46cb-9829-fb92ec9a5dc7', '4929fcbf-fcd3-11e7-83f1-204747335338', 'Conocida', NULL, NULL, '1234', 'Centenario', '29000', b'1', b'1'),
-	('f3755939-056a-431d-8b90-98334a561954', '1f546f39-9ed6-4ff2-8ad4-376d3bb510d5', '4929fcbf-fcd3-11e7-83f1-204747335338', 'qqq', NULL, NULL, '1111', 'qwer', '1324', b'0', b'1');
+	('f3755939-056a-431d-8b90-98334a561954', '1f546f39-9ed6-4ff2-8ad4-376d3bb510d5', '4929fcbf-fcd3-11e7-83f1-204747335338', 'Carretera Panamericana km 1090', NULL, NULL, '1457', 'Ayala', '29000', b'0', b'1');
 /*!40000 ALTER TABLE `tbl_direcciones` ENABLE KEYS */;
-
 
 -- Volcando estructura para tabla bd_guajiro.tbl_estados
 CREATE TABLE IF NOT EXISTS `tbl_estados` (
@@ -436,7 +428,6 @@ INSERT INTO `tbl_estados` (`idestado`, `nombre`) VALUES
 	('4b8f51ec-f68c-11e7-83f1-204747335338', 'Zacatecas');
 /*!40000 ALTER TABLE `tbl_estados` ENABLE KEYS */;
 
-
 -- Volcando estructura para tabla bd_guajiro.tbl_guarniciones
 CREATE TABLE IF NOT EXISTS `tbl_guarniciones` (
   `idguarnicion` varchar(50) NOT NULL,
@@ -454,7 +445,6 @@ INSERT INTO `tbl_guarniciones` (`idguarnicion`, `nombre`, `fecha_creacion`, `fec
 	('204e3315-7b3a-11e7-955d-204747335338', 'Guarnición Comida', '2017-08-07 12:49:42', NULL, NULL),
 	('b8a7543d-7b9a-11e7-9e1c-204747335338', 'Guarnición Caldos', '2017-08-07 13:03:31', NULL, NULL);
 /*!40000 ALTER TABLE `tbl_guarniciones` ENABLE KEYS */;
-
 
 -- Volcando estructura para tabla bd_guajiro.tbl_items
 CREATE TABLE IF NOT EXISTS `tbl_items` (
@@ -610,7 +600,6 @@ INSERT INTO `tbl_items` (`iditem`, `idlstipoitem`, `descripcion`, `existencia`, 
 	('f6ffb10e-b5e9-4ba6-b713-b2ed3473853a', '9ae3b470-39dc-11e7-b904-204747335338', 'Nachos Salvajes', 0.00, b'0', '2018-01-22 21:57:02', NULL, '954b649c-3c10-11e7-a2b5-204747335338');
 /*!40000 ALTER TABLE `tbl_items` ENABLE KEYS */;
 
-
 -- Volcando estructura para tabla bd_guajiro.tbl_listadoseldetalle
 CREATE TABLE IF NOT EXISTS `tbl_listadoseldetalle` (
   `idlsselecciondetalle` varchar(50) NOT NULL,
@@ -656,7 +645,6 @@ INSERT INTO `tbl_listadoseldetalle` (`idlsselecciondetalle`, `idlistadoseleccion
 	('ff9a4ea2-f42a-11e7-83f1-204747335338', 'b06d265a-f42a-11e7-83f1-204747335338', 'Trabajo');
 /*!40000 ALTER TABLE `tbl_listadoseldetalle` ENABLE KEYS */;
 
-
 -- Volcando estructura para tabla bd_guajiro.tbl_listadoseleccion
 CREATE TABLE IF NOT EXISTS `tbl_listadoseleccion` (
   `idlistadoseleccion` varchar(50) NOT NULL,
@@ -676,7 +664,6 @@ INSERT INTO `tbl_listadoseleccion` (`idlistadoseleccion`, `descripcion`) VALUES
 	('b06d265a-f42a-11e7-83f1-204747335338', 'Tipo Teléfono');
 /*!40000 ALTER TABLE `tbl_listadoseleccion` ENABLE KEYS */;
 
-
 -- Volcando estructura para tabla bd_guajiro.tbl_menudeldia
 CREATE TABLE IF NOT EXISTS `tbl_menudeldia` (
   `idmenu` varchar(50) NOT NULL,
@@ -693,7 +680,6 @@ INSERT INTO `tbl_menudeldia` (`idmenu`, `fecha`) VALUES
 	('ccae6972-cf45-46d4-8122-8714a176833e', '2018-01-15 20:53:20'),
 	('dda4ab7d-e03f-46e4-88cf-e9ef9d240571', '2018-01-29 23:59:02');
 /*!40000 ALTER TABLE `tbl_menudeldia` ENABLE KEYS */;
-
 
 -- Volcando estructura para tabla bd_guajiro.tbl_mesas
 CREATE TABLE IF NOT EXISTS `tbl_mesas` (
@@ -718,7 +704,6 @@ INSERT INTO `tbl_mesas` (`idmesa`, `num_mesa`, `desc_mesa`) VALUES
 	('1e23f090-83a4-11e7-b695-204747335338', 9, 'Mesa 9'),
 	('1e23f0fd-83a4-11e7-b695-204747335338', 10, 'Mesa 10');
 /*!40000 ALTER TABLE `tbl_mesas` ENABLE KEYS */;
-
 
 -- Volcando estructura para tabla bd_guajiro.tbl_movimientos
 CREATE TABLE IF NOT EXISTS `tbl_movimientos` (
@@ -748,7 +733,6 @@ INSERT INTO `tbl_movimientos` (`idmovimiento`, `idlstipomovimiento`, `fecha`, `d
 	('ea37a775-e2f0-11e7-9155-204747335338', 'e47c55ba-368a-11e7-b904-204747335338', '2017-12-11 01:24:30', 'Venta de Comida', 50.00, '2017-12-17 00:06:14', '2018-01-13 18:16:03', 'c7bfeac8-3c10-11e7-a2b5-204747335338'),
 	('ea37a7ee-e2f0-11e7-9155-204747335338', 'e47c55ba-368a-11e7-b904-204747335338', '2017-12-11 01:11:14', 'Venta de Comida', 70.00, '2017-12-17 00:06:14', '2018-01-13 18:16:10', 'c7bfeac8-3c10-11e7-a2b5-204747335338');
 /*!40000 ALTER TABLE `tbl_movimientos` ENABLE KEYS */;
-
 
 -- Volcando estructura para tabla bd_guajiro.tbl_municipios
 CREATE TABLE IF NOT EXISTS `tbl_municipios` (
@@ -897,7 +881,6 @@ INSERT INTO `tbl_municipios` (`idmunicipio`, `idestado`, `nombre`) VALUES
 	('CC4B4142-EC40-4CF5-A90C-0D68689BFBA7', '4b8f4865-f68c-11e7-83f1-204747335338', 'El Llano');
 /*!40000 ALTER TABLE `tbl_municipios` ENABLE KEYS */;
 
-
 -- Volcando estructura para tabla bd_guajiro.tbl_ordenes
 CREATE TABLE IF NOT EXISTS `tbl_ordenes` (
   `idorden` varchar(50) NOT NULL,
@@ -981,7 +964,6 @@ INSERT INTO `tbl_ordenes` (`idorden`, `iditem`, `idguarnicion`, `descripcion`, `
 	('80bc8740-6385-11e7-a068-204747335338', 'c1f935e8-3b42-11e7-a2b5-204747335338', '204e3315-7b3a-11e7-955d-204747335338', 'Tortitas de papa', '2017-07-07 21:30:55', '2017-08-07 12:55:55', NULL);
 /*!40000 ALTER TABLE `tbl_ordenes` ENABLE KEYS */;
 
-
 -- Volcando estructura para tabla bd_guajiro.tbl_personas
 CREATE TABLE IF NOT EXISTS `tbl_personas` (
   `idpersona` varchar(50) NOT NULL,
@@ -1015,7 +997,6 @@ INSERT INTO `tbl_personas` (`idpersona`, `idlstipopersona`, `idlstipocontribuyen
 	('e7e56c93-8f4c-4c7a-96c3-a2c30e741b30', 'e47c61f8-368a-11e7-b904-204747335338', 'e0e8f331-fe83-11e7-83f1-204747335338', 'PLPB123456AS1', 'Plásticos', NULL, 'Pablin', 'S.A. de C.V.', 'Plásticos  Pablin S.A. de C.V.', NULL, '2018-01-21 10:14:48', '2018-01-21 12:32:41', '954b649c-3c10-11e7-a2b5-204747335338');
 /*!40000 ALTER TABLE `tbl_personas` ENABLE KEYS */;
 
-
 -- Volcando estructura para tabla bd_guajiro.tbl_telefonos
 CREATE TABLE IF NOT EXISTS `tbl_telefonos` (
   `idtelefono` varchar(50) NOT NULL,
@@ -1031,12 +1012,12 @@ CREATE TABLE IF NOT EXISTS `tbl_telefonos` (
 /*!40000 ALTER TABLE `tbl_telefonos` DISABLE KEYS */;
 INSERT INTO `tbl_telefonos` (`idtelefono`, `idpersona`, `idlstipotelefono`, `lada`, `numtelefono`, `extension`) VALUES
 	('0e849f3a-fbb1-11e7-9da6-1c1b0dd5d000', '3ec57991-da4a-11e7-9155-204747335338', 'ff9a4a3f-f42a-11e7-83f1-204747335338', '961', '12345678', NULL),
-	('145ab96d-44d3-41d4-86d0-9809b422ee80', '1f546f39-9ed6-4ff2-8ad4-376d3bb510d5', 'ff9a4ea2-f42a-11e7-83f1-204747335338', NULL, '11223344', NULL),
+	('145ab96d-44d3-41d4-86d0-9809b422ee80', '1f546f39-9ed6-4ff2-8ad4-376d3bb510d5', 'ff9a4ea2-f42a-11e7-83f1-204747335338', '961', '11223344', '123'),
 	('627bb62c-9d9c-4fd8-b04d-b2abd35479ea', 'df26992d-0a81-46cb-9829-fb92ec9a5dc7', 'ff9a4a3f-f42a-11e7-83f1-204747335338', NULL, '98765432', NULL),
+	('75db2d97-8a61-4bac-8531-02a1a4508e84', '1f546f39-9ed6-4ff2-8ad4-376d3bb510d5', 'ff9a4ea2-f42a-11e7-83f1-204747335338', '961', '1234567', '100'),
 	('c7df8d58-e375-4788-9c96-b51da56bd694', 'e7e56c93-8f4c-4c7a-96c3-a2c30e741b30', 'ff9a4ea2-f42a-11e7-83f1-204747335338', NULL, '32165470', NULL),
 	('fcf9da47-ebea-46fb-a27a-79de6a0dc71f', 'a31b0a0f-c6ef-4961-9c96-7ee2cef96b81', 'ff9a4a3f-f42a-11e7-83f1-204747335338', NULL, '32106547', NULL);
 /*!40000 ALTER TABLE `tbl_telefonos` ENABLE KEYS */;
-
 
 -- Volcando estructura para tabla bd_guajiro.tbl_usuarios
 CREATE TABLE IF NOT EXISTS `tbl_usuarios` (
@@ -1053,7 +1034,6 @@ INSERT INTO `tbl_usuarios` (`idusuario`, `idpersona`, `login`, `password`) VALUE
 	('c7bfeac8-3c10-11e7-a2b5-204747335338', '954b649c-3c10-11e7-a2b5-204747335338', 'admin', '21232f297a57a5a743894a0e4a801fc3');
 /*!40000 ALTER TABLE `tbl_usuarios` ENABLE KEYS */;
 
-
 -- Volcando estructura para vista bd_guajiro.vw_clientes_directorio
 -- Creando tabla temporal para superar errores de dependencia de VIEW
 CREATE TABLE `vw_clientes_directorio` (
@@ -1064,7 +1044,6 @@ CREATE TABLE `vw_clientes_directorio` (
 	`fecha_creacion` DATETIME NULL
 ) ENGINE=MyISAM;
 
-
 -- Volcando estructura para vista bd_guajiro.vw_detallemenu
 -- Creando tabla temporal para superar errores de dependencia de VIEW
 CREATE TABLE `vw_detallemenu` (
@@ -1074,7 +1053,6 @@ CREATE TABLE `vw_detallemenu` (
 	`descripcion` VARCHAR(100) NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
 
-
 -- Volcando estructura para vista bd_guajiro.vw_lista_clientes
 -- Creando tabla temporal para superar errores de dependencia de VIEW
 CREATE TABLE `vw_lista_clientes` (
@@ -1082,7 +1060,6 @@ CREATE TABLE `vw_lista_clientes` (
 	`idlstipopersona` VARCHAR(50) NULL COLLATE 'utf8_general_ci',
 	`razon_social` VARCHAR(350) NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
-
 
 -- Volcando estructura para vista bd_guajiro.vw_lista_comandas
 -- Creando tabla temporal para superar errores de dependencia de VIEW
@@ -1096,7 +1073,6 @@ CREATE TABLE `vw_lista_comandas` (
 	`total` DECIMAL(10,2) NULL
 ) ENGINE=MyISAM;
 
-
 -- Volcando estructura para vista bd_guajiro.vw_lista_direcciones
 -- Creando tabla temporal para superar errores de dependencia de VIEW
 CREATE TABLE `vw_lista_direcciones` (
@@ -1104,7 +1080,6 @@ CREATE TABLE `vw_lista_direcciones` (
 	`idpersona` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
 	`direccion` TEXT NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
-
 
 -- Volcando estructura para vista bd_guajiro.vw_lista_movimientos
 -- Creando tabla temporal para superar errores de dependencia de VIEW
@@ -1118,7 +1093,6 @@ CREATE TABLE `vw_lista_movimientos` (
 	`usuario` VARCHAR(350) NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
 
-
 -- Volcando estructura para vista bd_guajiro.vw_lista_ordenes
 -- Creando tabla temporal para superar errores de dependencia de VIEW
 CREATE TABLE `vw_lista_ordenes` (
@@ -1130,7 +1104,6 @@ CREATE TABLE `vw_lista_ordenes` (
 	`nombreguarnicion` VARCHAR(100) NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
 
-
 -- Volcando estructura para vista bd_guajiro.vw_lista_personas
 -- Creando tabla temporal para superar errores de dependencia de VIEW
 CREATE TABLE `vw_lista_personas` (
@@ -1138,7 +1111,6 @@ CREATE TABLE `vw_lista_personas` (
 	`login` VARCHAR(20) NULL COLLATE 'utf8_general_ci',
 	`razon_social` VARCHAR(350) NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
-
 
 -- Volcando estructura para vista bd_guajiro.vw_lista_precios
 -- Creando tabla temporal para superar errores de dependencia de VIEW
@@ -1149,7 +1121,6 @@ CREATE TABLE `vw_lista_precios` (
 	`unidad` VARCHAR(100) NULL COLLATE 'utf8_general_ci',
 	`tipo` VARCHAR(100) NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
-
 
 -- Volcando estructura para vista bd_guajiro.vw_lista_productos
 -- Creando tabla temporal para superar errores de dependencia de VIEW
@@ -1164,17 +1135,15 @@ CREATE TABLE `vw_lista_productos` (
 	`inventariable` BIT(1) NULL
 ) ENGINE=MyISAM;
 
-
 -- Volcando estructura para vista bd_guajiro.vw_lista_telefonos
 -- Creando tabla temporal para superar errores de dependencia de VIEW
 CREATE TABLE `vw_lista_telefonos` (
 	`idtelefono` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
 	`idpersona` VARCHAR(50) NULL COLLATE 'utf8_general_ci',
-	`numtelefono` VARCHAR(18) NULL COLLATE 'utf8_general_ci',
+	`numtelefono` VARCHAR(22) NULL COLLATE 'utf8_general_ci',
 	`descripcion` VARCHAR(100) NULL COLLATE 'utf8_general_ci',
 	`idlstipotelefono` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
-
 
 -- Volcando estructura para vista bd_guajiro.vw_proveedores_directorio
 -- Creando tabla temporal para superar errores de dependencia de VIEW
@@ -1186,77 +1155,66 @@ CREATE TABLE `vw_proveedores_directorio` (
 	`fecha_creacion` DATETIME NULL
 ) ENGINE=MyISAM;
 
-
 -- Volcando estructura para vista bd_guajiro.vw_clientes_directorio
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `vw_clientes_directorio`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_clientes_directorio` AS select `p`.`idpersona` AS `idpersona`,`p`.`razon_social` AS `razon_social`,`p`.`rfc` AS `rfc`,concat(ifnull(`d`.`calle1`,''),' ',ifnull(`d`.`calle2`,''),' ',ifnull(`d`.`interior`,''),' ',ifnull(`d`.`exterior`,''),' ',ifnull(`d`.`colonia`,''),' ',ifnull(concat('C.P.',`d`.`codigopostal`),''),' ',ifnull(`m`.`nombre`,'')) AS `direccion`,`p`.`fecha_creacion` AS `fecha_creacion` from (((`tbl_personas` `p` left join `tbl_direcciones` `d` on((`p`.`idpersona` = `d`.`idpersona`))) left join `tbl_telefonos` `t` on((`p`.`idpersona` = `t`.`idpersona`))) left join `tbl_municipios` `m` on((`d`.`idmunicipio` = `m`.`idmunicipio`))) where (`p`.`idlstipopersona` = 'e47c6009-368a-11e7-b904-204747335338') order by `p`.`paterno`,`p`.`materno`;
-
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_clientes_directorio` AS select `p`.`idpersona` AS `idpersona`,`p`.`razon_social` AS `razon_social`,`p`.`rfc` AS `rfc`,concat(ifnull(`d`.`calle1`,''),' ',ifnull(`d`.`calle2`,''),' ',ifnull(`d`.`interior`,''),' ',ifnull(`d`.`exterior`,''),' ',ifnull(`d`.`colonia`,''),' ',ifnull(concat('C.P.',`d`.`codigopostal`),''),' ',ifnull(`m`.`nombre`,'')) AS `direccion`,`p`.`fecha_creacion` AS `fecha_creacion` from (((`tbl_personas` `p` left join `tbl_direcciones` `d` on((`p`.`idpersona` = `d`.`idpersona`))) left join `tbl_telefonos` `t` on((`p`.`idpersona` = `t`.`idpersona`))) left join `tbl_municipios` `m` on((`d`.`idmunicipio` = `m`.`idmunicipio`))) where (`p`.`idlstipopersona` = 'e47c6009-368a-11e7-b904-204747335338') group by `p`.`idpersona` order by `p`.`paterno`,`p`.`materno`;
 
 -- Volcando estructura para vista bd_guajiro.vw_detallemenu
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `vw_detallemenu`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_detallemenu` AS select `d`.`iddetalle` AS `iddetalle`,`d`.`idmenu` AS `idmenu`,`d`.`iditem` AS `iditem`,`i`.`descripcion` AS `descripcion` from (`tbl_items` `i` join `tbl_detallemenu` `d` on((`i`.`iditem` = `d`.`iditem`)));
 
-
 -- Volcando estructura para vista bd_guajiro.vw_lista_clientes
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `vw_lista_clientes`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_lista_clientes` AS select `p`.`idpersona` AS `idpersona`,`p`.`idlstipopersona` AS `idlstipopersona`,`p`.`razon_social` AS `razon_social` from (`tbl_personas` `p` join `tbl_usuarios` `u` on((`p`.`idpersona` <> `u`.`idpersona`))) where (`p`.`idlstipopersona` = 'e47c6009-368a-11e7-b904-204747335338');
-
 
 -- Volcando estructura para vista bd_guajiro.vw_lista_comandas
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `vw_lista_comandas`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_lista_comandas` AS select `c`.`idcomanda` AS `idcomanda`,`p`.`razon_social` AS `razon_social`,`c`.`fecha` AS `fecha`,`c`.`num_comanda` AS `num_comanda`,`c`.`para_llevar` AS `para_llevar`,`m`.`desc_mesa` AS `desc_mesa`,`c`.`total` AS `total` from ((`tbl_comandas` `c` join `tbl_personas` `p` on((`c`.`idpersona` = `p`.`idpersona`))) join `tbl_mesas` `m` on((`c`.`idmesa` = `m`.`idmesa`)));
 
-
 -- Volcando estructura para vista bd_guajiro.vw_lista_direcciones
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `vw_lista_direcciones`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_lista_direcciones` AS select `d`.`iddireccion` AS `iddireccion`,`p`.`idpersona` AS `idpersona`,(case `d`.`entrega` when 0 then 'Sin dirección de entrega' when 1 then concat(ifnull(`d`.`calle1`,''),' ',ifnull(`d`.`calle2`,''),' ',ifnull(`d`.`interior`,''),' ',ifnull(`d`.`exterior`,''),', ',ifnull(`d`.`colonia`,''),', CP: ',ifnull(`d`.`codigopostal`,''),', ',ifnull(`m`.`nombre`,''),', ',ifnull(`e`.`nombre`,'')) end) AS `direccion` from ((((`tbl_personas` `p` join `tbl_direcciones` `d` on((`p`.`idpersona` = `d`.`idpersona`))) join `tbl_usuarios` `u` on((`p`.`idpersona` <> `u`.`idpersona`))) join `tbl_municipios` `m` on((`d`.`idmunicipio` = `m`.`idmunicipio`))) join `tbl_estados` `e` on((`m`.`idestado` = `e`.`idestado`)));
-
 
 -- Volcando estructura para vista bd_guajiro.vw_lista_movimientos
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `vw_lista_movimientos`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_lista_movimientos` AS select `m`.`idmovimiento` AS `idmovimiento`,`m`.`idlstipomovimiento` AS `idlstipomovimiento`,`m`.`fecha` AS `fecha`,`m`.`descripcion` AS `descripcion`,`d`.`descripcion` AS `tipo`,`m`.`monto` AS `monto`,`p`.`razon_social` AS `usuario` from (((`tbl_movimientos` `m` join `tbl_listadoseldetalle` `d` on((`m`.`idlstipomovimiento` = `d`.`idlsselecciondetalle`))) join `tbl_usuarios` `u` on((`m`.`crea_usuario` = `u`.`idusuario`))) join `tbl_personas` `p` on((`u`.`idpersona` = `p`.`idpersona`)));
 
-
 -- Volcando estructura para vista bd_guajiro.vw_lista_ordenes
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `vw_lista_ordenes`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_lista_ordenes` AS select `o`.`idorden` AS `idorden`,`o`.`iditem` AS `iditem`,`d`.`iditem` AS `cveitem`,`o`.`descripcion` AS `descripcion`,`g`.`nombre` AS `nombre`,`i`.`descripcion` AS `nombreguarnicion` from (((`tbl_ordenes` `o` join `tbl_guarniciones` `g` on((`o`.`idguarnicion` = `g`.`idguarnicion`))) join `tbl_detallesguarnicion` `d` on((`g`.`idguarnicion` = `d`.`idguarnicion`))) join `tbl_items` `i` on((`d`.`iditem` = `i`.`iditem`)));
-
 
 -- Volcando estructura para vista bd_guajiro.vw_lista_personas
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `vw_lista_personas`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_lista_personas` AS select `p`.`idpersona` AS `idpersona`,`u`.`login` AS `login`,`p`.`razon_social` AS `razon_social` from (`tbl_personas` `p` join `tbl_usuarios` `u` on((`p`.`idpersona` = `u`.`idpersona`)));
 
-
 -- Volcando estructura para vista bd_guajiro.vw_lista_precios
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `vw_lista_precios`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_lista_precios` AS select `i`.`iditem` AS `iditem`,`i`.`descripcion` AS `descripcion`,`c`.`valor` AS `valor`,`d`.`descripcion` AS `unidad`,`t`.`descripcion` AS `tipo` from (((`tbl_items` `i` join `tbl_caracteristicasitem` `c` on((`i`.`iditem` = `c`.`iditem`))) join `tbl_listadoseldetalle` `d` on((`c`.`idlstipocaracteristica` = `d`.`idlsselecciondetalle`))) join `tbl_listadoseldetalle` `t` on((`i`.`idlstipoitem` = `t`.`idlsselecciondetalle`))) where (`i`.`inventariable` = 0);
-
 
 -- Volcando estructura para vista bd_guajiro.vw_lista_productos
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `vw_lista_productos`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_lista_productos` AS select `i`.`iditem` AS `iditem`,`i`.`descripcion` AS `descripcion`,`i`.`existencia` AS `existencia`,`c`.`valor` AS `valor`,`t`.`descripcion` AS `unidad`,`d`.`descripcion` AS `tipo`,`i`.`fecha_creacion` AS `fecha_creacion`,`i`.`inventariable` AS `inventariable` from (((`tbl_items` `i` join `tbl_caracteristicasitem` `c` on((`i`.`iditem` = `c`.`iditem`))) join `tbl_listadoseldetalle` `d` on((`c`.`idlstipocaracteristica` = `d`.`idlsselecciondetalle`))) join `tbl_listadoseldetalle` `t` on((`i`.`idlstipoitem` = `t`.`idlsselecciondetalle`)));
 
-
 -- Volcando estructura para vista bd_guajiro.vw_lista_telefonos
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `vw_lista_telefonos`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_lista_telefonos` AS select `t`.`idtelefono` AS `idtelefono`,`t`.`idpersona` AS `idpersona`,concat(ifnull(`t`.`lada`,''),' ',`t`.`numtelefono`,' ',ifnull(`t`.`extension`,'')) AS `numtelefono`,`l`.`descripcion` AS `descripcion`,`l`.`idlsselecciondetalle` AS `idlstipotelefono` from (`tbl_telefonos` `t` join `tbl_listadoseldetalle` `l` on((`t`.`idlstipotelefono` = `l`.`idlsselecciondetalle`))) where (`l`.`idlistadoseleccion` = 'b06d265a-f42a-11e7-83f1-204747335338');
-
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_lista_telefonos` AS select `t`.`idtelefono` AS `idtelefono`,`t`.`idpersona` AS `idpersona`,concat((case when (`t`.`lada` is not null) then concat(`t`.`lada`,'-') else '' end),(case when (`t`.`numtelefono` is not null) then `t`.`numtelefono` else '' end),(case when (`t`.`extension` is not null) then concat(' ext.',`t`.`extension`) else '' end)) AS `numtelefono`,`l`.`descripcion` AS `descripcion`,`l`.`idlsselecciondetalle` AS `idlstipotelefono` from (`tbl_telefonos` `t` join `tbl_listadoseldetalle` `l` on((`t`.`idlstipotelefono` = `l`.`idlsselecciondetalle`))) where (`l`.`idlistadoseleccion` = 'b06d265a-f42a-11e7-83f1-204747335338');
 
 -- Volcando estructura para vista bd_guajiro.vw_proveedores_directorio
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `vw_proveedores_directorio`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_proveedores_directorio` AS select `p`.`idpersona` AS `idpersona`,`p`.`razon_social` AS `razon_social`,`p`.`rfc` AS `rfc`,concat(ifnull(`d`.`calle1`,''),' ',ifnull(`d`.`calle2`,''),' ',ifnull(`d`.`interior`,''),' ',ifnull(`d`.`exterior`,''),' ',ifnull(`d`.`colonia`,''),' ',ifnull(concat('C.P.',`d`.`codigopostal`),''),' ',ifnull(`m`.`nombre`,'')) AS `direccion`,`p`.`fecha_creacion` AS `fecha_creacion` from (((`tbl_personas` `p` left join `tbl_direcciones` `d` on((`p`.`idpersona` = `d`.`idpersona`))) left join `tbl_telefonos` `t` on((`p`.`idpersona` = `t`.`idpersona`))) left join `tbl_municipios` `m` on((`d`.`idmunicipio` = `m`.`idmunicipio`))) where (`p`.`idlstipopersona` = 'e47c61f8-368a-11e7-b904-204747335338') order by `p`.`paterno`,`p`.`materno`;
+
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

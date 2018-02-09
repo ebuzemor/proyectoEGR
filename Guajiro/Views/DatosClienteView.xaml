@@ -67,7 +67,7 @@
                     <TextBox Grid.Column="1" Grid.Row="4" wpfMD:HintAssist.Hint="Email:" Text="{Binding TxtEmail}" 
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 0 0"/>
                     <Button Grid.Column="1" Grid.Row="5" Margin="5" Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                            Content="Guardar Datos Personales"/>
+                            Content="Guardar Datos Personales" Command="{Binding GuardarClienteCommand}"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Teléfonos">
@@ -80,14 +80,14 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <ComboBox Grid.Column="0" wpfMD:HintAssist.Hint="Tipo:" Margin="1" DisplayMemberPath="descripcion"
+                        <ComboBox Grid.Column="0" wpfMD:HintAssist.Hint="Tipo:" Margin="2" DisplayMemberPath="descripcion"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" IsEditable="True"
                                   ItemsSource="{Binding TiposTelefono}" SelectedItem="{Binding TipoTel}"/>
-                        <TextBox Grid.Column="1" Text="{Binding TxtLada}" Margin="1" wpfMD:HintAssist.Hint="Lada:"
+                        <TextBox Grid.Column="1" Text="{Binding TxtLada}" Margin="2" wpfMD:HintAssist.Hint="Lada:"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" MaxLength="3"/>
-                        <TextBox Grid.Column="2" Text="{Binding TxtNumTelefono}" Margin="1" wpfMD:HintAssist.Hint="Número:"
+                        <TextBox Grid.Column="2" Text="{Binding TxtNumTelefono}" Margin="2" wpfMD:HintAssist.Hint="Número:"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" MaxLength="8"/>
-                        <TextBox Grid.Column="3" Text="{Binding TxtExtension}" Margin="1" wpfMD:HintAssist.Hint="Extensión:"
+                        <TextBox Grid.Column="3" Text="{Binding TxtExtension}" Margin="2" wpfMD:HintAssist.Hint="Extensión:"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" MaxLength="5"/>
                         <Button Grid.Column="4" Margin="5" Command="{Binding AgregarTelefonoCommand}" 
                                 Style="{StaticResource MaterialDesignRaisedAccentButton}">
@@ -163,11 +163,11 @@
                     <UniformGrid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Columns="3">
                         <CheckBox IsChecked="{Binding ChkEntrega}" HorizontalAlignment="Center">Entrega</CheckBox>
                         <CheckBox IsChecked="{Binding ChkFactura}" HorizontalAlignment="Center">Factura</CheckBox>
-                        <Button Margin="5" Command="{Binding AgregarDireccionCommand}" Style="{StaticResource MaterialDesignRaisedLightButton}">
+                        <Button Margin="5" Command="{Binding AgregarDireccionCommand}" Style="{StaticResource MaterialDesignRaisedAccentButton}">
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <wpfMD:PackIcon Width="24" Height="24" Kind="BookPlus"/>
-                                    <TextBlock Text="Agregar" VerticalAlignment="Center"/>
+                                    
+                                    <TextBlock Text="Guardar Dirección" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button.Content>
                         </Button>

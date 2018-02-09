@@ -38,7 +38,9 @@ namespace Guajiro.ViewModels
         private string _txtRFC;
         private string _txtRazonSocial;
         private string _txtEmail;
+        private string _txtLada;
         private string _txtNumTelefono;
+        private string _txtExtension;
         private string _txtCalle1;
         private string _txtCalle2;
         private string _txtInterior;
@@ -49,6 +51,7 @@ namespace Guajiro.ViewModels
         private string _idPersona;
         private string _creaUsuario;
         private string _tipoPersona;
+        private string _idDireccion;
         private bool _verMensaje;
         private bool _chkFisica;
         private bool _chkMoral;
@@ -73,7 +76,9 @@ namespace Guajiro.ViewModels
         public string TxtRFC { get => _txtRFC; set { _txtRFC = value; OnPropertyChanged(); } }
         public string TxtRazonSocial { get => _txtRazonSocial; set { _txtRazonSocial = value; OnPropertyChanged(); } }
         public string TxtEmail { get => _txtEmail; set { _txtEmail = value; OnPropertyChanged(); } }
+        public string TxtLada { get => _txtLada; set { _txtLada = value; OnPropertyChanged(); } }
         public string TxtNumTelefono { get => _txtNumTelefono; set { _txtNumTelefono = value; OnPropertyChanged(); } }
+        public string TxtExtension { get => _txtExtension; set { _txtExtension = value; OnPropertyChanged(); } }
         public string TxtCalle1 { get => _txtCalle1; set { _txtCalle1 = value; OnPropertyChanged(); } }
         public string TxtCalle2 { get => _txtCalle2; set { _txtCalle2 = value; OnPropertyChanged(); } }
         public string TxtInterior { get => _txtInterior; set { _txtInterior = value; OnPropertyChanged(); } }
@@ -119,6 +124,7 @@ namespace Guajiro.ViewModels
         public vw_lista_telefonos DatosTel { get => _datosTel; set { _datosTel = value; OnPropertyChanged(); } }
         public tbl_direcciones DatosDir { get => _datosDir; set { _datosDir = value; OnPropertyChanged(); } }
         public string CreaUsuario { get => _creaUsuario; set { _creaUsuario = value; OnPropertyChanged(); } }
+        public string IdDireccion { get => _idDireccion; set { _idDireccion = value; OnPropertyChanged(); } }        
         #endregion
 
         #region Constructor
@@ -144,12 +150,33 @@ namespace Guajiro.ViewModels
         #region Métodos
         private void AgregarDireccion(object parameter)
         {
-            tbl_direcciones dir = ListaDirecciones.SingleOrDefault(x => x.calle1 == TxtCalle1 && x.colonia == TxtColonia
+            tbl_direcciones dir = ListaDirecciones.SingleOrDefault(x => x.calle1 == TxtCalle1 && x.exterior==TxtExterior && x.colonia == TxtColonia
                                     && x.codigopostal == TxtCPostal && x.idmunicipio == Municipio.idmunicipio);
-            if(dir != null)
+            if (dir != null && string.IsNullOrEmpty(IdDireccion) == true)
             {
                 TxtMensaje = "Existe una dirección con datos similares, verifique por favor";
                 VerMensaje = true;
+            }
+            else if (string.IsNullOrEmpty(IdDireccion) == false && ErrorDatosDireccion() == false)
+            {
+                DatosDir = GuajiroEF.tbl_direcciones.SingleOrDefault(x => x.iddireccion == IdDireccion);
+                if (DatosDir != null)
+                {
+                    DatosDir.calle1 = TxtCalle1;
+                    DatosDir.calle2 = TxtCalle2;
+                    DatosDir.interior = TxtInterior;
+                    DatosDir.exterior = TxtExterior;
+                    DatosDir.colonia = TxtColonia;
+                    DatosDir.codigopostal = TxtCPostal;
+                    DatosDir.idmunicipio = Municipio.idmunicipio;
+                    DatosDir.entrega = ChkEntrega;
+                    DatosDir.fiscal = ChkFactura;
+                    using (var bd = new bd_guajiroEntities())
+                    {
+                        bd.Entry(DatosDir).State = EntityState.Modified;
+                        int c = bd.SaveChanges();
+                    }
+                }
             }
             else
             {
@@ -171,7 +198,7 @@ namespace Guajiro.ViewModels
                         idpersona = IdPersona
                     };
                     ListaDirecciones.Add(DatosDir);
-                    using(var bd = new bd_guajiroEntities())
+                    using (var bd = new bd_guajiroEntities())
                     {
                         bd.tbl_direcciones.Add(DatosDir);
                         int c = bd.SaveChanges();
@@ -193,8 +220,8 @@ namespace Guajiro.ViewModels
 
         private void EditarDireccion(object parameter)
         {
-            string iddir = parameter as string;
-            tbl_direcciones dir = GuajiroEF.tbl_direcciones.SingleOrDefault(x => x.iddireccion == iddir);
+            IdDireccion = parameter as string;
+            tbl_direcciones dir = GuajiroEF.tbl_direcciones.SingleOrDefault(x => x.iddireccion == IdDireccion);
             if (dir != null)
             {
                 TxtCalle1 = dir.calle1;
@@ -268,26 +295,19 @@ namespace Guajiro.ViewModels
                 {
                     if (TipoTel != null)
                     {
-                        vw_lista_telefonos consulta = ListaTelefonos.SingleOrDefault(x => x.numtelefono == TxtNumTelefono);
+                        tbl_telefonos consulta = GuajiroEF.tbl_telefonos.SingleOrDefault(x => x.numtelefono == TxtNumTelefono && x.idpersona == IdPersona);
                         if (consulta == null && string.IsNullOrWhiteSpace(TxtNumTelefono) == false)
                         {
-                            DatosTel = new vw_lista_telefonos
-                            {
-                                idlstipotelefono = TipoTel.idlsselecciondetalle,
-                                idtelefono = Convert.ToString(Guid.NewGuid()),
-                                numtelefono = TxtNumTelefono,
-                                idpersona = IdPersona,
-                                descripcion = TipoTel.descripcion
-                            };
-                            ListaTelefonos.Add(DatosTel);
                             using (var bd = new bd_guajiroEntities())
                             {
                                 var tel = new tbl_telefonos
                                 {
-                                    idtelefono = DatosTel.idtelefono,
-                                    idlstipotelefono = DatosTel.idlstipotelefono,
+                                    idtelefono = Convert.ToString(Guid.NewGuid()),
+                                    idlstipotelefono = TipoTel.idlsselecciondetalle,
                                     idpersona = IdPersona,
-                                    numtelefono = DatosTel.numtelefono
+                                    lada = TxtLada,
+                                    numtelefono = TxtNumTelefono,
+                                    extension = TxtExtension
                                 };
                                 bd.tbl_telefonos.Add(tel);
                                 int c = bd.SaveChanges();
@@ -295,9 +315,13 @@ namespace Guajiro.ViewModels
                                 {
                                     TxtMensaje = "Los datos telefónicos han sido agregados correctamente.";
                                     VerMensaje = true;
+                                    var lista = bd.vw_lista_telefonos.Where(x => x.idpersona == IdPersona).ToList();
+                                    ListaTelefonos = new ObservableCollection<vw_lista_telefonos>(lista);
                                 }
                             }
+                            TxtLada = "";
                             TxtNumTelefono = "";
+                            TxtExtension = "";
                         }
                         else
                         {
@@ -372,7 +396,8 @@ namespace Guajiro.ViewModels
 
         private void GuardarCliente(object parameter)
         {
-            if (string.IsNullOrEmpty(IdPersona) == false)
+            var cliente = GuajiroEF.tbl_personas.SingleOrDefault(x => x.idpersona == IdPersona);
+            if (cliente != null)
             {
                 EditarCliente();
             }
