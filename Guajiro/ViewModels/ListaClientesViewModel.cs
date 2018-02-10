@@ -18,6 +18,7 @@ namespace Guajiro.ViewModels
         public RelayCommand MostrarUltimosCommand { get; set; }
         public RelayCommand EditarClienteCommand { get; set; }
         public RelayCommand BorrarClienteCommand { get; set; }
+        public RelayCommand CerrarMensajeCommand { get; set; }
         #endregion
 
         #region Variables
@@ -25,11 +26,15 @@ namespace Guajiro.ViewModels
 
         private string _txtBuscar;
         private string _creaUsuario;
+        private string _txtMensaje;
+        private bool _verMensaje;
         private ObservableCollection<vw_clientes_directorio> _listaClientes;
 
         public string TxtBuscar { get => _txtBuscar; set { _txtBuscar = value; OnPropertyChanged("TxtBuscar"); } }
         public string CreaUsuario { get => _creaUsuario; set { _creaUsuario = value; OnPropertyChanged("CreaUsuario"); } }
         public ObservableCollection<vw_clientes_directorio> ListaClientes { get => _listaClientes; set { _listaClientes = value; OnPropertyChanged("ListaClientes"); } }
+        public string TxtMensaje { get => _txtMensaje; set { _txtMensaje = value; OnPropertyChanged("TxtMensaje"); } }
+        public bool VerMensaje { get => _verMensaje; set { _verMensaje = value; OnPropertyChanged("VerMensaje"); } }
         #endregion
 
         #region Constructor
@@ -41,6 +46,7 @@ namespace Guajiro.ViewModels
             MostrarUltimosCommand = new RelayCommand(MostrarUltimos);
             EditarClienteCommand = new RelayCommand(EditarCliente);
             BorrarClienteCommand = new RelayCommand(BorrarCliente);
+            CerrarMensajeCommand = new RelayCommand(CerrarMensaje);
             GuajiroEF = new bd_guajiroEntities();
         }
         #endregion
@@ -119,10 +125,43 @@ namespace Guajiro.ViewModels
             ListaClientes = new ObservableCollection<vw_clientes_directorio>(lista);
         }
 
-        private void BorrarCliente(object parameter)
+        private async void BorrarCliente(object parameter)
         {
-
+            string idCliente = parameter as string;
+            var vmMensaje = new MensajeViewModel
+            {
+                TituloMensaje = "Advertencia",
+                CuerpoMensaje = "¿Deseas borrar la información del Cliente seleccionado?",
+                MostrarCancelar = true,
+                TxtAceptar = "SI",
+                TxtCancelar = "NO"
+            };
+            var vwMensaje = new MensajeView
+            {
+                DataContext = vmMensaje
+            };
+            var result = await DialogHost.Show(vwMensaje, "ListaClientes");
+            if (result.Equals("OK") == true)
+            {
+                List<tbl_telefonos> tels = GuajiroEF.tbl_telefonos.Where(x => x.idpersona == idCliente).ToList();
+                List<tbl_direcciones> dirs = GuajiroEF.tbl_direcciones.Where(x => x.idpersona == idCliente).ToList();
+                tbl_personas client = GuajiroEF.tbl_personas.SingleOrDefault(x => x.idpersona == idCliente);
+                using (var bd = new bd_guajiroEntities())
+                {
+                    bd.tbl_telefonos.RemoveRange(tels);
+                    bd.tbl_direcciones.RemoveRange(dirs);
+                    bd.tbl_personas.Remove(client);
+                    int c = bd.SaveChanges();
+                    if (c > 0)
+                    {
+                        TxtMensaje = "Los datos del Cliente: " + client.razon_social + " fueron borrados correctamente";
+                        VerMensaje = true;
+                    }
+                }
+            }
         }
+
+        private void CerrarMensaje(object parameter) => VerMensaje = false;
         #endregion
     }
 }

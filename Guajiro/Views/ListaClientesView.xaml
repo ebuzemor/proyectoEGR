@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Snackbar.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -83,6 +84,14 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
+            <!--Mensajes-->
+            <wpfMD:Snackbar Grid.Row="2" IsActive="{Binding VerMensaje}" Background="{DynamicResource PrimaryHueDarkBrush}">
+                <wpfMD:SnackbarMessage ActionCommand="{Binding CerrarMensajeCommand}" ActionContent="Cerrar">
+                    <wpfMD:SnackbarMessage.Content>
+                        <TextBlock Text="{Binding TxtMensaje}" TextWrapping="Wrap" Style="{StaticResource MaterialDesignCaptionTextBlock}" Foreground="White"/>
+                    </wpfMD:SnackbarMessage.Content>
+                </wpfMD:SnackbarMessage>
+            </wpfMD:Snackbar>
             <!--Botón de Nuevo Cliente-->
             <Button Grid.Row="3" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Center"
                     Command="{Binding NuevoClienteCommand}">

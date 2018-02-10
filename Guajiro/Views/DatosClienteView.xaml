@@ -16,213 +16,215 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Snackbar.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Snackbar.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition/>
-            <RowDefinition Height="40"/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Información del Cliente"/>
-        <TabControl Grid.Row="1" Background="{DynamicResource MaterialDesignPaper}" Margin="5" TabStripPlacement="Left">
-            <TabItem Header="Datos Personales">
-                <!--Datos Personales-->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <RadioButton x:Name="rbtFisica" Grid.Column="0" Grid.Row="0" Style="{StaticResource MaterialDesignRadioButton}" 
-                                 Content="Persona Física" VerticalAlignment="Center" IsChecked="{Binding ChkFisica}" Margin="10 0 0 0"/>
-                    <RadioButton x:Name="rbtMoral" Grid.Column="1" Grid.Row="0" Style="{StaticResource MaterialDesignRadioButton}" 
-                                 Content="Persona Moral" VerticalAlignment="Center" IsChecked="{Binding ChkMoral}"/>
-                    <TextBox Grid.Column="0" Grid.Row="1" wpfMD:HintAssist.Hint="Nombre Primario:*" Text="{Binding TxtNPrimario}"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 0 0"
-                             IsEnabled="{Binding ElementName=rbtFisica, Path=IsChecked}"/>
-                    <TextBox Grid.Column="1" Grid.Row="1" wpfMD:HintAssist.Hint="Nombre Secundario:" Text="{Binding TxtNSecundario}"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 0 0"
-                             IsEnabled="{Binding ElementName=rbtFisica, Path=IsChecked}"/>
-                    <TextBox Grid.Column="0" Grid.Row="2" wpfMD:HintAssist.Hint="Apellido Paterno:*" Text="{Binding TxtPaterno}"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 0 0"
-                             IsEnabled="{Binding ElementName=rbtFisica, Path=IsChecked}"/>
-                    <TextBox Grid.Column="1" Grid.Row="2" wpfMD:HintAssist.Hint="Apellido Materno:" Text="{Binding TxtMaterno}"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 0 0"
-                             IsEnabled="{Binding ElementName=rbtFisica, Path=IsChecked}"/>
-                    <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" wpfMD:HintAssist.Hint="Razón Social: *" 
-                             Text="{Binding TxtRazonSocial}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                             Margin="10 0 0 0" IsEnabled="{Binding ElementName=rbtMoral, Path=IsChecked}"/>
-                    <TextBox Grid.Column="0" Grid.Row="4" wpfMD:HintAssist.Hint="R.F.C.:" 
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding TxtRFC}" Margin="10 0 0 0"/>
-                    <TextBox Grid.Column="1" Grid.Row="4" wpfMD:HintAssist.Hint="Email:" Text="{Binding TxtEmail}" 
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 0 0"/>
-                    <Button Grid.Column="1" Grid.Row="5" Margin="5" Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                            Content="Guardar Datos Personales" Command="{Binding GuardarClienteCommand}"/>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Teléfonos">
-                <StackPanel>
+    <wpfMD:DialogHost Identifier="DatosCliente">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Información del Cliente"/>
+            <TabControl Grid.Row="1" Background="{DynamicResource MaterialDesignPaper}" Margin="5" TabStripPlacement="Left">
+                <TabItem Header="Datos Personales">
+                    <!--Datos Personales-->
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <ComboBox Grid.Column="0" wpfMD:HintAssist.Hint="Tipo:" Margin="2" DisplayMemberPath="descripcion"
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <RadioButton x:Name="rbtFisica" Grid.Column="0" Grid.Row="0" Style="{StaticResource MaterialDesignRadioButton}" 
+                                 Content="Persona Física" VerticalAlignment="Center" IsChecked="{Binding ChkFisica}" Margin="10 0 0 0"/>
+                        <RadioButton x:Name="rbtMoral" Grid.Column="1" Grid.Row="0" Style="{StaticResource MaterialDesignRadioButton}" 
+                                 Content="Persona Moral" VerticalAlignment="Center" IsChecked="{Binding ChkMoral}"/>
+                        <TextBox Grid.Column="0" Grid.Row="1" wpfMD:HintAssist.Hint="Nombre Primario:*" Text="{Binding TxtNPrimario}"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 0 0"
+                             IsEnabled="{Binding ElementName=rbtFisica, Path=IsChecked}"/>
+                        <TextBox Grid.Column="1" Grid.Row="1" wpfMD:HintAssist.Hint="Nombre Secundario:" Text="{Binding TxtNSecundario}"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 0 0"
+                             IsEnabled="{Binding ElementName=rbtFisica, Path=IsChecked}"/>
+                        <TextBox Grid.Column="0" Grid.Row="2" wpfMD:HintAssist.Hint="Apellido Paterno:*" Text="{Binding TxtPaterno}"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 0 0"
+                             IsEnabled="{Binding ElementName=rbtFisica, Path=IsChecked}"/>
+                        <TextBox Grid.Column="1" Grid.Row="2" wpfMD:HintAssist.Hint="Apellido Materno:" Text="{Binding TxtMaterno}"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 0 0"
+                             IsEnabled="{Binding ElementName=rbtFisica, Path=IsChecked}"/>
+                        <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" wpfMD:HintAssist.Hint="Razón Social: *" 
+                             Text="{Binding TxtRazonSocial}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                             Margin="10 0 0 0" IsEnabled="{Binding ElementName=rbtMoral, Path=IsChecked}"/>
+                        <TextBox Grid.Column="0" Grid.Row="4" wpfMD:HintAssist.Hint="R.F.C.:" 
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding TxtRFC}" Margin="10 0 0 0"/>
+                        <TextBox Grid.Column="1" Grid.Row="4" wpfMD:HintAssist.Hint="Email:" Text="{Binding TxtEmail}" 
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 0 0"/>
+                        <Button Grid.Column="1" Grid.Row="5" Margin="5" Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                            Content="Guardar Datos Personales" Command="{Binding GuardarClienteCommand}"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Teléfonos">
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <ComboBox Grid.Column="0" wpfMD:HintAssist.Hint="Tipo:" Margin="2" DisplayMemberPath="descripcion"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" IsEditable="True"
                                   ItemsSource="{Binding TiposTelefono}" SelectedItem="{Binding TipoTel}"/>
-                        <TextBox Grid.Column="1" Text="{Binding TxtLada}" Margin="2" wpfMD:HintAssist.Hint="Lada:"
+                            <TextBox Grid.Column="1" Text="{Binding TxtLada}" Margin="2" wpfMD:HintAssist.Hint="Lada:"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" MaxLength="3"/>
-                        <TextBox Grid.Column="2" Text="{Binding TxtNumTelefono}" Margin="2" wpfMD:HintAssist.Hint="Número:"
+                            <TextBox Grid.Column="2" Text="{Binding TxtNumTelefono}" Margin="2" wpfMD:HintAssist.Hint="Número:"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" MaxLength="8"/>
-                        <TextBox Grid.Column="3" Text="{Binding TxtExtension}" Margin="2" wpfMD:HintAssist.Hint="Extensión:"
+                            <TextBox Grid.Column="3" Text="{Binding TxtExtension}" Margin="2" wpfMD:HintAssist.Hint="Extensión:"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" MaxLength="5"/>
-                        <Button Grid.Column="4" Margin="5" Command="{Binding AgregarTelefonoCommand}" 
+                            <Button Grid.Column="4" Margin="5" Command="{Binding AgregarTelefonoCommand}" 
                                 Style="{StaticResource MaterialDesignRaisedAccentButton}">
-                            <Button.Content>
-                                <StackPanel Orientation="Horizontal">
-                                    <wpfMD:PackIcon Width="24" Height="24" Kind="PhonePlus"/>
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                    </Grid>
-                    <ListView x:Name="LstTelefono" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6"  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <wpfMD:PackIcon Width="24" Height="24" Kind="PhonePlus"/>
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                        </Grid>
+                        <ListView x:Name="LstTelefono" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6"  ScrollViewer.VerticalScrollBarVisibility="Auto"
                               ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding ListaTelefonos}" SelectedItem="{Binding DatosTel}">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Width="150" Header="Tipo Teléfono" DisplayMemberBinding="{Binding descripcion}"/>
-                                <GridViewColumn Width="170" Header="Número Teléfono" DisplayMemberBinding="{Binding numtelefono}"/>
-                                <GridViewColumn Width="100" Header="Acciones">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="150" Header="Tipo Teléfono" DisplayMemberBinding="{Binding descripcion}"/>
+                                    <GridViewColumn Width="170" Header="Número Teléfono" DisplayMemberBinding="{Binding numtelefono}"/>
+                                    <GridViewColumn Width="100" Header="Acciones">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                                                         Margin="0 0 8 0" HorizontalAlignment="Left"
                                                         Content="{wpfMD:PackIcon Kind=Delete}"
                                                         ToolTip="Quitar Item" Height="22" Width="22"
                                                         Command="{Binding ElementName=LstTelefono, Path=DataContext.BorrarTelefonoCommand}"
                                                         CommandParameter="{Binding idtelefono}"/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </StackPanel>
-            </TabItem>
-            <TabItem Header="Dirección">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" wpfMD:HintAssist.Hint="Calle 1: *" Text="{Binding TxtCalle1}"
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Dirección">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" wpfMD:HintAssist.Hint="Calle 1: *" Text="{Binding TxtCalle1}"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 10 0"/>
-                    <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" wpfMD:HintAssist.Hint="Calle 2:" Text="{Binding TxtCalle2}"
+                        <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" wpfMD:HintAssist.Hint="Calle 2:" Text="{Binding TxtCalle2}"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 10 0"/>
-                    <TextBox Grid.Column="0" Grid.Row="2" wpfMD:HintAssist.Hint="Número Exterior: *" Text="{Binding TxtExterior}"
+                        <TextBox Grid.Column="0" Grid.Row="2" wpfMD:HintAssist.Hint="Número Exterior: *" Text="{Binding TxtExterior}"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 10 0"/>
-                    <TextBox Grid.Column="1" Grid.Row="2" wpfMD:HintAssist.Hint="Número Interior:" Text="{Binding TxtInterior}"
+                        <TextBox Grid.Column="1" Grid.Row="2" wpfMD:HintAssist.Hint="Número Interior:" Text="{Binding TxtInterior}"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 10 0"/>
-                    <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" wpfMD:HintAssist.Hint="Colonia o Fraccionamiento: *"
+                        <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" wpfMD:HintAssist.Hint="Colonia o Fraccionamiento: *"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="10 0 10 0" Text="{Binding TxtColonia}"/>
-                    <UniformGrid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Columns="3">
-                        <TextBox wpfMD:HintAssist.Hint="Código Postal: *" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        <UniformGrid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Columns="3">
+                            <TextBox wpfMD:HintAssist.Hint="Código Postal: *" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                  Margin="10 0 10 0" MaxLength="8" Text="{Binding TxtCPostal}"/>
-                        <ComboBox wpfMD:HintAssist.Hint="Estado:" Margin="5 0 0 0" IsEditable="True" DisplayMemberPath="nombre"
+                            <ComboBox wpfMD:HintAssist.Hint="Estado:" Margin="5 0 0 0" IsEditable="True" DisplayMemberPath="nombre"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                                   HorizontalAlignment="Left" VerticalAlignment="Center"
                                   ItemsSource="{Binding ListaEstados}" SelectedItem="{Binding Estado}"/>
-                        <ComboBox wpfMD:HintAssist.Hint="Municipio: *" Margin="5 0 0 0" IsEditable="True" DisplayMemberPath="nombre"
+                            <ComboBox wpfMD:HintAssist.Hint="Municipio: *" Margin="5 0 0 0" IsEditable="True" DisplayMemberPath="nombre"
                                   Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                                   HorizontalAlignment="Left" VerticalAlignment="Center"
                                   ItemsSource="{Binding ListaMunicipios}" SelectedItem="{Binding Municipio}"/>
-                    </UniformGrid>
-                    <UniformGrid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Columns="3">
-                        <CheckBox IsChecked="{Binding ChkEntrega}" HorizontalAlignment="Center">Entrega</CheckBox>
-                        <CheckBox IsChecked="{Binding ChkFactura}" HorizontalAlignment="Center">Factura</CheckBox>
-                        <Button Margin="5" Command="{Binding AgregarDireccionCommand}" Style="{StaticResource MaterialDesignRaisedAccentButton}">
-                            <Button.Content>
-                                <StackPanel Orientation="Horizontal">
-                                    
-                                    <TextBlock Text="Guardar Dirección" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                    </UniformGrid>
-                    <ListView x:Name="LstDirecciones" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" ItemsSource="{Binding ListaDirecciones}"
+                        </UniformGrid>
+                        <UniformGrid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Columns="3">
+                            <CheckBox IsChecked="{Binding ChkEntrega}" HorizontalAlignment="Center">Entrega</CheckBox>
+                            <CheckBox IsChecked="{Binding ChkFactura}" HorizontalAlignment="Center">Factura</CheckBox>
+                            <Button Margin="5" Command="{Binding AgregarDireccionCommand}" Style="{StaticResource MaterialDesignRaisedAccentButton}">
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <TextBlock Text="Guardar Dirección" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                        </UniformGrid>
+                        <ListView x:Name="LstDirecciones" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" ItemsSource="{Binding ListaDirecciones}"
                               SelectedItem="{Binding DatosDir}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                               ScrollViewer.VerticalScrollBarVisibility="Auto">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Width="130" Header="Calle" DisplayMemberBinding="{Binding calle1}"/>
-                                <GridViewColumn Width="110" Header="# Exterior" DisplayMemberBinding="{Binding exterior}"/>
-                                <GridViewColumn Width="120" Header="Colonia" DisplayMemberBinding="{Binding colonia}"/>
-                                <GridViewColumn Width="100" Header="Acciones">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="130" Header="Calle" DisplayMemberBinding="{Binding calle1}"/>
+                                    <GridViewColumn Width="110" Header="# Exterior" DisplayMemberBinding="{Binding exterior}"/>
+                                    <GridViewColumn Width="120" Header="Colonia" DisplayMemberBinding="{Binding colonia}"/>
+                                    <GridViewColumn Width="100" Header="Acciones">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                                                         Margin="0 0 8 0" HorizontalAlignment="Left"
                                                         Content="{wpfMD:PackIcon Kind=Pencil}"
                                                         ToolTip="Quitar Item" Height="22" Width="22"
                                                         Command="{Binding ElementName=LstDirecciones, Path=DataContext.EditarDireccionCommand}"
                                                         CommandParameter="{Binding iddireccion}"/>
-                                                <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                                                         Margin="0 0 8 0" HorizontalAlignment="Left"
                                                         Content="{wpfMD:PackIcon Kind=Delete}"
                                                         ToolTip="Quitar Item" Height="22" Width="22"
                                                         Command="{Binding ElementName=LstDirecciones, Path=DataContext.BorrarDireccionCommand}"
                                                         CommandParameter="{Binding iddireccion}"/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </Grid>
-            </TabItem>
-        </TabControl>
-        <!--Botones-->
-        <Grid Grid.Column="2" Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Button IsCancel="True" Grid.Column="2" Command="{x:Static wpfMD:DialogHost.CloseDialogCommand}" 
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+            <!--Botones-->
+            <Grid Grid.Column="2" Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button IsCancel="True" Grid.Column="2" Command="{x:Static wpfMD:DialogHost.CloseDialogCommand}" 
                     Style="{StaticResource MaterialDesignRaisedButton}" CommandParameter="CANCELAR" Content="Cerrar" Margin="5"/>
+            </Grid>
+            <!--Mensajes-->
+            <wpfMD:Snackbar Grid.Row="1" IsActive="{Binding VerMensaje}" Background="{DynamicResource PrimaryHueDarkBrush}">
+                <wpfMD:SnackbarMessage ActionCommand="{Binding CerrarMensajeCommand}" ActionContent="Cerrar">
+                    <wpfMD:SnackbarMessage.Content>
+                        <TextBlock Text="{Binding TxtMensaje}" TextWrapping="Wrap" Style="{StaticResource MaterialDesignCaptionTextBlock}" Foreground="White"/>
+                    </wpfMD:SnackbarMessage.Content>
+                </wpfMD:SnackbarMessage>
+            </wpfMD:Snackbar>
         </Grid>
-        <!--Mensajes-->
-        <wpfMD:Snackbar Grid.Row="1" IsActive="{Binding VerMensaje}" Background="{DynamicResource PrimaryHueDarkBrush}">
-            <wpfMD:SnackbarMessage ActionCommand="{Binding CerrarMensajeCommand}" ActionContent="Cerrar">
-                <wpfMD:SnackbarMessage.Content>
-                    <TextBlock Text="{Binding TxtMensaje}" TextWrapping="Wrap" Style="{StaticResource MaterialDesignCaptionTextBlock}" Foreground="White"/>
-                </wpfMD:SnackbarMessage.Content>
-            </wpfMD:SnackbarMessage>
-        </wpfMD:Snackbar>
-    </Grid>
+    </wpfMD:DialogHost>
 </UserControl>

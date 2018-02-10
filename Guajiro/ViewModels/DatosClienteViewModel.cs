@@ -1,5 +1,7 @@
 ﻿using Guajiro.Common;
 using Guajiro.Models;
+using Guajiro.Views;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -245,9 +247,39 @@ namespace Guajiro.ViewModels
             }
         }
 
-        private void BorrarDireccion(object parameter)
+        private async void BorrarDireccion(object parameter)
         {
-            
+            string iddir = parameter as string;
+            var vmMensaje = new MensajeViewModel
+            {
+                TituloMensaje = "Advertencia",
+                CuerpoMensaje = "¿Deseas borrar la dirección seleccionada?",
+                MostrarCancelar = true,
+                TxtAceptar = "SI",
+                TxtCancelar = "NO"
+            };
+            var vwMensaje = new MensajeView
+            {
+                DataContext = vmMensaje
+            };
+            var result = await DialogHost.Show(vwMensaje, "DatosCliente");
+            if (result.Equals("OK") == true)
+            {
+                var infoDir = GuajiroEF.tbl_direcciones.SingleOrDefault(x => x.iddireccion == iddir);
+                if (infoDir != null)
+                {
+                    using (var bd=new bd_guajiroEntities())
+                    {
+                        bd.Entry(infoDir).State = EntityState.Deleted;
+                        int b = bd.SaveChanges();
+                        if (b > 0)
+                        {
+                            var lista = GuajiroEF.tbl_direcciones.Where(x => x.idpersona == IdPersona).ToList();
+                            ListaDirecciones = new ObservableCollection<tbl_direcciones>(lista);
+                        }
+                    }
+                }
+            }
         }
 
         private void LimpiarDireccion()
@@ -448,7 +480,7 @@ namespace Guajiro.ViewModels
                         {
                             TxtMensaje = "Los datos del Cliente han sido guardados correctamente";
                             VerMensaje = true;
-                            LimpiarPantalla();
+                            //LimpiarPantalla();
                         }
                     }
                 }
@@ -488,6 +520,11 @@ namespace Guajiro.ViewModels
                 editarPersona.email = TxtEmail;
                 bd.Entry(editarPersona).State = EntityState.Modified;
                 editado = bd.SaveChanges();
+                if(editado>0)
+                {
+                    TxtMensaje = "Los datos del Cliente han sido guardados correctamente";
+                    VerMensaje = true;
+                }
             };
         }
 
