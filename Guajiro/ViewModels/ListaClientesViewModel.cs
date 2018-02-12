@@ -5,6 +5,7 @@ using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 
 namespace Guajiro.ViewModels
@@ -143,19 +144,19 @@ namespace Guajiro.ViewModels
             var result = await DialogHost.Show(vwMensaje, "ListaClientes");
             if (result.Equals("OK") == true)
             {
-                List<tbl_telefonos> tels = GuajiroEF.tbl_telefonos.Where(x => x.idpersona == idCliente).ToList();
-                List<tbl_direcciones> dirs = GuajiroEF.tbl_direcciones.Where(x => x.idpersona == idCliente).ToList();
                 tbl_personas client = GuajiroEF.tbl_personas.SingleOrDefault(x => x.idpersona == idCliente);
                 using (var bd = new bd_guajiroEntities())
                 {
-                    bd.tbl_telefonos.RemoveRange(tels);
-                    bd.tbl_direcciones.RemoveRange(dirs);
-                    bd.tbl_personas.Remove(client);
+                    bd.tbl_telefonos.RemoveRange(bd.tbl_telefonos.Where(x => x.idpersona == idCliente));
+                    bd.tbl_direcciones.RemoveRange(bd.tbl_direcciones.Where(x => x.idpersona == idCliente));
+                    bd.Entry(client).State = EntityState.Deleted;
                     int c = bd.SaveChanges();
                     if (c > 0)
                     {
                         TxtMensaje = "Los datos del Cliente: " + client.razon_social + " fueron borrados correctamente";
                         VerMensaje = true;
+                        var lista = GuajiroEF.vw_clientes_directorio.ToList();
+                        ListaClientes = new ObservableCollection<vw_clientes_directorio>(lista);
                     }
                 }
             }

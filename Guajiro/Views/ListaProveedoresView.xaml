@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Snackbar.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -70,6 +71,12 @@
                                             Content="{wpfMD:PackIcon Kind=Pencil}"
                                             ToolTip="Editar Item" Height="22" Width="22"
                                             Command="{Binding ElementName=ListaProveedor, Path=DataContext.EditarProveedorCommand}"
+                                            CommandParameter="{Binding idpersona}"/>
+                                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                            Margin="0 0 8 0" HorizontalAlignment="Left"
+                                            Content="{wpfMD:PackIcon Kind=Delete}"
+                                            ToolTip="Editar Item" Height="22" Width="22"
+                                            Command="{Binding ElementName=ListaProveedor, Path=DataContext.BorrarClienteCommand}"
                                             CommandParameter="{Binding idpersona}"/>
                                 </StackPanel>
                             </DataTemplate>

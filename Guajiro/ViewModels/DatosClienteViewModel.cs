@@ -216,7 +216,6 @@ namespace Guajiro.ViewModels
                             LimpiarDireccion();
                         }
                     }
-                    
                 }
                 else
                 {
@@ -242,8 +241,8 @@ namespace Guajiro.ViewModels
                 TxtCPostal = dir.codigopostal;
                 Municipio = GuajiroEF.tbl_municipios.Single(m => m.idmunicipio == dir.idmunicipio);
                 Estado = ListaEstados.Single(e => e.idestado == Municipio.idestado);
-                ChkEntrega = (bool)dir.entrega;
-                ChkFactura = (bool)dir.fiscal;
+                ChkEntrega = (dir.entrega == null) ? false : (bool)dir.entrega;
+                ChkFactura = (dir.fiscal == null) ? false : (bool)dir.fiscal;
             }
         }
 
@@ -462,7 +461,7 @@ namespace Guajiro.ViewModels
                     {
                         tbl_personas persona = new tbl_personas
                         {
-                            idpersona = IdPersona,//Convert.ToString(Guid.NewGuid()),
+                            idpersona = IdPersona,
                             idlstipopersona = "e47c6009-368a-11e7-b904-204747335338", //Tipo Cliente
                             idlstipocontribuyente = TipoPersona,
                             nprimario = TxtNPrimario,
@@ -480,7 +479,6 @@ namespace Guajiro.ViewModels
                         {
                             TxtMensaje = "Los datos del Cliente han sido guardados correctamente";
                             VerMensaje = true;
-                            //LimpiarPantalla();
                         }
                     }
                 }
