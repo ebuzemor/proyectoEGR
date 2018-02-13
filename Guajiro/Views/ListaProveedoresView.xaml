@@ -75,8 +75,8 @@
                                     <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                                             Margin="0 0 8 0" HorizontalAlignment="Left"
                                             Content="{wpfMD:PackIcon Kind=Delete}"
-                                            ToolTip="Editar Item" Height="22" Width="22"
-                                            Command="{Binding ElementName=ListaProveedor, Path=DataContext.BorrarClienteCommand}"
+                                            ToolTip="Borrar Item" Height="22" Width="22"
+                                            Command="{Binding ElementName=ListaProveedor, Path=DataContext.BorrarProveedorCommand}"
                                             CommandParameter="{Binding idpersona}"/>
                                 </StackPanel>
                             </DataTemplate>
@@ -84,6 +84,14 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
+            <!--Mensajes-->
+            <wpfMD:Snackbar Grid.Row="2" IsActive="{Binding VerMensaje}" Background="{DynamicResource PrimaryHueDarkBrush}">
+                <wpfMD:SnackbarMessage ActionCommand="{Binding CerrarMensajeCommand}" ActionContent="Cerrar">
+                    <wpfMD:SnackbarMessage.Content>
+                        <TextBlock Text="{Binding TxtMensaje}" TextWrapping="Wrap" Style="{StaticResource MaterialDesignCaptionTextBlock}" Foreground="White"/>
+                    </wpfMD:SnackbarMessage.Content>
+                </wpfMD:SnackbarMessage>
+            </wpfMD:Snackbar>
             <!--Botón de Nuevo Proveedor-->
             <Button Grid.Row="3" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Center"
                     Command="{Binding NuevoProveedorCommand}">

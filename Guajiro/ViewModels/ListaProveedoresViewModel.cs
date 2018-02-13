@@ -18,6 +18,7 @@ namespace Guajiro.ViewModels
         public RelayCommand MostrarUltimosCommand { get; set; }
         public RelayCommand EditarProveedorCommand { get; set; }
         public RelayCommand BorrarProveedorCommand { get; set; }
+        public RelayCommand CerrarMensajeCommand { get; set; }
         #endregion
 
         #region Variables
@@ -25,11 +26,15 @@ namespace Guajiro.ViewModels
 
         private string _txtBuscar;
         private string _creaUsuario;
+        private string _txtMensaje;
+        private bool _verMensaje;
         private ObservableCollection<vw_proveedores_directorio> _listaProveedores;
 
         public string TxtBuscar { get => _txtBuscar; set { _txtBuscar = value; OnPropertyChanged("TxtBuscar"); } }
         public string CreaUsuario { get => _creaUsuario; set { _creaUsuario = value; OnPropertyChanged("CreaUsuario"); } }
         public ObservableCollection<vw_proveedores_directorio> ListaProveedores { get => _listaProveedores; set { _listaProveedores = value; OnPropertyChanged("ListaProveedores"); } }
+        public string TxtMensaje { get => _txtMensaje; set { _txtMensaje = value; OnPropertyChanged("TxtMensaje"); } }
+        public bool VerMensaje { get => _verMensaje; set { _verMensaje = value; OnPropertyChanged("VerMensaje"); } }
         #endregion
 
         #region Constructor
@@ -41,6 +46,7 @@ namespace Guajiro.ViewModels
             MostrarUltimosCommand = new RelayCommand(MostrarUltimos);
             EditarProveedorCommand = new RelayCommand(EditarProveedor);
             BorrarProveedorCommand = new RelayCommand(BorrarProveedor);
+            CerrarMensajeCommand = new RelayCommand(CerrarMensaje);
             GuajiroEF = new bd_guajiroEntities();
         }
         #endregion
@@ -119,10 +125,43 @@ namespace Guajiro.ViewModels
             ListaProveedores = new ObservableCollection<vw_proveedores_directorio>(lista);
         }
 
-        private void BorrarProveedor(object parameter)
+        private async void BorrarProveedor(object parameter)
         {
-
+            string idProveedor = parameter as string;
+            var vmMensaje = new MensajeViewModel
+            {
+                TituloMensaje = "Advertencia",
+                CuerpoMensaje = "¿Deseas borrar la información del Proveedor seleccionado?",
+                MostrarCancelar = true,
+                TxtAceptar = "SI",
+                TxtCancelar = "NO"
+            };
+            var vwMensaje = new MensajeView
+            {
+                DataContext = vmMensaje
+            };
+            var result = await DialogHost.Show(vwMensaje, "ListaProveedores");
+            if (result.Equals("OK") == true)
+            {
+                tbl_personas prov = GuajiroEF.tbl_personas.SingleOrDefault(x => x.idpersona == idProveedor);
+                using (var bd = new bd_guajiroEntities())
+                {
+                    bd.tbl_telefonos.RemoveRange(bd.tbl_telefonos.Where(x => x.idpersona == idProveedor));
+                    bd.tbl_direcciones.RemoveRange(bd.tbl_direcciones.Where(x => x.idpersona == idProveedor));
+                    bd.Entry(prov).State = System.Data.Entity.EntityState.Deleted;
+                    int c = bd.SaveChanges();
+                    if (c > 0)
+                    {
+                        TxtMensaje = "Los datos del Proveedor " + prov.razon_social + " fueron borrados correctamente";
+                        VerMensaje = true;
+                        var lista = GuajiroEF.vw_proveedores_directorio.ToList();
+                        ListaProveedores = new ObservableCollection<vw_proveedores_directorio>(lista);
+                    }
+                }
+            }
         }
+
+        private void CerrarMensaje(object parameter) => VerMensaje = false;
         #endregion
     }
 }
