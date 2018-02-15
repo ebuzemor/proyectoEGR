@@ -12,16 +12,8 @@ using System.Runtime.CompilerServices;
 
 namespace Guajiro.ViewModels
 {
-    public class DatosProveedorViewModel : INotifyPropertyChanged
+    public class DatosProveedorViewModel : Notifier
     {
-        #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
-
         #region Commands
         public RelayCommand AgregarTelefonoCommand { get; set; }
         public RelayCommand BorrarTelefonoCommand { get; set; }

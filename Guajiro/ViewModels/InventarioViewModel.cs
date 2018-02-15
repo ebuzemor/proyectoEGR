@@ -11,16 +11,8 @@ using System.Runtime.CompilerServices;
 
 namespace Guajiro.ViewModels
 {
-    public class InventarioViewModel : INotifyPropertyChanged
+    public class InventarioViewModel : Notifier
     {
-        #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
-
         #region Commands
         public RelayCommand NuevoProductoCommand { get; set; }
         public RelayCommand BuscarProductoCommand { get; set; }
@@ -86,9 +78,19 @@ namespace Guajiro.ViewModels
             ListaProductos = new ObservableCollection<vw_lista_productos>(lista);
         }
 
-        private void EditarProducto(object parameter)
+        private async void EditarProducto(object parameter)
         {
-
+            string idItem = parameter as string;
+            var prod = GuajiroEF.tbl_items.SingleOrDefault(x => x.iditem == idItem);
+            var vmDatos = new DatosProductoViewModel
+            {
+                IdPersona = IdPersona
+            };
+            var vwDatos = new DatosProductoView
+            {
+                DataContext = vmDatos
+            };
+            var result = await DialogHost.Show(vwDatos, "Inventario");
         }
 
         private void BorrarProducto(object parameter)

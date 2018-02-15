@@ -40,16 +40,16 @@ namespace Guajiro.ViewModels
         private ObservableCollection<tbl_detallemenu> _listaDetalles;
 
         public bd_guajiroEntities GuajiroEF;
-        public string TxtBuscar { get => _txtBuscar; set { _txtBuscar = value; OnPropertyChanged("TxtBuscar"); } }
-        public ObservableCollection<vw_lista_precios> ListaProductos { get => _listaProductos; set { _listaProductos = value; OnPropertyChanged("ListaProductos"); } }
-        public string IdItemSel { get => _idItemSel; set { _idItemSel = value; OnPropertyChanged("IdItemSel"); } }
-        public ObservableCollection<vw_lista_precios> ListaMenuDia { get => _listaMenuDia; set { _listaMenuDia = value; OnPropertyChanged("ListaMenuDia"); } }
-        public string TxtMensaje { get => _txtMensaje; set { _txtMensaje = value; OnPropertyChanged("TxtMensaje"); } }
-        public bool VerMensaje { get => _verMensaje; set { _verMensaje = value; OnPropertyChanged("VerMensaje"); } }
-        public DateTime FechaMenu { get => _fechaMenu; set { _fechaMenu = value; OnPropertyChanged("FechaMenu"); } }
-        public ObservableCollection<tbl_menudeldia> ListaHistoricos { get => _listaHistoricos; set { _listaHistoricos = value; OnPropertyChanged("ListaMenuHistoricos"); } }
-        public tbl_menudeldia MenuHistorico { get => _menuHistorico; set { _menuHistorico = value; OnPropertyChanged("MenuHistorico"); } }
-        public ObservableCollection<tbl_detallemenu> ListaDetalles { get => _listaDetalles; set { _listaDetalles = value; OnPropertyChanged("ListaDetalles"); } }
+        public string TxtBuscar { get => _txtBuscar; set { _txtBuscar = value; OnPropertyChanged(); } }
+        public ObservableCollection<vw_lista_precios> ListaProductos { get => _listaProductos; set { _listaProductos = value; OnPropertyChanged(); } }
+        public string IdItemSel { get => _idItemSel; set { _idItemSel = value; OnPropertyChanged(); } }
+        public ObservableCollection<vw_lista_precios> ListaMenuDia { get => _listaMenuDia; set { _listaMenuDia = value; OnPropertyChanged(); } }
+        public string TxtMensaje { get => _txtMensaje; set { _txtMensaje = value; OnPropertyChanged(); } }
+        public bool VerMensaje { get => _verMensaje; set { _verMensaje = value; OnPropertyChanged(); } }
+        public DateTime FechaMenu { get => _fechaMenu; set { _fechaMenu = value; OnPropertyChanged(); } }
+        public ObservableCollection<tbl_menudeldia> ListaHistoricos { get => _listaHistoricos; set { _listaHistoricos = value; OnPropertyChanged(); } }
+        public tbl_menudeldia MenuHistorico { get => _menuHistorico; set { _menuHistorico = value; OnPropertyChanged(); } }
+        public ObservableCollection<tbl_detallemenu> ListaDetalles { get => _listaDetalles; set { _listaDetalles = value; OnPropertyChanged(); } }
         #endregion
 
         #region Constructor

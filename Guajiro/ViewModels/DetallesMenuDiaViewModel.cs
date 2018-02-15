@@ -13,7 +13,7 @@ namespace Guajiro.ViewModels
         #region Variables
         private ObservableCollection<vw_detallemenu> _listaDetalles;
 
-        public ObservableCollection<vw_detallemenu> ListaDetalles { get => _listaDetalles; set { _listaDetalles = value; OnPropertyChanged("ListaDetalles"); } }
+        public ObservableCollection<vw_detallemenu> ListaDetalles { get => _listaDetalles; set { _listaDetalles = value; OnPropertyChanged(); } }
         #endregion
 
         #region Constructor

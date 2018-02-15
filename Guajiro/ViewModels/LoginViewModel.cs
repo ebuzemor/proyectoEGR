@@ -18,10 +18,10 @@ namespace Guajiro.ViewModels
         private String _txtLogin;
         private String _txtPassword;
 
-        public tbl_usuarios UsuarioActual { get => _usuarioActual; set => SetProperty(ref _usuarioActual, value); }
-        public bool EsValido { get => _esValido; set => SetProperty(ref _esValido, value); }
-        public string TxtLogin { get => _txtLogin; set => SetProperty(ref _txtLogin, value); }
-        public string TxtPassword { get => _txtPassword; set => SetProperty(ref _txtPassword, value); }
+        public tbl_usuarios UsuarioActual { get => _usuarioActual; set { _usuarioActual = value; OnPropertyChanged(); } }
+        public bool EsValido { get => _esValido; set { _esValido = value; OnPropertyChanged(); } }
+        public string TxtLogin { get => _txtLogin; set { _txtLogin = value; OnPropertyChanged(); } }
+        public string TxtPassword { get => _txtPassword; set { _txtPassword = value; OnPropertyChanged(); } }
 
         public RelayCommand ValidarUsuarioCommand { get; set; }
         public bd_guajiroEntities guajiroEF;

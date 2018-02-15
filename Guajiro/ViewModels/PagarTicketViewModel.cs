@@ -20,12 +20,12 @@ namespace Guajiro.ViewModels
         private Boolean _verMensaje;
         private Boolean _activoBtnOk;
 
-        public decimal TotalTicket { get => _totalTicket; set { _totalTicket = value; OnPropertyChanged("TotalTicket"); } }
-        public decimal Recibido { get => _recibido; set { _recibido = value; OnPropertyChanged("Recibido"); ObtenerCambio(_recibido); } }
-        public decimal Cambio { get => _cambio; set { _cambio = value; OnPropertyChanged("Cambio"); ActivarBtnOk(); } }
-        public string TxtMensaje { get => _txtMensaje; set { _txtMensaje = value; OnPropertyChanged("TxtMensaje"); } }
-        public bool VerMensaje { get => _verMensaje; set { _verMensaje = value; OnPropertyChanged("VerMensaje"); } }
-        public bool ActivoBtnOk { get => _activoBtnOk; set { _activoBtnOk = value; OnPropertyChanged("ActivoBtnOk"); } }
+        public decimal TotalTicket { get => _totalTicket; set { _totalTicket = value; OnPropertyChanged(); } }
+        public decimal Recibido { get => _recibido; set { _recibido = value; OnPropertyChanged(); ObtenerCambio(_recibido); } }
+        public decimal Cambio { get => _cambio; set { _cambio = value; OnPropertyChanged(); ActivarBtnOk(); } }
+        public string TxtMensaje { get => _txtMensaje; set { _txtMensaje = value; OnPropertyChanged(); } }
+        public bool VerMensaje { get => _verMensaje; set { _verMensaje = value; OnPropertyChanged(); } }
+        public bool ActivoBtnOk { get => _activoBtnOk; set { _activoBtnOk = value; OnPropertyChanged(); } }
         #endregion
 
         #region Constructor

@@ -12,8 +12,8 @@ namespace Guajiro.ViewModels
         private int _cantidad;
         private Decimal _importe;
 
-        public ItemTicket ItemSeleccionado { get => itemSeleccionado; set { itemSeleccionado = value; OnPropertyChanged("ItemSeleccionado"); } }
-        public bool ActivoBtnOk { get => _activoBtnOk; set { _activoBtnOk = value; OnPropertyChanged("ActivoBtnOk"); } }
+        public ItemTicket ItemSeleccionado { get => itemSeleccionado; set { itemSeleccionado = value; OnPropertyChanged(); } }
+        public bool ActivoBtnOk { get => _activoBtnOk; set { _activoBtnOk = value; OnPropertyChanged(); } }
         public int Cantidad
         {
             get => _cantidad;
@@ -25,7 +25,7 @@ namespace Guajiro.ViewModels
                 ActivarBtn();
             }
         }
-        public decimal Importe { get => _importe; set { _importe = value; OnPropertyChanged("Importe"); } }
+        public decimal Importe { get => _importe; set { _importe = value; OnPropertyChanged(); } }
         #endregion
 
         #region Constructor

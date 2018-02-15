@@ -53,30 +53,30 @@ namespace Guajiro.ViewModels
         private int _numComanda;
         private tbl_usuarios _usuario;
 
-        public tbl_items Productos { get => _productos; set => SetProperty(ref _productos, value); }
-        public string TxtBuscar { get => _txtBuscar; set => SetProperty(ref _txtBuscar, value); }
-        public ObservableCollection<vw_lista_precios> ListaProductos { get => _listaProductos; set { _listaProductos = value; OnPropertyChanged("ListaProductos"); } }
-        public ObservableCollection<vw_lista_ordenes> ListaOrdenes { get => _listaOrdenes; set { _listaOrdenes = value; OnPropertyChanged("ListaOrdenes"); } }
-        public ObservableCollection<ItemTicket> ListaTicket { get => _listaTicket; set { _listaTicket = value; OnPropertyChanged("ListaTicket"); } }
-        public string IdItemSel { get => _idItemSel; set => SetProperty(ref _idItemSel, value); }
-        public vw_lista_precios ItemTicket { get => _itemTicket; set => SetProperty(ref _itemTicket, value); }
-        public decimal TotalTicket { get => _totalTicket; set { _totalTicket = value; OnPropertyChanged("TotalTicket"); } }
-        public decimal Recibido { get => _recibido; set { _recibido = value; OnPropertyChanged("Recibido"); ObtenerCambio(_recibido); } }
-        public decimal Cambio { get => _cambio; set { _cambio = value; OnPropertyChanged("Cambio"); } }
-        public string TxtMensaje { get => _txtMensaje; set { _txtMensaje = value; OnPropertyChanged("TxtMensaje"); } }
-        public bool VerMensaje { get => _verMensaje; set { _verMensaje = value; OnPropertyChanged("VerMensaje"); } }
-        public string Comanda { get => _comanda; set { _comanda = value; OnPropertyChanged("Comanda"); } }
-        public ObservableCollection<vw_lista_clientes> ListaClientes { get => _listaClientes; set { _listaClientes = value; OnPropertyChanged("ListaClientes"); } }
-        public vw_lista_clientes Cliente { get => _cliente; set { _cliente = value; OnPropertyChanged("Cliente"); ActualizarDireccion(); } }
-        public ObservableCollection<tbl_mesas> ListaMesas { get => _listaMesas; set { _listaMesas = value; OnPropertyChanged("ListaMesas"); } }
-        public tbl_mesas Mesa { get => _mesa; set { _mesa = value; OnPropertyChanged("Mesa"); } }
-        public string ClienteDireccion { get => _clienteDireccion; set { _clienteDireccion = value; OnPropertyChanged("ClienteDireccion"); } }
-        public vw_lista_direcciones InfoDireccion { get => _infoDireccion; set { _infoDireccion = value; OnPropertyChanged("InfoDireccion"); } }
-        public string NombreCliente { get => _nombreCliente; set { _nombreCliente = value; OnPropertyChanged("NombreCliente"); } }
-        public DateTime FechaPago { get => _fechaPago; set { _fechaPago = value; OnPropertyChanged("FechaPago"); } }
-        public bool EsParaComerAqui { get => _esParaComerAqui; set { _esParaComerAqui = value; OnPropertyChanged("EsParaComerAqui"); } }
-        public int NumComanda { get => _numComanda; set { _numComanda = value; OnPropertyChanged("NumComanda"); } }
-        public tbl_usuarios Usuario { get => _usuario; set { _usuario = value; OnPropertyChanged("Usuario"); } }
+        public tbl_items Productos { get => _productos; set { _productos = value; OnPropertyChanged(); } }
+        public string TxtBuscar { get => _txtBuscar; set { _txtBuscar = value; OnPropertyChanged(); } }
+        public ObservableCollection<vw_lista_precios> ListaProductos { get => _listaProductos; set { _listaProductos = value; OnPropertyChanged(); } }
+        public ObservableCollection<vw_lista_ordenes> ListaOrdenes { get => _listaOrdenes; set { _listaOrdenes = value; OnPropertyChanged(); } }
+        public ObservableCollection<ItemTicket> ListaTicket { get => _listaTicket; set { _listaTicket = value; OnPropertyChanged(); } }
+        public string IdItemSel { get => _idItemSel; set { _idItemSel = value; OnPropertyChanged(); } }
+        public vw_lista_precios ItemTicket { get => _itemTicket; set { _itemTicket = value; OnPropertyChanged(); } }
+        public decimal TotalTicket { get => _totalTicket; set { _totalTicket = value; OnPropertyChanged(); } }
+        public decimal Recibido { get => _recibido; set { _recibido = value; OnPropertyChanged(); ObtenerCambio(_recibido); } }
+        public decimal Cambio { get => _cambio; set { _cambio = value; OnPropertyChanged(); } }
+        public string TxtMensaje { get => _txtMensaje; set { _txtMensaje = value; OnPropertyChanged(); } }
+        public bool VerMensaje { get => _verMensaje; set { _verMensaje = value; OnPropertyChanged(); } }
+        public string Comanda { get => _comanda; set { _comanda = value; OnPropertyChanged(); } }
+        public ObservableCollection<vw_lista_clientes> ListaClientes { get => _listaClientes; set { _listaClientes = value; OnPropertyChanged(); } }
+        public vw_lista_clientes Cliente { get => _cliente; set { _cliente = value; OnPropertyChanged(); ActualizarDireccion(); } }
+        public ObservableCollection<tbl_mesas> ListaMesas { get => _listaMesas; set { _listaMesas = value; OnPropertyChanged(); } }
+        public tbl_mesas Mesa { get => _mesa; set { _mesa = value; OnPropertyChanged(); } }
+        public string ClienteDireccion { get => _clienteDireccion; set { _clienteDireccion = value; OnPropertyChanged(); } }
+        public vw_lista_direcciones InfoDireccion { get => _infoDireccion; set { _infoDireccion = value; OnPropertyChanged(); } }
+        public string NombreCliente { get => _nombreCliente; set { _nombreCliente = value; OnPropertyChanged(); } }
+        public DateTime FechaPago { get => _fechaPago; set { _fechaPago = value; OnPropertyChanged(); } }
+        public bool EsParaComerAqui { get => _esParaComerAqui; set { _esParaComerAqui = value; OnPropertyChanged(); } }
+        public int NumComanda { get => _numComanda; set { _numComanda = value; OnPropertyChanged(); } }
+        public tbl_usuarios Usuario { get => _usuario; set { _usuario = value; OnPropertyChanged(); } }
 
         public bd_guajiroEntities GuajiroEF;
         #endregion

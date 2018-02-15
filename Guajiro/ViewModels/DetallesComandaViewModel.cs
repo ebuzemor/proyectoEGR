@@ -9,7 +9,7 @@ namespace Guajiro.ViewModels
         #region Variables
         private ObservableCollection<tbl_detallescomanda> _listaDetalles;
 
-        public ObservableCollection<tbl_detallescomanda> ListaDetalles { get => _listaDetalles; set { _listaDetalles = value; OnPropertyChanged("ListaDetalles"); } }
+        public ObservableCollection<tbl_detallescomanda> ListaDetalles { get => _listaDetalles; set { _listaDetalles = value; OnPropertyChanged(); } }
         #endregion
 
         #region Constructor

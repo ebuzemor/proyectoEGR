@@ -44,25 +44,25 @@ namespace Guajiro.ViewModels
         private Boolean _verMensaje;
         private Boolean _esParaLlevar;
 
-        public int ItemsPorPag { get => _itemsPorPag; set { _itemsPorPag = value; OnPropertyChanged("ItemsPorPag"); }}
-        public int PagsTotales { get => _pagsTotales; set { _pagsTotales = value; OnPropertyChanged("PagsTotales"); } }
-        public int IndicePagActual { get => _indicePagActual; set { _indicePagActual = value; OnPropertyChanged("IndicePagActual"); } }
-        public int PagActual { get => _pagActual; set { _pagActual = value; OnPropertyChanged("PagActual"); } }
-        public bool ActivoInicio { get => _activoInicio; set { _activoInicio = value; OnPropertyChanged("ActivoInicio"); } }
-        public bool ActivoAnterior { get => _activoAnterior; set { _activoAnterior = value; OnPropertyChanged("ActivoAnterior"); } }
-        public bool ActivoSiguiente { get => _activoSiguiente; set { _activoSiguiente = value; OnPropertyChanged("ActivoSiguiente"); } }
-        public bool ActivoFinal { get => _activoFinal; set { _activoFinal = value; OnPropertyChanged("ActivoFinal"); } }
-        public CollectionViewSource CvsComandas { get => _cvsComandas; set { _cvsComandas = value; OnPropertyChanged("CvsComandas"); } }
-        public ObservableCollection<vw_lista_comandas> ListaComandas { get => _listaComandas; set { _listaComandas = value; OnPropertyChanged("ListaComandas"); } }
-        public DateTime FechaInicial { get => _fechaInicial; set { _fechaInicial = value; OnPropertyChanged("FechaInicial"); } }
-        public DateTime FechaFinal { get => _fechaFinal; set { _fechaFinal = value; OnPropertyChanged("FechaFinal"); } }
-        public string TxtNumInicio { get => _txtNumInicio; set { _txtNumInicio = value; OnPropertyChanged("TxtNumInicio"); } }
-        public string TxtNumFinal { get => _txtNumFinal; set { _txtNumFinal = value; OnPropertyChanged("TxtNumFinal"); } }
-        public string TxtCliente { get => _txtCliente; set { _txtCliente = value; OnPropertyChanged("TxtCliente"); } }
-        public bool EsParaLlevar { get => _esParaLlevar; set { _esParaLlevar = value; OnPropertyChanged("EsParaLlevar"); FiltarParaLlevar(); } }
-        public ObservableCollection<tbl_detallescomanda> ListaDetalles { get => _listaDetalles; set { _listaDetalles = value; OnPropertyChanged("ListaDetalles"); } }
-        public string TxtMensaje { get => _txtMensaje; set { _txtMensaje = value; OnPropertyChanged("TxtMensaje"); } }
-        public bool VerMensaje { get => _verMensaje; set { _verMensaje = value; OnPropertyChanged("VerMensaje"); } }
+        public int ItemsPorPag { get => _itemsPorPag; set { _itemsPorPag = value; OnPropertyChanged(); }}
+        public int PagsTotales { get => _pagsTotales; set { _pagsTotales = value; OnPropertyChanged(); } }
+        public int IndicePagActual { get => _indicePagActual; set { _indicePagActual = value; OnPropertyChanged(); } }
+        public int PagActual { get => _pagActual; set { _pagActual = value; OnPropertyChanged(); } }
+        public bool ActivoInicio { get => _activoInicio; set { _activoInicio = value; OnPropertyChanged(); } }
+        public bool ActivoAnterior { get => _activoAnterior; set { _activoAnterior = value; OnPropertyChanged(); } }
+        public bool ActivoSiguiente { get => _activoSiguiente; set { _activoSiguiente = value; OnPropertyChanged(); } }
+        public bool ActivoFinal { get => _activoFinal; set { _activoFinal = value; OnPropertyChanged(); } }
+        public CollectionViewSource CvsComandas { get => _cvsComandas; set { _cvsComandas = value; OnPropertyChanged(); } }
+        public ObservableCollection<vw_lista_comandas> ListaComandas { get => _listaComandas; set { _listaComandas = value; OnPropertyChanged(); } }
+        public DateTime FechaInicial { get => _fechaInicial; set { _fechaInicial = value; OnPropertyChanged(); } }
+        public DateTime FechaFinal { get => _fechaFinal; set { _fechaFinal = value; OnPropertyChanged(); } }
+        public string TxtNumInicio { get => _txtNumInicio; set { _txtNumInicio = value; OnPropertyChanged(); } }
+        public string TxtNumFinal { get => _txtNumFinal; set { _txtNumFinal = value; OnPropertyChanged(); } }
+        public string TxtCliente { get => _txtCliente; set { _txtCliente = value; OnPropertyChanged(); } }
+        public bool EsParaLlevar { get => _esParaLlevar; set { _esParaLlevar = value; OnPropertyChanged(); FiltarParaLlevar(); } }
+        public ObservableCollection<tbl_detallescomanda> ListaDetalles { get => _listaDetalles; set { _listaDetalles = value; OnPropertyChanged(); } }
+        public string TxtMensaje { get => _txtMensaje; set { _txtMensaje = value; OnPropertyChanged(); } }
+        public bool VerMensaje { get => _verMensaje; set { _verMensaje = value; OnPropertyChanged(); } }
 
         public bd_guajiroEntities GuajiroEF;
         #endregion

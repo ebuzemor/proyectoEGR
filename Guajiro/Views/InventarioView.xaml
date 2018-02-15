@@ -85,6 +85,12 @@
                                             ToolTip="Editar Item" Height="22" Width="22"
                                             Command="{Binding ElementName=ListaProductos, Path=DataContext.EditarProductoCommand}"
                                             CommandParameter="{Binding iditem}"/>
+                                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                            Margin="0 0 8 0" HorizontalAlignment="Left"
+                                            Content="{wpfMD:PackIcon Kind=Delete}"
+                                            ToolTip="Editar Item" Height="22" Width="22"
+                                            Command="{Binding ElementName=ListaProductos, Path=DataContext.BorrarProductoCommand}"
+                                            CommandParameter="{Binding iditem}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

@@ -30,11 +30,11 @@ namespace Guajiro.ViewModels
         private bool _verMensaje;
         private ObservableCollection<vw_proveedores_directorio> _listaProveedores;
 
-        public string TxtBuscar { get => _txtBuscar; set { _txtBuscar = value; OnPropertyChanged("TxtBuscar"); } }
-        public string CreaUsuario { get => _creaUsuario; set { _creaUsuario = value; OnPropertyChanged("CreaUsuario"); } }
-        public ObservableCollection<vw_proveedores_directorio> ListaProveedores { get => _listaProveedores; set { _listaProveedores = value; OnPropertyChanged("ListaProveedores"); } }
-        public string TxtMensaje { get => _txtMensaje; set { _txtMensaje = value; OnPropertyChanged("TxtMensaje"); } }
-        public bool VerMensaje { get => _verMensaje; set { _verMensaje = value; OnPropertyChanged("VerMensaje"); } }
+        public string TxtBuscar { get => _txtBuscar; set { _txtBuscar = value; OnPropertyChanged(); } }
+        public string CreaUsuario { get => _creaUsuario; set { _creaUsuario = value; OnPropertyChanged(); } }
+        public ObservableCollection<vw_proveedores_directorio> ListaProveedores { get => _listaProveedores; set { _listaProveedores = value; OnPropertyChanged(); } }
+        public string TxtMensaje { get => _txtMensaje; set { _txtMensaje = value; OnPropertyChanged(); } }
+        public bool VerMensaje { get => _verMensaje; set { _verMensaje = value; OnPropertyChanged(); } }
         #endregion
 
         #region Constructor

@@ -9,7 +9,7 @@ namespace Guajiro.ViewModels
 
         private String _titulo;
 
-        public string Titulo { get => _titulo; set => SetProperty(ref _titulo, value); }
+        public string Titulo { get => _titulo; set { _titulo = value; OnPropertyChanged(); } }
 
         #endregion
 

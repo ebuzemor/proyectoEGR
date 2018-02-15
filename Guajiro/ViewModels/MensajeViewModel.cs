@@ -13,11 +13,11 @@ namespace Guajiro.ViewModels
         private String _txtCancelar;
         private Boolean _mostrarCancelar;
 
-        public string TituloMensaje { get => _tituloMensaje; set { _tituloMensaje = value; OnPropertyChanged("TituloMensaje"); } }
-        public string CuerpoMensaje { get => _cuerpoMensaje; set { _cuerpoMensaje = value; OnPropertyChanged("CuerpoMensaje"); } }
-        public string TxtAceptar { get => _txtAceptar; set { _txtAceptar = value; OnPropertyChanged("TxtAceptar"); } }
-        public string TxtCancelar { get => _txtCancelar; set { _txtCancelar = value; OnPropertyChanged("TxtCancelar"); } }
-        public bool MostrarCancelar { get => _mostrarCancelar; set { _mostrarCancelar = value; OnPropertyChanged("MostrarCancelar"); } }
+        public string TituloMensaje { get => _tituloMensaje; set { _tituloMensaje = value; OnPropertyChanged(); } }
+        public string CuerpoMensaje { get => _cuerpoMensaje; set { _cuerpoMensaje = value; OnPropertyChanged(); } }
+        public string TxtAceptar { get => _txtAceptar; set { _txtAceptar = value; OnPropertyChanged(); } }
+        public string TxtCancelar { get => _txtCancelar; set { _txtCancelar = value; OnPropertyChanged(); } }
+        public bool MostrarCancelar { get => _mostrarCancelar; set { _mostrarCancelar = value; OnPropertyChanged(); } }
         #endregion
 
         #region Constructor

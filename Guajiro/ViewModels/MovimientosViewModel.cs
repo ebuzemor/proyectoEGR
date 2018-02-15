@@ -11,16 +11,8 @@ using MaterialDesignThemes.Wpf;
 
 namespace Guajiro.ViewModels
 {
-    public class MovimientosViewModel : INotifyPropertyChanged
+    public class MovimientosViewModel : Notifier
     {
-        #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
-
         #region Commands
         public RelayCommand BuscarMovimientosCommand { get; set; }
         public RelayCommand RegistrarMovimientoCommand { get; set; }

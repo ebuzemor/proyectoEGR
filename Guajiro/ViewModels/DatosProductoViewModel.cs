@@ -9,16 +9,8 @@ using System.Runtime.CompilerServices;
 
 namespace Guajiro.ViewModels
 {
-    public class DatosProductoViewModel : INotifyPropertyChanged
+    public class DatosProductoViewModel : Notifier
     {
-        #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
-
         #region Commands
         public RelayCommand GuardarProductoCommand { get; set; }
         public RelayCommand CerrarMensajeCommand { get; set; }

@@ -15,7 +15,7 @@ namespace Guajiro.ViewModels
         private tbl_usuarios _usuario;
 
         public MenuOpciones[] MenuOpcion { get; }
-        public tbl_usuarios Usuario { get => _usuario; set { _usuario = value; OnPropertyChanged("Usuario"); } }
+        public tbl_usuarios Usuario { get => _usuario; set { _usuario = value; OnPropertyChanged(); } }
         #endregion
 
         #region Constructor
