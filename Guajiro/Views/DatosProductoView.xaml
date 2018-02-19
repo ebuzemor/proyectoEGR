@@ -59,7 +59,7 @@
             </wpfMD:SnackbarMessage>
         </wpfMD:Snackbar>
         <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Command="{Binding GuardarProductoCommand}" Content="Guardar" Margin="5"/>
+            <Button Command="{Binding GuardarProductoCommand}" Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Guardar" Margin="5"/>
             <Button IsCancel="True" Command="{x:Static wpfMD:DialogHost.CloseDialogCommand}"
                     CommandParameter="CANCELAR" Content="Cerrar" Margin="5"/>
         </StackPanel>

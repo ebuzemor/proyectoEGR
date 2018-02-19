@@ -3,11 +3,8 @@ using Guajiro.Models;
 using Guajiro.Views;
 using MaterialDesignThemes.Wpf;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 
 namespace Guajiro.ViewModels
 {
@@ -82,10 +79,19 @@ namespace Guajiro.ViewModels
         {
             string idItem = parameter as string;
             var prod = GuajiroEF.tbl_items.SingleOrDefault(x => x.iditem == idItem);
+            var unid = GuajiroEF.tbl_listadoseldetalle.SingleOrDefault(x => x.idlsselecciondetalle == prod.idlstipoitem);
+            var car = GuajiroEF.tbl_caracteristicasitem.SingleOrDefault(x => x.iditem == prod.iditem);
             var vmDatos = new DatosProductoViewModel
             {
-                IdPersona = IdPersona
+                IdPersona = IdPersona,
+                Unidad = unid,
+                TxtDescripcion = prod.descripcion,
+                TxtExistencias = Convert.ToDecimal(prod.existencia),
+                ChkInventariable = Convert.ToBoolean(prod.inventariable),
+                TxtPrecio = Convert.ToDecimal(car.valor)
             };
+            //vmDatos.FiltrarUnidades();
+            //vmDatos.Unidad = unid;
             var vwDatos = new DatosProductoView
             {
                 DataContext = vmDatos
