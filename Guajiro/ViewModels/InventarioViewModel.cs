@@ -81,17 +81,18 @@ namespace Guajiro.ViewModels
             var prod = GuajiroEF.tbl_items.SingleOrDefault(x => x.iditem == idItem);
             var unid = GuajiroEF.tbl_listadoseldetalle.SingleOrDefault(x => x.idlsselecciondetalle == prod.idlstipoitem);
             var car = GuajiroEF.tbl_caracteristicasitem.SingleOrDefault(x => x.iditem == prod.iditem);
+            var lista = GuajiroEF.tbl_listadoseldetalle.Where(x => x.idlistadoseleccion == "5fd493ef-3688-11e7-b904-204747335338"
+                                                                || x.idlistadoseleccion == "434bf20e-3688-11e7-b904-204747335338").ToList();
             var vmDatos = new DatosProductoViewModel
             {
                 IdPersona = IdPersona,
-                Unidad = unid,
                 TxtDescripcion = prod.descripcion,
                 TxtExistencias = Convert.ToDecimal(prod.existencia),
                 ChkInventariable = Convert.ToBoolean(prod.inventariable),
-                TxtPrecio = Convert.ToDecimal(car.valor)
+                TxtPrecio = Convert.ToDecimal(car.valor),
+                ListaUnidades=new ObservableCollection<tbl_listadoseldetalle>(lista),
+                Unidad = unid
             };
-            //vmDatos.FiltrarUnidades();
-            //vmDatos.Unidad = unid;
             var vwDatos = new DatosProductoView
             {
                 DataContext = vmDatos

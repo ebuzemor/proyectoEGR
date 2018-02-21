@@ -116,7 +116,7 @@ namespace Guajiro.ViewModels
             FiltrarUnidades();
         }
 
-        private void FiltrarUnidades()
+        public void FiltrarUnidades()
         {
             List<tbl_listadoseldetalle> lista = new List<tbl_listadoseldetalle>();
             if (ChkInventariable == true)
