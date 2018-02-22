@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
@@ -22,6 +23,7 @@ namespace Guajiro.ViewModels
         private decimal _txtPrecio;
         private string _txtMensaje;
         private string _idPersona;
+        private string _idItem;
         private bool _verMensaje;
         private bool _chkInventariable;
         private tbl_listadoseldetalle _unidad;
@@ -36,7 +38,8 @@ namespace Guajiro.ViewModels
         public bool VerMensaje { get => _verMensaje; set { _verMensaje = value; OnPropertyChanged(); } }
         public bool ChkInventariable { get => _chkInventariable; set { _chkInventariable = value; OnPropertyChanged(); FiltrarUnidades(); } }
         public tbl_listadoseldetalle Unidad { get => _unidad; set { _unidad = value; OnPropertyChanged(); } }
-        public ObservableCollection<tbl_listadoseldetalle> ListaUnidades { get => _listaUnidades; set { _listaUnidades = value; OnPropertyChanged(); } }        
+        public ObservableCollection<tbl_listadoseldetalle> ListaUnidades { get => _listaUnidades; set { _listaUnidades = value; OnPropertyChanged(); } }
+        public string IdItem { get => _idItem; set { _idItem = value; OnPropertyChanged(); } }
         #endregion
 
         #region Constructor
@@ -63,33 +66,56 @@ namespace Guajiro.ViewModels
         private void GuardarProducto(object parameter)
         {
             bool ban = ValidarDatos();
-            if(ban == false)
+            if (ban == false)
             {
                 int guardados = 0;
-                using(var bd = new bd_guajiroEntities())
+                string strItem = null;
+                string strCcta = null;
+                tbl_items item = null;
+                tbl_caracteristicasitem car = null;
+                if (string.IsNullOrEmpty(IdItem) == false)
                 {
-                    tbl_items item = new tbl_items
+                    strItem = IdItem;
+                    item = GuajiroEF.tbl_items.SingleOrDefault(x => x.iditem == IdItem);
+                    strCcta = item.idlstipoitem;
+                }
+                else
+                {
+                    strItem = Convert.ToString(Guid.NewGuid());
+                    strCcta = Convert.ToString(Guid.NewGuid());
+                }
+                item = new tbl_items
+                {
+                    iditem = strItem,
+                    descripcion = TxtDescripcion,
+                    existencia = TxtExistencias,
+                    idlstipoitem = Unidad.idlsselecciondetalle,
+                    inventariable = ChkInventariable,
+                    crea_usuario = IdPersona,
+                    fecha_creacion = DateTime.Now
+                };
+                car = new tbl_caracteristicasitem
+                {
+                    idcaracteristica = strCcta,
+                    iditem = item.iditem,
+                    idlsunidadmedida = Unidad.idlsselecciondetalle,
+                    idlstipocaracteristica = "e47c6405-368a-11e7-b904-204747335338", //Precio
+                    valor = TxtPrecio,
+                    crea_usuario = IdPersona,
+                    fecha_creacion = DateTime.Now
+                };
+                using (var bd = new bd_guajiroEntities())
+                {
+                    if (string.IsNullOrEmpty(IdItem) == false)
                     {
-                        iditem = Convert.ToString(Guid.NewGuid()),
-                        descripcion = TxtDescripcion,
-                        existencia = TxtExistencias,
-                        idlstipoitem = Unidad.idlsselecciondetalle,
-                        inventariable = ChkInventariable,
-                        crea_usuario = IdPersona,
-                        fecha_creacion = DateTime.Now
-                    };
-                    bd.tbl_items.Add(item);
-                    tbl_caracteristicasitem car = new tbl_caracteristicasitem
+                        bd.Entry(item).State = EntityState.Modified;
+                        bd.Entry(car).State = EntityState.Modified;
+                    }
+                    else
                     {
-                        idcaracteristica = Convert.ToString(Guid.NewGuid()),
-                        iditem = item.iditem,
-                        idlsunidadmedida = Unidad.idlsselecciondetalle,
-                        idlstipocaracteristica = "e47c6405-368a-11e7-b904-204747335338", //Precio
-                        valor = TxtPrecio,
-                        crea_usuario = IdPersona,
-                        fecha_creacion = DateTime.Now
-                    };
-                    bd.tbl_caracteristicasitem.Add(car);
+                        bd.tbl_items.Add(item);
+                        bd.tbl_caracteristicasitem.Add(car);
+                    }
                     guardados = bd.SaveChanges();
                     if (guardados > 0)
                     {

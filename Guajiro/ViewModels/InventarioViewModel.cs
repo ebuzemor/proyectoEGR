@@ -86,11 +86,12 @@ namespace Guajiro.ViewModels
             var vmDatos = new DatosProductoViewModel
             {
                 IdPersona = IdPersona,
+                IdItem = idItem,
                 TxtDescripcion = prod.descripcion,
                 TxtExistencias = Convert.ToDecimal(prod.existencia),
                 ChkInventariable = Convert.ToBoolean(prod.inventariable),
                 TxtPrecio = Convert.ToDecimal(car.valor),
-                ListaUnidades=new ObservableCollection<tbl_listadoseldetalle>(lista),
+                ListaUnidades = new ObservableCollection<tbl_listadoseldetalle>(lista),
                 Unidad = unid
             };
             var vwDatos = new DatosProductoView
