@@ -72,7 +72,7 @@ namespace Guajiro.ViewModels
                 string strItem = null;
                 string strCcta = null;
                 tbl_items item = null;
-                tbl_caracteristicasitem car = null;
+                tbl_caracteristicasitem ccta = null;
                 if (string.IsNullOrEmpty(IdItem) == false)
                 {
                     strItem = IdItem;
@@ -94,7 +94,7 @@ namespace Guajiro.ViewModels
                     crea_usuario = IdPersona,
                     fecha_creacion = DateTime.Now
                 };
-                car = new tbl_caracteristicasitem
+                ccta = new tbl_caracteristicasitem
                 {
                     idcaracteristica = strCcta,
                     iditem = item.iditem,
@@ -108,14 +108,22 @@ namespace Guajiro.ViewModels
                 {
                     if (string.IsNullOrEmpty(IdItem) == false)
                     {
+                        //bd.Entry(item).State = EntityState.Modified;
+                        //guardados += bd.SaveChanges();
+                        //bd.Entry(ccta).State = EntityState.Modified;
+                        //guardados += bd.SaveChanges();
+                        bd.tbl_items.Attach(item);
                         bd.Entry(item).State = EntityState.Modified;
-                        bd.Entry(car).State = EntityState.Modified;
+                        bd.tbl_caracteristicasitem.Attach(ccta);
+                        bd.Entry(ccta).State = EntityState.Modified;
                     }
                     else
                     {
                         bd.tbl_items.Add(item);
-                        bd.tbl_caracteristicasitem.Add(car);
+                        bd.tbl_caracteristicasitem.Add(ccta);
                     }
+                    //bd.tbl_items.Add(item);
+                    //bd.tbl_caracteristicasitem.Add(ccta);
                     guardados = bd.SaveChanges();
                     if (guardados > 0)
                     {
