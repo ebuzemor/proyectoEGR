@@ -70,7 +70,7 @@ namespace Guajiro.ViewModels
 
             MovimientosViewModel vmMovimiento = new MovimientosViewModel
             {
-
+                IdPersona = UsuarioActual.idpersona
             };
             MovimientosView vwMovimiento = new MovimientosView
             {

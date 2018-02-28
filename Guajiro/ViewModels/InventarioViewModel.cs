@@ -87,6 +87,7 @@ namespace Guajiro.ViewModels
             {
                 IdPersona = IdPersona,
                 IdItem = idItem,
+                IdCcta = car.idcaracteristica,
                 TxtDescripcion = prod.descripcion,
                 TxtExistencias = Convert.ToDecimal(prod.existencia),
                 ChkInventariable = Convert.ToBoolean(prod.inventariable),
@@ -99,11 +100,31 @@ namespace Guajiro.ViewModels
                 DataContext = vmDatos
             };
             var result = await DialogHost.Show(vwDatos, "Inventario");
+            GuajiroEF = new bd_guajiroEntities();
+            var ltaprod = GuajiroEF.vw_lista_productos.ToList();
+            ListaProductos = new ObservableCollection<vw_lista_productos>(ltaprod);
         }
 
-        private void BorrarProducto(object parameter)
+        private async void BorrarProducto(object parameter)
         {
+            string idProd = parameter as string;
+            var vmMensaje = new MensajeViewModel
+            {
+                TituloMensaje = "Advertencia",
+                CuerpoMensaje = "¿Desea borrar la información del Producto seleccionado?",
+                MostrarCancelar = true,
+                TxtAceptar = "SI",
+                TxtCancelar = "NO"
+            };
+            var vwMensaje = new MensajeView
+            {
+                DataContext = vmMensaje
+            };
+            var result = await DialogHost.Show(vwMensaje, "ListaClientes");
+            if (result.Equals("OK") == true)
+            {
 
+            }
         }
         #endregion
     }

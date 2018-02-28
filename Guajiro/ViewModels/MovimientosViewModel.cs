@@ -1,13 +1,10 @@
 ﻿using Guajiro.Common;
 using Guajiro.Models;
 using Guajiro.Views;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using MaterialDesignThemes.Wpf;
+using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Guajiro.ViewModels
 {
@@ -26,6 +23,7 @@ namespace Guajiro.ViewModels
         private DateTime _fechaFinal;
         private string _txtDescripcion;
         private string _txtMensaje;
+        private string _idPersona;
         private bool _verMensaje;
         private bool _chkTodos;
         private bool _chkIngreso;
@@ -41,7 +39,8 @@ namespace Guajiro.ViewModels
         public bool ChkTodos { get => _chkTodos; set { _chkTodos = value; OnPropertyChanged(); } }
         public bool ChkIngreso { get => _chkIngreso; set { _chkIngreso = value; OnPropertyChanged(); } }
         public bool ChkEgreso { get => _chkEgreso; set { _chkEgreso = value; OnPropertyChanged(); } }
-        public ObservableCollection<vw_lista_movimientos> ListaMovimientos { get => _listaMovimientos; set { _listaMovimientos = value; OnPropertyChanged(); } }        
+        public ObservableCollection<vw_lista_movimientos> ListaMovimientos { get => _listaMovimientos; set { _listaMovimientos = value; OnPropertyChanged(); } }
+        public string IdPersona { get => _idPersona; set { _idPersona = value; OnPropertyChanged(); } }
         #endregion
 
         #region Constructor
@@ -81,7 +80,10 @@ namespace Guajiro.ViewModels
 
         private async void RegistrarMovimiento(object parameter)
         {
-            var vmDatos = new DatosMovimientoViewModel { };
+            var vmDatos = new DatosMovimientoViewModel
+            {
+                IdPersona = IdPersona
+            };
             var vwDatos = new DatosMovimientoView
             {
                 DataContext = vmDatos

@@ -20,6 +20,7 @@ namespace Guajiro.ViewModels
         private DateTime _fechaMov;
         private string _txtDescripcion;
         private string _txtMensaje;
+        private string _idPersona;
         private bool _verMensaje;
         private double _txtMonto;
         private ObservableCollection<tbl_listadoseldetalle> _listaTiposMov;
@@ -33,6 +34,7 @@ namespace Guajiro.ViewModels
         public double TxtMonto { get => _txtMonto; set { _txtMonto = value; OnPropertyChanged(); } }
         public ObservableCollection<tbl_listadoseldetalle> ListaTiposMov { get => _listaTiposMov; set { _listaTiposMov = value; OnPropertyChanged(); } }
         public tbl_listadoseldetalle TipoMov { get => _tipoMov; set { _tipoMov = value; OnPropertyChanged(); } }
+        public string IdPersona { get => _idPersona; set { _idPersona = value; OnPropertyChanged(); } }
         #endregion
 
         #region Constructor
@@ -41,6 +43,7 @@ namespace Guajiro.ViewModels
             GuardarMovimientoCommand = new RelayCommand(GuardarMovimiento);
             CerrarMensajeCommand = new RelayCommand(CerrarMensaje);
             FechaMov = DateTime.Now;
+            GuajiroEF = new bd_guajiroEntities();
             var lista = GuajiroEF.tbl_listadoseldetalle.Where(x => x.idlistadoseleccion == "34110ff8-3688-11e7-b904-204747335338").ToList();
             ListaTiposMov = new ObservableCollection<tbl_listadoseldetalle>(lista);
         }

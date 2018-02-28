@@ -24,6 +24,7 @@ namespace Guajiro.ViewModels
         private string _txtMensaje;
         private string _idPersona;
         private string _idItem;
+        private string _idCcta;
         private bool _verMensaje;
         private bool _chkInventariable;
         private tbl_listadoseldetalle _unidad;
@@ -40,6 +41,7 @@ namespace Guajiro.ViewModels
         public tbl_listadoseldetalle Unidad { get => _unidad; set { _unidad = value; OnPropertyChanged(); } }
         public ObservableCollection<tbl_listadoseldetalle> ListaUnidades { get => _listaUnidades; set { _listaUnidades = value; OnPropertyChanged(); } }
         public string IdItem { get => _idItem; set { _idItem = value; OnPropertyChanged(); } }
+        public string IdCcta { get => _idCcta; set { _idCcta = value; OnPropertyChanged(); } }
         #endregion
 
         #region Constructor
@@ -77,7 +79,7 @@ namespace Guajiro.ViewModels
                 {
                     strItem = IdItem;
                     item = GuajiroEF.tbl_items.SingleOrDefault(x => x.iditem == IdItem);
-                    strCcta = item.idlstipoitem;
+                    strCcta = IdCcta;
                 }
                 else
                 {
@@ -108,10 +110,6 @@ namespace Guajiro.ViewModels
                 {
                     if (string.IsNullOrEmpty(IdItem) == false)
                     {
-                        //bd.Entry(item).State = EntityState.Modified;
-                        //guardados += bd.SaveChanges();
-                        //bd.Entry(ccta).State = EntityState.Modified;
-                        //guardados += bd.SaveChanges();
                         bd.tbl_items.Attach(item);
                         bd.Entry(item).State = EntityState.Modified;
                         bd.tbl_caracteristicasitem.Attach(ccta);
@@ -122,9 +120,7 @@ namespace Guajiro.ViewModels
                         bd.tbl_items.Add(item);
                         bd.tbl_caracteristicasitem.Add(ccta);
                     }
-                    //bd.tbl_items.Add(item);
-                    //bd.tbl_caracteristicasitem.Add(ccta);
-                    guardados = bd.SaveChanges();
+                    guardados += bd.SaveChanges();
                     if (guardados > 0)
                     {
                         TxtMensaje = "Los datos del Producto han sido guardados correctamente";
