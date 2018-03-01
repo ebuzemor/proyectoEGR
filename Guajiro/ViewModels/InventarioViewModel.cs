@@ -4,6 +4,7 @@ using Guajiro.Views;
 using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 
 namespace Guajiro.ViewModels
@@ -17,17 +18,22 @@ namespace Guajiro.ViewModels
         public RelayCommand MostrarUltimosCommand { get; set; }
         public RelayCommand EditarProductoCommand { get; set; }
         public RelayCommand BorrarProductoCommand { get; set; }
+        public RelayCommand CerrarMensajeCommand { get; set; }
         #endregion
 
         #region Variables
         public bd_guajiroEntities GuajiroEF;
         private string _txtBuscar;
         private string _idPersona;
+        private string _txtMensaje;
+        private bool _VerMensaje;
         private ObservableCollection<vw_lista_productos> _listaProductos;
 
         public string TxtBuscar { get => _txtBuscar; set { _txtBuscar = value; OnPropertyChanged(); } }
         public string IdPersona { get => _idPersona; set { _idPersona = value; OnPropertyChanged(); } }
         public ObservableCollection<vw_lista_productos> ListaProductos { get => _listaProductos; set { _listaProductos = value; OnPropertyChanged(); } }
+        public string TxtMensaje { get => _txtMensaje; set { _txtMensaje = value; OnPropertyChanged(); } }
+        public bool VerMensaje { get => _VerMensaje; set { _VerMensaje = value; OnPropertyChanged(); } }
         #endregion
 
         #region Constructor
@@ -39,6 +45,7 @@ namespace Guajiro.ViewModels
             MostrarUltimosCommand = new RelayCommand(MostrarUltimos);
             EditarProductoCommand = new RelayCommand(EditarProducto);
             BorrarProductoCommand = new RelayCommand(BorrarProducto);
+            CerrarMensajeCommand = new RelayCommand(CerrarMensaje);
             GuajiroEF = new bd_guajiroEntities();
         }
         #endregion
@@ -120,12 +127,28 @@ namespace Guajiro.ViewModels
             {
                 DataContext = vmMensaje
             };
-            var result = await DialogHost.Show(vwMensaje, "ListaClientes");
+            var result = await DialogHost.Show(vwMensaje, "Inventario");
             if (result.Equals("OK") == true)
             {
-
+                var item = GuajiroEF.tbl_items.SingleOrDefault(x => x.iditem == idProd);
+                var ccta = GuajiroEF.tbl_caracteristicasitem.SingleOrDefault(x => x.iditem == idProd);
+                using (GuajiroEF)
+                {
+                    GuajiroEF.Entry(item).State = EntityState.Deleted;
+                    GuajiroEF.Entry(ccta).State = EntityState.Deleted;
+                    int c = GuajiroEF.SaveChanges();
+                    if (c > 0)
+                    {
+                        TxtMensaje = "Los datos del Producto: " + item.descripcion + " fueron borrados correctamente";
+                        VerMensaje = true;
+                        var lista = GuajiroEF.vw_lista_productos.ToList();
+                        ListaProductos = new ObservableCollection<vw_lista_productos>(lista);
+                    }
+                }
             }
         }
+
+        private void CerrarMensaje(object parameter) => VerMensaje = false;
         #endregion
     }
 }
