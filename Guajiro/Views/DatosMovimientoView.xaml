@@ -34,10 +34,10 @@
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Información del Movimiento" 
                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <!--Fecha y Tipo-->
-        <DatePicker Grid.Row="1" Grid.Column="0" Margin="5 5 5 5" wpfMD:HintAssist.Hint="Fecha del Movimiento:*" 
+        <DatePicker Grid.Row="1" Grid.Column="0" Margin="5" wpfMD:HintAssist.Hint="Fecha del Movimiento:*" 
                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Language="es-Mx" 
                     SelectedDate="{Binding FechaMov}" VerticalAlignment="Center"/>
-        <ComboBox Grid.Row="1" Grid.Column="1" wpfMD:HintAssist.Hint="Tipo de Movimiento: *" Margin="5 0 5 8"
+        <ComboBox Grid.Row="1" Grid.Column="1" wpfMD:HintAssist.Hint="Tipo de Movimiento: *" Margin="5 0 0 15"
                   Style="{StaticResource MaterialDesignFloatingHintComboBox}" VerticalAlignment="Center"
                   ItemsSource="{Binding ListaTiposMov}" Selected="{Binding TipoMov}" DisplayMemberPath="descripcion"/>
         <!--Descripcion y Monto-->

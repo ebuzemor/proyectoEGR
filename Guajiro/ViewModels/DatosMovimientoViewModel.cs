@@ -44,8 +44,9 @@ namespace Guajiro.ViewModels
             CerrarMensajeCommand = new RelayCommand(CerrarMensaje);
             FechaMov = DateTime.Now;
             GuajiroEF = new bd_guajiroEntities();
-            var lista = GuajiroEF.tbl_listadoseldetalle.Where(x => x.idlistadoseleccion == "34110ff8-3688-11e7-b904-204747335338").ToList();
+            var lista = GuajiroEF.tbl_listadoseldetalle.ToList();
             ListaTiposMov = new ObservableCollection<tbl_listadoseldetalle>(lista);
+            
         }
         #endregion
 
