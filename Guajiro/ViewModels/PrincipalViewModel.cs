@@ -1,6 +1,8 @@
 ﻿using Guajiro.Common;
 using Guajiro.Models;
 using Guajiro.Views;
+using MaterialDesignThemes.Wpf;
+using System.Windows;
 
 namespace Guajiro.ViewModels
 {
@@ -21,6 +23,9 @@ namespace Guajiro.ViewModels
         #region Constructor
         public PrincipalViewModel(tbl_usuarios UsuarioActual)
         {
+            CerrarSesionCommand = new RelayCommand(CerrarSesion);
+            SalirAppCommand = new RelayCommand(SalirApp);
+
             PuntoVentaViewModel vmPdV = new PuntoVentaViewModel
             {
                 Usuario = UsuarioActual
@@ -79,18 +84,66 @@ namespace Guajiro.ViewModels
             
             MenuOpcion = new[]
             {
-                new MenuOpciones("Punto de Venta", vwPdV),
-                new MenuOpciones("Comandas", vwCom),
-                new MenuOpciones("Menú del Día", vwMenuDia),
-                new MenuOpciones("Clientes", vwLtaCte),
-                new MenuOpciones("Proveedores", vwLtaProv),
-                new MenuOpciones("Inventario", vwInventario),                
-                new MenuOpciones("Movimientos", vwMovimiento)
+                new MenuOpciones("Cart", "Punto de Venta", vwPdV),
+                new MenuOpciones("NoteText", "Comandas", vwCom),
+                new MenuOpciones("ClipboardOutline", "Menú del Día", vwMenuDia),
+                new MenuOpciones("AccountBox", "Clientes", vwLtaCte),
+                new MenuOpciones("AccountCardDetails", "Proveedores", vwLtaProv),
+                new MenuOpciones("FileCheck", "Inventario", vwInventario),
+                new MenuOpciones("TableLarge", "Movimientos", vwMovimiento)
                 //new MenuOpciones("Facturas", new InventarioView()),
                 //new MenuOpciones("Reportes", new InventarioView())
             };
         }
         #endregion
 
+        #region Métodos
+        private async void CerrarSesion(object parameter)
+        {
+            var vmMsj = new MensajeViewModel
+            {
+                TituloMensaje = "Advertencia",
+                CuerpoMensaje = "¿Desea cerrar sesión?",
+                MostrarCancelar = true,
+                TxtAceptar = "Aceptar",
+                TxtCancelar = "Cancelar"
+            };
+            var vwMsj = new MensajeView
+            {
+                DataContext = vmMsj
+            };
+            var cerrar = await DialogHost.Show(vwMsj, "Principal");
+            if (cerrar.Equals("OK") == true)
+            {
+                LoginViewModel vmLogin = new LoginViewModel();
+                LoginView login = new LoginView
+                {
+                    DataContext = vmLogin
+                };
+                Navigator.NavigationService.Navigate(login);
+            }
+        }
+
+        private async void SalirApp(object parameter)
+        {
+            var vmMsj = new MensajeViewModel
+            {
+                TituloMensaje = "Advertencia",
+                CuerpoMensaje = "¿Desea cerrar sesión?",
+                MostrarCancelar = true,
+                TxtAceptar = "Aceptar",
+                TxtCancelar = "Cancelar"
+            };
+            var vwMsj = new MensajeView
+            {
+                DataContext = vmMsj
+            };
+            var salir = await DialogHost.Show(vwMsj, "Principal");
+            if(salir.Equals("OK")==true)
+            {
+                Application.Current.MainWindow.Close();
+            }
+        }
+        #endregion
     }
 }

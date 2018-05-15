@@ -11,6 +11,7 @@ namespace Guajiro.Common
 
         private String _nombre;
         private Object _contenido;
+        private string _icono;
         private ScrollBarVisibility _horizontalScrollBarVisibilidad;
         private ScrollBarVisibility _verticalScrollBarVisibilidad;
         private Thickness _margenRequerimiento = new Thickness(16);
@@ -18,35 +19,36 @@ namespace Guajiro.Common
         public String Nombre
         {
             get => _nombre;
-            //set => SetProperty(ref _nombre, value);
             set => this.MutateVerbose(ref _nombre, value, RaisePropertyChanged());
         }
 
         public Object Contenido
         {
             get => _contenido;
-            //set => SetProperty(ref _contenido, value);
             set => this.MutateVerbose(ref _contenido, value, RaisePropertyChanged());
+        }
+
+        public string Icono
+        {
+            get => _icono;
+            set => this.MutateVerbose(ref _icono, value, RaisePropertyChanged());
         }
 
         public ScrollBarVisibility HorizontalScrollBarVisibilidad
         {
             get => _horizontalScrollBarVisibilidad;
-            //set => SetProperty(ref _horizontalScrollBarVisibilidad, value);
             set => this.MutateVerbose(ref _horizontalScrollBarVisibilidad, value, RaisePropertyChanged());
         }
 
         public ScrollBarVisibility VerticalScrollBarVisibilidad
         {
             get => _verticalScrollBarVisibilidad;
-            //set => SetProperty(ref _verticalScrollBarVisibilidad, value);
             set => this.MutateVerbose(ref _verticalScrollBarVisibilidad, value, RaisePropertyChanged());
         }
 
         public Thickness MargenRequerimiento
         {
             get => _margenRequerimiento;
-            //set => SetProperty(ref _margenRequerimiento, value);
             set => this.MutateVerbose(ref _margenRequerimiento, value, RaisePropertyChanged());
         }
 
@@ -54,8 +56,9 @@ namespace Guajiro.Common
 
         #region Constructor
 
-        public MenuOpciones(String nombre, Object contenido)
+        public MenuOpciones(string icono, String nombre, Object contenido)
         {
+            _icono = icono;
             _nombre = nombre;
             _contenido = contenido;
         }
