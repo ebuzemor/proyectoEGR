@@ -11,31 +11,37 @@ namespace Guajiro.ViewModels
 {
     public class LoginViewModel : Notifier
     {
+        #region Commands
+        public RelayCommand ValidarUsuarioCommand { get; set; }
+        public RelayCommand CerrarMensajeCommand { get; set; }
+        #endregion
+
         #region Variables
 
         private tbl_usuarios _usuarioActual;
-        private Boolean _esValido;
-        private String _txtLogin;
-        private String _txtPassword;
+        private bool _esValido;
+        private string _txtLogin;
+        private string _txtPassword;
+        private string _txtMensaje;
+        private bool _verMensaje;
 
         public tbl_usuarios UsuarioActual { get => _usuarioActual; set { _usuarioActual = value; OnPropertyChanged(); } }
         public bool EsValido { get => _esValido; set { _esValido = value; OnPropertyChanged(); } }
         public string TxtLogin { get => _txtLogin; set { _txtLogin = value; OnPropertyChanged(); } }
         public string TxtPassword { get => _txtPassword; set { _txtPassword = value; OnPropertyChanged(); } }
+        public string TxtMensaje { get => _txtMensaje; set { _txtMensaje = value; OnPropertyChanged(); } }
+        public bool VerMensaje { get => _verMensaje; set { _verMensaje = value; OnPropertyChanged(); } }
 
-        public RelayCommand ValidarUsuarioCommand { get; set; }
         public bd_guajiroEntities guajiroEF;
-
         #endregion
 
         #region Constructor
 
         public LoginViewModel()
         {
-            //guajiroEF = new bd_guajiroEntities();
+            guajiroEF = new bd_guajiroEntities();
             ValidarUsuarioCommand = new RelayCommand(ValidarUsuario);
-            TxtLogin = "admin";
-            //TxtPassword = "admin";
+            CerrarMensajeCommand = new RelayCommand(CerrarMensaje);
         }
 
         #endregion
@@ -74,7 +80,14 @@ namespace Guajiro.ViewModels
                 };
                 Navigator.NavigationService.Navigate(vwPrincipal);
             }
+            else
+            {
+                TxtMensaje = "El usuario y/o contraseña son incorrectos";
+                VerMensaje = true;
+            }
         }
+
+        private void CerrarMensaje(object parameter) => VerMensaje = false;
 
         #endregion
     }
