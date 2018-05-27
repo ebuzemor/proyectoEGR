@@ -90,7 +90,7 @@ namespace Guajiro.ViewModels
                 new MenuOpciones("AccountBox", "Clientes", vwLtaCte),
                 new MenuOpciones("AccountCardDetails", "Proveedores", vwLtaProv),
                 new MenuOpciones("FileCheck", "Inventario", vwInventario),
-                new MenuOpciones("TableLarge", "Movimientos", vwMovimiento)
+                //new MenuOpciones("TableLarge", "Movimientos", vwMovimiento)
                 //new MenuOpciones("Facturas", new InventarioView()),
                 //new MenuOpciones("Reportes", new InventarioView())
             };
@@ -129,7 +129,7 @@ namespace Guajiro.ViewModels
             var vmMsj = new MensajeViewModel
             {
                 TituloMensaje = "Advertencia",
-                CuerpoMensaje = "¿Desea cerrar sesión?",
+                CuerpoMensaje = "¿Desea salir de la aplicación?",
                 MostrarCancelar = true,
                 TxtAceptar = "Aceptar",
                 TxtCancelar = "Cancelar"

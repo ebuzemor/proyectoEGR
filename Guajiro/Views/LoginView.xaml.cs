@@ -10,7 +10,7 @@ namespace Guajiro.Views
         public LoginView()
         {
             InitializeComponent();
-            txtPassword.Password = "admin";
+            //txtPassword.Password = "admin";
         }
     }
 }
