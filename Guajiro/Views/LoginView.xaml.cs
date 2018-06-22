@@ -9,11 +9,7 @@ namespace Guajiro.Views
     {
         public LoginView()
         {
-            InitializeComponent();
-<<<<<<< HEAD
-            //txtPassword.Password = "admin";
-=======
->>>>>>> ce3a3302e250747d95d6243810e1077f0567ff57
+             InitializeComponent(); 
         }
     }
 }

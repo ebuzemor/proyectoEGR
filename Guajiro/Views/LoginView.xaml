@@ -73,7 +73,6 @@
                         Style="{StaticResource MaterialDesignRaisedAccentButton}" 
                         Command="{Binding ValidarUsuarioCommand}" 
                         CommandParameter="{Binding ElementName=txtPassword}"/>
-<<<<<<< HEAD
                 <mdWPF:Snackbar Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="5" IsActive="{Binding VerMensaje}"
                                 HorizontalAlignment="Stretch" ActionButtonStyle="{StaticResource MaterialDesignSnackbarActionDarkButton}">
                     <mdWPF:SnackbarMessage ActionCommand="{Binding CerrarMensajeCommand}" ActionContent="Cerrar">
@@ -82,16 +81,6 @@
                         </mdWPF:SnackbarMessage.Content>
                     </mdWPF:SnackbarMessage>
                 </mdWPF:Snackbar>
-=======
-                <materialDesign:Snackbar Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="5" IsActive="{Binding VerMensaje}" Background="{DynamicResource PrimaryHueLightBrush}"
-                                         HorizontalAlignment="Stretch" ActionButtonStyle="{StaticResource MaterialDesignSnackbarActionMidButton}">
-                    <materialDesign:SnackbarMessage ActionCommand="{Binding CerrarMensajeCommand}" ActionContent="Cerrar">
-                        <materialDesign:SnackbarMessage.Content>
-                            <TextBlock Text="{Binding TxtMensaje}" TextWrapping="Wrap"/>
-                        </materialDesign:SnackbarMessage.Content>
-                    </materialDesign:SnackbarMessage>
-                </materialDesign:Snackbar>
->>>>>>> ce3a3302e250747d95d6243810e1077f0567ff57
             </Grid>
         </Border>
     </Grid>

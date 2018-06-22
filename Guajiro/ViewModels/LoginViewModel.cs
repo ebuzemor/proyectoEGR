@@ -22,30 +22,15 @@ namespace Guajiro.ViewModels
         private bool _esValido;
         private string _txtLogin;
         private string _txtPassword;
-<<<<<<< HEAD
         private bool _verMensaje;
         private string _txtMensaje;
-=======
-        private string _txtMensaje;
-        private bool _verMensaje;
->>>>>>> ce3a3302e250747d95d6243810e1077f0567ff57
 
         public tbl_usuarios UsuarioActual { get => _usuarioActual; set { _usuarioActual = value; OnPropertyChanged(); } }
         public bool EsValido { get => _esValido; set { _esValido = value; OnPropertyChanged(); } }
         public string TxtLogin { get => _txtLogin; set { _txtLogin = value; OnPropertyChanged(); } }
         public string TxtPassword { get => _txtPassword; set { _txtPassword = value; OnPropertyChanged(); } }
-<<<<<<< HEAD
         public bool VerMensaje { get => _verMensaje; set { _verMensaje = value; OnPropertyChanged(); } }
         public string TxtMensaje { get => _txtMensaje; set { _txtMensaje = value; OnPropertyChanged(); } }
-
-        public RelayCommand ValidarUsuarioCommand { get; set; }
-        public RelayCommand CerrarMensajeCommand { get; set; }
-
-=======
-        public string TxtMensaje { get => _txtMensaje; set { _txtMensaje = value; OnPropertyChanged(); } }
-        public bool VerMensaje { get => _verMensaje; set { _verMensaje = value; OnPropertyChanged(); } }
-
->>>>>>> ce3a3302e250747d95d6243810e1077f0567ff57
         public bd_guajiroEntities guajiroEF;
         #endregion
 
@@ -56,11 +41,6 @@ namespace Guajiro.ViewModels
             guajiroEF = new bd_guajiroEntities();
             ValidarUsuarioCommand = new RelayCommand(ValidarUsuario);
             CerrarMensajeCommand = new RelayCommand(CerrarMensaje);
-<<<<<<< HEAD
-            //TxtLogin = "admin";
-            //TxtPassword = "admin";
-=======
->>>>>>> ce3a3302e250747d95d6243810e1077f0567ff57
         }
 
         #endregion
@@ -101,11 +81,7 @@ namespace Guajiro.ViewModels
             }
             else
             {
-<<<<<<< HEAD
-                TxtMensaje = "El usuario/contraseña son incorrectos";
-=======
                 TxtMensaje = "El usuario y/o contraseña son incorrectos";
->>>>>>> ce3a3302e250747d95d6243810e1077f0567ff57
                 VerMensaje = true;
             }
         }
